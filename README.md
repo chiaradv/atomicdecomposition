@@ -1,4 +1,4 @@
-atomicdecomposition
+Atomic Decomposition
 ===================
 
-New project!!
+# New project!!
