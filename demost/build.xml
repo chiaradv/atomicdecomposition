@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<project name="DeMoSt plugin" default="bundle" basedir=".">
+	<property file="${basedir}/build.properties" />
+	<property name="src" location="${basedir}/plugins" />
+	<property name="classes" location="${basedir}/bin" />
+	<property name="source" location="1.6" />
+	<property name="dist" location="${protegestandalone.equinox}" />
+	<property name="jardest" location="${dist}/plugins/uk.ac.manchester.cs.demost.jar" />
+
+
+	<!--
+	<path id="chainsaw.classpath">
+		<pathelement location="build/lib/chainsaw.jar" />
+		<pathelement location="${owlapi.jar}" />
+		<pathelement location="${owlapi.tools.bin.jar}" />
+		<pathelement location="${factplusplus.bin.jar}" />
+		<pathelement location="${factplusplus.jnilib}" />
+	</path>
+	-->
+
+	<target name="cleanUpBuild">
+		<echo message="---------------Clean-up Build-------------" />
+		<delete dir="${basedir}/build" failonerror="false">
+		</delete>
+	</target>
+	<target name="init" depends="cleanUpBuild">
+		<echo message="---------------Building the Bundle-------------" />
+		<mkdir dir="${classes}" />
+		<mkdir dir="${basedir}/build/lib" />
+	</target>
+
+	<!--
+	<target name="buildChainsaw" depends="init">
+		<mkdir dir="${basedir}/build/chainsaw" />
+		<javac debug="on" target="1.5" classpathref="chainsaw.classpath" srcdir="${chainsaw.src.dir}" destdir="${basedir}/build/chainsaw">
+		</javac>
+		<jar destfile="${basedir}/build/lib/chainsaw.jar" basedir="${basedir}/build/chainsaw">
+		</jar>
+		<copy todir="${basedir}/build/lib">
+			<fileset file="${factplusplus.jnilib}" />
+		</copy>
+		<delete dir="${basedir}/build/chainsaw">
+		</delete>
+	</target> -->
+
+	<!-- Compiles the source into a directory called classes inside
+	         the build directory -->
+	<target name="compile">
+		<mkdir dir="${classes}" />
+		<javac srcdir="." destdir="${classes}" debug="on" target="1.6" source="1.6" compiler="javac1.6" fork="yes">
+			<classpath refid="classpath" />
+			<include name="${source}" />
+		</javac>
+	</target>
+
+	<target name="bundle" depends="compile">
+		<echo message="---------------Building the Bundle-------------" />
+		<delete dir="${dist}/configuration/org.eclipse.core.runtime" />
+		<delete dir="${dist}/configuration/org.eclipse.osgi" />
+		<mkdir dir="${classes}/lib" />
+		<copy todir="${classes}/lib">
+			<fileset dir="${basedir}/lib">
+				<include name="*.jar" />
+				<include name="*.jnilib" />
+			</fileset>
+		</copy>
+		<copy todir="${classes}/lib">
+			<fileset dir="${basedir}/build/lib">
+				<include name="*.jar" />
+				<include name="*.jnilib" />
+			</fileset>
+		</copy>
+		<copy toFile="${classes}/plugin.xml" file="${basedir}/plugin.xml" overwrite="true" />
+		<jar basedir="${classes}" jarfile="${jardest}" manifest="${basedir}/plugins/META-INF/MANIFEST.MF" />
+		<antcall target="cleanUpBuild">
+		</antcall>
+	</target>
+</project>

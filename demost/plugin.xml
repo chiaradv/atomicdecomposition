@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+  <plugin>
+  	<extension id="DeMoStView"
+			point="org.protege.editor.core.application.ViewComponent">
+  		<label value="DeMoSt"/>
+  		<class value="uk.ac.manchester.cs.demost.ui.DeMoStView"/>
+		<headerColor value="@org.protege.ontologycolor"/>
+        <category value="@org.protege.ontologycategory"/>
+        <navigates value="@org.protege.classcategory"/>
+        <navigates value="@org.protege.objectpropertycategory"/>
+        <navigates value="@org.protege.datapropertycategory"/>
+        <navigates value="@org.protege.individualcategory"/>
+  	</extension>
+  </plugin>
