@@ -3,6 +3,7 @@ package prefuse.data;
 import java.util.Iterator;
 
 
+
 /**
  * Tuple sub-interface that represents a node in a graph or tree structure.
  * This interface supports both graph and tree methods, tree methods invoked

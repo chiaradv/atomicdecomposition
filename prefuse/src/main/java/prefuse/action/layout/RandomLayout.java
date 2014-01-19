@@ -7,6 +7,7 @@ import java.util.Random;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Performs a random layout of items within the layout bounds.
  *
@@ -14,6 +15,7 @@ import prefuse.visual.VisualItem;
  */
 public class RandomLayout extends Layout {
 
+    /** The r. */
     private Random r = new Random(12345678L);
     
     /**
@@ -40,6 +42,9 @@ public class RandomLayout extends Layout {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {

@@ -4,6 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.util.logging.Logger;
 
+
 /**
  * Represents a clipping rectangle in a prefuse <code>Display</code>.
  *
@@ -11,11 +12,19 @@ import java.util.logging.Logger;
  */
 public class Clip {
     
+    /** The Constant EMPTY. */
     private static final byte EMPTY   = 0;
+    
+    /** The Constant INUSE. */
     private static final byte INUSE   = 1;
+    
+    /** The Constant INVALID. */
     private static final byte INVALID = 2;
     
+    /** The clip. */
     private double[] clip = new double[8];
+    
+    /** The status. */
     private byte status = INVALID;
     
     /**
@@ -332,7 +341,8 @@ public class Clip {
     }
     
     /**
-     * Get the clip's width
+     * Get the clip's width.
+     *
      * @return the clip width
      */
     public double getWidth() {
@@ -340,7 +350,8 @@ public class Clip {
     }
 
     /**
-     * Get the clip's height
+     * Get the clip's height.
+     *
      * @return the clip height
      */
     public double getHeight() {
@@ -366,6 +377,10 @@ public class Clip {
     // ------------------------------------------------------------------------
     
     /**
+     * Equals.
+     *
+     * @param o the o
+     * @return true, if successful
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(Object o) {
@@ -390,6 +405,9 @@ public class Clip {
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

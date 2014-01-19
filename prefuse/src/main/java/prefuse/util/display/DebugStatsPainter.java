@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import prefuse.Display;
 import prefuse.util.PrefuseLib;
 
+
 /**
  * PinatListener that paints useful debugging statistics over a prefuse
  * display. This includes the current frame rate, the number of visible
@@ -16,6 +17,9 @@ public class DebugStatsPainter implements PaintListener {
 
     /**
      * Does nothing.
+     *
+     * @param d the d
+     * @param g the g
      * @see prefuse.util.display.PaintListener#prePaint(prefuse.Display, java.awt.Graphics2D)
      */
     public void prePaint(Display d, Graphics2D g) {
@@ -24,6 +28,9 @@ public class DebugStatsPainter implements PaintListener {
     
     /**
      * Prints a debugging statistics string in the Display.
+     *
+     * @param d the d
+     * @param g the g
      * @see prefuse.util.display.PaintListener#postPaint(prefuse.Display, java.awt.Graphics2D)
      */
     public void postPaint(Display d, Graphics2D g) {

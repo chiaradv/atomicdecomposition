@@ -8,6 +8,7 @@ import prefuse.data.Table;
 import prefuse.util.TypeLib;
 import prefuse.util.collections.IntIterator;
 
+
 /**
  * TableWriter for fixed-width text files, that encode one row of table
  * data per line use a fixed number of characters for each data column.
@@ -22,6 +23,7 @@ import prefuse.util.collections.IntIterator;
 public class FixedWidthTextTableWriter extends AbstractTableWriter {
 
 	// the schema description
+	/** The m_schema. */
 	private FixedWidthTextTableSchema m_schema;
 	
 	/**
@@ -46,15 +48,17 @@ public class FixedWidthTextTableWriter extends AbstractTableWriter {
 	// ------------------------------------------------------------------------    
     
     /**
-     * Get the schema description describing the data columns' fixed widths
-     * @return the fixed-width table schema description
-     */
+	 * Get the schema description describing the data columns' fixed widths.
+	 *
+	 * @return the fixed-width table schema description
+	 */
     public FixedWidthTextTableSchema getFixedWidthSchema() {
         return m_schema;
     }
 
     /**
-     * Set the schema description describing the data columns' fixed widths
+     * Set the schema description describing the data columns' fixed widths.
+     *
      * @param schema the fixed-width table schema description
      */
     public void setFixedWidthSchema(FixedWidthTextTableSchema schema) {
@@ -64,8 +68,13 @@ public class FixedWidthTextTableWriter extends AbstractTableWriter {
 	// ------------------------------------------------------------------------
 
     /**
-     * @see prefuse.data.io.TableWriter#writeTable(prefuse.data.Table, java.io.OutputStream)
-     */
+	 * Write table.
+	 *
+	 * @param table the table
+	 * @param os the os
+	 * @throws DataIOException the data io exception
+	 * @see prefuse.data.io.TableWriter#writeTable(prefuse.data.Table, java.io.OutputStream)
+	 */
     public void writeTable(Table table, OutputStream os) throws DataIOException {
         try {            
             // get print stream
@@ -100,6 +109,12 @@ public class FixedWidthTextTableWriter extends AbstractTableWriter {
     
     /**
      * Pads or truncates a string as necessary to fit within the column length.
+     *
+     * @param value the value
+     * @param len the len
+     * @param prepend the prepend
+     * @param pad the pad
+     * @return the string
      */
     private static String pack(String value, int len, boolean prepend, char pad) {
     	int vlen = value.length();

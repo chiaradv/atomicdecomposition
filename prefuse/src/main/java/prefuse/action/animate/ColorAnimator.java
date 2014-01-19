@@ -7,6 +7,7 @@ import prefuse.util.collections.CopyOnWriteArrayList;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Animator that linearly interpolates between starting and ending colors
  * for VisualItems during an animation. By default, interpolates the three
@@ -18,10 +19,12 @@ import prefuse.visual.VisualItem;
  */
 public class ColorAnimator extends ItemAction {
 
+    /** The Constant DEFAULTS. */
     private static final String[] DEFAULTS = new String[] { 
         VisualItem.STROKECOLOR, VisualItem.FILLCOLOR, 
         VisualItem.TEXTCOLOR };
     
+    /** The m_color fields. */
     private CopyOnWriteArrayList m_colorFields;
     
     /**
@@ -85,6 +88,10 @@ public class ColorAnimator extends ItemAction {
     }
     
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

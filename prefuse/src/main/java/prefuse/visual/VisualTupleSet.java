@@ -7,6 +7,7 @@ package prefuse.visual;
 import prefuse.Visualization;
 import prefuse.data.tuple.TupleSet;
 
+
 /**
  * TupleSet sub-interface for TupleSet instances that contain VisualItems,
  * Tuple instances that include visual properties.

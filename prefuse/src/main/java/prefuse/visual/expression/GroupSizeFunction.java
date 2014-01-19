@@ -5,6 +5,7 @@ import prefuse.data.Tuple;
 import prefuse.data.tuple.TupleSet;
 import prefuse.visual.VisualItem;
 
+
 /**
  * GroupExpression that returns the size of a data group.
  * 
@@ -29,6 +30,9 @@ public class GroupSizeFunction extends GroupExpression {
     }
     
     /**
+     * Gets the name.
+     *
+     * @return the name
      * @see prefuse.data.expression.Function#getName()
      */
     public String getName() {
@@ -36,6 +40,10 @@ public class GroupSizeFunction extends GroupExpression {
     }
 
     /**
+     * Gets the type.
+     *
+     * @param s the s
+     * @return the type
      * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
      */
     public Class getType(Schema s) {
@@ -43,6 +51,10 @@ public class GroupSizeFunction extends GroupExpression {
     }
 
     /**
+     * Gets the.
+     *
+     * @param t the t
+     * @return the object
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */
     public Object get(Tuple t) {
@@ -50,6 +62,10 @@ public class GroupSizeFunction extends GroupExpression {
     }
 
     /**
+     * Gets the double.
+     *
+     * @param t the t
+     * @return the double
      * @see prefuse.data.expression.Expression#getDouble(prefuse.data.Tuple)
      */
     public double getDouble(Tuple t) {
@@ -57,6 +73,10 @@ public class GroupSizeFunction extends GroupExpression {
     }
 
     /**
+     * Gets the float.
+     *
+     * @param t the t
+     * @return the float
      * @see prefuse.data.expression.Expression#getFloat(prefuse.data.Tuple)
      */
     public float getFloat(Tuple t) {
@@ -64,6 +84,10 @@ public class GroupSizeFunction extends GroupExpression {
     }
 
     /**
+     * Gets the int.
+     *
+     * @param t the t
+     * @return the int
      * @see prefuse.data.expression.Expression#getInt(prefuse.data.Tuple)
      */
     public int getInt(Tuple t) {
@@ -74,6 +98,10 @@ public class GroupSizeFunction extends GroupExpression {
     }
 
     /**
+     * Gets the long.
+     *
+     * @param t the t
+     * @return the long
      * @see prefuse.data.expression.Expression#getLong(prefuse.data.Tuple)
      */
     public long getLong(Tuple t) {

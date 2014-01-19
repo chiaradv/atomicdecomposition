@@ -3,6 +3,7 @@ package prefuse.data.util;
 import prefuse.data.CascadedTable;
 import prefuse.data.Table;
 
+
 /**
  * RowManager instance that additionally takes into account tables which
  * inherit from a parent table but can also have their own, dedicated
@@ -21,6 +22,11 @@ public class CascadedRowManager extends FilteredRowManager {
     }
     
     /**
+     * Gets the column row.
+     *
+     * @param row the row
+     * @param col the col
+     * @return the column row
      * @see prefuse.data.util.RowManager#getColumnRow(int, int)
      */
     public int getColumnRow(int row, int col) {
@@ -34,6 +40,11 @@ public class CascadedRowManager extends FilteredRowManager {
     }
     
     /**
+     * Gets the table row.
+     *
+     * @param columnRow the column row
+     * @param col the col
+     * @return the table row
      * @see prefuse.data.util.RowManager#getTableRow(int, int)
      */
     public int getTableRow(int columnRow, int col) {

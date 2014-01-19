@@ -14,6 +14,7 @@ import prefuse.data.Tuple;
 import prefuse.util.io.IOLib;
 
 
+
 /**
  * <p>Utility class that manages loading and storing images. Includes a
  * configurable LRU cache for managing loaded images. Also supports optional
@@ -29,22 +30,37 @@ import prefuse.util.io.IOLib;
  */
 public class ImageFactory {
     
+    /** The m_image cache size. */
     protected int m_imageCacheSize = 3000;
+    
+    /** The m_max image width. */
     protected int m_maxImageWidth  = 100;
+    
+    /** The m_max image height. */
     protected int m_maxImageHeight = 100;
+    
+    /** The m_asynch. */
     protected boolean m_asynch = true;
     
     //a nice LRU cache courtesy of java 1.4
+    /** The image cache. */
     protected Map imageCache =
         new LinkedHashMap((int) (m_imageCacheSize + 1 / .75F), .75F, true) {
             public boolean removeEldestEntry(Map.Entry eldest) {
                 return size() > m_imageCacheSize;
             }
         };
+    
+    /** The load map. */
     protected Map loadMap = new HashMap(50);
 
+    /** The component. */
     protected final Component component = new Component() {};
+    
+    /** The tracker. */
     protected final MediaTracker tracker = new MediaTracker(component);
+    
+    /** The next tracker id. */
     protected int nextTrackerID = 0;
 
     /**
@@ -68,9 +84,10 @@ public class ImageFactory {
 
     /**
      * Indicates if this ImageFactory loads images asynchronously (true by
-     * default)
+     * default).
+     *
      * @return true for asynchronous (background) loading, false for
-     *  synchronous (blocking) loading
+     * synchronous (blocking) loading
      */
     public boolean isAsynchronous() {
     	return m_asynch;
@@ -97,7 +114,8 @@ public class ImageFactory {
     }
 
     /**
-     * Sets the capacity of this factory's image cache
+     * Sets the capacity of this factory's image cache.
+     *
      * @param size the new size of the image cache
      */
     public void setImageCacheSize(int size) {
@@ -250,8 +268,19 @@ public class ImageFactory {
      * Helper class for storing an id/image pair.
      */
     private class LoadMapEntry {
+        
+        /** The id. */
         public int id;
+        
+        /** The image. */
         public Image image;
+        
+        /**
+         * Instantiates a new load map entry.
+         *
+         * @param id the id
+         * @param image the image
+         */
         public LoadMapEntry(int id, Image image) {
             this.id = id;
             this.image = image;

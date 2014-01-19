@@ -13,6 +13,7 @@ import prefuse.util.ui.UILib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>Updates the contents of a TupleSet of focus items in response to mouse
  * actions. For example, clicking a node or double-clicking a node could
@@ -31,11 +32,22 @@ import prefuse.visual.VisualItem;
  */
 public class FocusControl extends ControlAdapter {
 
+    /** The group. */
     private String group = Visualization.FOCUS_ITEMS;
+    
+    /** The activity. */
     protected String activity;
+    
+    /** The cur focus. */
     protected VisualItem curFocus;
+    
+    /** The ccount. */
     protected int ccount;
+    
+    /** The button. */
     protected int button = Control.LEFT_MOUSE_BUTTON;
+    
+    /** The filter. */
     protected Predicate filter = null;
     
     /**
@@ -149,6 +161,10 @@ public class FocusControl extends ControlAdapter {
     // ------------------------------------------------------------------------
     
     /**
+     * Item entered.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemEntered(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemEntered(VisualItem item, MouseEvent e) {
@@ -165,6 +181,10 @@ public class FocusControl extends ControlAdapter {
     }
     
     /**
+     * Item exited.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemExited(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemExited(VisualItem item, MouseEvent e) {
@@ -181,6 +201,10 @@ public class FocusControl extends ControlAdapter {
     }
     
     /**
+     * Item clicked.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemClicked(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemClicked(VisualItem item, MouseEvent e) {
@@ -213,6 +237,11 @@ public class FocusControl extends ControlAdapter {
         }
     }
     
+    /**
+     * Run activity.
+     *
+     * @param vis the vis
+     */
     private void runActivity(Visualization vis) {
         if ( activity != null ) {
             vis.run(activity);

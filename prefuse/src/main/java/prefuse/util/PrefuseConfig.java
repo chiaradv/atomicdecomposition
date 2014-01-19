@@ -9,6 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 import prefuse.util.io.IOLib;
 
+
 /**
  * <p>Runtime configuration settings for the prefuse framework. Maintains a set
  * of hardwired configuration settings that can be overridden by creating a
@@ -51,9 +52,11 @@ import prefuse.util.io.IOLib;
  */
 public class PrefuseConfig extends Properties {
 
+    /** The Constant s_logger. */
     private static final Logger s_logger 
         = Logger.getLogger(PrefuseConfig.class.getName());
     
+    /** The Constant s_config. */
     private static final PrefuseConfig s_config = new PrefuseConfig();
     
     /**
@@ -64,6 +67,9 @@ public class PrefuseConfig extends Properties {
         return s_config;
     }
     
+    /**
+     * Instantiates a new prefuse config.
+     */
     private PrefuseConfig() {
         setDefaults();
         
@@ -186,7 +192,7 @@ public class PrefuseConfig extends Properties {
     }
     
     /**
-     * Sets default values for Prefuse properties
+     * Sets default values for Prefuse properties.
      */
     private void setDefaults() {        
         setProperty("size.scale2D", "0.5");

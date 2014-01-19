@@ -2,6 +2,7 @@ package prefuse.render;
 
 import prefuse.visual.VisualItem;
 
+
 /**
  * The RendererFactory is responsible for providing the proper Renderer
  * instance for drawing a given VisualItem.

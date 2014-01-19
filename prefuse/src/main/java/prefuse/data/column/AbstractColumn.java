@@ -11,6 +11,7 @@ import prefuse.data.parser.ParserFactory;
 import prefuse.util.TypeLib;
 import prefuse.util.collections.CopyOnWriteArrayList;
 
+
 /**
  * Abstract base class for Column implementations. Provides listener support
  * and default implementations of column methods.
@@ -19,11 +20,19 @@ import prefuse.util.collections.CopyOnWriteArrayList;
  */
 public abstract class AbstractColumn implements Column {
 
+    /** The m_column type. */
     protected final Class  m_columnType;
+    
+    /** The m_parser. */
     protected DataParser   m_parser;
+    
+    /** The m_default value. */
     protected Object       m_defaultValue;
+    
+    /** The m_read only. */
     protected boolean      m_readOnly;
     
+    /** The m_listeners. */
     protected CopyOnWriteArrayList m_listeners;
     
     /**
@@ -69,9 +78,10 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Sets if the values in this column are read-only
-     * @param readOnly true to ensure the values can not be edited, 
-     *  false otherwise
+     * Sets if the values in this column are read-only.
+     *
+     * @param readOnly true to ensure the values can not be edited,
+     * false otherwise
      */
     public void setReadOnly(boolean readOnly) {
         m_readOnly = readOnly;
@@ -87,7 +97,8 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Returns the most specific superclass for the values in the column
+     * Returns the most specific superclass for the values in the column.
+     *
      * @return the Class of the column's data values
      */
     public Class getColumnType() {
@@ -95,6 +106,9 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
+     * Gets the parser.
+     *
+     * @return the parser
      * @see prefuse.data.column.Column#getParser()
      */
     public DataParser getParser() {
@@ -102,6 +116,9 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
+     * Sets the parser.
+     *
+     * @param parser the new parser
      * @see prefuse.data.column.Column#setParser(prefuse.data.parser.DataParser)
      */
     public void setParser(DataParser parser) {
@@ -117,7 +134,8 @@ public abstract class AbstractColumn implements Column {
     // Listener Methods
     
     /**
-     * Adds a listener to be notified when this column changes
+     * Adds a listener to be notified when this column changes.
+     *
      * @param listener the ColumnListener to add
      */
     public void addColumnListener(ColumnListener listener) {
@@ -125,7 +143,8 @@ public abstract class AbstractColumn implements Column {
     }
 
     /**
-     * Removes a listener, causing it to no longer be notified of changes
+     * Removes a listener, causing it to no longer be notified of changes.
+     *
      * @param listener the ColumnListener to remove
      */
     public void removeColumnListener(ColumnListener listener) {
@@ -133,7 +152,11 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Notifies all registered listeners of a column UPDATE event
+     * Notifies all registered listeners of a column UPDATE event.
+     *
+     * @param type the type
+     * @param start the start
+     * @param end the end
      */
     protected final void fireColumnEvent(int type, int start, int end) {
         Object[] lstnrs = m_listeners.getArray();
@@ -142,7 +165,8 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Notifies all registered listeners of a column UPDATE event
+     * Notifies all registered listeners of a column UPDATE event.
+     *
      * @param idx the row index of the column that was updated
      * @param prev the previous value at the given index
      */
@@ -153,7 +177,8 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Notifies all registered listeners of a column UPDATE event
+     * Notifies all registered listeners of a column UPDATE event.
+     *
      * @param idx the row index of the column that was updated
      * @param prev the previous value at the given index
      */
@@ -164,7 +189,8 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Notifies all registered listeners of a column UPDATE event
+     * Notifies all registered listeners of a column UPDATE event.
+     *
      * @param idx the row index of the column that was updated
      * @param prev the previous value at the given index
      */
@@ -175,7 +201,8 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Notifies all registered listeners of a column UPDATE event
+     * Notifies all registered listeners of a column UPDATE event.
+     *
      * @param idx the row index of the column that was updated
      * @param prev the previous value at the given index
      */
@@ -186,7 +213,8 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Notifies all registered listeners of a column UPDATE event
+     * Notifies all registered listeners of a column UPDATE event.
+     *
      * @param idx the row index of the column that was updated
      * @param prev the previous value at the given index
      */
@@ -197,7 +225,8 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Notifies all registered listeners of a column UPDATE event
+     * Notifies all registered listeners of a column UPDATE event.
+     *
      * @param idx the row index of the column that was updated
      * @param prev the previous value at the given index
      */
@@ -211,7 +240,9 @@ public abstract class AbstractColumn implements Column {
     // Data Access Methods
     
     /**
-     * Returns the default value for rows that have not been set explicitly. 
+     * Returns the default value for rows that have not been set explicitly.
+     *
+     * @return the default value
      */
     public Object getDefaultValue() {
         return m_defaultValue;
@@ -222,7 +253,8 @@ public abstract class AbstractColumn implements Column {
      * under a different default value will not be changed as a result
      * of this method; the new default will apply to newly added rows
      * only.
-     * @param dflt
+     *
+     * @param dflt the new default value
      */
     public void setDefaultValue(Object dflt) {
         boolean prim = m_columnType.isPrimitive();
@@ -238,7 +270,8 @@ public abstract class AbstractColumn implements Column {
     
     /**
      * Reverts the specified row back to the column's default value.
-     * @param row
+     *
+     * @param row the row
      */
     public void revertToDefault(int row) {
         set(m_defaultValue, row);
@@ -310,11 +343,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Get the data value at the specified row as an integer
+     * Get the data value at the specified row as an integer.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as an integer
-     * @throws DataTypeException if this column does not 
-     *  support the integer type
+     * @throws DataTypeException if this column does not
+     * support the integer type
      */
     public int getInt(int row) throws DataTypeException {
         if ( canGetInt() ) {
@@ -325,11 +359,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Set the data value at the specified row as an integer
+     * Set the data value at the specified row as an integer.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the integer type
+     * @throws DataTypeException if this column does not
+     * support the integer type
      */
     public void setInt(int val, int row) throws DataTypeException {
         if ( canSetInt() ) {
@@ -360,11 +395,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Get the data value at the specified row as a long
+     * Get the data value at the specified row as a long.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a long
-     * @throws DataTypeException if this column does not 
-     *  support the long type
+     * @throws DataTypeException if this column does not
+     * support the long type
      */
     public long getLong(int row) throws DataTypeException {
         if ( canGetLong() ) {
@@ -375,11 +411,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Set the data value at the specified row as a long
+     * Set the data value at the specified row as a long.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the long type
+     * @throws DataTypeException if this column does not
+     * support the long type
      */
     public void setLong(long val, int row) throws DataTypeException {
         if ( canSetLong() ) {
@@ -410,11 +447,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Get the data value at the specified row as a float
+     * Get the data value at the specified row as a float.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a float
-     * @throws DataTypeException if this column does not 
-     *  support the float type
+     * @throws DataTypeException if this column does not
+     * support the float type
      */
     public float getFloat(int row) throws DataTypeException {
         if ( canGetFloat() ) {
@@ -425,11 +463,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Set the data value at the specified row as a float
+     * Set the data value at the specified row as a float.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the float type
+     * @throws DataTypeException if this column does not
+     * support the float type
      */
     public void setFloat(float val, int row) throws DataTypeException {
         if ( canSetFloat() ) {
@@ -460,11 +499,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Get the data value at the specified row as a double
+     * Get the data value at the specified row as a double.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a double
-     * @throws DataTypeException if this column does not 
-     *  support the double type
+     * @throws DataTypeException if this column does not
+     * support the double type
      */
     public double getDouble(int row) throws DataTypeException {
         if ( canGetDouble() ) {
@@ -475,11 +515,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Set the data value at the specified row as a double
+     * Set the data value at the specified row as a double.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the double type
+     * @throws DataTypeException if this column does not
+     * support the double type
      */
     public void setDouble(double val, int row) throws DataTypeException {
         if ( canSetDouble() ) {
@@ -510,11 +551,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Get the data value at the specified row as a boolean
+     * Get the data value at the specified row as a boolean.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a boolean
-     * @throws DataTypeException if this column does not 
-     *  support the boolean type
+     * @throws DataTypeException if this column does not
+     * support the boolean type
      */
     public boolean getBoolean(int row) throws DataTypeException {
         if ( canGetBoolean() ) {
@@ -525,11 +567,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Set the data value at the specified row as a boolean
+     * Set the data value at the specified row as a boolean.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the boolean type
+     * @throws DataTypeException if this column does not
+     * support the boolean type
      */
     public void setBoolean(boolean val, int row) throws DataTypeException {
         if ( canSetBoolean() ) {
@@ -562,11 +605,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Get the data value at the specified row as a String
+     * Get the data value at the specified row as a String.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a String
-     * @throws DataTypeException if this column does not 
-     *  support the String type
+     * @throws DataTypeException if this column does not
+     * support the String type
      */
     public String getString(int row) throws DataTypeException {
         if ( canGetString() ) {
@@ -577,11 +621,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Set the data value at the specified row as a String
+     * Set the data value at the specified row as a String.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the String type
+     * @throws DataTypeException if this column does not
+     * support the String type
      */
     public void setString(String val, int row) throws DataTypeException {
         try {
@@ -612,11 +657,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Get the data value at the specified row as a Date
+     * Get the data value at the specified row as a Date.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a Date
-     * @throws DataTypeException if this column does not 
-     *  support the Date type
+     * @throws DataTypeException if this column does not
+     * support the Date type
      */
     public Date getDate(int row) throws DataTypeException {
         if ( canGetDate() ) {
@@ -627,11 +673,12 @@ public abstract class AbstractColumn implements Column {
     }
     
     /**
-     * Set the data value at the specified row as a Date
+     * Set the data value at the specified row as a Date.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the Date type
+     * @throws DataTypeException if this column does not
+     * support the Date type
      */
     public void setDate(Date val, int row) throws DataTypeException {
         set(val, row);

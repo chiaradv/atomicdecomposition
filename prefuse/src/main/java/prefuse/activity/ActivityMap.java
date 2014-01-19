@@ -2,6 +2,7 @@ package prefuse.activity;
 
 import java.util.HashMap;
 
+
 /**
  * <p>Maps between Activity instances and user-defined keys. Can be used to
  * maintain and schedule Activity instances through a layer of indirection.</p>
@@ -19,7 +20,10 @@ import java.util.HashMap;
  */
 public class ActivityMap {
 
+    /** The m_map. */
     private HashMap     m_map;
+    
+    /** The m_parent. */
     private ActivityMap m_parent;
     
     /**
@@ -147,7 +151,8 @@ public class ActivityMap {
     }
     
     /**
-     * Associates the given key with the given Activity
+     * Associates the given key with the given Activity.
+     *
      * @param key the key to associate with the Activity
      * @param activity an Activity instance
      * @return the Activity previously mapped to by the key, or null if none

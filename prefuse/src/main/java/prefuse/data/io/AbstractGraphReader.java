@@ -11,6 +11,7 @@ import prefuse.data.Graph;
 import prefuse.util.io.IOLib;
 
 
+
 /**
  * Abstract base class implementation of the GraphReader interface. Provides
  * implementations for all but the
@@ -21,6 +22,11 @@ import prefuse.util.io.IOLib;
 public abstract class AbstractGraphReader implements GraphReader {
 
     /**
+     * Read graph.
+     *
+     * @param location the location
+     * @return the graph
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.GraphReader#readGraph(java.lang.String)
      */
     public Graph readGraph(String location) throws DataIOException
@@ -37,6 +43,11 @@ public abstract class AbstractGraphReader implements GraphReader {
     }
 
     /**
+     * Read graph.
+     *
+     * @param url the url
+     * @return the graph
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.GraphReader#readGraph(java.net.URL)
      */
     public Graph readGraph(URL url) throws DataIOException {
@@ -48,6 +59,11 @@ public abstract class AbstractGraphReader implements GraphReader {
     }
 
     /**
+     * Read graph.
+     *
+     * @param f the f
+     * @return the graph
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.GraphReader#readGraph(java.io.File)
      */
     public Graph readGraph(File f) throws DataIOException {
@@ -59,6 +75,11 @@ public abstract class AbstractGraphReader implements GraphReader {
     }
     
     /**
+     * Read graph.
+     *
+     * @param is the is
+     * @return the graph
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.GraphReader#readGraph(java.io.InputStream)
      */
     public abstract Graph readGraph(InputStream is) throws DataIOException;

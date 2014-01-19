@@ -9,6 +9,7 @@ import prefuse.data.expression.IfExpression;
 import prefuse.data.expression.ObjectLiteral;
 import prefuse.data.expression.Predicate;
 
+
 /**
  * A chain of Predicates and associated values, maintain a large
  * if-statement structure for looking up values based on a Predicate
@@ -17,7 +18,10 @@ import prefuse.data.expression.Predicate;
  */
 public class PredicateChain {
     
+    /** The m_head. */
     private Expression m_head = new ObjectLiteral(null);
+    
+    /** The m_tail. */
     private IfExpression m_tail = null;
     
     /**

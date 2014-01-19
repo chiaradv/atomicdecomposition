@@ -6,6 +6,7 @@ import java.awt.event.MouseWheelEvent;
 import prefuse.Display;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Zooms the display using the mouse scroll wheel, changing the scale of the
  * viewable region.
@@ -17,8 +18,13 @@ import prefuse.visual.VisualItem;
  */
 public class WheelZoomControl extends AbstractZoomControl {
     
+    /** The m_point. */
     private Point m_point = new Point();
+    
+    /** The inverted. */
     private final boolean inverted;
+    
+    /** The at pointer. */
     private final boolean atPointer;
     
     /**
@@ -44,6 +50,10 @@ public class WheelZoomControl extends AbstractZoomControl {
     }
     
     /**
+     * Item wheel moved.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemWheelMoved(prefuse.visual.VisualItem, java.awt.event.MouseWheelEvent)
      */
     public void itemWheelMoved(VisualItem item, MouseWheelEvent e) {
@@ -52,6 +62,9 @@ public class WheelZoomControl extends AbstractZoomControl {
     }
     
     /**
+     * Mouse wheel moved.
+     *
+     * @param e the e
      * @see java.awt.event.MouseWheelListener#mouseWheelMoved(java.awt.event.MouseWheelEvent)
      */
     public void mouseWheelMoved(MouseWheelEvent e) {

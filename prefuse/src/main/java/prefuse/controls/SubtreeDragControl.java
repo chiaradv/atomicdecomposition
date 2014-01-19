@@ -12,6 +12,7 @@ import prefuse.visual.NodeItem;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Control that changes the location of a whole subtree when dragged on screen.
  * This is similar to the {@link DragControl DragControl} class, except that it
@@ -22,8 +23,13 @@ import prefuse.visual.VisualItem;
  */
 public class SubtreeDragControl extends ControlAdapter {
 
+    /** The down. */
     private Point2D down = new Point2D.Double();
+    
+    /** The tmp. */
     private Point2D tmp = new Point2D.Double();
+    
+    /** The was fixed. */
     private boolean wasFixed;
     
     /**
@@ -34,6 +40,10 @@ public class SubtreeDragControl extends ControlAdapter {
     }
     
     /**
+     * Item entered.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemEntered(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemEntered(VisualItem item, MouseEvent e) {
@@ -43,6 +53,10 @@ public class SubtreeDragControl extends ControlAdapter {
     }
     
     /**
+     * Item exited.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemExited(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemExited(VisualItem item, MouseEvent e) {
@@ -52,6 +66,10 @@ public class SubtreeDragControl extends ControlAdapter {
     }
     
     /**
+     * Item pressed.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemPressed(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemPressed(VisualItem item, MouseEvent e) {
@@ -64,6 +82,10 @@ public class SubtreeDragControl extends ControlAdapter {
     }
     
     /**
+     * Item released.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemReleased(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemReleased(VisualItem item, MouseEvent e) {
@@ -73,6 +95,10 @@ public class SubtreeDragControl extends ControlAdapter {
     }
     
     /**
+     * Item dragged.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemDragged(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemDragged(VisualItem item, MouseEvent e) {
@@ -87,6 +113,13 @@ public class SubtreeDragControl extends ControlAdapter {
         item.getVisualization().repaint();
     }
     
+    /**
+     * Update locations.
+     *
+     * @param n the n
+     * @param dx the dx
+     * @param dy the dy
+     */
     private void updateLocations(NodeItem n, double dx, double dy) {
         double x = n.getX(), y = n.getY();
         n.setStartX(x); n.setStartY(y);

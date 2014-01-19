@@ -6,6 +6,7 @@ import prefuse.data.Table;
 import prefuse.data.expression.Predicate;
 import prefuse.util.collections.IntIterator;
 
+
 /**
  * Iterator over table rows that filters the output by a given predicate. For
  * each table row, the corresponding tuple is checked against the predicate.
@@ -15,9 +16,16 @@ import prefuse.util.collections.IntIterator;
  */
 public class FilterRowIterator extends IntIterator {
     
+    /** The predicate. */
     private Predicate predicate;
+    
+    /** The rows. */
     private IntIterator rows;
+    
+    /** The t. */
     private Table t;
+    
+    /** The next. */
     private int next;
     
     /**
@@ -33,6 +41,11 @@ public class FilterRowIterator extends IntIterator {
         next = advance();
     }
     
+    /**
+     * Advance.
+     *
+     * @return the int
+     */
     private int advance() {
         while ( rows.hasNext() ) {
             int r = rows.nextInt();
@@ -46,6 +59,9 @@ public class FilterRowIterator extends IntIterator {
     }
 
     /**
+     * Next int.
+     *
+     * @return the int
      * @see prefuse.util.collections.LiteralIterator#nextInt()
      */
     public int nextInt() {
@@ -58,6 +74,9 @@ public class FilterRowIterator extends IntIterator {
     }
     
     /**
+     * Checks for next.
+     *
+     * @return true, if successful
      * @see java.util.Iterator#hasNext()
      */
     public boolean hasNext() {

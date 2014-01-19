@@ -31,6 +31,7 @@ import prefuse.util.collections.IncompatibleComparatorException;
 import prefuse.util.collections.IntIterator;
 
 
+
 /**
  * <p>A Table organizes a collection of data into rows and columns, each row 
  * containing a data record, and each column containing data values for a
@@ -87,32 +88,32 @@ import prefuse.util.collections.IntIterator;
  */
 public class Table extends AbstractTupleSet implements ColumnListener {
     
-    /** Listeners for changes to this table */
+    /** Listeners for changes to this table. */
     protected CopyOnWriteArrayList m_listeners;
     
-    /** Locally stored data columns */
+    /** Locally stored data columns. */
     protected ArrayList m_columns;
-    /** Column names for locally store data columns */
+    
+    /** Column names for locally store data columns. */
     protected ArrayList m_names;
     
-    /** Mapping between column names and column entries
-     * containing column, metadata, and index references */ 
+    /** Mapping between column names and column entries containing column, metadata, and index references. */ 
     protected HashMap m_entries;
     
-    /** Manager for valid row indices */
+    /** Manager for valid row indices. */
     protected RowManager m_rows;
     
-    /** manager for tuples, which are object representations for rows */
+    /** manager for tuples, which are object representations for rows. */
     protected TupleManager m_tuples;
     
-    /** Tracks the number of edits of this table */
+    /** Tracks the number of edits of this table. */
     protected int m_modCount = 0;
     
     /** Memoize the index of the last column operated on,
      * used to expedite handling of column updates. */
     protected int m_lastCol = -1;
     
-    /** A cached schema instance, loaded lazily */
+    /** A cached schema instance, loaded lazily. */
     protected Schema m_schema;
     
     // ------------------------------------------------------------------------
@@ -289,11 +290,12 @@ public class Table extends AbstractTupleSet implements ColumnListener {
      * this data, a mapping between the row numbers of the table and
      * the row numbers of the backing data column is needed. In those cases,
      * this method returns the result of that mapping. The method
-     * {@link #getTableRow(int, int)} accesses this map in the reverse
-     * direction.
+     *
      * @param row the table row to lookup
      * @param col the table column to lookup
      * @return the column row number for accessing the desired table cell
+     * {@link #getTableRow(int, int)} accesses this map in the reverse
+     * direction.
      */
     public int getColumnRow(int row, int col) {
         return m_rows.getColumnRow(row, col);
@@ -414,6 +416,9 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Internal method indicating if the given data field is included as a
      * data column.
+     *
+     * @param name the name
+     * @return true, if successful
      */
     protected boolean hasColumn(String name) {
         return getColumnNumber(name) != -1;
@@ -458,7 +463,8 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     }
     
     /**
-     * Get the column with the given data field name
+     * Get the column with the given data field name.
+     *
      * @param field the data field name of the column
      * @return the Column instance
      */
@@ -598,7 +604,8 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     }
     
     /**
-     * Remove a data field from this table
+     * Remove a data field from this table.
+     *
      * @param field the name of the data field / column to remove
      * @return the removed Column instance
      */
@@ -611,7 +618,8 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     }
     
     /**
-     * Remove a column from this table
+     * Remove a column from this table.
+     *
      * @param c the column instance to remove
      */
     public void removeColumn(Column c) {
@@ -635,7 +643,8 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     }
     
     /**
-     * Internal method that returns an iterator over columns
+     * Internal method that returns an iterator over columns.
+     *
      * @return an iterator over columns
      */
     protected Iterator getColumns() {
@@ -643,7 +652,8 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     }
 
     /**
-     * Internal method that returns an iterator over column names
+     * Internal method that returns an iterator over column names.
+     *
      * @return an iterator over column name
      */
     protected Iterator getColumnNames() {
@@ -844,6 +854,8 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     
     /**
      * Returns true, as this table supports the addition of new data fields.
+     *
+     * @return true, if is adds the column supported
      * @see prefuse.data.tuple.TupleSet#isAddColumnSupported()
      */
     public boolean isAddColumnSupported() {
@@ -968,6 +980,8 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Revert this tuple's value for the given field to the default value
      * for the field.
+     *
+     * @param row the row
      * @param field the data field
      * @see #getDefault(String)
      */
@@ -1008,8 +1022,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as an
      * <code>int</code>.
+     *
      * @param row the table row to retrieve
      * @param field the data field to retrieve
+     * @return the int
      * @see #canGetInt(String)
      */
     public final int getInt(int row, String field) {
@@ -1035,8 +1051,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as an
      * <code>int</code>.
+     *
      * @param row the table row to retrieve
      * @param col the column number of the data field to retrieve
+     * @return the int
      * @see #canGetInt(String)
      */
     public final int getInt(int row, int col) {
@@ -1087,8 +1105,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as a
      * <code>long</code>.
+     *
      * @param row the table row to retrieve
      * @param field the data field to retrieve
+     * @return the long
      * @see #canGetLong(String)
      */
     public final long getLong(int row, String field) {
@@ -1114,8 +1134,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as an
      * <code>long</code>.
+     *
      * @param row the table row to retrieve
      * @param col the column number of the data field to retrieve
+     * @return the long
      * @see #canGetLong(String)
      */
     public final long getLong(int row, int col)  {
@@ -1166,8 +1188,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as a
      * <code>float</code>.
+     *
      * @param row the table row to retrieve
      * @param field the data field to retrieve
+     * @return the float
      * @see #canGetFloat(String)
      */
     public final float getFloat(int row, String field) {
@@ -1193,8 +1217,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as a
      * <code>float</code>.
+     *
      * @param row the table row to retrieve
      * @param col the column number of the data field to get
+     * @return the float
      * @see #canGetFloat(String)
      */
     public final float getFloat(int row, int col) {
@@ -1245,8 +1271,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as a
      * <code>double</code>.
+     *
      * @param row the table row to retrieve
      * @param field the data field to retrieve
+     * @return the double
      * @see #canGetDouble(String)
      */
     public final double getDouble(int row, String field) {
@@ -1272,8 +1300,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as a
      * <code>double</code>.
+     *
      * @param row the table row to retrieve
      * @param col the column number of the data field to get
+     * @return the double
      * @see #canGetDouble(String)
      */
     public final double getDouble(int row, int col) {
@@ -1324,8 +1354,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as a
      * <code>boolean</code>.
+     *
      * @param row the table row to retrieve
      * @param field the data field to retrieve
+     * @return the boolean
      * @see #canGetBoolean(String)
      */
     public final boolean getBoolean(int row, String field) {
@@ -1351,8 +1383,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as a
      * <code>boolean</code>.
+     *
      * @param row the table row to retrieve
      * @param col the column number of the data field to get
+     * @return the boolean
      * @see #canGetBoolean(String)
      */
     public final boolean getBoolean(int row, int col) {
@@ -1403,8 +1437,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as a
      * <code>String</code>.
+     *
      * @param row the table row to retrieve
      * @param field the data field to retrieve
+     * @return the string
      * @see #canGetString(String)
      */
     public final String getString(int row, String field) {
@@ -1430,8 +1466,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as a
      * <code>String</code>.
+     *
      * @param row the table row to retrieve
      * @param col the column number of the data field to retrieve
+     * @return the string
      * @see #canGetString(String)
      */
     public final String getString(int row, int col) {
@@ -1482,8 +1520,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as a
      * <code>Date</code>.
+     *
      * @param row the table row to retrieve
      * @param field the data field to retrieve
+     * @return the date
      * @see #canGetDate(String)
      */
     public final Date getDate(int row, String field) {
@@ -1509,8 +1549,10 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Get the data value at the given row and field as a
      * <code>Date</code>.
+     *
      * @param row the table row to retrieve
      * @param col the column number of the data field to retrieve
+     * @return the date
      * @see #canGetDate(String)
      */
     public final Date getDate(int row, int col) {
@@ -1538,13 +1580,14 @@ public class Table extends AbstractTupleSet implements ColumnListener {
      * Query this table for a filtered, sorted subset of this table. This
      * operation creates an entirely new table independent of this table.
      * If a filtered view of this same table is preferred, use the
-     * {@link CascadedTable} class.
+     *
      * @param filter the predicate filter determining which rows to include
      * in the new table. If this value is null, all rows will be included.
      * @param sort the sorting criteria determining the order in which
      * rows are added to the new table. If this value is null, the rows
      * will not be sorted.
      * @return a new table meeting the query specification
+     * {@link CascadedTable} class.
      */
     public Table select(Predicate filter, Sort sort) {
         Table t = getSchema().instantiate();
@@ -1658,14 +1701,15 @@ public class Table extends AbstractTupleSet implements ColumnListener {
      * Return an iterator over a range of rwos in this table, determined
      * by a bounded range for a given data field. A new index over the
      * data field will be created if it doesn't already exist.
+     *
      * @param field the data field for determining the bounded range
      * @param lo the minimum range value
      * @param hi the maximum range value
      * @param indexType indicate the sort order and inclusivity/exclusivity
      * of the range bounds, using the constants of the
-     * {@link prefuse.data.util.Index} class.
-     * @return an iterator over a range of table rows, determined by a 
+     * @return an iterator over a range of table rows, determined by a
      * sorted bounded range of a data field
+     * {@link prefuse.data.util.Index} class.
      */
     public IntIterator rangeSortedBy(String field, int lo, int hi, int indexType) {
         Index index = getIndex(field, int.class, true);
@@ -1675,15 +1719,16 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     /**
      * Return an iterator over a range of rwos in this table, determined
      * by a bounded range for a given data field. A new index over the
-     * data field will be created if it doesn't already exist. 
+     * data field will be created if it doesn't already exist.
+     *
      * @param field the data field for determining the bounded range
      * @param lo the minimum range value
      * @param hi the maximum range value
      * @param indexType indicate the sort order and inclusivity/exclusivity
      * of the range bounds, using the constants of the
-     * {@link prefuse.data.util.Index} class.
-     * @return an iterator over a range of table rows, determined by a 
+     * @return an iterator over a range of table rows, determined by a
      * sorted bounded range of a data field
+     * {@link prefuse.data.util.Index} class.
      */
     public IntIterator rangeSortedBy(String field, long lo, long hi, int indexType) {
         Index index = getIndex(field, long.class, true);
@@ -1694,14 +1739,15 @@ public class Table extends AbstractTupleSet implements ColumnListener {
      * Return an iterator over a range of rwos in this table, determined
      * by a bounded range for a given data field. A new index over the
      * data field will be created if it doesn't already exist.
+     *
      * @param field the data field for determining the bounded range
      * @param lo the minimum range value
      * @param hi the maximum range value
      * @param indexType indicate the sort order and inclusivity/exclusivity
      * of the range bounds, using the constants of the
-     * {@link prefuse.data.util.Index} class.
-     * @return an iterator over a range of table rows, determined by a 
+     * @return an iterator over a range of table rows, determined by a
      * sorted bounded range of a data field
+     * {@link prefuse.data.util.Index} class.
      */
     public IntIterator rangeSortedBy(String field, float lo, float hi, int indexType) {
         Index index = getIndex(field, float.class, true);
@@ -1712,14 +1758,15 @@ public class Table extends AbstractTupleSet implements ColumnListener {
      * Return an iterator over a range of rwos in this table, determined
      * by a bounded range for a given data field. A new index over the
      * data field will be created if it doesn't already exist.
+     *
      * @param field the data field for determining the bounded range
      * @param lo the minimum range value
      * @param hi the maximum range value
      * @param indexType indicate the sort order and inclusivity/exclusivity
      * of the range bounds, using the constants of the
-     * {@link prefuse.data.util.Index} class.
-     * @return an iterator over a range of table rows, determined by a 
+     * @return an iterator over a range of table rows, determined by a
      * sorted bounded range of a data field
+     * {@link prefuse.data.util.Index} class.
      */
     public IntIterator rangeSortedBy(String field, double lo, double hi, int indexType) {
         Index index = getIndex(field, double.class, true);
@@ -1730,14 +1777,15 @@ public class Table extends AbstractTupleSet implements ColumnListener {
      * Return an iterator over a range of rwos in this table, determined
      * by a bounded range for a given data field. A new index over the
      * data field will be created if it doesn't already exist.
+     *
      * @param field the data field for determining the bounded range
      * @param lo the minimum range value
      * @param hi the maximum range value
      * @param indexType indicate the sort order and inclusivity/exclusivity
      * of the range bounds, using the constants of the
-     * {@link prefuse.data.util.Index} class.
-     * @return an iterator over a range of table rows, determined by a 
+     * @return an iterator over a range of table rows, determined by a
      * sorted bounded range of a data field
+     * {@link prefuse.data.util.Index} class.
      */
     public IntIterator rangeSortedBy(String field, Object lo, Object hi, int indexType) {
         Class type = TypeLib.getSharedType(lo, hi);
@@ -1754,6 +1802,11 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     // -- ColumnListeners -----------------------------------------------------
     
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, boolean)
      */
     public void columnChanged(Column src, int idx, boolean prev) {
@@ -1761,6 +1814,11 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, double)
      */
     public void columnChanged(Column src, int idx, double prev) {
@@ -1768,6 +1826,11 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, float)
      */
     public void columnChanged(Column src, int idx, float prev) {
@@ -1775,6 +1838,11 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, int)
      */
     public void columnChanged(Column src, int idx, int prev) {
@@ -1782,6 +1850,11 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, long)
      */
     public void columnChanged(Column src, int idx, long prev) {
@@ -1789,6 +1862,11 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, java.lang.Object)
      */
     public void columnChanged(Column src, int idx, Object prev) {
@@ -1796,6 +1874,12 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param type the type
+     * @param start the start
+     * @param end the end
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, int, int)
      */
     public void columnChanged(Column src, int type, int start, int end) {
@@ -1856,12 +1940,13 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     
     /**
      * Fire a table event to notify listeners.
+     *
      * @param row0 the starting row of the modified range
      * @param row1 the ending row (inclusive) of the modified range
      * @param col the number of the column modified, or
+     * @param type the table modification type, one of
      * {@link prefuse.data.event.EventConstants#ALL_COLUMNS} for operations
      * effecting all columns.
-     * @param type the table modification type, one of
      * {@link prefuse.data.event.EventConstants#INSERT},
      * {@link prefuse.data.event.EventConstants#DELETE}, or
      * {@link prefuse.data.event.EventConstants#UPDATE}.
@@ -1891,6 +1976,9 @@ public class Table extends AbstractTupleSet implements ColumnListener {
     // String Methods
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

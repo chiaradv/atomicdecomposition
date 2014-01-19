@@ -2,12 +2,15 @@ package prefuse.util.force;
 
 import java.util.ArrayList;
 
+
 /**
  * Represents a spring in a force simulation.
  *
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
 public class Spring {
+    
+    /** The s_factory. */
     private static SpringFactory s_factory = new SpringFactory();
     
     /**
@@ -20,7 +23,8 @@ public class Spring {
     }
     
     /**
-     * Create a new Spring instance
+     * Create a new Spring instance.
+     *
      * @param fi1 the first ForceItem endpoint
      * @param fi2 the second ForceItem endpoint
      * @param k the spring tension co-efficient
@@ -33,13 +37,16 @@ public class Spring {
         length = len;
     }
     
-    /** The first ForceItem endpoint */
+    /** The first ForceItem endpoint. */
     public ForceItem item1;
-    /** The second ForceItem endpoint */
+    
+    /** The second ForceItem endpoint. */
     public ForceItem item2;
-    /** The spring's resting length */
+    
+    /** The spring's resting length. */
     public float length;
-    /** The spring tension co-efficient */
+    
+    /** The spring tension co-efficient. */
     public float coeff;
     
     /**
@@ -48,11 +55,21 @@ public class Spring {
      * overheads while force simulations are running.
      */
     public static final class SpringFactory {
+        
+        /** The max springs. */
         private int maxSprings = 10000;
+        
+        /** The springs. */
         private ArrayList springs = new ArrayList();
         
         /**
          * Get a Spring instance and set it to the given parameters.
+         *
+         * @param f1 the f1
+         * @param f2 the f2
+         * @param k the k
+         * @param length the length
+         * @return the spring
          */
         public Spring getSpring(ForceItem f1, ForceItem f2, float k, float length) {
             if ( springs.size() > 0 ) {
@@ -66,8 +83,11 @@ public class Spring {
                 return new Spring(f1,f2,k,length);
             }
         }
+        
         /**
          * Reclaim a Spring into the object pool.
+         *
+         * @param s the s
          */
         public void reclaim(Spring s) {
             s.item1 = null;

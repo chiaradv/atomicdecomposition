@@ -1,5 +1,6 @@
 package prefuse.util.collections;
 
+
 /**
  * Abstract base class for a LiteralIterator implementations.
  * 
@@ -8,6 +9,9 @@ package prefuse.util.collections;
 public abstract class AbstractLiteralIterator implements LiteralIterator {
 
     /**
+     * Next int.
+     *
+     * @return the int
      * @see prefuse.util.collections.LiteralIterator#nextInt()
      */
     public int nextInt() {
@@ -15,6 +19,9 @@ public abstract class AbstractLiteralIterator implements LiteralIterator {
     }
 
     /**
+     * Next long.
+     *
+     * @return the long
      * @see prefuse.util.collections.LiteralIterator#nextLong()
      */
     public long nextLong() {
@@ -22,6 +29,9 @@ public abstract class AbstractLiteralIterator implements LiteralIterator {
     }
 
     /**
+     * Next float.
+     *
+     * @return the float
      * @see prefuse.util.collections.LiteralIterator#nextFloat()
      */
     public float nextFloat() {
@@ -29,6 +39,9 @@ public abstract class AbstractLiteralIterator implements LiteralIterator {
     }
 
     /**
+     * Next double.
+     *
+     * @return the double
      * @see prefuse.util.collections.LiteralIterator#nextDouble()
      */
     public double nextDouble() {
@@ -36,6 +49,9 @@ public abstract class AbstractLiteralIterator implements LiteralIterator {
     }
 
     /**
+     * Next boolean.
+     *
+     * @return true, if successful
      * @see prefuse.util.collections.LiteralIterator#nextBoolean()
      */
     public boolean nextBoolean() {
@@ -43,6 +59,9 @@ public abstract class AbstractLiteralIterator implements LiteralIterator {
     }
 
     /**
+     * Checks if is boolean supported.
+     *
+     * @return true, if is boolean supported
      * @see prefuse.util.collections.LiteralIterator#isBooleanSupported()
      */
     public boolean isBooleanSupported() {
@@ -50,6 +69,9 @@ public abstract class AbstractLiteralIterator implements LiteralIterator {
     }
 
     /**
+     * Checks if is double supported.
+     *
+     * @return true, if is double supported
      * @see prefuse.util.collections.LiteralIterator#isDoubleSupported()
      */
     public boolean isDoubleSupported() {
@@ -57,6 +79,9 @@ public abstract class AbstractLiteralIterator implements LiteralIterator {
     }
 
     /**
+     * Checks if is float supported.
+     *
+     * @return true, if is float supported
      * @see prefuse.util.collections.LiteralIterator#isFloatSupported()
      */
     public boolean isFloatSupported() {
@@ -64,6 +89,9 @@ public abstract class AbstractLiteralIterator implements LiteralIterator {
     }
 
     /**
+     * Checks if is int supported.
+     *
+     * @return true, if is int supported
      * @see prefuse.util.collections.LiteralIterator#isIntSupported()
      */
     public boolean isIntSupported() {
@@ -71,6 +99,9 @@ public abstract class AbstractLiteralIterator implements LiteralIterator {
     }
 
     /**
+     * Checks if is long supported.
+     *
+     * @return true, if is long supported
      * @see prefuse.util.collections.LiteralIterator#isLongSupported()
      */
     public boolean isLongSupported() {

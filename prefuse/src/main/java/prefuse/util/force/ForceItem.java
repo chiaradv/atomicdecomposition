@@ -1,5 +1,6 @@
 package prefuse.util.force;
 
+
 /**
  * Represents a point particle in a force simulation, maintaining values for
  * mass, forces, velocity, and position.
@@ -23,6 +24,8 @@ public class ForceItem implements Cloneable {
     
     /**
      * Clone a ForceItem.
+     *
+     * @return the object
      * @see java.lang.Object#clone()
      */
     public Object clone() {
@@ -49,9 +52,11 @@ public class ForceItem implements Cloneable {
     public float[] location;
     /** The previous location values of this ForceItem. */
     public float[] plocation;
-    /** Temporary variables for Runge-Kutta integration */
+    
+    /** Temporary variables for Runge-Kutta integration. */
     public float[][] k;
-    /** Temporary variables for Runge-Kutta integration */
+    
+    /** Temporary variables for Runge-Kutta integration. */
     public float[][] l;
     
     /**

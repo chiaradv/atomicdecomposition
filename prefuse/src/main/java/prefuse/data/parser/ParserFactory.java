@@ -2,6 +2,7 @@ package prefuse.data.parser;
 
 import java.util.Arrays;
 
+
 /**
  * Factory class that maintains a collection of parser instances and returns
  * the appropriate parser based on a history of samples presented to the
@@ -15,6 +16,7 @@ import java.util.Arrays;
  */
 public class ParserFactory implements Cloneable {
     
+    /** The Constant DEFAULT_PARSERS. */
     private static final DataParser[] DEFAULT_PARSERS = 
         new DataParser[] {
             new IntParser(),
@@ -33,10 +35,14 @@ public class ParserFactory implements Cloneable {
             new StringParser()
         };
     
+    /** The default factory. */
     private static ParserFactory DEFAULT_FACTORY =
         new ParserFactory(DEFAULT_PARSERS);
     
+    /** The m_parsers. */
     private DataParser[] m_parsers;
+    
+    /** The m_is candidate. */
     private boolean[]    m_isCandidate;
     
     /**
@@ -68,6 +74,9 @@ public class ParserFactory implements Cloneable {
     }
     
     /**
+     * Clone.
+     *
+     * @return the object
      * @see java.lang.Object#clone()
      */
     public Object clone() {

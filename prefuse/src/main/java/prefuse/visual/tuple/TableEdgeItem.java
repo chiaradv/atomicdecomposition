@@ -6,6 +6,7 @@ import prefuse.data.Table;
 import prefuse.visual.EdgeItem;
 import prefuse.visual.NodeItem;
 
+
 /**
  * EdgeItem implementation that used data values from a backing
  * VisualTable of edges.
@@ -14,6 +15,7 @@ import prefuse.visual.NodeItem;
  */
 public class TableEdgeItem extends TableVisualItem implements EdgeItem {
 
+    /** The m_graph. */
     protected Graph m_graph;
     
     /**
@@ -33,6 +35,9 @@ public class TableEdgeItem extends TableVisualItem implements EdgeItem {
     }
     
     /**
+     * Gets the graph.
+     *
+     * @return the graph
      * @see prefuse.data.Edge#getGraph()
      */
     public Graph getGraph() {
@@ -40,6 +45,9 @@ public class TableEdgeItem extends TableVisualItem implements EdgeItem {
     }
     
     /**
+     * Checks if is directed.
+     *
+     * @return true, if is directed
      * @see prefuse.data.Edge#isDirected()
      */
     public boolean isDirected() {
@@ -47,6 +55,9 @@ public class TableEdgeItem extends TableVisualItem implements EdgeItem {
     }
 
     /**
+     * Gets the source node.
+     *
+     * @return the source node
      * @see prefuse.data.Edge#getSourceNode()
      */
     public Node getSourceNode() {
@@ -54,6 +65,9 @@ public class TableEdgeItem extends TableVisualItem implements EdgeItem {
     }
 
     /**
+     * Gets the target node.
+     *
+     * @return the target node
      * @see prefuse.data.Edge#getTargetNode()
      */
     public Node getTargetNode() {
@@ -61,6 +75,10 @@ public class TableEdgeItem extends TableVisualItem implements EdgeItem {
     }
 
     /**
+     * Gets the adjacent node.
+     *
+     * @param n the n
+     * @return the adjacent node
      * @see prefuse.data.Edge#getAdjacentNode(prefuse.data.Node)
      */
     public Node getAdjacentNode(Node n) {
@@ -68,6 +86,9 @@ public class TableEdgeItem extends TableVisualItem implements EdgeItem {
     }
     
     /**
+     * Gets the source item.
+     *
+     * @return the source item
      * @see prefuse.visual.EdgeItem#getSourceItem()
      */
     public NodeItem getSourceItem() {
@@ -75,6 +96,9 @@ public class TableEdgeItem extends TableVisualItem implements EdgeItem {
     }
 
     /**
+     * Gets the target item.
+     *
+     * @return the target item
      * @see prefuse.visual.EdgeItem#getTargetItem()
      */
     public NodeItem getTargetItem() {
@@ -82,6 +106,10 @@ public class TableEdgeItem extends TableVisualItem implements EdgeItem {
     }
 
     /**
+     * Gets the adjacent item.
+     *
+     * @param n the n
+     * @return the adjacent item
      * @see prefuse.visual.EdgeItem#getAdjacentItem(prefuse.visual.NodeItem)
      */
     public NodeItem getAdjacentItem(NodeItem n) {

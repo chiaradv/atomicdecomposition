@@ -8,6 +8,7 @@ import prefuse.util.TypeLib;
 import prefuse.util.collections.DefaultLiteralComparator;
 import prefuse.util.collections.LiteralComparator;
 
+
 /**
  * Predicate implementation that computes a comparison operation. Supported
  * operations are equals, not equals, less than, greater than, less than or
@@ -30,6 +31,7 @@ public class ComparisonPredicate extends BinaryExpression implements Predicate {
     /** Indicates a greater-than-or-equals comparison. */
     public static final int GTEQ = 5;
     
+    /** The m_cmp. */
     private Comparator m_cmp;
     
     /**
@@ -70,6 +72,10 @@ public class ComparisonPredicate extends BinaryExpression implements Predicate {
     // ------------------------------------------------------------------------
     
     /**
+     * Gets the type.
+     *
+     * @param s the s
+     * @return the type
      * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
      */
     public Class getType(Schema s) {
@@ -77,6 +83,10 @@ public class ComparisonPredicate extends BinaryExpression implements Predicate {
     }
     
     /**
+     * Gets the boolean.
+     *
+     * @param t the t
+     * @return the boolean
      * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
      */
     public boolean getBoolean(Tuple t) {
@@ -128,6 +138,10 @@ public class ComparisonPredicate extends BinaryExpression implements Predicate {
     }
 
     /**
+     * Gets the.
+     *
+     * @param t the t
+     * @return the object
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */
     public Object get(Tuple t) {
@@ -135,6 +149,9 @@ public class ComparisonPredicate extends BinaryExpression implements Predicate {
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

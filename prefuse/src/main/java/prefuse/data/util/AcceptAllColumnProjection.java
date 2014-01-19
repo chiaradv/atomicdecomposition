@@ -2,6 +2,7 @@ package prefuse.data.util;
 
 import prefuse.data.column.Column;
 
+
 /**
  * ColumnProjection that simply includes all columns.
  * 
@@ -11,6 +12,10 @@ public class AcceptAllColumnProjection extends AbstractColumnProjection {
 
     /**
      * Always returns true, accepting all columns.
+     *
+     * @param col the col
+     * @param name the name
+     * @return true, if successful
      * @see prefuse.data.util.ColumnProjection#include(prefuse.data.column.Column, java.lang.String)
      */
     public boolean include(Column col, String name) {

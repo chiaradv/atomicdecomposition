@@ -10,6 +10,7 @@ import prefuse.util.PrefuseLib;
 import prefuse.visual.VisualItem;
 import prefuse.visual.expression.VisiblePredicate;
 
+
 /**
  * Filter Action that sets visible all items that meet a given Predicate
  * condition and sets all other items invisible.
@@ -18,7 +19,10 @@ import prefuse.visual.expression.VisiblePredicate;
  */
 public class VisibilityFilter extends GroupAction {
     
+    /** The m_filter. */
     private Predicate m_filter;
+    
+    /** The m_predicate. */
     private Predicate m_predicate;
     
     /**
@@ -60,6 +64,9 @@ public class VisibilityFilter extends GroupAction {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {

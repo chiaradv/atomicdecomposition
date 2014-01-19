@@ -9,6 +9,7 @@ import prefuse.action.GroupAction;
 import prefuse.util.PrefuseLib;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Abstract base class providing convenience methods for layout algorithms.
  *
@@ -22,10 +23,19 @@ public abstract class Layout extends GroupAction {
      *  be centered or rooted. May be null. */
     protected Point2D     m_anchor = null;
     
+    /** The m_margin. */
     protected boolean     m_margin = false;
+    
+    /** The m_insets. */
     protected Insets      m_insets = new Insets(0,0,0,0);
+    
+    /** The m_bpts. */
     protected double[]    m_bpts   = new double[4];
+    
+    /** The m_tmpb. */
     protected Rectangle2D m_tmpb   = new Rectangle2D.Double();
+    
+    /** The m_tmpa. */
     protected Point2D     m_tmpa   = new Point2D.Double();
     
     // ------------------------------------------------------------------------
@@ -45,6 +55,12 @@ public abstract class Layout extends GroupAction {
         super(group);
     }
 
+    /**
+     * Instantiates a new layout.
+     *
+     * @param group the group
+     * @param duration the duration
+     */
     public Layout(String group, long duration) {
         super(group, duration);
     }

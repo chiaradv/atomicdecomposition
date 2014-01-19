@@ -19,6 +19,7 @@ import prefuse.visual.NodeItem;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>Layout that positions graph elements based on a physics simulation of
  * interacting forces; by default, nodes repel each other, edges act as
@@ -44,16 +45,31 @@ import prefuse.visual.VisualItem;
  */
 public class ForceDirectedLayout extends Layout {
     
+    /** The m_fsim. */
     private ForceSimulator m_fsim;
+    
+    /** The m_lasttime. */
     private long m_lasttime = -1L;
+    
+    /** The m_maxstep. */
     private long m_maxstep = 50L;
+    
+    /** The m_runonce. */
     private boolean m_runonce;
+    
+    /** The m_iterations. */
     private int m_iterations = 100;
+    
+    /** The m_enforce bounds. */
     private boolean m_enforceBounds;
     
+    /** The referrer. */
     protected transient VisualItem referrer;
     
+    /** The m_node group. */
     protected String m_nodeGroup;
+    
+    /** The m_edge group. */
     protected String m_edgeGroup;
     
     /**
@@ -217,6 +233,9 @@ public class ForceDirectedLayout extends Layout {
     // ------------------------------------------------------------------------
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {
@@ -264,6 +283,9 @@ public class ForceDirectedLayout extends Layout {
         }
     }
 
+    /**
+     * Update node positions.
+     */
     private void updateNodePositions() {
         Rectangle2D bounds = getLayoutBounds();
         double x1=0, x2=0, y1=0, y2=0;

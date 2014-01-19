@@ -11,6 +11,7 @@ import prefuse.util.DataLib;
 import prefuse.util.TypeLib;
 import prefuse.util.collections.DefaultLiteralComparator;
 
+
 /**
  * ColumnMetadata stores computed metadata and statistics for a singe column
  * instance. They are created automatically by Table instances and are
@@ -21,22 +22,49 @@ public class ColumnMetadata implements ColumnListener {
 
 	// TODO consider refactor. is non-dynamic mode needed? pass Column reference in?
 	
-    private Table   m_table;
+    /** The m_table. */
+	private Table   m_table;
+    
+    /** The m_field. */
     private String  m_field;
+    
+    /** The m_dynamic. */
     private boolean m_dynamic;
+    
+    /** The m_init. */
     private boolean m_init;
 
+    /** The m_cmp. */
     private Comparator m_cmp;
     
+    /** The m_default. */
     private Object m_default;
+    
+    /** The m_min. */
     private int m_min;
+    
+    /** The m_max. */
     private int m_max;
+    
+    /** The m_median. */
     private int m_median;
+    
+    /** The m_unique. */
     private int m_unique;
+    
+    /** The m_mean. */
     private Double m_mean;
+    
+    /** The m_stdev. */
     private Double m_stdev;
+    
+    /** The m_sum. */
     private Double m_sum;
+    
+    /** The m_ordinal a. */
     private Object[] m_ordinalA;
+    
+    /** The m_ordinal m. */
     private Map m_ordinalM;
     
     // ------------------------------------------------------------------------
@@ -80,6 +108,9 @@ public class ColumnMetadata implements ColumnListener {
 
     // ------------------------------------------------------------------------
     
+    /**
+     * Clear cached values.
+     */
     private void clearCachedValues() {
         m_min    = -1;
         m_max    = -1;
@@ -114,6 +145,9 @@ public class ColumnMetadata implements ColumnListener {
         m_dynamic = dyn;
     }
     
+    /**
+     * Access check.
+     */
     private void accessCheck() {
         if ( m_init ) return;
         
@@ -301,6 +335,12 @@ public class ColumnMetadata implements ColumnListener {
     // ------------------------------------------------------------------------
     
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param type the type
+     * @param start the start
+     * @param end the end
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, int, int)
      */
     public void columnChanged(Column src, int type, int start, int end) {
@@ -308,6 +348,11 @@ public class ColumnMetadata implements ColumnListener {
     }
     
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, boolean)
      */
     public void columnChanged(Column src, int idx, boolean prev) {
@@ -315,6 +360,11 @@ public class ColumnMetadata implements ColumnListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, double)
      */
     public void columnChanged(Column src, int idx, double prev) {
@@ -322,6 +372,11 @@ public class ColumnMetadata implements ColumnListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, float)
      */
     public void columnChanged(Column src, int idx, float prev) {
@@ -329,6 +384,11 @@ public class ColumnMetadata implements ColumnListener {
     }
     
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, int)
      */
     public void columnChanged(Column src, int idx, int prev) {
@@ -336,6 +396,11 @@ public class ColumnMetadata implements ColumnListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, long)
      */
     public void columnChanged(Column src, int idx, long prev) {
@@ -343,6 +408,11 @@ public class ColumnMetadata implements ColumnListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, java.lang.Object)
      */
     public void columnChanged(Column src, int idx, Object prev) {

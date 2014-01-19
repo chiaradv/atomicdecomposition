@@ -1,6 +1,7 @@
 package prefuse.data;
 
 
+
 /**
  * Tuple sub-interface that represents an edge in a graph structure. Each edge
  * has both a source node and a target node. For directed edges, this

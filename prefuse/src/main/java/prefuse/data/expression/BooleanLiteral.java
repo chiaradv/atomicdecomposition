@@ -3,6 +3,7 @@ package prefuse.data.expression;
 import prefuse.data.Schema;
 import prefuse.data.Tuple;
 
+
 /**
  * Literal expression of a boolean value.
  * @author <a href="http://jheer.org">jeffrey heer</a>
@@ -14,6 +15,7 @@ public class BooleanLiteral extends Literal implements Predicate
     /** The false boolean literal. */
     public static final BooleanLiteral FALSE = new BooleanLiteral(false);
     
+    /** The m_value. */
     private final boolean m_value;
     
     /**
@@ -25,6 +27,10 @@ public class BooleanLiteral extends Literal implements Predicate
     }
 
     /**
+     * Gets the boolean.
+     *
+     * @param tuple the tuple
+     * @return the boolean
      * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
      */
     public boolean getBoolean(Tuple tuple) {
@@ -32,6 +38,10 @@ public class BooleanLiteral extends Literal implements Predicate
     }
 
     /**
+     * Gets the type.
+     *
+     * @param s the s
+     * @return the type
      * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
      */
     public Class getType(Schema s) {
@@ -39,6 +49,10 @@ public class BooleanLiteral extends Literal implements Predicate
     }
 
     /**
+     * Gets the.
+     *
+     * @param t the t
+     * @return the object
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */
     public Object get(Tuple t) {
@@ -46,6 +60,9 @@ public class BooleanLiteral extends Literal implements Predicate
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

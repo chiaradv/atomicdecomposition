@@ -4,6 +4,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 
+
 /**
  * <p>
  * Computes a graphical fisheye distortion of a graph view. This distortion 
@@ -24,7 +25,10 @@ import java.awt.geom.Rectangle2D;
  */
 public class FisheyeDistortion extends Distortion {
 
+    /** The dy. */
     private double  dx, dy;   // distortion factors
+    
+    /** The sz. */
     private double  sz = 3.0; // size factor
     
     /**
@@ -92,6 +96,12 @@ public class FisheyeDistortion extends Distortion {
     }
     
     /**
+     * Distort x.
+     *
+     * @param x the x
+     * @param anchor the anchor
+     * @param bounds the bounds
+     * @return the double
      * @see prefuse.action.distortion.Distortion#distortX(double, java.awt.geom.Point2D, java.awt.geom.Rectangle2D)
      */
     protected double distortX(double x, Point2D anchor, Rectangle2D bounds) {
@@ -99,6 +109,12 @@ public class FisheyeDistortion extends Distortion {
     }
     
     /**
+     * Distort y.
+     *
+     * @param y the y
+     * @param anchor the anchor
+     * @param bounds the bounds
+     * @return the double
      * @see prefuse.action.distortion.Distortion#distortY(double, java.awt.geom.Point2D, java.awt.geom.Rectangle2D)
      */
     protected double distortY(double y, Point2D anchor, Rectangle2D bounds) {
@@ -106,6 +122,14 @@ public class FisheyeDistortion extends Distortion {
     }
     
     /**
+     * Distort size.
+     *
+     * @param bbox the bbox
+     * @param x the x
+     * @param y the y
+     * @param anchor the anchor
+     * @param bounds the bounds
+     * @return the double
      * @see prefuse.action.distortion.Distortion#distortSize(java.awt.geom.Rectangle2D, double, double, java.awt.geom.Point2D, java.awt.geom.Rectangle2D)
      */
     protected double distortSize(Rectangle2D bbox, double x, double y, 
@@ -142,6 +166,16 @@ public class FisheyeDistortion extends Distortion {
         }
     }
     
+    /**
+     * Fisheye.
+     *
+     * @param x the x
+     * @param a the a
+     * @param d the d
+     * @param min the min
+     * @param max the max
+     * @return the double
+     */
     private double fisheye(double x, double a, double d, double min, double max) {
         if ( d != 0 ) {
             boolean left = x<a;

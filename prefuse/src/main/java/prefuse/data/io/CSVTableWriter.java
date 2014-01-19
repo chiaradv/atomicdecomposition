@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import prefuse.data.Table;
 import prefuse.util.collections.IntIterator;
 
+
 /**
  * TableWriter that writes out a text table in the comma-separated-values
  * format. By default, a header row containing the column names is included
@@ -16,6 +17,7 @@ import prefuse.util.collections.IntIterator;
  */
 public class CSVTableWriter extends AbstractTableWriter {
 
+    /** The m_print header. */
     private boolean m_printHeader;
     
     /**
@@ -54,6 +56,11 @@ public class CSVTableWriter extends AbstractTableWriter {
     // ------------------------------------------------------------------------
 
     /**
+     * Write table.
+     *
+     * @param table the table
+     * @param os the os
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.TableWriter#writeTable(prefuse.data.Table, java.io.OutputStream)
      */
     public void writeTable(Table table, OutputStream os) throws DataIOException {
@@ -88,6 +95,12 @@ public class CSVTableWriter extends AbstractTableWriter {
         }
     }
     
+    /**
+     * Make csv safe.
+     *
+     * @param s the s
+     * @return the string
+     */
     private String makeCSVSafe(String s) {
         int q = -1;
         if ( (q=s.indexOf('\"')) >= 0 ||

@@ -6,6 +6,7 @@ import prefuse.data.DataTypeException;
 import prefuse.data.Table;
 import prefuse.data.expression.Expression;
 
+
 /**
  * Factory class for generating appropriate column instances. Used by
  * Tables to generate their columns.

@@ -1,5 +1,6 @@
 package prefuse.data.expression;
 
+
 /**
  * Abstract base class for Expression implementations that maintain two
  * sub-expressions. These are referred to as the left expression (the first
@@ -9,8 +10,13 @@ package prefuse.data.expression;
  */
 public abstract class BinaryExpression extends AbstractExpression {
 
+    /** The m_op. */
     protected int m_op;
+    
+    /** The m_left. */
     protected Expression m_left;
+    
+    /** The m_right. */
     protected Expression m_right;
     
     /**
@@ -89,6 +95,9 @@ public abstract class BinaryExpression extends AbstractExpression {
     }
     
     /**
+     * Visit.
+     *
+     * @param v the v
      * @see prefuse.data.expression.Expression#visit(prefuse.data.expression.ExpressionVisitor)
      */
     public void visit(ExpressionVisitor v) {
@@ -98,6 +107,8 @@ public abstract class BinaryExpression extends AbstractExpression {
     }
     
     /**
+     * Adds the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#addChildListeners()
      */
     protected void addChildListeners() {
@@ -106,6 +117,8 @@ public abstract class BinaryExpression extends AbstractExpression {
     }
     
     /**
+     * Removes the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#removeChildListeners()
      */
     protected void removeChildListeners() {

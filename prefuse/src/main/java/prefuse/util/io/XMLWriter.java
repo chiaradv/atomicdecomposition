@@ -7,6 +7,7 @@ package prefuse.util.io;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+
 /**
  * Utility class for writing XML files. This class provides convenience
  * methods for creating XML documents, such as starting and ending
@@ -25,9 +26,16 @@ import java.util.ArrayList;
  */
 public class XMLWriter {
     
+    /** The m_out. */
     private PrintWriter m_out;
+    
+    /** The m_bias. */
     private int m_bias = 0;
+    
+    /** The m_tab. */
     private int m_tab;
+    
+    /** The m_tag stack. */
     private ArrayList m_tagStack = new ArrayList();
     
     /**
@@ -382,11 +390,19 @@ public class XMLWriter {
     // Escape Text
     
     // unicode ranges and valid/invalid characters
+    /** The Constant LOWER_RANGE. */
     private static final char   LOWER_RANGE = 0x20;
+    
+    /** The Constant UPPER_RANGE. */
     private static final char   UPPER_RANGE = 0x7f;
+    
+    /** The Constant VALID_CHARS. */
     private static final char[] VALID_CHARS = { 0x9, 0xA, 0xD };
     
+    /** The Constant INVALID. */
     private static final char[] INVALID = { '<', '>', '"', '\'', '&' };
+    
+    /** The Constant VALID. */
     private static final String[] VALID = 
         { "&lt;", "&gt;", "&quot;", "&apos;", "&amp;" };
     

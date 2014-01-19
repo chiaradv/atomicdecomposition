@@ -4,21 +4,27 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 /**
+ * A factory for creating Connection objects.
+ *
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
 public class ConnectionFactory {
 
-    /** String constant for the commonly used MySQL JDBC driver */
+    /** String constant for the commonly used MySQL JDBC driver. */
     public static final String DRIVER_MYSQL = "com.mysql.jdbc.Driver";
-    /** String constant for the JDBC/ODBC bridge driver */
+    
+    /** String constant for the JDBC/ODBC bridge driver. */
     public static final String DRIVER_JDBC_OBDC = "sun.jdbc.odbc.JdbcOdbcDriver";
     
-    /** Protocol prefix for JDBC URLs */
+    /** Protocol prefix for JDBC URLs. */
     public static final String PROTOCOL_JDBC = "jdbc:";
-    /** Sub-protocol prefix for MySQL connections */
+    
+    /** Sub-protocol prefix for MySQL connections. */
     public static final String SUBPROTOCOL_MYSQL = "mysql:";
-    /** Sub-protocol prefix for JDBC/ODBC bridge connections */
+    
+    /** Sub-protocol prefix for JDBC/ODBC bridge connections. */
     public static final String SUBPROTOCOL_JDBC_ODBC = "odbc:";
     
     // ------------------------------------------------------------------------
@@ -62,6 +68,7 @@ public class ConnectionFactory {
 
     /**
      * Get a new database connection.
+     *
      * @param driver the database driver to use, must resolve to a valid Java
      * class on the current classpath.
      * @param url the url for the database, of the form
@@ -70,8 +77,8 @@ public class ConnectionFactory {
      * @param password the database password
      * @param handler the sql data handler to use
      * @return a DatabaseDataSource for interacting with the database
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException the sQL exception
+     * @throws ClassNotFoundException the class not found exception
      */
     public static DatabaseDataSource getDatabaseConnection(String driver,
             String url, String user, String password, SQLDataHandler handler)
@@ -84,6 +91,7 @@ public class ConnectionFactory {
     
     /**
      * Get a new database connection, using a default handler.
+     *
      * @param driver the database driver to use, must resolve to a valid Java
      * class on the current classpath.
      * @param url the url for the database, of the form
@@ -91,8 +99,8 @@ public class ConnectionFactory {
      * @param user the database username
      * @param password the database password
      * @return a DatabaseDataSource for interacting with the database
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException the sQL exception
+     * @throws ClassNotFoundException the class not found exception
      */
     public static DatabaseDataSource getDatabaseConnection(String driver,
             String url, String user, String password)
@@ -109,14 +117,15 @@ public class ConnectionFactory {
     
     /**
      * Get a new database connection to a MySQL database.
+     *
      * @param host the ip address or host name of the database server
      * @param database the name of the particular database to use
      * @param user the database username
      * @param password the database password
      * @param handler the sql data handler to use
      * @return a DatabaseDataSource for interacting with the database
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException the sQL exception
+     * @throws ClassNotFoundException the class not found exception
      */
     public static DatabaseDataSource getMySQLConnection(
             String host, String database, String user, String password,
@@ -131,13 +140,14 @@ public class ConnectionFactory {
     /**
      * Get a new database connection to a MySQL database, using a default
      * handler.
+     *
      * @param host the ip address or host name of the database server
      * @param database the name of the particular database to use
      * @param user the database username
      * @param password the database password
      * @return a DatabaseDataSource for interacting with the database
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException the sQL exception
+     * @throws ClassNotFoundException the class not found exception
      */
     public static DatabaseDataSource getMySQLConnection(
             String host, String database, String user, String password)

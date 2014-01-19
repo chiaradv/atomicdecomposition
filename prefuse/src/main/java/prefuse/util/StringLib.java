@@ -9,6 +9,7 @@ import java.io.StringWriter;
 import java.lang.reflect.Array;
 import java.util.Hashtable;
 
+
 /**
  * Library of utility routines pertaining to Strings.
  * 
@@ -16,6 +17,9 @@ import java.util.Hashtable;
  */
 public class StringLib {
 
+    /**
+     * Instantiates a new string lib.
+     */
     private StringLib() {
         // prevent instantiation
     }
@@ -107,8 +111,13 @@ public class StringLib {
     // ------------------------------------------------------------------------
     // Abbreviation Methods
     
+    /** The Constant SUFFIX. */
     private static final String SUFFIX = "suffix";
+    
+    /** The Constant PREFIX. */
     private static final String PREFIX = "prefix";
+    
+    /** The prefix suffix t. */
     private static Hashtable prefixSuffixT = new Hashtable();
     static {
         prefixSuffixT.put( "mr",    PREFIX );

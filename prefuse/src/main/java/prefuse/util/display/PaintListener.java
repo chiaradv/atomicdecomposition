@@ -5,6 +5,7 @@ import java.util.EventListener;
 
 import prefuse.Display;
 
+
 /**
  * Listener interface for monitoring paint events on a Display. This
  * listener is notified both directly before and after a Display has

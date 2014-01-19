@@ -9,6 +9,7 @@ import javax.swing.event.ListDataListener;
 
 import prefuse.util.collections.CopyOnWriteArrayList;
 
+
 /**
  * List data model supporting both data modeling and selection management.
  * Though generally useful, this has been designed particularly to support
@@ -19,7 +20,11 @@ import prefuse.util.collections.CopyOnWriteArrayList;
 public class ListModel extends DefaultListSelectionModel
     implements MutableComboBoxModel
 {
+    
+    /** The m_items. */
     private ArrayList m_items = new ArrayList();
+    
+    /** The m_lstnrs. */
     private CopyOnWriteArrayList m_lstnrs = new CopyOnWriteArrayList();
     
     /**
@@ -49,6 +54,9 @@ public class ListModel extends DefaultListSelectionModel
     }
     
     /**
+     * Gets the selected item.
+     *
+     * @return the selected item
      * @see javax.swing.ComboBoxModel#getSelectedItem()
      */
     public Object getSelectedItem() {
@@ -57,6 +65,9 @@ public class ListModel extends DefaultListSelectionModel
     }
     
     /**
+     * Sets the selected item.
+     *
+     * @param item the new selected item
      * @see javax.swing.ComboBoxModel#setSelectedItem(java.lang.Object)
      */
     public void setSelectedItem(Object item) {
@@ -71,6 +82,9 @@ public class ListModel extends DefaultListSelectionModel
     }
     
     /**
+     * Gets the size.
+     *
+     * @return the size
      * @see javax.swing.ListModel#getSize()
      */
     public int getSize() {
@@ -78,6 +92,10 @@ public class ListModel extends DefaultListSelectionModel
     }
     
     /**
+     * Gets the element at.
+     *
+     * @param idx the idx
+     * @return the element at
      * @see javax.swing.ListModel#getElementAt(int)
      */
     public Object getElementAt(int idx) {
@@ -85,6 +103,9 @@ public class ListModel extends DefaultListSelectionModel
     }
     
     /**
+     * Adds the element.
+     *
+     * @param item the item
      * @see javax.swing.MutableComboBoxModel#addElement(java.lang.Object)
      */
     public void addElement(Object item) {
@@ -96,6 +117,10 @@ public class ListModel extends DefaultListSelectionModel
     }
     
     /**
+     * Insert element at.
+     *
+     * @param item the item
+     * @param idx the idx
      * @see javax.swing.MutableComboBoxModel#insertElementAt(java.lang.Object, int)
      */
     public void insertElementAt(Object item, int idx) {
@@ -104,6 +129,9 @@ public class ListModel extends DefaultListSelectionModel
     }
     
     /**
+     * Removes the element.
+     *
+     * @param item the item
      * @see javax.swing.MutableComboBoxModel#removeElement(java.lang.Object)
      */
     public void removeElement(Object item) {
@@ -113,6 +141,9 @@ public class ListModel extends DefaultListSelectionModel
     }
     
     /**
+     * Removes the element at.
+     *
+     * @param idx the idx
      * @see javax.swing.MutableComboBoxModel#removeElementAt(int)
      */
     public void removeElementAt(int idx) {
@@ -130,6 +161,9 @@ public class ListModel extends DefaultListSelectionModel
     // List Data Listeners
     
     /**
+     * Adds the list data listener.
+     *
+     * @param l the l
      * @see javax.swing.ListModel#addListDataListener(javax.swing.event.ListDataListener)
      */
     public void addListDataListener(ListDataListener l) {
@@ -138,6 +172,9 @@ public class ListModel extends DefaultListSelectionModel
     }
     
     /**
+     * Removes the list data listener.
+     *
+     * @param l the l
      * @see javax.swing.ListModel#removeListDataListener(javax.swing.event.ListDataListener)
      */
     public void removeListDataListener(ListDataListener l) {
@@ -146,6 +183,11 @@ public class ListModel extends DefaultListSelectionModel
     
     /**
      * Fires a change notification in response to changes in the ListModel.
+     *
+     * @param src the src
+     * @param type the type
+     * @param idx0 the idx0
+     * @param idx1 the idx1
      */
     protected void fireDataEvent(Object src, int type, int idx0, int idx1) {
         Object[] lstnrs = m_lstnrs.getArray();

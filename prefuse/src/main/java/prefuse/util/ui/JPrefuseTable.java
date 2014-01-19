@@ -9,6 +9,7 @@ import javax.swing.table.TableCellRenderer;
 import prefuse.data.Table;
 import prefuse.visual.VisualTable;
 
+
 /**
  * Swing component that displays a prefuse Table instance in a Swing
  * JTable component.
@@ -17,7 +18,10 @@ import prefuse.visual.VisualTable;
  */
 public class JPrefuseTable extends JTable {
 
+    /** The m_table. */
     private Table m_table;
+    
+    /** The m_tcr. */
     private TableCellRenderer m_tcr = new DefaultTableCellRenderer();
     
     /**
@@ -43,6 +47,10 @@ public class JPrefuseTable extends JTable {
     
     /**
      * Get the cell renderer to use for drawing table cells.
+     *
+     * @param r the r
+     * @param c the c
+     * @return the cell renderer
      * @see javax.swing.JTable#getCellRenderer(int, int)
      */
     public TableCellRenderer getCellRenderer(int r, int c) {

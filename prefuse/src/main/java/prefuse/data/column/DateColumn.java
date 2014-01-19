@@ -7,6 +7,7 @@ import prefuse.data.DataReadOnlyException;
 import prefuse.data.DataTypeException;
 import prefuse.util.TimeLib;
 
+
 /**
  * Column implementation for storing Date values.
  * 
@@ -14,7 +15,10 @@ import prefuse.util.TimeLib;
  */
 public class DateColumn extends AbstractColumn {
 
+    /** The m_values. */
     private long[] m_values;
+    
+    /** The m_size. */
     private int    m_size;
     
     /**
@@ -69,6 +73,9 @@ public class DateColumn extends AbstractColumn {
     // Column Metadata
     
     /**
+     * Gets the row count.
+     *
+     * @return the row count
      * @see prefuse.data.column.Column#getRowCount()
      */
     public int getRowCount() {
@@ -76,6 +83,9 @@ public class DateColumn extends AbstractColumn {
     }
     
     /**
+     * Sets the maximum row.
+     *
+     * @param nrows the new maximum row
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
     public void setMaximumRow(int nrows) {
@@ -112,6 +122,10 @@ public class DateColumn extends AbstractColumn {
     // Data Access Methods
     
     /**
+     * Gets the.
+     *
+     * @param row the row
+     * @return the object
      * @see prefuse.data.column.Column#get(int)
      */
     public Object get(int row) {
@@ -119,6 +133,11 @@ public class DateColumn extends AbstractColumn {
     }
 
     /**
+     * Sets the.
+     *
+     * @param val the val
+     * @param row the row
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.Column#set(java.lang.Object, int)
      */
     public void set(Object val, int row) throws DataTypeException {
@@ -143,6 +162,11 @@ public class DateColumn extends AbstractColumn {
     // Data Type Convenience Methods
     
     /**
+     * Gets the long.
+     *
+     * @param row the row
+     * @return the long
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.AbstractColumn#getLong(int)
      */
     public long getLong(int row) throws DataTypeException {
@@ -153,6 +177,11 @@ public class DateColumn extends AbstractColumn {
     }
 
     /**
+     * Sets the long.
+     *
+     * @param val the val
+     * @param row the row
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.AbstractColumn#setLong(long, int)
      */
     public void setLong(long val, int row) throws DataTypeException {
@@ -177,6 +206,11 @@ public class DateColumn extends AbstractColumn {
     // ------------------------------------------------------------------------
     
     /**
+     * Gets the double.
+     *
+     * @param row the row
+     * @return the double
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.Column#getDouble(int)
      */
     public double getDouble(int row) throws DataTypeException {

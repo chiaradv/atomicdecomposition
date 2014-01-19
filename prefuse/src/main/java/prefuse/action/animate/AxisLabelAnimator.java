@@ -10,6 +10,7 @@ import prefuse.visual.VisualItem;
 import prefuse.visual.expression.StartVisiblePredicate;
 
 
+
 /**
  * Animator that interpolates positions, colors, and visibility status for
  * metric axes.
@@ -35,6 +36,9 @@ public class AxisLabelAnimator extends ItemAction {
     }
 
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.GroupAction#run(double)
      */
     public void run(double frac) {
@@ -49,6 +53,9 @@ public class AxisLabelAnimator extends ItemAction {
         ts.putClientProperty(AxisLabelLayout.FRAC, new Double(frac));
     }
     
+    /**
+     * Setup.
+     */
     private void setup() {
         // handle fade-in nodes
         Iterator items = m_vis.visibleItems(m_group);
@@ -83,6 +90,9 @@ public class AxisLabelAnimator extends ItemAction {
         }
     }
     
+    /**
+     * Finish.
+     */
     private void finish() {
         // set faded-out nodes to permanently invisible
         Iterator items = m_vis.items(m_group, StartVisiblePredicate.TRUE);
@@ -106,6 +116,10 @@ public class AxisLabelAnimator extends ItemAction {
     }
     
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

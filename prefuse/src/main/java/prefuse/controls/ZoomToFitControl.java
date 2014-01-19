@@ -11,6 +11,7 @@ import prefuse.util.ui.UILib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Zooms a display such that all items within a given group will fit within
  * the display bounds. By default, this achieved by clicking the right
@@ -20,10 +21,19 @@ import prefuse.visual.VisualItem;
  */
 public class ZoomToFitControl extends ControlAdapter {
 
+    /** The m_duration. */
     private long m_duration = 2000;
+    
+    /** The m_margin. */
     private int m_margin = 50;
+    
+    /** The m_button. */
     private int m_button = RIGHT_MOUSE_BUTTON;
+    
+    /** The m_zoom over item. */
     private boolean m_zoomOverItem = true;
+    
+    /** The m_group. */
     private String m_group = Visualization.ALL_ITEMS;
     
     /**
@@ -82,6 +92,10 @@ public class ZoomToFitControl extends ControlAdapter {
     }
     
     /**
+     * Item clicked.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemClicked(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemClicked(VisualItem item, MouseEvent e) {
@@ -90,6 +104,9 @@ public class ZoomToFitControl extends ControlAdapter {
     }
     
     /**
+     * Mouse clicked.
+     *
+     * @param e the e
      * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
      */
     public void mouseClicked(MouseEvent e) {
@@ -115,7 +132,8 @@ public class ZoomToFitControl extends ControlAdapter {
 
     /**
      * Determines if the zoom control will work while the mouse is
-     * over a VisualItem
+     * over a VisualItem.
+     *
      * @param zoomOverItem true to indicate the control operates
      * over VisualItems, false otherwise
      */

@@ -15,6 +15,7 @@ import prefuse.visual.NodeItem;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>
  * TreeLayout instance computing a TreeMap layout that optimizes for low
@@ -42,12 +43,16 @@ import prefuse.visual.VisualItem;
 public class SquarifiedTreeMapLayout extends TreeLayout {
 
     // column value in which layout stores area information
+    /** The Constant AREA. */
     public static final String AREA = "_area";
+    
+    /** The Constant AREA_SCHEMA. */
     public static final Schema AREA_SCHEMA = new Schema();
     static {
         AREA_SCHEMA.addColumn(AREA, double.class);
     }
     
+    /** The s_cmp. */
     private static Comparator s_cmp = new Comparator() {
         public int compare(Object o1, Object o2) {
             double s1 = ((VisualItem)o1).getDouble(AREA);
@@ -55,10 +60,17 @@ public class SquarifiedTreeMapLayout extends TreeLayout {
             return ( s1>s2 ? 1 : (s1<s2 ? -1 : 0));
         }
     };
+    
+    /** The m_kids. */
     private ArrayList m_kids = new ArrayList();
+    
+    /** The m_row. */
     private ArrayList m_row  = new ArrayList();
+    
+    /** The m_r. */
     private Rectangle2D m_r  = new Rectangle2D.Double();
     
+    /** The m_frame. */
     private double m_frame; // space between parents border and children
     
     /**
@@ -73,9 +85,10 @@ public class SquarifiedTreeMapLayout extends TreeLayout {
     /**
      * Creates a new SquarifiedTreeMapLayout with the specified spacing between
      * parent areas and their enclosed children.
+     *
+     * @param group the data group to layout. Must resolve to a Graph instance.
      * @param frame the amount of desired framing space between
      * parent areas and their enclosed children.
-     * @param group the data group to layout. Must resolve to a Graph instance.
      */
     public SquarifiedTreeMapLayout(String group, double frame) {
         super(group);
@@ -107,6 +120,9 @@ public class SquarifiedTreeMapLayout extends TreeLayout {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {
@@ -130,6 +146,8 @@ public class SquarifiedTreeMapLayout extends TreeLayout {
     
     /**
      * Compute the pixel areas of nodes based on their size values.
+     *
+     * @param root the root
      */
     private void computeAreas(NodeItem root) {
         int leafCount = 0;
@@ -178,6 +196,9 @@ public class SquarifiedTreeMapLayout extends TreeLayout {
     
     /**
      * Compute the tree map layout.
+     *
+     * @param p the p
+     * @param r the r
      */
     private void layout(NodeItem p, Rectangle2D r) {
         // create sorted list of children
@@ -202,6 +223,12 @@ public class SquarifiedTreeMapLayout extends TreeLayout {
         }
     }
     
+    /**
+     * Update area.
+     *
+     * @param n the n
+     * @param r the r
+     */
     private void updateArea(NodeItem n, Rectangle2D r) {
         Rectangle2D b = n.getBounds();
         if ( m_frame == 0.0 ) {
@@ -234,6 +261,14 @@ public class SquarifiedTreeMapLayout extends TreeLayout {
         return;
     }
     
+    /**
+     * Squarify.
+     *
+     * @param c the c
+     * @param row the row
+     * @param w the w
+     * @param r the r
+     */
     private void squarify(List c, List row, double w, Rectangle2D r) {
         double worst = Double.MAX_VALUE, nworst;
         int len;
@@ -266,6 +301,13 @@ public class SquarifiedTreeMapLayout extends TreeLayout {
         }
     }
 
+    /**
+     * Worst.
+     *
+     * @param rlist the rlist
+     * @param w the w
+     * @return the double
+     */
     private double worst(List rlist, double w) {
         double rmax = Double.MIN_VALUE, rmin = Double.MAX_VALUE, s = 0.0;
         Iterator iter = rlist.iterator();
@@ -279,6 +321,14 @@ public class SquarifiedTreeMapLayout extends TreeLayout {
         return Math.max(w*rmax/s, s/(w*rmin));
     }
     
+    /**
+     * Layout row.
+     *
+     * @param row the row
+     * @param w the w
+     * @param r the r
+     * @return the rectangle2 d
+     */
     private Rectangle2D layoutRow(List row, double w, Rectangle2D r) {        
         double s = 0; // sum of row areas
         Iterator rowIter = row.iterator();
@@ -317,6 +367,13 @@ public class SquarifiedTreeMapLayout extends TreeLayout {
         return r;
     }
     
+    /**
+     * Sets the node dimensions.
+     *
+     * @param n the n
+     * @param w the w
+     * @param h the h
+     */
     private void setNodeDimensions(NodeItem n, double w, double h) {
         n.setBounds(n.getX(), n.getY(), w, h);
     }

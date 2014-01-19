@@ -9,6 +9,7 @@ import prefuse.util.ui.UILib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Zooms the display, changing the scale of the viewable region. By default,
  * zooming is achieved by pressing the right mouse button on the background
@@ -21,8 +22,13 @@ import prefuse.visual.VisualItem;
  */
 public class ZoomControl extends AbstractZoomControl {
     
+    /** The y last. */
     private int yLast;
+    
+    /** The down. */
     private Point2D down = new Point2D.Float();
+    
+    /** The button. */
     private int button = RIGHT_MOUSE_BUTTON; 
     
     /**
@@ -43,6 +49,9 @@ public class ZoomControl extends AbstractZoomControl {
     }
     
     /**
+     * Mouse pressed.
+     *
+     * @param e the e
      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
      */
     public void mousePressed(MouseEvent e) {
@@ -61,6 +70,9 @@ public class ZoomControl extends AbstractZoomControl {
     }
     
     /**
+     * Mouse dragged.
+     *
+     * @param e the e
      * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
      */
     public void mouseDragged(MouseEvent e) {
@@ -86,6 +98,9 @@ public class ZoomControl extends AbstractZoomControl {
     }
 
     /**
+     * Mouse released.
+     *
+     * @param e the e
      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
      */
     public void mouseReleased(MouseEvent e) {
@@ -95,6 +110,10 @@ public class ZoomControl extends AbstractZoomControl {
     }
     
     /**
+     * Item pressed.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemPressed(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemPressed(VisualItem item, MouseEvent e) {
@@ -103,6 +122,10 @@ public class ZoomControl extends AbstractZoomControl {
     }
 
     /**
+     * Item dragged.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemDragged(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemDragged(VisualItem item, MouseEvent e) {
@@ -111,6 +134,10 @@ public class ZoomControl extends AbstractZoomControl {
     }
     
     /**
+     * Item released.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemReleased(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemReleased(VisualItem item, MouseEvent e) {

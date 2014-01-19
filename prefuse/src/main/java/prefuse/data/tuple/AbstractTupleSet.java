@@ -19,6 +19,7 @@ import prefuse.data.util.Sort;
 import prefuse.data.util.SortedTupleIterator;
 import prefuse.util.collections.CopyOnWriteArrayList;
 
+
 /**
  * Abstract base class for TupleSet implementations. Provides mechanisms for
  * generating filtered tuple iterators, maintain listeners, and supporting
@@ -29,6 +30,10 @@ import prefuse.util.collections.CopyOnWriteArrayList;
 public abstract class AbstractTupleSet implements TupleSet {
     
     /**
+     * Tuples.
+     *
+     * @param filter the filter
+     * @return the iterator
      * @see prefuse.data.tuple.TupleSet#tuples(prefuse.data.expression.Predicate)
      */
     public Iterator tuples(Predicate filter) {
@@ -40,6 +45,11 @@ public abstract class AbstractTupleSet implements TupleSet {
     }
     
     /**
+     * Tuples.
+     *
+     * @param filter the filter
+     * @param sort the sort
+     * @return the iterator
      * @see prefuse.data.tuple.TupleSet#tuples(prefuse.data.expression.Predicate, prefuse.data.util.Sort)
      */
     public Iterator tuples(Predicate filter, Sort sort) {
@@ -54,9 +64,13 @@ public abstract class AbstractTupleSet implements TupleSet {
     
     // -- TupleSet Methods ----------------------------------------------------
     
+    /** The m_tuple listeners. */
     private CopyOnWriteArrayList m_tupleListeners;
     
     /**
+     * Adds the tuple set listener.
+     *
+     * @param tsl the tsl
      * @see prefuse.data.tuple.TupleSet#addTupleSetListener(prefuse.data.event.TupleSetListener)
      */
     public void addTupleSetListener(TupleSetListener tsl) {
@@ -67,6 +81,9 @@ public abstract class AbstractTupleSet implements TupleSet {
     }
     
     /**
+     * Removes the tuple set listener.
+     *
+     * @param tsl the tsl
      * @see prefuse.data.tuple.TupleSet#removeTupleSetListener(prefuse.data.event.TupleSetListener)
      */
     public void removeTupleSetListener(TupleSetListener tsl) {
@@ -145,6 +162,8 @@ public abstract class AbstractTupleSet implements TupleSet {
     
     /**
      * False by default.
+     *
+     * @return true, if is adds the column supported
      * @see prefuse.data.tuple.TupleSet#isAddColumnSupported()
      */
     public boolean isAddColumnSupported() {
@@ -152,6 +171,9 @@ public abstract class AbstractTupleSet implements TupleSet {
     }
 
     /**
+     * Adds the columns.
+     *
+     * @param schema the schema
      * @see prefuse.data.tuple.TupleSet#addColumns(prefuse.data.Schema)
      */
     public void addColumns(Schema schema) {
@@ -170,6 +192,10 @@ public abstract class AbstractTupleSet implements TupleSet {
     
     /**
      * Unsupported by default.
+     *
+     * @param name the name
+     * @param type the type
+     * @param defaultValue the default value
      * @see prefuse.data.tuple.TupleSet#addColumn(java.lang.String, java.lang.Class, java.lang.Object)
      */
     public void addColumn(String name, Class type, Object defaultValue) {
@@ -178,6 +204,9 @@ public abstract class AbstractTupleSet implements TupleSet {
 
     /**
      * Unsupported by default.
+     *
+     * @param name the name
+     * @param type the type
      * @see prefuse.data.tuple.TupleSet#addColumn(java.lang.String, java.lang.Class)
      */
     public void addColumn(String name, Class type) {
@@ -186,6 +215,9 @@ public abstract class AbstractTupleSet implements TupleSet {
 
     /**
      * Unsupported by default.
+     *
+     * @param name the name
+     * @param expr the expr
      * @see prefuse.data.tuple.TupleSet#addColumn(java.lang.String, prefuse.data.expression.Expression)
      */
     public void addColumn(String name, Expression expr) {
@@ -194,6 +226,9 @@ public abstract class AbstractTupleSet implements TupleSet {
 
     /**
      * Unsupported by default.
+     *
+     * @param name the name
+     * @param expr the expr
      * @see prefuse.data.tuple.TupleSet#addColumn(java.lang.String, java.lang.String)
      */
     public void addColumn(String name, String expr) {
@@ -202,10 +237,16 @@ public abstract class AbstractTupleSet implements TupleSet {
     
     // -- Client Properties ---------------------------------------------------
     
+    /** The m_props. */
     private HashMap m_props;
+    
+    /** The m_prop support. */
     private SwingPropertyChangeSupport m_propSupport;
     
     /**
+     * Adds the property change listener.
+     *
+     * @param lstnr the lstnr
      * @see prefuse.data.tuple.TupleSet#addPropertyChangeListener(java.beans.PropertyChangeListener)
      */
     public void addPropertyChangeListener(PropertyChangeListener lstnr) {
@@ -216,6 +257,10 @@ public abstract class AbstractTupleSet implements TupleSet {
     }
     
     /**
+     * Adds the property change listener.
+     *
+     * @param key the key
+     * @param lstnr the lstnr
      * @see prefuse.data.tuple.TupleSet#addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
      */
     public void addPropertyChangeListener(String key, 
@@ -228,6 +273,9 @@ public abstract class AbstractTupleSet implements TupleSet {
     }
     
     /**
+     * Removes the property change listener.
+     *
+     * @param lstnr the lstnr
      * @see prefuse.data.tuple.TupleSet#removePropertyChangeListener(java.beans.PropertyChangeListener)
      */
     public void removePropertyChangeListener(PropertyChangeListener lstnr) {
@@ -237,6 +285,10 @@ public abstract class AbstractTupleSet implements TupleSet {
     }
     
     /**
+     * Removes the property change listener.
+     *
+     * @param key the key
+     * @param lstnr the lstnr
      * @see prefuse.data.tuple.TupleSet#removePropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
      */
     public void removePropertyChangeListener(String key,
@@ -248,6 +300,10 @@ public abstract class AbstractTupleSet implements TupleSet {
     }
     
     /**
+     * Put client property.
+     *
+     * @param key the key
+     * @param value the value
      * @see prefuse.data.tuple.TupleSet#putClientProperty(java.lang.String, java.lang.Object)
      */
     public void putClientProperty(String key, Object value) {
@@ -267,6 +323,10 @@ public abstract class AbstractTupleSet implements TupleSet {
     }
     
     /**
+     * Gets the client property.
+     *
+     * @param key the key
+     * @return the client property
      * @see prefuse.data.tuple.TupleSet#getClientProperty(java.lang.String)
      */
     public Object getClientProperty(String key) {

@@ -18,6 +18,7 @@ import org.apache.lucene.search.Searcher;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 
+
 /**
  * Adapter class for interfacing with the Lucene search engine. By default,
  * instances of this class use an in-memory search index for English language
@@ -35,16 +36,31 @@ public class LuceneSearcher {
     /** Document field used to store the document ID number. */
     public static final String ID = "prefuse-id";
     
+    /** The directory. */
     private Directory directory;
+    
+    /** The analyzer. */
     private Analyzer analyzer;
+    
+    /** The fields. */
     private String[] fields;
     
+    /** The searcher. */
     private Searcher searcher;
+    
+    /** The reader. */
     private IndexReader reader;
+    
+    /** The writer. */
     private IndexWriter writer;
+    
+    /** The m_read mode. */
     private boolean m_readMode = true;
+    
+    /** The m_read only. */
     private boolean m_readOnly = false;
     
+    /** The m_hit count cache. */
     private HashMap m_hitCountCache;
         
     /**
@@ -159,11 +175,11 @@ public class LuceneSearcher {
     /**
      * Searches the Lucene index using the given query String, returns an object
      * which provides access to the search results.
+     *
      * @param query the search query
      * @return the search Hits
      * @throws ParseException if the query is not parsed successfully
      * @throws IOException if an input/ouput error occurs
-     * @throws IllegalStateException if the searcher is in write mode
      */
     public Hits search(String query) throws ParseException, IOException {
         if ( m_readMode ) {
@@ -185,11 +201,11 @@ public class LuceneSearcher {
      * Return the result count for the given search query. To allow quick
      * repeated look ups, the hit count is cached (this cache is cleared
      * whenever a change to the search index occurs).
+     *
      * @param query the search query
      * @return the number of matches to the query
      * @throws ParseException if the query is not parsed successfully
      * @throws IOException if an input/ouput error occurs
-     * @throws IllegalStateException if the searcher is in write mode
      */
     public int numHits(String query) throws ParseException, IOException {
         Integer count;
@@ -203,8 +219,8 @@ public class LuceneSearcher {
     
     /**
      * Add a document to the Lucene search index.
+     *
      * @param d the Document to add
-     * @throws IllegalStateException if the searcher is not in write mode
      */
     public void addDocument(Document d) {
         if ( !m_readMode ) {
@@ -254,6 +270,8 @@ public class LuceneSearcher {
      * fields are indexed as Documents are added and which fields are
      * queried over when searches are issued.
      * param fields the indexed Document fields to use
+     *
+     * @param fields the new fields
      */
     public void setFields(String[] fields) {
         this.fields = (String[])fields.clone();

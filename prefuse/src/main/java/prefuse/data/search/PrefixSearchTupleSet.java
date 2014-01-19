@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 import prefuse.data.Tuple;
 
 
+
 /**
  * <p>
  * SearchTupleSet implementation supporting word prefix searches over indexed
@@ -27,9 +28,16 @@ import prefuse.data.Tuple;
  */
 public class PrefixSearchTupleSet extends SearchTupleSet {
     
+    /** The m_trie. */
     private Trie m_trie;
+    
+    /** The m_cur node. */
     private Trie.TrieNode m_curNode;
+    
+    /** The m_delim. */
     private String m_delim = " \t\n\r";
+    
+    /** The m_query. */
     private String m_query = "";
     
     /**
@@ -74,6 +82,9 @@ public class PrefixSearchTupleSet extends SearchTupleSet {
     }
     
     /**
+     * Gets the query.
+     *
+     * @return the query
      * @see prefuse.data.search.SearchTupleSet#getQuery()
      */
     public String getQuery() {
@@ -108,7 +119,9 @@ public class PrefixSearchTupleSet extends SearchTupleSet {
     }
 
     /**
-     * Issues a prefix search and collects the results
+     * Issues a prefix search and collects the results.
+     *
+     * @param query the query
      */
     private void prefixSearch(String query) {
         m_curNode = m_trie.find(query);
@@ -121,6 +134,9 @@ public class PrefixSearchTupleSet extends SearchTupleSet {
     
     /**
      * Indexes the given field of the provided Tuple instance.
+     *
+     * @param t the t
+     * @param field the field
      * @see prefuse.data.search.SearchTupleSet#index(prefuse.data.Tuple, java.lang.String)
      */
     public void index(Tuple t, String field) {
@@ -133,12 +149,20 @@ public class PrefixSearchTupleSet extends SearchTupleSet {
         }
     }
     
+    /**
+     * Adds the string.
+     *
+     * @param s the s
+     * @param t the t
+     */
     private void addString(String s, Tuple t) {
         m_trie.addString(s,t);
     }
     
     /**
      * Returns true, as unidexing is supported by this class.
+     *
+     * @return true, if is unindex supported
      * @see prefuse.data.search.SearchTupleSet#isUnindexSupported()
      */
     public boolean isUnindexSupported() {
@@ -146,6 +170,10 @@ public class PrefixSearchTupleSet extends SearchTupleSet {
     }
     
     /**
+     * Unindex.
+     *
+     * @param t the t
+     * @param field the field
      * @see prefuse.data.search.SearchTupleSet#unindex(prefuse.data.Tuple, java.lang.String)
      */
     public void unindex(Tuple t, String field) {
@@ -167,10 +195,21 @@ public class PrefixSearchTupleSet extends SearchTupleSet {
         super.clear();
     }
     
+    /**
+     * Removes the string.
+     *
+     * @param s the s
+     * @param t the t
+     */
     private void removeString(String s, Tuple t) {
         m_trie.removeString(s,t);
     }
     
+    /**
+     * Trie iterator.
+     *
+     * @return the iterator
+     */
     private Iterator trieIterator() {
         return m_trie.new TrieIterator(m_curNode);
     }

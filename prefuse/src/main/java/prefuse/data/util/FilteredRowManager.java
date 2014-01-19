@@ -6,6 +6,7 @@ import prefuse.data.column.IntColumn;
 import prefuse.util.collections.IntIntSortedMap;
 import prefuse.util.collections.IntIntTreeMap;
 
+
 /**
  * RowManager that additionally manages mappings between the managed
  * rows and those of a parent table.
@@ -14,7 +15,10 @@ import prefuse.util.collections.IntIntTreeMap;
  */
 public class FilteredRowManager extends RowManager {
 
+    /** The m_child to parent. */
     protected IntColumn       m_childToParent;
+    
+    /** The m_parent to child. */
     protected IntIntSortedMap m_parentToChild;
     
     /**
@@ -29,6 +33,8 @@ public class FilteredRowManager extends RowManager {
     }
     
     /**
+     * Clear.
+     *
      * @see prefuse.data.util.RowManager#clear()
      */
     public void clear() {
@@ -51,6 +57,10 @@ public class FilteredRowManager extends RowManager {
     }
     
     /**
+     * Release row.
+     *
+     * @param row the row
+     * @return true, if successful
      * @see prefuse.data.util.RowManager#releaseRow(int)
      */
     public boolean releaseRow(int row) {
@@ -63,6 +73,11 @@ public class FilteredRowManager extends RowManager {
     }
     
     /**
+     * Gets the column row.
+     *
+     * @param row the row
+     * @param col the col
+     * @return the column row
      * @see prefuse.data.util.RowManager#getColumnRow(int, int)
      */
     public int getColumnRow(int row, int col) {
@@ -71,6 +86,11 @@ public class FilteredRowManager extends RowManager {
     }
     
     /**
+     * Gets the table row.
+     *
+     * @param columnRow the column row
+     * @param col the col
+     * @return the table row
      * @see prefuse.data.util.RowManager#getTableRow(int, int)
      */
     public int getTableRow(int columnRow, int col) {

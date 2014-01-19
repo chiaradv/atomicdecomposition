@@ -7,6 +7,7 @@ import prefuse.activity.Activity;
 import prefuse.util.StringLib;
 
 
+
 /**
  * <p>The ActionList represents a chain of Actions that process VisualItems.
  * ActionList also implements the Action interface, so ActionLists can be placed
@@ -19,6 +20,7 @@ import prefuse.util.StringLib;
  */
 public class ActionList extends CompositeAction {
 
+    /** The Constant s_logger. */
     private static final Logger s_logger = 
         Logger.getLogger(ActionList.class.getName());
     
@@ -69,6 +71,9 @@ public class ActionList extends CompositeAction {
     }
 
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {

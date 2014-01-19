@@ -14,6 +14,7 @@ import prefuse.visual.AggregateItem;
 import prefuse.visual.AggregateTable;
 import prefuse.visual.VisualItem;
 
+
 /**
  * AggregateItem implementation that uses data values from a backing
  * AggregateTable.
@@ -38,6 +39,9 @@ public class TableAggregateItem extends TableVisualItem
     }
 
     /**
+     * Gets the aggregate size.
+     *
+     * @return the aggregate size
      * @see prefuse.visual.AggregateItem#getAggregateSize()
      */
     public int getAggregateSize() {
@@ -45,6 +49,10 @@ public class TableAggregateItem extends TableVisualItem
     }
 
     /**
+     * Contains item.
+     *
+     * @param item the item
+     * @return true, if successful
      * @see prefuse.visual.AggregateItem#containsItem(prefuse.visual.VisualItem)
      */
     public boolean containsItem(VisualItem item) {
@@ -52,6 +60,9 @@ public class TableAggregateItem extends TableVisualItem
     }
 
     /**
+     * Adds the item.
+     *
+     * @param item the item
      * @see prefuse.visual.AggregateItem#addItem(prefuse.visual.VisualItem)
      */
     public void addItem(VisualItem item) {
@@ -59,6 +70,9 @@ public class TableAggregateItem extends TableVisualItem
     }
 
     /**
+     * Removes the item.
+     *
+     * @param item the item
      * @see prefuse.visual.AggregateItem#removeItem(prefuse.visual.VisualItem)
      */
     public void removeItem(VisualItem item) {
@@ -66,6 +80,8 @@ public class TableAggregateItem extends TableVisualItem
     }
 
     /**
+     * Removes the all items.
+     *
      * @see prefuse.visual.AggregateItem#removeAllItems()
      */
     public void removeAllItems() {
@@ -73,6 +89,9 @@ public class TableAggregateItem extends TableVisualItem
     }
 
     /**
+     * Items.
+     *
+     * @return the iterator
      * @see prefuse.visual.AggregateItem#items()
      */
     public Iterator items() {
@@ -80,6 +99,10 @@ public class TableAggregateItem extends TableVisualItem
     }
     
     /**
+     * Items.
+     *
+     * @param filter the filter
+     * @return the iterator
      * @see prefuse.visual.AggregateItem#items()
      */
     public Iterator items(Predicate filter) {

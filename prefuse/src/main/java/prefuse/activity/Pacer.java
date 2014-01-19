@@ -1,5 +1,6 @@
 package prefuse.activity;
 
+
 /**
  * A Pacer, or pacing function, maps one double value to another; they
  * are used to parameterize animation rates, where the input value f moves

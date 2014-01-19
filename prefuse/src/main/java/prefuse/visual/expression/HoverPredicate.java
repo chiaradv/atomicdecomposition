@@ -7,6 +7,7 @@ import prefuse.data.expression.NotPredicate;
 import prefuse.data.expression.Predicate;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Expression that indicates if an item is currently under the mouse
  * pointer.
@@ -29,6 +30,9 @@ public class HoverPredicate extends ColumnExpression
     }
 
     /**
+     * Gets the name.
+     *
+     * @return the name
      * @see prefuse.data.expression.Function#getName()
      */
     public String getName() {
@@ -36,6 +40,9 @@ public class HoverPredicate extends ColumnExpression
     }
 
     /**
+     * Adds the parameter.
+     *
+     * @param e the e
      * @see prefuse.data.expression.Function#addParameter(prefuse.data.expression.Expression)
      */
     public void addParameter(Expression e) {
@@ -43,6 +50,9 @@ public class HoverPredicate extends ColumnExpression
     }
 
     /**
+     * Gets the parameter count.
+     *
+     * @return the parameter count
      * @see prefuse.data.expression.Function#getParameterCount()
      */
     public int getParameterCount() {
@@ -50,6 +60,9 @@ public class HoverPredicate extends ColumnExpression
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

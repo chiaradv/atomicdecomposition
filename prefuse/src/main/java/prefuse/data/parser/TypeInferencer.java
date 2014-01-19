@@ -2,6 +2,7 @@ package prefuse.data.parser;
 
 import java.util.ArrayList;
 
+
 /**
  * Infers the data types for a table of data by testing each value
  * of the data against a bank of parsers and eliminating candidate
@@ -16,7 +17,10 @@ import java.util.ArrayList;
  */
 public class TypeInferencer {
 
+    /** The m_template. */
     public ParserFactory m_template;
+    
+    /** The m_factories. */
     public ArrayList m_factories = new ArrayList();
     
     /**
@@ -40,6 +44,12 @@ public class TypeInferencer {
     
     // ------------------------------------------------------------------------
     
+    /**
+     * Range check.
+     *
+     * @param column the column
+     * @param grow the grow
+     */
     private void rangeCheck(int column, boolean grow) {
         if ( column < 0 || (!grow && column >= m_factories.size()))
             throw new IndexOutOfBoundsException(

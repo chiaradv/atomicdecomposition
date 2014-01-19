@@ -12,6 +12,7 @@ import prefuse.data.tuple.TupleSet;
 import prefuse.render.Renderer;
 import prefuse.util.PrefuseLib;
 
+
 /**
  * <p>Base interface for representing a visual item, a data object with a
  * visual interactive form. VisualItems are Tuple instances, and so
@@ -232,9 +233,10 @@ public interface VisualItem extends Tuple {
      * Set the highlighted status of this item. How higlighting values are
      * interpreted by the system depends on the various processing actions
      * set up for an application (e.g., how a
+     *
+     * @param value true to highlight the item, false for no highlighting.
      * {@link prefuse.action.assignment.ColorAction} might assign colors
      * based on the flag).
-     * @param value true to highlight the item, false for no highlighting.
      * @see #HIGHLIGHT
      */
     public void setHighlighted(boolean value);
@@ -748,110 +750,143 @@ public interface VisualItem extends Tuple {
     // ------------------------------------------------------------------------
     // VisualItem Base Schema
         
-    /** The validated data field */
+    /** The validated data field. */
     public static final String VALIDATED
         = PrefuseLib.FIELD_PREFIX+"validated";
-    /** The visible data field */
+    
+    /** The visible data field. */
     public static final String VISIBLE
         = PrefuseLib.FIELD_PREFIX+"visible";
-    /** The start visible data field */
+    
+    /** The start visible data field. */
     public static final String STARTVISIBLE
         = PrefuseLib.getStartField(VISIBLE);
-    /** The end visible data field */
+    
+    /** The end visible data field. */
     public static final String ENDVISIBLE
         = PrefuseLib.getEndField(VISIBLE);
-    /** The interactive data field */
+    
+    /** The interactive data field. */
     public static final String INTERACTIVE
         = PrefuseLib.FIELD_PREFIX+"interactive";
-    /** The expanded data field */
+    
+    /** The expanded data field. */
     public static final String EXPANDED
         = PrefuseLib.FIELD_PREFIX+"expanded";
-    /** The fixed data field */
+    
+    /** The fixed data field. */
     public static final String FIXED
         = PrefuseLib.FIELD_PREFIX+"fixed";
-    /** The highlight data field */
+    
+    /** The highlight data field. */
     public static final String HIGHLIGHT
         = PrefuseLib.FIELD_PREFIX+"highlight";
-    /** The hover data field */
+    
+    /** The hover data field. */
     public static final String HOVER
         = PrefuseLib.FIELD_PREFIX+"hover";
-    /** The x data field */
+    
+    /** The x data field. */
     public static final String X
         = PrefuseLib.FIELD_PREFIX+"x";
-    /** The y data field */
+    
+    /** The y data field. */
     public static final String Y
         = PrefuseLib.FIELD_PREFIX+"y";
-    /** The start x data field */
+    
+    /** The start x data field. */
     public static final String STARTX
         = PrefuseLib.getStartField(X);
-    /** The start y data field */
+    
+    /** The start y data field. */
     public static final String STARTY
         = PrefuseLib.getStartField(Y);
-    /** The end x data field */
+    
+    /** The end x data field. */
     public static final String ENDX
         = PrefuseLib.getEndField(X);
-    /** The end y data field */
+    
+    /** The end y data field. */
     public static final String ENDY
         = PrefuseLib.getEndField(Y);
-    /** The bounds data field */
+    
+    /** The bounds data field. */
     public static final String BOUNDS
         = PrefuseLib.FIELD_PREFIX+"bounds";
-    /** The stroke color data field */
+    
+    /** The stroke color data field. */
     public static final String STROKECOLOR
         = PrefuseLib.FIELD_PREFIX+"strokeColor";
-    /** The start stroke color data field */
+    
+    /** The start stroke color data field. */
     public static final String STARTSTROKECOLOR
         = PrefuseLib.getStartField(STROKECOLOR);
-    /** The end stroke color data field */
+    
+    /** The end stroke color data field. */
     public static final String ENDSTROKECOLOR
         = PrefuseLib.getEndField(STROKECOLOR);
-    /** The fill color data field */
+    
+    /** The fill color data field. */
     public static final String FILLCOLOR
         = PrefuseLib.FIELD_PREFIX+"fillColor";
-    /** The start fill color data field */
+    
+    /** The start fill color data field. */
     public static final String STARTFILLCOLOR
         = PrefuseLib.getStartField(FILLCOLOR);
-    /** The end fill color data field */
+    
+    /** The end fill color data field. */
     public static final String ENDFILLCOLOR
         = PrefuseLib.getEndField(FILLCOLOR);
-    /** The text color data field */
+    
+    /** The text color data field. */
     public static final String TEXTCOLOR
         = PrefuseLib.FIELD_PREFIX+"textColor";
-    /** The start text color data field */
+    
+    /** The start text color data field. */
     public static final String STARTTEXTCOLOR
         = PrefuseLib.getStartField(TEXTCOLOR);
-    /** The end text color data field */
+    
+    /** The end text color data field. */
     public static final String ENDTEXTCOLOR
         = PrefuseLib.getEndField(TEXTCOLOR);
-    /** The size data field */
+    
+    /** The size data field. */
     public static final String SIZE
         = PrefuseLib.FIELD_PREFIX+"size";
-    /** The start size data field */
+    
+    /** The start size data field. */
     public static final String STARTSIZE
         = PrefuseLib.getStartField(SIZE);
-    /** The end size data field */
+    
+    /** The end size data field. */
     public static final String ENDSIZE
         = PrefuseLib.getEndField(SIZE);
-    /** The shape data field */
+    
+    /** The shape data field. */
     public static final String SHAPE
         = PrefuseLib.FIELD_PREFIX+"shape";
-    /** The stroke data field */
+    
+    /** The stroke data field. */
     public static final String STROKE
         = PrefuseLib.FIELD_PREFIX+"stroke";
-    /** The font data field */
+    
+    /** The font data field. */
     public static final String FONT
         = PrefuseLib.FIELD_PREFIX+"font";
-    /** The start font data field */
+    
+    /** The start font data field. */
     public static final String STARTFONT
         = PrefuseLib.getStartField(FONT);
-    /** The end font data field */
+    
+    /** The end font data field. */
     public static final String ENDFONT
         = PrefuseLib.getEndField(FONT);
-    /** The doi data field */
+    
+    /** The doi data field. */
     public static final String DOI
         = PrefuseLib.FIELD_PREFIX+"doi";
     
-    /** A permanent, locked copy of the base VisualItem schema */
+    /** A permanent, locked copy of the base VisualItem schema. */
     public static final Schema SCHEMA
         = PrefuseLib.getVisualItemSchema().lockSchema();
     

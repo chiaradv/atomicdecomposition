@@ -11,6 +11,7 @@ import prefuse.util.StrokeLib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>Assignment Action that assigns <code>Stroke</code> values to VisualItems.
  * The Stroke instance determines how lines and shape outlines are drawn,
@@ -34,6 +35,7 @@ import prefuse.visual.VisualItem;
  */
 public class StrokeAction extends EncoderAction {
 
+    /** The default stroke. */
     protected BasicStroke defaultStroke = StrokeLib.getStroke(1.0f);
     
     /**
@@ -96,10 +98,9 @@ public class StrokeAction extends EncoderAction {
      * the provided expression will be assigned the given BasicStroke value
      * (assuming they do not match an earlier rule). The provided expression
      * String will be parsed to generate the needed rule Predicate.
-     * @param expr the expression String, should parse to a Predicate. 
+     *
+     * @param expr the expression String, should parse to a Predicate.
      * @param stroke the BasicStroke
-     * @throws RuntimeException if the expression does not parse correctly or
-     * does not result in a Predicate instance.
      */
     public void add(String expr, BasicStroke stroke) {
         Predicate p = (Predicate)ExpressionParser.parse(expr);
@@ -122,10 +123,9 @@ public class StrokeAction extends EncoderAction {
      * the provided expression will be assigned the given BasicStroke value
      * (assuming they do not match an earlier rule). The provided expression
      * String will be parsed to generate the needed rule Predicate.
-     * @param expr the expression String, should parse to a Predicate. 
+     *
+     * @param expr the expression String, should parse to a Predicate.
      * @param f the delegate StrokeAction to use
-     * @throws RuntimeException if the expression does not parse correctly or
-     * does not result in a Predicate instance.
      */
     public void add(String expr, StrokeAction f) {
         Predicate p = (Predicate)ExpressionParser.parse(expr);
@@ -135,6 +135,10 @@ public class StrokeAction extends EncoderAction {
     // ------------------------------------------------------------------------
     
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

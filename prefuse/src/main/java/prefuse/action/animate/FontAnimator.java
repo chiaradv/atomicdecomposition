@@ -7,6 +7,7 @@ import prefuse.util.FontLib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Animator that interpolates between starting and ending Fonts for VisualItems
  * during an animation. Font sizes are interpolated linearly. If the
@@ -34,6 +35,10 @@ public class FontAnimator extends ItemAction {
     }
 
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

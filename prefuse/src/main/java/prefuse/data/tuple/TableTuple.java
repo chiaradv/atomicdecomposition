@@ -7,6 +7,7 @@ import prefuse.data.Schema;
 import prefuse.data.Table;
 import prefuse.data.Tuple;
 
+
 /**
  * Tuple implementation that pulls values from a backing data Table.
  * 
@@ -14,7 +15,10 @@ import prefuse.data.Tuple;
  */
 public class TableTuple implements Tuple {
 
+    /** The m_table. */
     protected Table m_table;
+    
+    /** The m_row. */
     protected int m_row;
     
     /**
@@ -31,6 +35,9 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the schema.
+     *
+     * @return the schema
      * @see prefuse.data.Tuple#getSchema()
      */
     public Schema getSchema() {
@@ -38,6 +45,9 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the table.
+     *
+     * @return the table
      * @see prefuse.data.Tuple#getTable()
      */
     public Table getTable() {
@@ -45,6 +55,9 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the row.
+     *
+     * @return the row
      * @see prefuse.data.Tuple#getRow()
      */
     public int getRow() {
@@ -55,6 +68,9 @@ public class TableTuple implements Tuple {
     // Index Checking
     
     /**
+     * Checks if is valid.
+     *
+     * @return true, if is valid
      * @see prefuse.data.Tuple#isValid()
      */
     public boolean isValid() {
@@ -83,6 +99,10 @@ public class TableTuple implements Tuple {
     // Column Methods
     
     /**
+     * Gets the column type.
+     *
+     * @param field the field
+     * @return the column type
      * @see prefuse.data.Tuple#getColumnType(java.lang.String)
      */
     public Class getColumnType(String field) {
@@ -90,6 +110,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the column type.
+     *
+     * @param col the col
+     * @return the column type
      * @see prefuse.data.Tuple#getColumnType(int)
      */
     public Class getColumnType(int col) {
@@ -97,6 +121,10 @@ public class TableTuple implements Tuple {
     }
 
     /**
+     * Gets the column index.
+     *
+     * @param field the field
+     * @return the column index
      * @see prefuse.data.Tuple#getColumnIndex(java.lang.String)
      */
     public int getColumnIndex(String field) {
@@ -104,6 +132,9 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the column count.
+     *
+     * @return the column count
      * @see prefuse.data.Tuple#getColumnCount()
      */
     public int getColumnCount() {
@@ -111,6 +142,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the column name.
+     *
+     * @param col the col
+     * @return the column name
      * @see prefuse.data.Tuple#getColumnName(int)
      */
     public String getColumnName(int col) {
@@ -121,6 +156,11 @@ public class TableTuple implements Tuple {
     // Data Access Methods
     
     /**
+     * Can get.
+     *
+     * @param field the field
+     * @param type the type
+     * @return true, if successful
      * @see prefuse.data.Tuple#canGet(java.lang.String, java.lang.Class)
      */
     public boolean canGet(String field, Class type) {
@@ -128,6 +168,11 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Can set.
+     *
+     * @param field the field
+     * @param type the type
+     * @return true, if successful
      * @see prefuse.data.Tuple#canSet(java.lang.String, java.lang.Class)
      */
     public boolean canSet(String field, Class type) {
@@ -135,6 +180,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the.
+     *
+     * @param field the field
+     * @return the object
      * @see prefuse.data.Tuple#get(java.lang.String)
      */
     public final Object get(String field) {
@@ -143,6 +192,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the.
+     *
+     * @param field the field
+     * @param value the value
      * @see prefuse.data.Tuple#set(java.lang.String, java.lang.Object)
      */
     public final void set(String field, Object value) {
@@ -151,6 +204,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the.
+     *
+     * @param idx the idx
+     * @return the object
      * @see prefuse.data.Tuple#get(int)
      */
     public final Object get(int idx) {
@@ -159,6 +216,10 @@ public class TableTuple implements Tuple {
     }
 
     /**
+     * Sets the.
+     *
+     * @param idx the idx
+     * @param value the value
      * @see prefuse.data.Tuple#set(int, java.lang.Object)
      */
     public final void set(int idx, Object value) {
@@ -167,6 +228,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the default.
+     *
+     * @param field the field
+     * @return the default
      * @see prefuse.data.Tuple#getDefault(java.lang.String)
      */
     public Object getDefault(String field) {
@@ -175,6 +240,9 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Revert to default.
+     *
+     * @param field the field
      * @see prefuse.data.Tuple#revertToDefault(java.lang.String)
      */
     public void revertToDefault(String field) {
@@ -186,6 +254,10 @@ public class TableTuple implements Tuple {
     // Convenience Data Access Methods
     
     /**
+     * Can get int.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canGetInt(java.lang.String)
      */
     public final boolean canGetInt(String field) {
@@ -193,6 +265,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Can set int.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canSetInt(java.lang.String)
      */
     public final boolean canSetInt(String field) {
@@ -200,6 +276,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the int.
+     *
+     * @param field the field
+     * @return the int
      * @see prefuse.data.Tuple#getInt(java.lang.String)
      */
     public final int getInt(String field) {
@@ -208,6 +288,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the int.
+     *
+     * @param field the field
+     * @param val the val
      * @see prefuse.data.Tuple#setInt(java.lang.String, int)
      */
     public final void setInt(String field, int val) {
@@ -216,6 +300,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the int.
+     *
+     * @param col the col
+     * @return the int
      * @see prefuse.data.Tuple#getInt(int)
      */
     public final int getInt(int col) {
@@ -224,6 +312,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the int.
+     *
+     * @param col the col
+     * @param val the val
      * @see prefuse.data.Tuple#setInt(int, int)
      */
     public final void setInt(int col, int val) {
@@ -234,6 +326,10 @@ public class TableTuple implements Tuple {
     // --------------------------------------------------------------
     
     /**
+     * Can get long.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canGetLong(java.lang.String)
      */
     public final boolean canGetLong(String field) {
@@ -241,6 +337,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Can set long.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canSetLong(java.lang.String)
      */
     public final boolean canSetLong(String field) {
@@ -248,6 +348,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the long.
+     *
+     * @param field the field
+     * @return the long
      * @see prefuse.data.Tuple#getLong(java.lang.String)
      */
     public final long getLong(String field) {
@@ -256,6 +360,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the long.
+     *
+     * @param field the field
+     * @param val the val
      * @see prefuse.data.Tuple#setLong(java.lang.String, long)
      */
     public final void setLong(String field, long val) {
@@ -264,6 +372,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the long.
+     *
+     * @param col the col
+     * @return the long
      * @see prefuse.data.Tuple#getLong(int)
      */
     public final long getLong(int col) {
@@ -272,6 +384,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the long.
+     *
+     * @param col the col
+     * @param val the val
      * @see prefuse.data.Tuple#setLong(int, long)
      */
     public final void setLong(int col, long val) {
@@ -282,6 +398,10 @@ public class TableTuple implements Tuple {
     // --------------------------------------------------------------
     
     /**
+     * Can get float.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canGetFloat(java.lang.String)
      */
     public final boolean canGetFloat(String field) {
@@ -289,6 +409,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Can set float.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canSetFloat(java.lang.String)
      */
     public final boolean canSetFloat(String field) {
@@ -296,6 +420,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the float.
+     *
+     * @param field the field
+     * @return the float
      * @see prefuse.data.Tuple#getFloat(java.lang.String)
      */
     public final float getFloat(String field) {
@@ -304,6 +432,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the float.
+     *
+     * @param field the field
+     * @param val the val
      * @see prefuse.data.Tuple#setFloat(java.lang.String, float)
      */
     public final void setFloat(String field, float val) {
@@ -312,6 +444,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the float.
+     *
+     * @param col the col
+     * @return the float
      * @see prefuse.data.Tuple#getFloat(int)
      */
     public final float getFloat(int col) {
@@ -320,6 +456,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the float.
+     *
+     * @param col the col
+     * @param val the val
      * @see prefuse.data.Tuple#setFloat(int, float)
      */
     public final void setFloat(int col, float val) {
@@ -330,6 +470,10 @@ public class TableTuple implements Tuple {
     // --------------------------------------------------------------
     
     /**
+     * Can get double.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canGetDouble(java.lang.String)
      */
     public final boolean canGetDouble(String field) {
@@ -337,6 +481,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Can set double.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canSetDouble(java.lang.String)
      */
     public final boolean canSetDouble(String field) {
@@ -344,6 +492,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the double.
+     *
+     * @param field the field
+     * @return the double
      * @see prefuse.data.Tuple#getDouble(java.lang.String)
      */
     public final double getDouble(String field) {
@@ -352,6 +504,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the double.
+     *
+     * @param field the field
+     * @param val the val
      * @see prefuse.data.Tuple#setDouble(java.lang.String, double)
      */
     public final void setDouble(String field, double val) {
@@ -360,6 +516,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the double.
+     *
+     * @param col the col
+     * @return the double
      * @see prefuse.data.Tuple#getDouble(int)
      */
     public final double getDouble(int col) {
@@ -368,6 +528,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the double.
+     *
+     * @param col the col
+     * @param val the val
      * @see prefuse.data.Tuple#setDouble(int, double)
      */
     public final void setDouble(int col, double val) {
@@ -378,6 +542,10 @@ public class TableTuple implements Tuple {
     // --------------------------------------------------------------
     
     /**
+     * Can get boolean.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canGetBoolean(java.lang.String)
      */
     public final boolean canGetBoolean(String field) {
@@ -385,6 +553,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Can set boolean.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canSetBoolean(java.lang.String)
      */
     public final boolean canSetBoolean(String field) {
@@ -392,6 +564,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the boolean.
+     *
+     * @param field the field
+     * @return the boolean
      * @see prefuse.data.Tuple#getBoolean(java.lang.String)
      */
     public final boolean getBoolean(String field) {
@@ -400,6 +576,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the boolean.
+     *
+     * @param field the field
+     * @param val the val
      * @see prefuse.data.Tuple#setBoolean(java.lang.String, boolean)
      */
     public final void setBoolean(String field, boolean val) {
@@ -408,6 +588,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the boolean.
+     *
+     * @param col the col
+     * @return the boolean
      * @see prefuse.data.Tuple#getBoolean(int)
      */
     public final boolean getBoolean(int col) {
@@ -416,6 +600,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the boolean.
+     *
+     * @param col the col
+     * @param val the val
      * @see prefuse.data.Tuple#setBoolean(java.lang.String, boolean)
      */
     public final void setBoolean(int col, boolean val) {
@@ -426,6 +614,10 @@ public class TableTuple implements Tuple {
     // --------------------------------------------------------------
     
     /**
+     * Can get string.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canGetString(java.lang.String)
      */
     public final boolean canGetString(String field) {
@@ -433,6 +625,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Can set string.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canSetString(java.lang.String)
      */
     public final boolean canSetString(String field) {
@@ -440,6 +636,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the string.
+     *
+     * @param field the field
+     * @return the string
      * @see prefuse.data.Tuple#getString(java.lang.String)
      */
     public final String getString(String field) {
@@ -448,6 +648,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the string.
+     *
+     * @param field the field
+     * @param val the val
      * @see prefuse.data.Tuple#setString(java.lang.String, java.lang.String)
      */
     public final void setString(String field, String val) {
@@ -456,6 +660,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the string.
+     *
+     * @param col the col
+     * @return the string
      * @see prefuse.data.Tuple#getString(int)
      */
     public final String getString(int col) {
@@ -464,6 +672,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the string.
+     *
+     * @param col the col
+     * @param val the val
      * @see prefuse.data.Tuple#setString(int, java.lang.String)
      */
     public final void setString(int col, String val) {
@@ -474,6 +686,10 @@ public class TableTuple implements Tuple {
     // --------------------------------------------------------------
     
     /**
+     * Can get date.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canGetDate(java.lang.String)
      */
     public final boolean canGetDate(String field) {
@@ -481,6 +697,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Can set date.
+     *
+     * @param field the field
+     * @return true, if successful
      * @see prefuse.data.Tuple#canSetDate(java.lang.String)
      */
     public final boolean canSetDate(String field) {
@@ -488,6 +708,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the date.
+     *
+     * @param field the field
+     * @return the date
      * @see prefuse.data.Tuple#getDate(java.lang.String)
      */
     public final Date getDate(String field) {
@@ -496,6 +720,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the date.
+     *
+     * @param field the field
+     * @param val the val
      * @see prefuse.data.Tuple#setDate(java.lang.String, java.util.Date)
      */
     public final void setDate(String field, Date val) {
@@ -504,6 +732,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Gets the date.
+     *
+     * @param col the col
+     * @return the date
      * @see prefuse.data.Tuple#getDate(int)
      */
     public final Date getDate(int col) {
@@ -512,6 +744,10 @@ public class TableTuple implements Tuple {
     }
     
     /**
+     * Sets the date.
+     *
+     * @param col the col
+     * @param val the val
      * @see prefuse.data.Tuple#setDate(java.lang.String, java.util.Date)
      */
     public final void setDate(int col, Date val) {
@@ -522,6 +758,9 @@ public class TableTuple implements Tuple {
     // ------------------------------------------------------------------------
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

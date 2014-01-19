@@ -8,6 +8,7 @@ import prefuse.util.PrefuseConfig;
 import prefuse.util.StringLib;
 import prefuse.util.collections.CopyOnWriteArrayList;
 
+
 /**
  * Worker thread that asynchronously handles a queue of jobs, with each job
  * responsible for issuing a query and processing the results. Currently
@@ -19,12 +20,15 @@ import prefuse.util.collections.CopyOnWriteArrayList;
  */
 public class DataSourceWorker extends Thread {
 
+    /** The s_logger. */
     private static Logger s_logger
         = Logger.getLogger(DataSourceWorker.class.getName());
     
     // TODO: in future, may want to expand this to a thread pool
+    /** The s_instance. */
     private static DataSourceWorker s_instance;
     
+    /** The s_queue. */
     private static CopyOnWriteArrayList s_queue;
     
     /**
@@ -68,6 +72,8 @@ public class DataSourceWorker extends Thread {
     }
     
     /**
+     * Run.
+     *
      * @see java.lang.Runnable#run()
      */
     public void run() {

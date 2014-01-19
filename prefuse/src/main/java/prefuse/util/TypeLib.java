@@ -1,5 +1,6 @@
 package prefuse.util;
 
+
 /**
  * Library routines dealing with Java Class types.
  * 
@@ -7,6 +8,9 @@ package prefuse.util;
  */
 public class TypeLib {
 
+    /**
+     * Instantiates a new type lib.
+     */
     private TypeLib() {
         // prevent instantiation
     }
@@ -99,7 +103,8 @@ public class TypeLib {
     
     /**
      * Given a numeric (byte, short, int, long, float, or double) class type or
-     * associated wrapper class type, return the primitive class type
+     * associated wrapper class type, return the primitive class type.
+     *
      * @param type the type to look up, must be a numerical type, but can be
      * either primitive or a wrapper.
      * @return the primitive class type

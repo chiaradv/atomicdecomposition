@@ -1,5 +1,6 @@
 package prefuse.activity;
 
+
 /**
  * Adapter class for ActivityListeners. Provides empty implementations of
  * ActivityListener routines.
@@ -10,30 +11,45 @@ package prefuse.activity;
 public class ActivityAdapter implements ActivityListener {
 
     /**
+     * Activity scheduled.
+     *
+     * @param a the a
      * @see prefuse.activity.ActivityListener#activityScheduled(prefuse.activity.Activity)
      */
     public void activityScheduled(Activity a) {
     }
 
     /**
+     * Activity started.
+     *
+     * @param a the a
      * @see prefuse.activity.ActivityListener#activityStarted(prefuse.activity.Activity)
      */
     public void activityStarted(Activity a) {
     }
 
     /**
+     * Activity stepped.
+     *
+     * @param a the a
      * @see prefuse.activity.ActivityListener#activityStepped(prefuse.activity.Activity)
      */
     public void activityStepped(Activity a) {
     }
 
     /**
+     * Activity finished.
+     *
+     * @param a the a
      * @see prefuse.activity.ActivityListener#activityFinished(prefuse.activity.Activity)
      */
     public void activityFinished(Activity a) {
     }
 
     /**
+     * Activity cancelled.
+     *
+     * @param a the a
      * @see prefuse.activity.ActivityListener#activityCancelled(prefuse.activity.Activity)
      */
     public void activityCancelled(Activity a) {

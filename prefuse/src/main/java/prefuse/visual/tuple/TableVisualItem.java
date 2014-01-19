@@ -15,6 +15,7 @@ import prefuse.render.Renderer;
 import prefuse.visual.VisualItem;
 import prefuse.visual.VisualTable;
 
+
 /**
  * VisualItem implementation that uses data values from a backing VisualTable.
  * 
@@ -37,6 +38,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the visualization.
+     *
+     * @return the visualization
      * @see prefuse.visual.VisualItem#getVisualization()
      */
     public Visualization getVisualization() {
@@ -44,6 +48,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the group.
+     *
+     * @return the group
      * @see prefuse.visual.VisualItem#getGroup()
      */
     public String getGroup() {
@@ -51,6 +58,10 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Checks if is in group.
+     *
+     * @param group the group
+     * @return true, if is in group
      * @see prefuse.visual.VisualItem#isInGroup(java.lang.String)
      */
     public boolean isInGroup(String group) {
@@ -58,6 +69,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the source data.
+     *
+     * @return the source data
      * @see prefuse.visual.VisualItem#getSourceData()
      */
     public TupleSet getSourceData() {
@@ -66,6 +80,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
 
     /**
+     * Gets the source tuple.
+     *
+     * @return the source tuple
      * @see prefuse.visual.VisualItem#getSourceTuple()
      */
     public Tuple getSourceTuple() {
@@ -74,6 +91,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {
@@ -102,6 +122,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     // VisualItem Methods
     
     /**
+     * Render.
+     *
+     * @param g the g
      * @see prefuse.visual.VisualItem#render(java.awt.Graphics2D)
      */
     public void render(Graphics2D g) {
@@ -109,6 +132,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the renderer.
+     *
+     * @return the renderer
      * @see prefuse.visual.VisualItem#getRenderer()
      */
     public Renderer getRenderer() {
@@ -116,6 +142,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Validate bounds.
+     *
+     * @return the rectangle2 d
      * @see prefuse.visual.VisualItem#validateBounds()
      */
     public Rectangle2D validateBounds() {
@@ -136,6 +165,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     // -- Boolean Flags -------------------------------------------------------
        
     /**
+     * Checks if is validated.
+     *
+     * @return true, if is validated
      * @see prefuse.visual.VisualItem#isValidated()
      */
     public boolean isValidated() {
@@ -143,6 +175,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the validated.
+     *
+     * @param value the new validated
      * @see prefuse.visual.VisualItem#setValidated(boolean)
      */
     public void setValidated(boolean value) {
@@ -150,6 +185,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Checks if is visible.
+     *
+     * @return true, if is visible
      * @see prefuse.visual.VisualItem#isVisible()
      */
     public boolean isVisible() {
@@ -157,6 +195,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the visible.
+     *
+     * @param value the new visible
      * @see prefuse.visual.VisualItem#setVisible(boolean)
      */
     public void setVisible(boolean value) {
@@ -164,6 +205,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Checks if is start visible.
+     *
+     * @return true, if is start visible
      * @see prefuse.visual.VisualItem#isStartVisible()
      */
     public boolean isStartVisible() {
@@ -171,6 +215,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the start visible.
+     *
+     * @param value the new start visible
      * @see prefuse.visual.VisualItem#setStartVisible(boolean)
      */
     public void setStartVisible(boolean value) {
@@ -178,6 +225,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Checks if is end visible.
+     *
+     * @return true, if is end visible
      * @see prefuse.visual.VisualItem#isEndVisible()
      */
     public boolean isEndVisible() {
@@ -185,6 +235,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the end visible.
+     *
+     * @param value the new end visible
      * @see prefuse.visual.VisualItem#setEndVisible(boolean)
      */
     public void setEndVisible(boolean value) {
@@ -192,6 +245,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Checks if is interactive.
+     *
+     * @return true, if is interactive
      * @see prefuse.visual.VisualItem#isInteractive()
      */
     public boolean isInteractive() {
@@ -199,6 +255,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
 
     /**
+     * Sets the interactive.
+     *
+     * @param value the new interactive
      * @see prefuse.visual.VisualItem#setInteractive(boolean)
      */
     public void setInteractive(boolean value) {
@@ -206,6 +265,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Checks if is expanded.
+     *
+     * @return true, if is expanded
      * @see prefuse.visual.VisualItem#isExpanded()
      */
     public boolean isExpanded() {
@@ -213,6 +275,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
 
     /**
+     * Sets the expanded.
+     *
+     * @param value the new expanded
      * @see prefuse.visual.VisualItem#setExpanded(boolean)
      */
     public void setExpanded(boolean value) {
@@ -220,6 +285,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Checks if is fixed.
+     *
+     * @return true, if is fixed
      * @see prefuse.visual.VisualItem#isFixed()
      */
     public boolean isFixed() {
@@ -227,6 +295,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
 
     /**
+     * Sets the fixed.
+     *
+     * @param value the new fixed
      * @see prefuse.visual.VisualItem#setFixed(boolean)
      */
     public void setFixed(boolean value) {
@@ -234,6 +305,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Checks if is highlighted.
+     *
+     * @return true, if is highlighted
      * @see prefuse.visual.VisualItem#isHighlighted()
      */
     public boolean isHighlighted() {
@@ -241,6 +315,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the highlighted.
+     *
+     * @param value the new highlighted
      * @see prefuse.visual.VisualItem#setHighlighted(boolean)
      */
     public void setHighlighted(boolean value) {
@@ -248,6 +325,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
 
     /**
+     * Checks if is hover.
+     *
+     * @return true, if is hover
      * @see prefuse.visual.VisualItem#isHover()
      */
     public boolean isHover() {
@@ -255,6 +335,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the hover.
+     *
+     * @param value the new hover
      * @see prefuse.visual.VisualItem#setHover(boolean)
      */
     public void setHover(boolean value) {
@@ -264,6 +347,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     // ------------------------------------------------------------------------
     
     /**
+     * Gets the x.
+     *
+     * @return the x
      * @see prefuse.visual.VisualItem#getX()
      */
     public double getX() {
@@ -271,6 +357,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the x.
+     *
+     * @param x the new x
      * @see prefuse.visual.VisualItem#setX(double)
      */
     public void setX(double x) {
@@ -278,6 +367,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the y.
+     *
+     * @return the y
      * @see prefuse.visual.VisualItem#getY()
      */
     public double getY() {
@@ -285,6 +377,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the y.
+     *
+     * @param y the new y
      * @see prefuse.visual.VisualItem#setY(double)
      */
     public void setY(double y) {
@@ -292,6 +387,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the start x.
+     *
+     * @return the start x
      * @see prefuse.visual.VisualItem#getStartX()
      */
     public double getStartX() {
@@ -299,6 +397,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the start x.
+     *
+     * @param x the new start x
      * @see prefuse.visual.VisualItem#setStartX(double)
      */
     public void setStartX(double x) {
@@ -306,6 +407,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the start y.
+     *
+     * @return the start y
      * @see prefuse.visual.VisualItem#getStartY()
      */
     public double getStartY() {
@@ -313,6 +417,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the start y.
+     *
+     * @param y the new start y
      * @see prefuse.visual.VisualItem#setStartY(double)
      */
     public void setStartY(double y) {
@@ -320,6 +427,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the end x.
+     *
+     * @return the end x
      * @see prefuse.visual.VisualItem#getEndX()
      */
     public double getEndX() {
@@ -327,6 +437,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the end x.
+     *
+     * @param x the new end x
      * @see prefuse.visual.VisualItem#setEndX(double)
      */
     public void setEndX(double x) {
@@ -334,6 +447,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the end y.
+     *
+     * @return the end y
      * @see prefuse.visual.VisualItem#getEndY()
      */
     public double getEndY() {
@@ -341,6 +457,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the end y.
+     *
+     * @param y the new end y
      * @see prefuse.visual.VisualItem#setEndY(double)
      */
     public void setEndY(double y) {
@@ -348,6 +467,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
 
     /**
+     * Gets the bounds.
+     *
+     * @return the bounds
      * @see prefuse.visual.VisualItem#getBounds()
      */
     public Rectangle2D getBounds() {
@@ -358,6 +480,12 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the bounds.
+     *
+     * @param x the x
+     * @param y the y
+     * @param w the w
+     * @param h the h
      * @see prefuse.visual.VisualItem#setBounds(double, double, double, double)
      */
     public void setBounds(double x, double y, double w, double h) {
@@ -367,6 +495,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     // ------------------------------------------------------------------------
     
     /**
+     * Gets the stroke color.
+     *
+     * @return the stroke color
      * @see prefuse.visual.VisualItem#getStrokeColor()
      */
     public int getStrokeColor() {
@@ -374,6 +505,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the stroke color.
+     *
+     * @param color the new stroke color
      * @see prefuse.visual.VisualItem#setStrokeColor(int)
      */
     public void setStrokeColor(int color) {
@@ -381,6 +515,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the start stroke color.
+     *
+     * @return the start stroke color
      * @see prefuse.visual.VisualItem#getStartStrokeColor()
      */
     public int getStartStrokeColor() {
@@ -388,6 +525,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the start stroke color.
+     *
+     * @param color the new start stroke color
      * @see prefuse.visual.VisualItem#setStartStrokeColor(int)
      */
     public void setStartStrokeColor(int color) {
@@ -395,6 +535,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the end stroke color.
+     *
+     * @return the end stroke color
      * @see prefuse.visual.VisualItem#getEndStrokeColor()
      */
     public int getEndStrokeColor() {
@@ -402,6 +545,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the end stroke color.
+     *
+     * @param color the new end stroke color
      * @see prefuse.visual.VisualItem#setEndStrokeColor(int)
      */
     public void setEndStrokeColor(int color) {
@@ -409,6 +555,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the fill color.
+     *
+     * @return the fill color
      * @see prefuse.visual.VisualItem#getFillColor()
      */
     public int getFillColor() {
@@ -416,6 +565,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the fill color.
+     *
+     * @param color the new fill color
      * @see prefuse.visual.VisualItem#setFillColor(int)
      */
     public void setFillColor(int color) {
@@ -423,6 +575,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the start fill color.
+     *
+     * @return the start fill color
      * @see prefuse.visual.VisualItem#getStartFillColor()
      */
     public int getStartFillColor() {
@@ -430,6 +585,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
 
     /**
+     * Sets the start fill color.
+     *
+     * @param color the new start fill color
      * @see prefuse.visual.VisualItem#setStartFillColor(int)
      */
     public void setStartFillColor(int color) {
@@ -437,6 +595,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the end fill color.
+     *
+     * @return the end fill color
      * @see prefuse.visual.VisualItem#getEndFillColor()
      */
     public int getEndFillColor() {
@@ -444,6 +605,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the end fill color.
+     *
+     * @param color the new end fill color
      * @see prefuse.visual.VisualItem#setEndFillColor(int)
      */
     public void setEndFillColor(int color) {
@@ -451,6 +615,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the text color.
+     *
+     * @return the text color
      * @see prefuse.visual.VisualItem#getTextColor()
      */
     public int getTextColor() {
@@ -458,6 +625,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the text color.
+     *
+     * @param color the new text color
      * @see prefuse.visual.VisualItem#setTextColor(int)
      */
     public void setTextColor(int color) {
@@ -465,6 +635,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the start text color.
+     *
+     * @return the start text color
      * @see prefuse.visual.VisualItem#getStartTextColor()
      */
     public int getStartTextColor() {
@@ -472,6 +645,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the start text color.
+     *
+     * @param color the new start text color
      * @see prefuse.visual.VisualItem#setStartTextColor(int)
      */
     public void setStartTextColor(int color) {
@@ -479,6 +655,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the end text color.
+     *
+     * @return the end text color
      * @see prefuse.visual.VisualItem#getEndTextColor()
      */
     public int getEndTextColor() {
@@ -486,6 +665,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the end text color.
+     *
+     * @param color the new end text color
      * @see prefuse.visual.VisualItem#setEndTextColor(int)
      */
     public void setEndTextColor(int color) {
@@ -495,6 +677,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     // ------------------------------------------------------------------------
     
     /**
+     * Gets the size.
+     *
+     * @return the size
      * @see prefuse.visual.VisualItem#getSize()
      */
     public double getSize() {
@@ -502,6 +687,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the size.
+     *
+     * @param size the new size
      * @see prefuse.visual.VisualItem#setSize(double)
      */
     public void setSize(double size) {
@@ -509,6 +697,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the start size.
+     *
+     * @return the start size
      * @see prefuse.visual.VisualItem#getStartSize()
      */
     public double getStartSize() {
@@ -516,6 +707,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the start size.
+     *
+     * @param size the new start size
      * @see prefuse.visual.VisualItem#setStartSize(double)
      */
     public void setStartSize(double size) {
@@ -523,6 +717,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the end size.
+     *
+     * @return the end size
      * @see prefuse.visual.VisualItem#getEndSize()
      */
     public double getEndSize() {
@@ -530,6 +727,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the end size.
+     *
+     * @param size the new end size
      * @see prefuse.visual.VisualItem#setEndSize(double)
      */
     public void setEndSize(double size) {
@@ -539,6 +739,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     // ------------------------------------------------------------------------
     
     /**
+     * Gets the shape.
+     *
+     * @return the shape
      * @see prefuse.visual.VisualItem#getShape()
      */
     public int getShape() {
@@ -546,6 +749,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the shape.
+     *
+     * @param shape the new shape
      * @see prefuse.visual.VisualItem#setShape(int)
      */
     public void setShape(int shape) {
@@ -555,6 +761,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     // ------------------------------------------------------------------------
     
     /**
+     * Gets the stroke.
+     *
+     * @return the stroke
      * @see prefuse.visual.VisualItem#getStroke()
      */
     public BasicStroke getStroke() {
@@ -562,6 +771,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the stroke.
+     *
+     * @param stroke the new stroke
      * @see prefuse.visual.VisualItem#setStroke(java.awt.BasicStroke)
      */
     public void setStroke(BasicStroke stroke) {
@@ -571,6 +783,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     // ------------------------------------------------------------------------    
     
     /**
+     * Gets the font.
+     *
+     * @return the font
      * @see prefuse.visual.VisualItem#getFont()
      */
     public Font getFont() {
@@ -578,6 +793,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
 
     /**
+     * Sets the font.
+     *
+     * @param font the new font
      * @see prefuse.visual.VisualItem#setFont(java.awt.Font)
      */
     public void setFont(Font font) {
@@ -585,6 +803,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the start font.
+     *
+     * @return the start font
      * @see prefuse.visual.VisualItem#getStartFont()
      */
     public Font getStartFont() {
@@ -592,6 +813,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
 
     /**
+     * Sets the start font.
+     *
+     * @param font the new start font
      * @see prefuse.visual.VisualItem#setStartFont(java.awt.Font)
      */
     public void setStartFont(Font font) {
@@ -599,6 +823,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Gets the end font.
+     *
+     * @return the end font
      * @see prefuse.visual.VisualItem#getEndFont()
      */
     public Font getEndFont() {
@@ -606,6 +833,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the end font.
+     *
+     * @param font the new end font
      * @see prefuse.visual.VisualItem#setEndFont(java.awt.Font)
      */
     public void setEndFont(Font font) {
@@ -615,6 +845,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     // ------------------------------------------------------------------------
     
     /**
+     * Gets the doi.
+     *
+     * @return the doi
      * @see prefuse.visual.VisualItem#getDOI()
      */
     public double getDOI() {
@@ -622,6 +855,9 @@ public class TableVisualItem extends TableTuple implements VisualItem {
     }
     
     /**
+     * Sets the doi.
+     *
+     * @param doi the new doi
      * @see prefuse.visual.VisualItem#setDOI(double)
      */
     public void setDOI(double doi) {

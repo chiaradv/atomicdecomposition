@@ -2,6 +2,7 @@ package prefuse.data.expression;
 
 import prefuse.data.Tuple;
 
+
 /**
  * Predicate representing the negation of another predicate.
  * 
@@ -9,6 +10,7 @@ import prefuse.data.Tuple;
  */
 public class NotPredicate extends AbstractPredicate {
 
+    /** The m_predicate. */
     private Predicate m_predicate;
     
     /**
@@ -28,6 +30,10 @@ public class NotPredicate extends AbstractPredicate {
     }
     
     /**
+     * Gets the boolean.
+     *
+     * @param t the t
+     * @return the boolean
      * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
      */
     public boolean getBoolean(Tuple t) {
@@ -35,6 +41,9 @@ public class NotPredicate extends AbstractPredicate {
     }
 
     /**
+     * Visit.
+     *
+     * @param v the v
      * @see prefuse.data.expression.Expression#visit(prefuse.data.expression.ExpressionVisitor)
      */
     public void visit(ExpressionVisitor v) {
@@ -45,6 +54,9 @@ public class NotPredicate extends AbstractPredicate {
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {
@@ -52,6 +64,8 @@ public class NotPredicate extends AbstractPredicate {
     }
     
     /**
+     * Adds the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#addChildListeners()
      */
     protected void addChildListeners() {
@@ -59,6 +73,8 @@ public class NotPredicate extends AbstractPredicate {
     }
     
     /**
+     * Removes the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#removeChildListeners()
      */
     protected void removeChildListeners() {

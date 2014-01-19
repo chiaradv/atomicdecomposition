@@ -3,6 +3,7 @@ package prefuse.data.column;
 import prefuse.data.DataTypeException;
 import prefuse.data.event.ColumnListener;
 
+
 /**
  * Column implementation holding a single, constant value for all rows.
  * 
@@ -10,6 +11,7 @@ import prefuse.data.event.ColumnListener;
  */
 public class ConstantColumn extends AbstractColumn {
 
+    /** The m_size. */
     private int m_size;
 
     /**
@@ -22,6 +24,9 @@ public class ConstantColumn extends AbstractColumn {
     }
     
     /**
+     * Gets the row count.
+     *
+     * @return the row count
      * @see prefuse.data.column.Column#getRowCount()
      */
     public int getRowCount() {
@@ -29,6 +34,9 @@ public class ConstantColumn extends AbstractColumn {
     }
 
     /**
+     * Sets the maximum row.
+     *
+     * @param nrows the new maximum row
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
     public void setMaximumRow(int nrows) {
@@ -36,6 +44,10 @@ public class ConstantColumn extends AbstractColumn {
     }
 
     /**
+     * Gets the.
+     *
+     * @param row the row
+     * @return the object
      * @see prefuse.data.column.Column#get(int)
      */
     public Object get(int row) {
@@ -47,6 +59,10 @@ public class ConstantColumn extends AbstractColumn {
 
     /**
      * Unsupported operation.
+     *
+     * @param val the val
+     * @param row the row
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.Column#set(java.lang.Object, int)
      */
     public void set(Object val, int row) throws DataTypeException {
@@ -56,6 +72,9 @@ public class ConstantColumn extends AbstractColumn {
 
     /**
      * Returns false.
+     *
+     * @param type the type
+     * @return true, if successful
      * @see prefuse.data.column.Column#canSet(java.lang.Class)
      */
     public boolean canSet(Class type) {
@@ -64,6 +83,8 @@ public class ConstantColumn extends AbstractColumn {
     
     /**
      * Does nothing.
+     *
+     * @param listener the listener
      * @see prefuse.data.column.Column#addColumnListener(prefuse.data.event.ColumnListener)
      */
     public void addColumnListener(ColumnListener listener) {
@@ -72,6 +93,8 @@ public class ConstantColumn extends AbstractColumn {
 
     /**
      * Does nothing.
+     *
+     * @param listener the listener
      * @see prefuse.data.column.Column#removeColumnListener(prefuse.data.event.ColumnListener)
      */
     public void removeColumnListener(ColumnListener listener) {

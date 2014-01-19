@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import prefuse.data.parser.DataParseException;
 
+
 /**
  * TableReader for fixed-width text files, that encode one row of table
  * data per line use a fixed number of characters for each data column.
@@ -21,6 +22,7 @@ import prefuse.data.parser.DataParseException;
 public class FixedWidthTextTableReader extends AbstractTextTableReader {
 
 	// the schema description
+	/** The m_schema. */
 	private FixedWidthTextTableSchema m_schema;
 	
 	/**
@@ -46,15 +48,17 @@ public class FixedWidthTextTableReader extends AbstractTextTableReader {
 	// ------------------------------------------------------------------------    
     
     /**
-     * Get the schema description describing the data columns' fixed widths
-     * @return the fixed-width table schema description
-     */
+	 * Get the schema description describing the data columns' fixed widths.
+	 *
+	 * @return the fixed-width table schema description
+	 */
     public FixedWidthTextTableSchema getFixedWidthSchema() {
         return m_schema;
     }
 
     /**
-     * Set the schema description describing the data columns' fixed widths
+     * Set the schema description describing the data columns' fixed widths.
+     *
      * @param schema the fixed-width table schema description
      */
     public void setFixedWidthSchema(FixedWidthTextTableSchema schema) {
@@ -64,8 +68,14 @@ public class FixedWidthTextTableReader extends AbstractTextTableReader {
 	// ------------------------------------------------------------------------
     
 	/**
-     * @see prefuse.data.io.AbstractTextTableReader#read(java.io.InputStream, prefuse.data.io.TableReadListener)
-     */
+	 * Read.
+	 *
+	 * @param is the is
+	 * @param trl the trl
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws DataParseException the data parse exception
+	 * @see prefuse.data.io.AbstractTextTableReader#read(java.io.InputStream, prefuse.data.io.TableReadListener)
+	 */
     protected void read(InputStream is, TableReadListener trl)
             throws IOException, DataParseException
     {
@@ -87,6 +97,9 @@ public class FixedWidthTextTableReader extends AbstractTextTableReader {
     }
 
     /**
+     * Gets the column names.
+     *
+     * @return the column names
      * @see prefuse.data.io.AbstractTextTableReader#getColumnNames()
      */
     protected ArrayList getColumnNames() {

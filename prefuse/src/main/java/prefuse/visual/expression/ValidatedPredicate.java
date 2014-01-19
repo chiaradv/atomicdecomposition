@@ -7,6 +7,7 @@ import prefuse.data.expression.NotPredicate;
 import prefuse.data.expression.Predicate;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Expression that indicates if an item's validated flag is set.
  * 
@@ -28,6 +29,9 @@ public class ValidatedPredicate extends ColumnExpression
     }
     
     /**
+     * Gets the name.
+     *
+     * @return the name
      * @see prefuse.data.expression.Function#getName()
      */
     public String getName() {
@@ -35,6 +39,9 @@ public class ValidatedPredicate extends ColumnExpression
     }
 
     /**
+     * Adds the parameter.
+     *
+     * @param e the e
      * @see prefuse.data.expression.Function#addParameter(prefuse.data.expression.Expression)
      */
     public void addParameter(Expression e) {
@@ -42,6 +49,9 @@ public class ValidatedPredicate extends ColumnExpression
     }
 
     /**
+     * Gets the parameter count.
+     *
+     * @return the parameter count
      * @see prefuse.data.expression.Function#getParameterCount()
      */
     public int getParameterCount() {
@@ -49,6 +59,9 @@ public class ValidatedPredicate extends ColumnExpression
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

@@ -4,6 +4,7 @@ import java.util.EventListener;
 
 import prefuse.data.util.ColumnProjection;
 
+
 /**
  * Listener interface for monitoring changes to the state of a
  * column projection filter.

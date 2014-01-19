@@ -1,5 +1,6 @@
 package prefuse.data;
 
+
 /**
  * Exception indicating an incompatible data type assignment.
  * 

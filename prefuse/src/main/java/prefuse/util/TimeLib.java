@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+
 /**
  * Library routines for dealing with times and time spans. All time values
  * are given as long values, indicating the number of milliseconds since
@@ -17,27 +18,52 @@ public class TimeLib {
 
     /** Represents a millenium, 1000 years. */
     public static final int MILLENIUM = -1000;
-    /** Represents a century, 100 years */
+    
+    /** Represents a century, 100 years. */
     public static final int CENTURY   = -100;
-    /** Represents a decade, 10 years */
+    
+    /** Represents a decade, 10 years. */
     public static final int DECADE    = -10;
     
+    /** The Constant SECOND_MILLIS. */
     private static final double SECOND_MILLIS    = 1000;
+    
+    /** The Constant MINUTE_MILLIS. */
     private static final double MINUTE_MILLIS    = SECOND_MILLIS*60;
+    
+    /** The Constant HOUR_MILLIS. */
     private static final double HOUR_MILLIS      = MINUTE_MILLIS*60;
+    
+    /** The Constant DAY_MILLIS. */
     private static final double DAY_MILLIS       = HOUR_MILLIS * 24.0015;
+    
+    /** The Constant WEEK_MILLIS. */
     private static final double WEEK_MILLIS      = DAY_MILLIS * 7;
+    
+    /** The Constant MONTH_MILLIS. */
     private static final double MONTH_MILLIS     = DAY_MILLIS * 30.43675;
+    
+    /** The Constant YEAR_MILLIS. */
     private static final double YEAR_MILLIS      = WEEK_MILLIS * 52.2;
+    
+    /** The Constant DECADE_MILLIS. */
     private static final double DECADE_MILLIS    = YEAR_MILLIS * 10;
+    
+    /** The Constant CENTURY_MILLIS. */
     private static final double CENTURY_MILLIS   = DECADE_MILLIS * 10;
+    
+    /** The Constant MILLENIUM_MILLIS. */
     private static final double MILLENIUM_MILLIS = CENTURY_MILLIS * 10;
     
+    /** The Constant CALENDAR_FIELDS. */
     private static final int[] CALENDAR_FIELDS = {
         Calendar.YEAR, Calendar.MONTH, Calendar.DATE, Calendar.HOUR_OF_DAY,
         Calendar.MINUTE, Calendar.SECOND, Calendar.MILLISECOND    
     };
     
+    /**
+     * Instantiates a new time lib.
+     */
     private TimeLib() {
         // prevent instantiation
     }
@@ -84,7 +110,12 @@ public class TimeLib {
     
     /**
      * Based on code posted at
-     *  http://forum.java.sun.com/thread.jspa?threadID=488676&messageID=2292012
+     * http://forum.java.sun.com/thread.jspa?threadID=488676&messageID=2292012
+     *
+     * @param t0 the t0
+     * @param t1 the t1
+     * @param field the field
+     * @return the int
      */
     private static int estimateUnitsBetween(long t0, long t1, int field) {
         long d = t1-t0;
@@ -121,11 +152,12 @@ public class TimeLib {
         
     /**
      * Increment a calendar by a given number of time units.
+     *
      * @param c the calendar to increment
      * @param field the time unit to increment, one of the
+     * @param val the number of time units to increment by
      * {@link java.util.Calendar} fields, or one of the extended fields
      * provided by this class (MILLENIUM, CENTURY, or DECADE).
-     * @param val the number of time units to increment by
      */
     public static void increment(Calendar c, int field, int val) {
         if ( isMultiYear(field) ) {
@@ -137,12 +169,13 @@ public class TimeLib {
     
     /**
      * Get the value of the given time field for a Calendar. Just like the
-     * {@link java.util.Calendar#get(int)} method, but include support for
-     * the extended fields provided by this class (MILLENIUM, CENTURY, or
-     * DECADE).
+     *
      * @param c the Calendar
      * @param field the time field
      * @return the value of the time field for the given calendar
+     * {@link java.util.Calendar#get(int)} method, but include support for
+     * the extended fields provided by this class (MILLENIUM, CENTURY, or
+     * DECADE).
      */
     public static int get(Calendar c, int field) {
         if ( isMultiYear(field) ) {
@@ -213,13 +246,14 @@ public class TimeLib {
      * clearing to {@link Calendar#HOUR} will floor the time to nearest
      * hour which occurred before or at the given time (e.g., 1:32
      * --> 1:30).
+     *
      * @param t the reference time
      * @param c a Calendar instance used to help compute the value, the
      * state of the Calendar will be overwritten.
      * @param field the time field to clear to, one of the
+     * @return the cleared time
      * {@link java.util.Calendar} fields, or one of the extended fields
      * provided by this class (MILLENIUM, CENTURY, or DECADE).
-     * @return the cleared time
      */
     public static long getClearedTime(long t, Calendar c, int field) {
         c.setTimeInMillis(t);
@@ -233,11 +267,12 @@ public class TimeLib {
      * clearing to {@link Calendar#HOUR} will floor the time to nearest
      * hour which occurred before or at the given time (e.g., 1:32
      * --> 1:30).
+     *
      * @param c the Calendar to clear
      * @param field the time field to clear to, one of the
+     * @return the original Calendar reference, now set to the cleared time
      * {@link java.util.Calendar} fields, or one of the extended fields
      * provided by this class (MILLENIUM, CENTURY, or DECADE).
-     * @return the original Calendar reference, now set to the cleared time
      */
     public static Calendar clearTo(Calendar c, int field) {
         int i = CALENDAR_FIELDS.length-1;

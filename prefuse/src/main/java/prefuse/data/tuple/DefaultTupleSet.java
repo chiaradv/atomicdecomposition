@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import prefuse.data.Tuple;
 import prefuse.data.event.EventConstants;
 
+
 /**
  * <p>TupleSet implementation that maintains a set of heterogeneous Tuples
  * -- tuples that can come from any backing data source. This class supports
@@ -20,6 +21,8 @@ import prefuse.data.event.EventConstants;
  */
 public class DefaultTupleSet extends AbstractTupleSet implements EventConstants
 {
+    
+    /** The m_tuples. */
     protected LinkedHashSet m_tuples;
 
     /**
@@ -30,6 +33,9 @@ public class DefaultTupleSet extends AbstractTupleSet implements EventConstants
     }
     
     /**
+     * Gets the tuple count.
+     *
+     * @return the tuple count
      * @see prefuse.data.tuple.TupleSet#getTupleCount()
      */
     public int getTupleCount() {
@@ -37,6 +43,10 @@ public class DefaultTupleSet extends AbstractTupleSet implements EventConstants
     }
     
     /**
+     * Adds the tuple.
+     *
+     * @param t the t
+     * @return the tuple
      * @see prefuse.data.tuple.TupleSet#addTuple(prefuse.data.Tuple)
      */
     public Tuple addTuple(Tuple t) {
@@ -47,6 +57,10 @@ public class DefaultTupleSet extends AbstractTupleSet implements EventConstants
     }
     
     /**
+     * Sets the tuple.
+     *
+     * @param t the t
+     * @return the tuple
      * @see prefuse.data.tuple.TupleSet#setTuple(prefuse.data.Tuple)
      */
     public Tuple setTuple(Tuple t) {
@@ -71,6 +85,10 @@ public class DefaultTupleSet extends AbstractTupleSet implements EventConstants
     }
 
     /**
+     * Contains tuple.
+     *
+     * @param t the t
+     * @return true, if successful
      * @see prefuse.data.tuple.TupleSet#containsTuple(prefuse.data.Tuple)
      */
     public boolean containsTuple(Tuple t) {
@@ -78,6 +96,10 @@ public class DefaultTupleSet extends AbstractTupleSet implements EventConstants
     }
     
     /**
+     * Removes the tuple.
+     *
+     * @param t the t
+     * @return true, if successful
      * @see prefuse.data.tuple.TupleSet#removeTuple(prefuse.data.Tuple)
      */
     public boolean removeTuple(Tuple t) {
@@ -97,6 +119,8 @@ public class DefaultTupleSet extends AbstractTupleSet implements EventConstants
     }
     
     /**
+     * Clear.
+     *
      * @see prefuse.data.tuple.TupleSet#clear()
      */
     public void clear() {
@@ -121,6 +145,9 @@ public class DefaultTupleSet extends AbstractTupleSet implements EventConstants
     }
     
     /**
+     * Tuples.
+     *
+     * @return the iterator
      * @see prefuse.data.tuple.TupleSet#tuples()
      */
     public Iterator tuples() {

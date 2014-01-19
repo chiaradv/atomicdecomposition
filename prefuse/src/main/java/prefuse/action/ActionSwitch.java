@@ -1,5 +1,6 @@
 package prefuse.action;
 
+
 /**
  * The ActionSwitch selects between a set of Actions, allowing only one
  * of a group of Actions to be executed at a time.
@@ -9,6 +10,7 @@ package prefuse.action;
  */
 public class ActionSwitch extends CompositeAction {
 
+    /** The m_switch val. */
     private int m_switchVal;
     
     /**
@@ -30,6 +32,9 @@ public class ActionSwitch extends CompositeAction {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {

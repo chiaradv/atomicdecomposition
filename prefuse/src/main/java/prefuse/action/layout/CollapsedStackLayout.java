@@ -8,6 +8,7 @@ import prefuse.data.Table;
 import prefuse.render.PolygonRenderer;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Layout Action that updates the outlines of polygons in a stacked line chart,
  * properly setting the coordinates of "collapsed" stacks.
@@ -16,15 +17,23 @@ import prefuse.visual.VisualItem;
  */
 public class CollapsedStackLayout extends Layout {
 
+    /** The m_poly field. */
     private String    m_polyField;
+    
+    /** The m_orientation. */
     private int       m_orientation = Constants.ORIENT_BOTTOM_TOP;
+    
+    /** The m_horiz. */
     private boolean   m_horiz = false;
+    
+    /** The m_top. */
     private boolean   m_top = false;
     
     /**
      * Create a new CollapsedStackLayout. The polygon field is assumed to be
-     * {@link prefuse.render.PolygonRenderer#POLYGON}.
+     *
      * @param group the data group to layout
+     * {@link prefuse.render.PolygonRenderer#POLYGON}.
      */
     public CollapsedStackLayout(String group) {
         this(group, PolygonRenderer.POLYGON);
@@ -42,11 +51,12 @@ public class CollapsedStackLayout extends Layout {
     
     /**
      * Returns the orientation of this layout. One of
+     *
+     * @return the orientation of this layout
      * {@link Constants#ORIENT_BOTTOM_TOP} (to grow bottom-up),
      * {@link Constants#ORIENT_TOP_BOTTOM} (to grow top-down),
      * {@link Constants#ORIENT_LEFT_RIGHT} (to grow left-right), or
      * {@link Constants#ORIENT_RIGHT_LEFT} (to grow right-left).
-     * @return the orientation of this layout
      */
     public int getOrientation() {
         return m_orientation;
@@ -54,13 +64,12 @@ public class CollapsedStackLayout extends Layout {
     
     /**
      * Sets the orientation of this layout. Must be one of
+     *
+     * @param orient the desired orientation of this layout
      * {@link Constants#ORIENT_BOTTOM_TOP} (to grow bottom-up),
      * {@link Constants#ORIENT_TOP_BOTTOM} (to grow top-down),
      * {@link Constants#ORIENT_LEFT_RIGHT} (to grow left-right), or
      * {@link Constants#ORIENT_RIGHT_LEFT} (to grow right-left).
-     * @param orient the desired orientation of this layout
-     * @throws IllegalArgumentException if the orientation value
-     * is not a valid value
      */
     public void setOrientation(int orient) {
         if ( orient != Constants.ORIENT_TOP_BOTTOM &&
@@ -78,6 +87,9 @@ public class CollapsedStackLayout extends Layout {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {

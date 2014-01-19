@@ -1,5 +1,6 @@
 package prefuse.data.parser;
 
+
 /**
  * DataParser instance that parses boolean values. The string "true" is
  * parsed to true values, "false" to false values. Both are case
@@ -16,6 +17,8 @@ public class BooleanParser implements DataParser {
     
     /**
      * Returns boolean.class.
+     *
+     * @return the type
      * @see prefuse.data.parser.DataParser#getType()
      */
     public Class getType() {
@@ -23,6 +26,10 @@ public class BooleanParser implements DataParser {
     }
     
     /**
+     * Format.
+     *
+     * @param value the value
+     * @return the string
      * @see prefuse.data.parser.DataParser#format(java.lang.Object)
      */
     public String format(Object value) {
@@ -34,6 +41,10 @@ public class BooleanParser implements DataParser {
     }
     
     /**
+     * Can parse.
+     *
+     * @param text the text
+     * @return true, if successful
      * @see prefuse.data.parser.DataParser#canParse(java.lang.String)
      */
     public boolean canParse(String text) {
@@ -41,6 +52,11 @@ public class BooleanParser implements DataParser {
     }
     
     /**
+     * Parses the.
+     *
+     * @param text the text
+     * @return the object
+     * @throws DataParseException the data parse exception
      * @see prefuse.data.parser.DataParser#parse(java.lang.String)
      */
     public Object parse(String text) throws DataParseException {
@@ -48,7 +64,8 @@ public class BooleanParser implements DataParser {
     }
     
     /**
-     * Parse a boolean value from a text string
+     * Parse a boolean value from a text string.
+     *
      * @param text the text string to parse
      * @return the parsed boolean value
      * @throws DataParseException if an error occurs during parsing

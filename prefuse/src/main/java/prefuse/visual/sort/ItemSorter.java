@@ -8,6 +8,7 @@ import prefuse.visual.DecoratorItem;
 import prefuse.visual.EdgeItem;
 import prefuse.visual.VisualItem;
 
+
 /**
  * ItemSorter instances provide an integer score for each VisualItem;
  * these scores are then used to sort the items in ascending order of score.
@@ -18,26 +19,34 @@ import prefuse.visual.VisualItem;
  */
 public class ItemSorter implements Comparator {
 
+    /** The Constant AGGREGATE. */
     protected static final int AGGREGATE = 0;
+    
+    /** The Constant EDGE. */
     protected static final int EDGE      = 1;
+    
+    /** The Constant ITEM. */
     protected static final int ITEM      = 2;
+    
+    /** The Constant DECORATOR. */
     protected static final int DECORATOR = 3;
     
     /**
      * <p>Return an ordering score for an item. The default scoring imparts
      * the following order:
      * hover items > highlighted items > items in the
+     *
+     * @param item the VisualItem to provide an ordering score
+     * @return the ordering score
      * {@link prefuse.Visualization#FOCUS_ITEMS} set >
      * {@link prefuse.Visualization#SEARCH_ITEMS} set >
      * DecoratorItem instances > normal VisualItem instances. A zero
      * score is returned for normal items, with scores starting at
      * 1&lt;&lt;27 for other items, leaving the number range beneath that
-     * value open for additional nuanced scoring.</p> 
+     * value open for additional nuanced scoring.</p>
      * 
      * <p>Subclasses can override this method to provide custom sorting
      * criteria.</p>
-     * @param item the VisualItem to provide an ordering score
-     * @return the ordering score
      */
     public int score(VisualItem item) {
         int type = ITEM;
@@ -68,11 +77,12 @@ public class ItemSorter implements Comparator {
     
     /**
      * Compare two items based on their ordering scores. Calls the
-     * {@link #score(VisualItem)} on each item and compares the result.
+     *
      * @param v1 the first VisualItem to compare
      * @param v2 the second VisualItem to compare
      * @return -1 if score(v1) &lt; score(v2), 1 if score(v1) &gt; score(v2)
      * and 0 if score(v1) == score(v2).
+     * {@link #score(VisualItem)} on each item and compares the result.
      */
     public int compare(VisualItem v1, VisualItem v2) {
         int score1 = score(v1);
@@ -81,6 +91,11 @@ public class ItemSorter implements Comparator {
     }
     
     /**
+     * Compare.
+     *
+     * @param o1 the o1
+     * @param o2 the o2
+     * @return the int
      * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
      * @see #compare(VisualItem, VisualItem)
      */

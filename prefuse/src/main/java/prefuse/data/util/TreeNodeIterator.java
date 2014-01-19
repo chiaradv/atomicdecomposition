@@ -9,6 +9,7 @@ import java.util.Iterator;
 
 import prefuse.data.Node;
 
+
 /**
  * A depth-first iterator over the subtree rooted at given node.
  * 
@@ -16,8 +17,13 @@ import prefuse.data.Node;
  */
 public class TreeNodeIterator implements Iterator {
 
+    /** The m_stack. */
     private ArrayList m_stack;
+    
+    /** The m_root. */
     private Node m_root;
+    
+    /** The m_preorder. */
     private boolean m_preorder = true;
     
     /**
@@ -48,6 +54,9 @@ public class TreeNodeIterator implements Iterator {
     }
     
     /**
+     * Checks for next.
+     *
+     * @return true, if successful
      * @see java.util.Iterator#hasNext()
      */
     public boolean hasNext() {
@@ -55,6 +64,9 @@ public class TreeNodeIterator implements Iterator {
     }
 
     /**
+     * Next.
+     *
+     * @return the object
      * @see java.util.Iterator#next()
      */
     public Object next() {
@@ -88,7 +100,8 @@ public class TreeNodeIterator implements Iterator {
     }
 
     /**
-     * Throws an UnsupportedOperationException
+     * Throws an UnsupportedOperationException.
+     *
      * @see java.util.Iterator#remove()
      */
     public void remove() {

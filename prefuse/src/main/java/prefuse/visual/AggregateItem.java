@@ -8,6 +8,7 @@ import java.util.Iterator;
 
 import prefuse.data.expression.Predicate;
 
+
 /**
  * VisualItem that represents an aggregation of one or more other VisualItems.
  * AggregateItems include methods adding and removing items from the aggregate

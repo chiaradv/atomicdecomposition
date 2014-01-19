@@ -4,6 +4,7 @@ import prefuse.data.Schema;
 import prefuse.data.Tuple;
 import prefuse.util.TypeLib;
 
+
 /**
  * Literal expression of a numeric value. 
  * 
@@ -11,7 +12,10 @@ import prefuse.util.TypeLib;
  */
 public class NumericLiteral extends Literal {
 
+    /** The m_number. */
     private final Number m_number;
+    
+    /** The m_type. */
     private final Class  m_type;
     
     // ------------------------------------------------------------------------
@@ -71,6 +75,10 @@ public class NumericLiteral extends Literal {
     // Expression Interface    
     
     /**
+     * Gets the type.
+     *
+     * @param s the s
+     * @return the type
      * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
      */
     public Class getType(Schema s) {
@@ -78,6 +86,10 @@ public class NumericLiteral extends Literal {
     }
 
     /**
+     * Gets the.
+     *
+     * @param t the t
+     * @return the object
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */
     public Object get(Tuple t) {
@@ -85,6 +97,10 @@ public class NumericLiteral extends Literal {
     }
 
     /**
+     * Gets the int.
+     *
+     * @param t the t
+     * @return the int
      * @see prefuse.data.expression.Expression#getInt(prefuse.data.Tuple)
      */
     public int getInt(Tuple t) {
@@ -92,6 +108,10 @@ public class NumericLiteral extends Literal {
     }
 
     /**
+     * Gets the long.
+     *
+     * @param t the t
+     * @return the long
      * @see prefuse.data.expression.Expression#getLong(prefuse.data.Tuple)
      */
     public long getLong(Tuple t) {
@@ -99,6 +119,10 @@ public class NumericLiteral extends Literal {
     }
 
     /**
+     * Gets the float.
+     *
+     * @param t the t
+     * @return the float
      * @see prefuse.data.expression.Expression#getFloat(prefuse.data.Tuple)
      */
     public float getFloat(Tuple t) {
@@ -106,6 +130,10 @@ public class NumericLiteral extends Literal {
     }
 
     /**
+     * Gets the double.
+     *
+     * @param t the t
+     * @return the double
      * @see prefuse.data.expression.Expression#getDouble(prefuse.data.Tuple)
      */
     public double getDouble(Tuple t) {
@@ -113,6 +141,9 @@ public class NumericLiteral extends Literal {
     }
 
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

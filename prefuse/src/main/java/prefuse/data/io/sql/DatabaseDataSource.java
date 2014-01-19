@@ -12,6 +12,7 @@ import prefuse.data.Table;
 import prefuse.data.io.DataIOException;
 import prefuse.data.util.Index;
 
+
 /**
  * Sends queries to a relational database and processes the results, storing
  * the results in prefuse Table instances. This class should not be
@@ -23,11 +24,17 @@ import prefuse.data.util.Index;
 public class DatabaseDataSource {
 
     // logger
+    /** The Constant s_logger. */
     private static final Logger s_logger 
         = Logger.getLogger(DatabaseDataSource.class.getName());
     
+    /** The m_conn. */
     protected Connection       m_conn;
+    
+    /** The m_stmt. */
     protected Statement        m_stmt;
+    
+    /** The m_handler. */
     protected SQLDataHandler m_handler;
     
     // ------------------------------------------------------------------------
@@ -36,6 +43,9 @@ public class DatabaseDataSource {
      * Creates a new DatabaseDataSource for reading data from a SQL relational
      * database. This constructor is only package visible and is not intended
      * for use by application level code. Instead, the
+     *
+     * @param conn the conn
+     * @param handler the handler
      * {@link ConnectionFactory} class should be used to create any number of
      * DatabaseDataSource connections.
      */
@@ -213,7 +223,8 @@ public class DatabaseDataSource {
     // ------------------------------------------------------------------------
     
     /**
-     * Execute a query and return the corresponding result set
+     * Execute a query and return the corresponding result set.
+     *
      * @param query the text SQL query to execute
      * @return the ResultSet of the query
      * @throws SQLException if an error occurs issuing the query
@@ -242,9 +253,13 @@ public class DatabaseDataSource {
      * Process the results of a SQL query, putting retrieved data into a
      * Table instance. If a null table is provided, a new table with the
      * appropriate schema will be created.
+     *
      * @param t the Table to store results in
      * @param rset the SQL query result set
+     * @param key the key
+     * @param lock the lock
      * @return a Table containing the query results
+     * @throws DataIOException the data io exception
      */
     protected Table process(Table t, ResultSet rset, String key, Object lock)
         throws DataIOException
@@ -307,12 +322,13 @@ public class DatabaseDataSource {
     /**
      * See if a retrieved database row is already represented in the given
      * Table.
+     *
      * @param t the prefuse Table to check for an existing row
      * @param rset the ResultSet, set to a particular row, which may or
      * may not have a matching row in the prefuse Table
      * @param keyField the key field to look up to check for an existing row
      * @return the index of the existing row, or -1 if no match is found
-     * @throws SQLException
+     * @throws SQLException the sQL exception
      */
     protected int getExistingRow(Table t, ResultSet rset, String keyField)
         throws SQLException

@@ -1,6 +1,7 @@
 package prefuse.data.parser;
 
 
+
 /**
  * Interface for data parsers, which parse data values from text Strings
  * and generated formatted text Strings for data values.

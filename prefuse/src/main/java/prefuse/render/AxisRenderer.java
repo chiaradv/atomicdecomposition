@@ -13,6 +13,7 @@ import prefuse.util.ColorLib;
 import prefuse.util.GraphicsLib;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Renderer for drawing an axis tick mark and label.
  * 
@@ -21,11 +22,19 @@ import prefuse.visual.VisualItem;
  */
 public class AxisRenderer extends AbstractShapeRenderer {
 
+    /** The m_line. */
     private Line2D      m_line = new Line2D.Double();
+    
+    /** The m_box. */
     private Rectangle2D m_box  = new Rectangle2D.Double();
     
+    /** The m_xalign. */
     private int m_xalign;
+    
+    /** The m_yalign. */
     private int m_yalign;
+    
+    /** The m_ascent. */
     private int m_ascent;
     
     /**
@@ -38,10 +47,11 @@ public class AxisRenderer extends AbstractShapeRenderer {
     
     /**
      * Create a new AxisRenderer.
+     *
      * @param xalign the horizontal alignment for the axis label. One of
+     * @param yalign the vertical alignment for the axis label. One of
      * {@link prefuse.Constants#LEFT}, {@link prefuse.Constants#RIGHT},
      * or {@link prefuse.Constants#CENTER}.
-     * @param yalign the vertical alignment for the axis label. One of
      * {@link prefuse.Constants#TOP}, {@link prefuse.Constants#BOTTOM},
      * or {@link prefuse.Constants#CENTER}.
      */
@@ -71,6 +81,10 @@ public class AxisRenderer extends AbstractShapeRenderer {
     }
     
     /**
+     * Gets the raw shape.
+     *
+     * @param item the item
+     * @return the raw shape
      * @see prefuse.render.AbstractShapeRenderer#getRawShape(prefuse.visual.VisualItem)
      */
     protected Shape getRawShape(VisualItem item) {
@@ -134,6 +148,10 @@ public class AxisRenderer extends AbstractShapeRenderer {
     }
     
     /**
+     * Render.
+     *
+     * @param g the g
+     * @param item the item
      * @see prefuse.render.Renderer#render(java.awt.Graphics2D, prefuse.visual.VisualItem)
      */
     public void render(Graphics2D g, VisualItem item) { 
@@ -162,6 +180,11 @@ public class AxisRenderer extends AbstractShapeRenderer {
 	}
 
     /**
+     * Locate point.
+     *
+     * @param p the p
+     * @param item the item
+     * @return true, if successful
      * @see prefuse.render.Renderer#locatePoint(java.awt.geom.Point2D, prefuse.visual.VisualItem)
      */
     public boolean locatePoint(Point2D p, VisualItem item) {
@@ -180,6 +203,9 @@ public class AxisRenderer extends AbstractShapeRenderer {
     }
 
     /**
+     * Sets the bounds.
+     *
+     * @param item the new bounds
      * @see prefuse.render.Renderer#setBounds(prefuse.visual.VisualItem)
      */
     public void setBounds(VisualItem item) {

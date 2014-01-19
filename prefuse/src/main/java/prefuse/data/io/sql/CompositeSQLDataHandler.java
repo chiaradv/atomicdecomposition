@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import prefuse.data.Table;
 
+
 /**
  * SQLDataHandler that allows multiple handlers to be grouped together. This
  * class supports a map that allows specific data field / column names to
@@ -17,7 +18,10 @@ import prefuse.data.Table;
  */
 public class CompositeSQLDataHandler implements SQLDataHandler {
 
+    /** The m_default. */
     private SQLDataHandler m_default;
+    
+    /** The m_overrides. */
     private HashMap m_overrides;
     
     // ------------------------------------------------------------------------
@@ -68,6 +72,13 @@ public class CompositeSQLDataHandler implements SQLDataHandler {
     // ------------------------------------------------------------------------
 
     /**
+     * Process.
+     *
+     * @param t the t
+     * @param trow the trow
+     * @param rset the rset
+     * @param rcol the rcol
+     * @throws SQLException the sQL exception
      * @see prefuse.data.io.sql.SQLDataHandler#process(prefuse.data.Table, int, java.sql.ResultSet, int)
      */
     public void process(Table t, int trow, ResultSet rset, int rcol)
@@ -87,6 +98,11 @@ public class CompositeSQLDataHandler implements SQLDataHandler {
     }
 
     /**
+     * Gets the data type.
+     *
+     * @param columnName the column name
+     * @param sqlType the sql type
+     * @return the data type
      * @see prefuse.data.io.sql.SQLDataHandler#getDataType(java.lang.String, int)
      */
     public Class getDataType(String columnName, int sqlType) {

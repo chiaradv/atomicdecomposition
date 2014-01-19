@@ -7,6 +7,7 @@ import prefuse.visual.EdgeItem;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>Default factory implementation from which to retrieve VisualItem
  * renderers.</p>
@@ -39,8 +40,13 @@ import prefuse.visual.VisualItem;
  */
 public class DefaultRendererFactory implements RendererFactory {
 
+    /** The m_chain. */
     private PredicateChain m_chain = new PredicateChain();
+    
+    /** The m_item renderer. */
     private Renderer m_itemRenderer;
+    
+    /** The m_edge renderer. */
     private Renderer m_edgeRenderer;
     
     /**
@@ -84,11 +90,12 @@ public class DefaultRendererFactory implements RendererFactory {
     
     /**
      * Sets the default renderer. This renderer will be returned by
+     *
+     * @param r the Renderer to use as the default
      * {@link #getRenderer(VisualItem)} whenever there are no matching
      * predicates and the input item <em>is not</em> an EdgeItem. To set the
      * default renderer for EdgeItems, see
      * {@link #setDefaultEdgeRenderer(Renderer)}.
-     * @param r the Renderer to use as the default
      * @see #setDefaultEdgeRenderer(Renderer)
      */
     public void setDefaultRenderer(Renderer r) {
@@ -97,9 +104,10 @@ public class DefaultRendererFactory implements RendererFactory {
     
     /**
      * Gets the default renderer. This renderer will be returned by
+     *
+     * @return the default Renderer for non-edge VisualItems
      * {@link #getRenderer(VisualItem)} whenever there are no matching
      * predicates and the input item <em>is not</em> an EdgeItem.
-     * @return the default Renderer for non-edge VisualItems
      */
     public Renderer getDefaultRenderer() {
         return m_itemRenderer;
@@ -107,11 +115,12 @@ public class DefaultRendererFactory implements RendererFactory {
     
     /**
      * Sets the default edge renderer. This renderer will be returned by
+     *
+     * @param r the Renderer to use as the default for EdgeItems
      * {@link #getRenderer(VisualItem)} whenever there are no matching
      * predicates and the input item <em>is</em> an EdgeItem. To set the
      * default renderer for non-EdgeItems, see
      * {@link #setDefaultRenderer(Renderer)}.
-     * @param r the Renderer to use as the default for EdgeItems
      * @see #setDefaultRenderer(Renderer)
      */
     public void setDefaultEdgeRenderer(Renderer r) {
@@ -120,9 +129,10 @@ public class DefaultRendererFactory implements RendererFactory {
     
     /**
      * Gets the default edge renderer. This renderer will be returned by
+     *
+     * @return the default Renderer for EdgeItems
      * {@link #getRenderer(VisualItem)} whenever there are no matching
      * predicates and the input item <em>is</em> an EdgeItem.
-     * @return the default Renderer for EdgeItems
      */
     public Renderer getDefaultEdgeRenderer() {
         return m_edgeRenderer;
@@ -130,12 +140,13 @@ public class DefaultRendererFactory implements RendererFactory {
     
     /**
      * Adds a new mapping to this RendererFactory. If an input item to
+     *
+     * @param p a Predicate for testing a VisualItem
+     * @param r the Renderer to return if an item matches the Predicate
      * {@link #getRenderer(VisualItem)} matches the predicate, then the
      * corresponding Renderer will be returned. Predicates are evaluated in the
      * order in which they are added, so if an item matches multiple
      * predicates, the Renderer for the earliest match will be returned.
-     * @param p a Predicate for testing a VisualItem
-     * @param r the Renderer to return if an item matches the Predicate
      */
     public void add(Predicate p, Renderer r) {
         m_chain.add(p, r);
@@ -143,13 +154,14 @@ public class DefaultRendererFactory implements RendererFactory {
     
     /**
      * Adds a new mapping to this RendererFactory. If an input item to
+     *
+     * @param predicate a String in the prefuse expression language. This
+     * String will be parsed to create a corresponding Predicate instance.
+     * @param r the Renderer to return if an item matches the Predicate
      * {@link #getRenderer(VisualItem)} matches the predicate, then the
      * corresponding Renderer will be returned. Predicates are evaluated in the
      * order in which they are added, so if an item matches multiple
      * predicates, the Renderer for the earliest match will be returned.
-     * @param predicate a String in the prefuse expression language. This
-     *  String will be parsed to create a corresponding Predicate instance.
-     * @param r the Renderer to return if an item matches the Predicate
      */
     public void add(String predicate, Renderer r) {
         Predicate p = (Predicate)ExpressionParser.parse(predicate);
@@ -164,6 +176,9 @@ public class DefaultRendererFactory implements RendererFactory {
      * RendererFactory. If no matches are found, either the default renderer
      * (for all VisualItems except EdgeItems) or the default edge renderer (for
      * EdgeItems) is returned.
+     *
+     * @param item the item
+     * @return the renderer
      */
     public Renderer getRenderer(VisualItem item) {
         Renderer r = (Renderer)m_chain.get(item);

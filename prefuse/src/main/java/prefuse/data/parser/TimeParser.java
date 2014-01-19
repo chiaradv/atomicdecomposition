@@ -3,6 +3,7 @@ package prefuse.data.parser;
 import java.sql.Time;
 import java.text.DateFormat;
 
+
 /**
  * DataParser instance that parses Date values as java.util.Time instances,
  * representing a particular time (but no specific date).
@@ -33,6 +34,8 @@ public class TimeParser extends DateParser {
     
     /**
      * Returns java.sql.Time.class.
+     *
+     * @return the type
      * @see prefuse.data.parser.DataParser#getType()
      */
     public Class getType() {
@@ -40,6 +43,10 @@ public class TimeParser extends DateParser {
     }
     
     /**
+     * Can parse.
+     *
+     * @param val the val
+     * @return true, if successful
      * @see prefuse.data.parser.DataParser#canParse(java.lang.String)
      */
     public boolean canParse(String val) {
@@ -52,6 +59,11 @@ public class TimeParser extends DateParser {
     }
     
     /**
+     * Parses the.
+     *
+     * @param val the val
+     * @return the object
+     * @throws DataParseException the data parse exception
      * @see prefuse.data.parser.DataParser#parse(java.lang.String)
      */
     public Object parse(String val) throws DataParseException {

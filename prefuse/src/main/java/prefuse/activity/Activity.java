@@ -3,6 +3,7 @@ package prefuse.activity;
 import prefuse.util.collections.CopyOnWriteArrayList;
 
 
+
 /**
  * Represents an activity that can be scheduled and run. This could include
  * data processing, animation, and time-sensitive operations.
@@ -13,19 +14,37 @@ import prefuse.util.collections.CopyOnWriteArrayList;
  */
 public abstract class Activity {
 
+    /** The Constant INFINITY. */
     public static final long INFINITY = -1L; // specifies infinite duration
+    
+    /** The Constant DEFAULT_STEP_TIME. */
     public static final long DEFAULT_STEP_TIME = 15L;
     
+    /** The m_enabled. */
     private boolean m_enabled = true;
+    
+    /** The m_pacer. */
     private Pacer m_pacer;
     
+    /** The m_start time. */
     private long m_startTime = -1L;
+    
+    /** The m_duration. */
     private long m_duration  = -1L;
+    
+    /** The m_step time. */
     private long m_stepTime  = -1L;
+    
+    /** The m_next time. */
     private long m_nextTime  = -1L;
+    
+    /** The m_is running. */
     private boolean m_isRunning = false;
+    
+    /** The m_is scheduled. */
     private boolean m_isScheduled = false;
     
+    /** The m_listeners. */
     private CopyOnWriteArrayList m_listeners;
     
     /**
@@ -196,8 +215,9 @@ public abstract class Activity {
     }
     
     /**
-     * Indicates if this activity is currently scheduled 
-     *  with the ActivityManager
+     * Indicates if this activity is currently scheduled
+     * with the ActivityManager.
+     *
      * @return true if scheduled, false otherwise
      */
     public synchronized boolean isScheduled() {
@@ -220,8 +240,10 @@ public abstract class Activity {
     }
     
     /**
-     * Sets a flag indicating whether or not this activity is currently running
+     * Sets a flag indicating whether or not this activity is currently running.
+     *
      * @param s the new running state of this activity
+     * @return true, if successful
      */
     synchronized boolean setRunning(boolean s) {
         boolean b = m_isRunning;
@@ -252,7 +274,8 @@ public abstract class Activity {
     }
     
     /**
-     * Remove a registered ActivityListener
+     * Remove a registered ActivityListener.
+     *
      * @param l the ActivityListener to remove
      */
     public void removeActivityListener(ActivityListener l) {
@@ -263,6 +286,9 @@ public abstract class Activity {
             m_listeners = null;
     }
 
+    /**
+     * Fire activity scheduled.
+     */
     protected void fireActivityScheduled() {
         if ( m_listeners == null ) return;
         Object[] a = m_listeners.getArray();
@@ -271,6 +297,9 @@ public abstract class Activity {
         }
     }
     
+    /**
+     * Fire activity started.
+     */
     protected void fireActivityStarted() {
         if ( m_listeners == null ) return;
         Object[] a = m_listeners.getArray();
@@ -279,6 +308,9 @@ public abstract class Activity {
         }
     }
     
+    /**
+     * Fire activity stepped.
+     */
     protected void fireActivityStepped() {
         if ( m_listeners == null ) return;
         Object[] a = m_listeners.getArray();
@@ -287,6 +319,9 @@ public abstract class Activity {
         }
     }
     
+    /**
+     * Fire activity finished.
+     */
     protected void fireActivityFinished() {
         if ( m_listeners == null ) return;
         Object[] a = m_listeners.getArray();
@@ -295,6 +330,9 @@ public abstract class Activity {
         }
     }
     
+    /**
+     * Fire activity cancelled.
+     */
     protected void fireActivityCancelled() {
         if ( m_listeners == null ) return;
         Object[] a = m_listeners.getArray();
@@ -366,7 +404,8 @@ public abstract class Activity {
     }
     
     /**
-     * Returns the duration of this activity
+     * Returns the duration of this activity.
+     *
      * @return the duration of this activity, in milliseconds
      */
     public long getDuration() {
@@ -374,17 +413,19 @@ public abstract class Activity {
     }
 
     /**
-     * Set the duration of this activity
+     * Set the duration of this activity.
+     *
      * @param duration The new duration, in milliseconds, for this activity.
-     *  A value of {@link #INFINITY} indicates that this activity should run
-     *  indefinitely.
+     * A value of {@link #INFINITY} indicates that this activity should run
+     * indefinitely.
      */
     public void setDuration(long duration) {
         this.m_duration = duration;
     }
 
     /**
-     * Returns this activity's start time
+     * Returns this activity's start time.
+     *
      * @return the starting time for this activity
      */
     public long getStartTime() {
@@ -392,7 +433,8 @@ public abstract class Activity {
     }
 
     /**
-     * Sets this activity's start time
+     * Sets this activity's start time.
+     *
      * @param time the new starting time for this activity
      */
     public void setStartTime(long time) {
@@ -400,7 +442,8 @@ public abstract class Activity {
     }
 
     /**
-     * Returns the delay between runs for this activity
+     * Returns the delay between runs for this activity.
+     *
      * @return the step time between runs of this activity
      */
     public long getStepTime() {
@@ -408,7 +451,8 @@ public abstract class Activity {
     }
 
     /**
-     * Sets the delay between runs for this activity
+     * Sets the delay between runs for this activity.
+     *
      * @param time the new step time between runs of this activity
      */
     public void setStepTime(long time) {

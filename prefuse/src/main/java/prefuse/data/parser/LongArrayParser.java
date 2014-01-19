@@ -2,6 +2,7 @@ package prefuse.data.parser;
 
 import java.util.StringTokenizer;
 
+
 /**
  * DataParser instance the parses an array of long values from a text string.
  * Values are expected to be comma separated and can be within brackets,
@@ -13,6 +14,8 @@ public class LongArrayParser implements DataParser {
     
     /**
      * Returns long[].class.
+     *
+     * @return the type
      * @see prefuse.data.parser.DataParser#getType()
      */
     public Class getType() {
@@ -20,6 +23,10 @@ public class LongArrayParser implements DataParser {
     }
     
     /**
+     * Format.
+     *
+     * @param value the value
+     * @return the string
      * @see prefuse.data.parser.DataParser#format(java.lang.Object)
      */
     public String format(Object value) {
@@ -40,6 +47,10 @@ public class LongArrayParser implements DataParser {
     }
     
     /**
+     * Can parse.
+     *
+     * @param text the text
+     * @return true, if successful
      * @see prefuse.data.parser.DataParser#canParse(java.lang.String)
      */
     public boolean canParse(String text) {

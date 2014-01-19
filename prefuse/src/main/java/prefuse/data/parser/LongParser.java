@@ -1,5 +1,6 @@
 package prefuse.data.parser;
 
+
 /**
  * DataParser instance that parses long values from a text string. Long
  * values can be explicitly coded for by using an 'L' at the end of a
@@ -12,6 +13,8 @@ public class LongParser implements DataParser {
     
     /**
      * Returns long.class.
+     *
+     * @return the type
      * @see prefuse.data.parser.DataParser#getType()
      */
     public Class getType() {
@@ -19,6 +22,10 @@ public class LongParser implements DataParser {
     }
     
     /**
+     * Format.
+     *
+     * @param value the value
+     * @return the string
      * @see prefuse.data.parser.DataParser#format(java.lang.Object)
      */
     public String format(Object value) {
@@ -30,6 +37,10 @@ public class LongParser implements DataParser {
     }
     
     /**
+     * Can parse.
+     *
+     * @param text the text
+     * @return true, if successful
      * @see prefuse.data.parser.DataParser#canParse(java.lang.String)
      */
     public boolean canParse(String text) {
@@ -42,6 +53,11 @@ public class LongParser implements DataParser {
     }
     
     /**
+     * Parses the.
+     *
+     * @param text the text
+     * @return the object
+     * @throws DataParseException the data parse exception
      * @see prefuse.data.parser.DataParser#parse(java.lang.String)
      */
     public Object parse(String text) throws DataParseException {

@@ -2,6 +2,7 @@ package prefuse.activity;
 
 import java.util.EventListener;
 
+
 /**
  * Callback interface by which interested classes can be notified of
  * the progress of a scheduled activity.
@@ -11,7 +12,8 @@ import java.util.EventListener;
 public interface ActivityListener extends EventListener {
 
     /**
-     * Called when an activity has been scheduled with an ActivityManager
+     * Called when an activity has been scheduled with an ActivityManager.
+     *
      * @param a the scheduled Activity
      */
     public void activityScheduled(Activity a);

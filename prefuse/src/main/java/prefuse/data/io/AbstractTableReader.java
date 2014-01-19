@@ -11,6 +11,7 @@ import prefuse.data.Table;
 import prefuse.util.io.IOLib;
 
 
+
 /**
  * Abstract base class implementation of the TableReader interface. Provides
  * implementations for all but the
@@ -21,6 +22,11 @@ import prefuse.util.io.IOLib;
 public abstract class AbstractTableReader implements TableReader {
 
     /**
+     * Read table.
+     *
+     * @param location the location
+     * @return the table
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.TableReader#readTable(java.lang.String)
      */
     public Table readTable(String location) throws DataIOException
@@ -37,6 +43,11 @@ public abstract class AbstractTableReader implements TableReader {
     }
 
     /**
+     * Read table.
+     *
+     * @param url the url
+     * @return the table
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.TableReader#readTable(java.net.URL)
      */
     public Table readTable(URL url) throws DataIOException {
@@ -48,6 +59,11 @@ public abstract class AbstractTableReader implements TableReader {
     }
 
     /**
+     * Read table.
+     *
+     * @param f the f
+     * @return the table
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.TableReader#readTable(java.io.File)
      */
     public Table readTable(File f) throws DataIOException {

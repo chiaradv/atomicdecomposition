@@ -4,6 +4,7 @@ import prefuse.Visualization;
 import prefuse.activity.Activity;
 import prefuse.util.collections.CopyOnWriteArrayList;
 
+
 /**
  * Abstract base class for Action implementations that hold a collection
  * of subclasses.
@@ -12,6 +13,7 @@ import prefuse.util.collections.CopyOnWriteArrayList;
  */
 public abstract class CompositeAction extends Action {
 
+    /** The m_actions. */
     protected CopyOnWriteArrayList m_actions = new CopyOnWriteArrayList();
     
     /**
@@ -64,9 +66,10 @@ public abstract class CompositeAction extends Action {
     
     /**
      * Set the Visualization processed by this Action. This also calls
+     *
+     * @param vis the {@link prefuse.Visualization} to process
      * {@link Action#setVisualization(Visualization)} on all Action instances
      * contained within this composite.
-     * @param vis the {@link prefuse.Visualization} to process
      */
     public void setVisualization(Visualization vis) {
         super.setVisualization(vis);

@@ -3,6 +3,7 @@ package prefuse.action.animate;
 import prefuse.action.ItemAction;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Animator that linearly interpolates the size of a VisualItems.
  * 
@@ -26,6 +27,10 @@ public class SizeAnimator extends ItemAction {
     }
 
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

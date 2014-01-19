@@ -16,6 +16,7 @@ import prefuse.data.Node;
 import prefuse.data.Schema;
 import prefuse.util.io.XMLWriter;
 
+
 /**
  * GraphWriter instance that writes a graph file formatted using the
  * GraphML file format. GraphML is an XML format supporting graph
@@ -37,8 +38,11 @@ public class GraphMLWriter extends AbstractGraphWriter {
      * String tokens used in the GraphML format.
      */
     public interface Tokens extends GraphMLReader.Tokens  {
+        
+        /** The Constant GRAPHML. */
         public static final String GRAPHML = "graphml";
         
+        /** The Constant GRAPHML_HEADER. */
         public static final String GRAPHML_HEADER =
             "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\"\n" 
             +"  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
@@ -46,9 +50,7 @@ public class GraphMLWriter extends AbstractGraphWriter {
             +"  http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n\n";
     }
     
-    /**
-     * Map containing legal data types and their names in the GraphML spec
-     */
+    /** Map containing legal data types and their names in the GraphML spec. */
     private static final HashMap TYPES = new HashMap();
     static {
         TYPES.put(int.class, Tokens.INT);
@@ -60,6 +62,11 @@ public class GraphMLWriter extends AbstractGraphWriter {
     }
     
     /**
+     * Write graph.
+     *
+     * @param graph the graph
+     * @param os the os
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.GraphWriter#writeGraph(prefuse.data.Graph, java.io.OutputStream)
      */
     public void writeGraph(Graph graph, OutputStream os) throws DataIOException
@@ -144,10 +151,12 @@ public class GraphMLWriter extends AbstractGraphWriter {
     }
     
     /**
-     * Print a table schema to a GraphML file
+     * Print a table schema to a GraphML file.
+     *
      * @param xml the XMLWriter to write to
      * @param group the data group (node or edge) for the schema
      * @param s the schema
+     * @param ignore the ignore
      */
     private void printSchema(XMLWriter xml, String group, Schema s,
                              String[] ignore)
@@ -185,7 +194,9 @@ OUTER:
      * The GraphML spec only allows the types <code>int</code>,
      * <code>long</code>, <code>float</code>, <code>double</code>,
      * <code>boolean</code>, and <code>string</code>.
+     *
      * @param s the Schema to check
+     * @throws DataIOException the data io exception
      */
     private void checkGraphMLSchema(Schema s) throws DataIOException {
         for ( int i=0; i<s.getColumnCount(); ++i ) {

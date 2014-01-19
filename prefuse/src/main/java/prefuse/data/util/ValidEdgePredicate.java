@@ -5,6 +5,7 @@ import prefuse.data.Node;
 import prefuse.data.Tuple;
 import prefuse.data.expression.AbstractPredicate;
 
+
 /**
  * Filtering predicate over a potential edge table that indicates which
  * edges are valid edges according to a backing node table. Useful for
@@ -15,6 +16,7 @@ import prefuse.data.expression.AbstractPredicate;
  */
 public class ValidEdgePredicate extends AbstractPredicate {
     
+    /** The m_g. */
     private Graph m_g;
     
     /**

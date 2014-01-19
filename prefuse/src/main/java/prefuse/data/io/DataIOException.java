@@ -1,5 +1,6 @@
 package prefuse.data.io;
 
+
 /**
  * Exception indicating an error occurred during reading or writing data.
  *

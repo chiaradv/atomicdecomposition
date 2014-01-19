@@ -1,5 +1,6 @@
 package prefuse.data;
 
+
 /**
  * Exception indicating an attempt to write to a read-only data value was made.
  * @author <a href="http://jheer.org">jeffrey heer</a>

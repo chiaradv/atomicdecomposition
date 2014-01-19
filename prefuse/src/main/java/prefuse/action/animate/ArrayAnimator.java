@@ -7,6 +7,7 @@ import prefuse.util.PrefuseLib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Animator that inerpolates an array of numerical values.
  * 
@@ -14,11 +15,17 @@ import prefuse.visual.VisualItem;
  */
 public class ArrayAnimator extends ItemAction {
 
+    /** The Constant s_logger. */
     private static final Logger s_logger
         = Logger.getLogger(ArrayAnimator.class.getName());
     
+    /** The m_field. */
     private String m_field; // the field
+    
+    /** The m_start. */
     private String m_start; // the start field
+    
+    /** The m_end. */
     private String m_end;   // the end field
     
     /**
@@ -37,6 +44,10 @@ public class ArrayAnimator extends ItemAction {
     }
     
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

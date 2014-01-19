@@ -1,5 +1,6 @@
 package prefuse.util.collections;
 
+
 /**
  * Abstract LiteralIterator implementation that supports an iteration over
  * int values. Subclasses need only implement the {@link #nextInt()} method.
@@ -13,6 +14,9 @@ package prefuse.util.collections;
 public abstract class IntIterator extends AbstractLiteralIterator {
 
     /**
+     * Next.
+     *
+     * @return the object
      * @see java.util.Iterator#next()
      */
     public Object next() {
@@ -20,6 +24,9 @@ public abstract class IntIterator extends AbstractLiteralIterator {
     }
 
     /**
+     * Checks if is double supported.
+     *
+     * @return true, if is double supported
      * @see prefuse.util.collections.LiteralIterator#isDoubleSupported()
      */
     public boolean isDoubleSupported() {
@@ -27,6 +34,9 @@ public abstract class IntIterator extends AbstractLiteralIterator {
     }
 
     /**
+     * Checks if is float supported.
+     *
+     * @return true, if is float supported
      * @see prefuse.util.collections.LiteralIterator#isFloatSupported()
      */
     public boolean isFloatSupported() {
@@ -34,6 +44,9 @@ public abstract class IntIterator extends AbstractLiteralIterator {
     }
 
     /**
+     * Checks if is int supported.
+     *
+     * @return true, if is int supported
      * @see prefuse.util.collections.LiteralIterator#isIntSupported()
      */
     public boolean isIntSupported() {
@@ -41,6 +54,9 @@ public abstract class IntIterator extends AbstractLiteralIterator {
     }
 
     /**
+     * Checks if is long supported.
+     *
+     * @return true, if is long supported
      * @see prefuse.util.collections.LiteralIterator#isLongSupported()
      */
     public boolean isLongSupported() {
@@ -48,6 +64,9 @@ public abstract class IntIterator extends AbstractLiteralIterator {
     }
 
     /**
+     * Next double.
+     *
+     * @return the double
      * @see prefuse.util.collections.LiteralIterator#nextDouble()
      */
     public double nextDouble() {
@@ -55,6 +74,9 @@ public abstract class IntIterator extends AbstractLiteralIterator {
     }
 
     /**
+     * Next float.
+     *
+     * @return the float
      * @see prefuse.util.collections.LiteralIterator#nextFloat()
      */
     public float nextFloat() {
@@ -62,6 +84,9 @@ public abstract class IntIterator extends AbstractLiteralIterator {
     }
 
     /**
+     * Next long.
+     *
+     * @return the long
      * @see prefuse.util.collections.LiteralIterator#nextLong()
      */
     public long nextLong() {
@@ -69,6 +94,9 @@ public abstract class IntIterator extends AbstractLiteralIterator {
     }
 
     /**
+     * Next int.
+     *
+     * @return the int
      * @see prefuse.util.collections.LiteralIterator#nextInt()
      */
     public abstract int nextInt();

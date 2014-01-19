@@ -5,6 +5,7 @@ import java.util.Comparator;
 import prefuse.util.collections.IntIterator;
 
 
+
 /**
  * Represents an index over a column of data, allowing quick lookups by
  * data value and providing iterators over sorted ranges of data. For
@@ -108,9 +109,10 @@ public interface Index {
     
     /**
      * Get an iterator over all rows in the index, in sorted order.
+     *
      * @param type the sort type, one of {@link #TYPE_ASCENDING} or
-     * {@link #TYPE_DESCENDING}.
      * @return an iterator over all rows in the index
+     * {@link #TYPE_DESCENDING}.
      */
     public IntIterator allRows(int type);
     

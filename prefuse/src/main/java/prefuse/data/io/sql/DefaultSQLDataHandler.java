@@ -15,6 +15,7 @@ import java.sql.Types;
 
 import prefuse.data.Table;
 
+
 /**
  * Default data value handler for mapping SQL data types to Java objects.
  * Performs a straightforward mapping of common SQL data types to Java
@@ -24,6 +25,7 @@ import prefuse.data.Table;
  */
 public class DefaultSQLDataHandler implements SQLDataHandler {
 
+    /** The m_ignore unknown types. */
     private boolean m_ignoreUnknownTypes;
     
     // ------------------------------------------------------------------------
@@ -66,6 +68,13 @@ public class DefaultSQLDataHandler implements SQLDataHandler {
     // ------------------------------------------------------------------------    
     
     /**
+     * Process.
+     *
+     * @param t the t
+     * @param trow the trow
+     * @param rset the rset
+     * @param rcol the rcol
+     * @throws SQLException the sQL exception
      * @see prefuse.data.io.sql.SQLDataHandler#process(prefuse.data.Table, int, java.sql.ResultSet, int)
      */
     public void process(Table t, int trow, ResultSet rset, int rcol)
@@ -160,6 +169,11 @@ public class DefaultSQLDataHandler implements SQLDataHandler {
     }
 
     /**
+     * Gets the data type.
+     *
+     * @param columnName the column name
+     * @param sqlType the sql type
+     * @return the data type
      * @see prefuse.data.io.sql.SQLDataHandler#getDataType(java.lang.String, int)
      */
     public Class getDataType(String columnName, int sqlType) {

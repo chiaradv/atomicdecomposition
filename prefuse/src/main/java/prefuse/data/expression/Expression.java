@@ -4,6 +4,7 @@ import prefuse.data.Schema;
 import prefuse.data.Tuple;
 import prefuse.data.event.ExpressionListener;
 
+
 /**
  * <p>An Expression is an arbitrary function that takes a single Tuple as an
  * argument. Expressions support both Object-valued and primitive-valued
@@ -38,11 +39,15 @@ public interface Expression {
     /**
      * Returns the type that this expression evaluates to when tuples
      * with the given Schema are provided as input.
+     *
+     * @param s the s
+     * @return the type
      */
     public Class getType(Schema s);
     
     /**
-     * Passes the visitor through this expression and any sub expressions
+     * Passes the visitor through this expression and any sub expressions.
+     *
      * @param v the ExpressionVisitor
      */
     public void visit(ExpressionVisitor v);

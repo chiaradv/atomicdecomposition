@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+
 /**
  * Library of supplementary array routines not 
  *  supported by the java.util.Arrays class.
@@ -684,6 +685,14 @@ public abstract class ArrayLib {
 
     // -- Insertion Sort --
 
+    /**
+     * Insertionsort.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param r the r
+     */
     protected static final void insertionsort(int[] a, double[] b, int p, int r) {
         for (int j = p + 1; j <= r; ++j) {
             int key = a[j];
@@ -701,6 +710,14 @@ public abstract class ArrayLib {
 
     // -- Mergesort --
 
+    /**
+     * Mergesort.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param r the r
+     */
     protected static final void mergesort(int[] a, double[] b, int p, int r) {
         if (p >= r) {
             return;
@@ -715,6 +732,15 @@ public abstract class ArrayLib {
         }
     }
 
+    /**
+     * Merge.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param q the q
+     * @param r the r
+     */
     protected static final void merge(int[] a, double[] b, int p, int q, int r) {
         int[] t = new int[r - p + 1];
         double[] v = new double[r - p + 1];
@@ -782,6 +808,14 @@ public abstract class ArrayLib {
 
     // -- Insertion Sort --
 
+    /**
+     * Insertionsort.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param r the r
+     */
     protected static final void insertionsort(int[] a, int[] b, int p, int r) {
         for (int j = p + 1; j <= r; ++j) {
             int key = a[j];
@@ -799,6 +833,14 @@ public abstract class ArrayLib {
 
     // -- Mergesort --
 
+    /**
+     * Mergesort.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param r the r
+     */
     protected static final void mergesort(int[] a, int[] b, int p, int r) {
         if (p >= r) {
             return;
@@ -813,6 +855,15 @@ public abstract class ArrayLib {
         }
     }
 
+    /**
+     * Merge.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param q the q
+     * @param r the r
+     */
     protected static final void merge(int[] a, int[] b, int p, int q, int r) {
         int[] t = new int[r - p + 1];
         int[] v = new int[r - p + 1];
@@ -902,6 +953,14 @@ public abstract class ArrayLib {
 
     // -- Insertion Sort --
 
+    /**
+     * Insertionsort.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param r the r
+     */
     protected static final void insertionsort(int[] a, Object[] b, int p, int r) {
         int i, key;
         Object val;
@@ -921,6 +980,17 @@ public abstract class ArrayLib {
 
     // -- Mergesort --
     
+    /**
+     * Mergesort.
+     *
+     * @param ks the ks
+     * @param kd the kd
+     * @param vs the vs
+     * @param vd the vd
+     * @param lo the lo
+     * @param hi the hi
+     * @param off the off
+     */
     protected static void mergesort(int ks[], int kd[], Object[] vs,
             Object[] vd, int lo, int hi, int off)
     {
@@ -960,6 +1030,15 @@ public abstract class ArrayLib {
         }
     }
     
+    /**
+     * Merge.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param q the q
+     * @param r the r
+     */
     protected static final void merge(int[] a, Object[] b, int p, int q, int r) {
         int[] t = new int[r - p + 1];
         Object[] v = new Object[r - p + 1];
@@ -1027,6 +1106,14 @@ public abstract class ArrayLib {
 
     // -- Insertion Sort --
 
+    /**
+     * Insertionsort.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param r the r
+     */
     protected static final void insertionsort(double[] a, int[] b, int p, int r) {
         for (int j = p + 1; j <= r; ++j) {
             double key = a[j];
@@ -1044,6 +1131,14 @@ public abstract class ArrayLib {
 
     // -- Mergesort --
 
+    /**
+     * Mergesort.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param r the r
+     */
     protected static final void mergesort(double[] a, int[] b, int p, int r) {
         if (p >= r) {
             return;
@@ -1058,6 +1153,15 @@ public abstract class ArrayLib {
         }
     }
 
+    /**
+     * Merge.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param q the q
+     * @param r the r
+     */
     protected static final void merge(double[] a, int[] b, int p, int q, int r) {
         double[] t = new double[r - p + 1];
         int[] v = new int[r - p + 1];
@@ -1125,6 +1229,14 @@ public abstract class ArrayLib {
 
     // -- Insertion Sort --
 
+    /**
+     * Insertionsort.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param r the r
+     */
     protected static final void insertionsort(float[] a, int[] b, int p, int r) {
         for (int j = p + 1; j <= r; ++j) {
             float key = a[j];
@@ -1142,6 +1254,14 @@ public abstract class ArrayLib {
 
     // -- Mergesort --
 
+    /**
+     * Mergesort.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param r the r
+     */
     protected static final void mergesort(float[] a, int[] b, int p, int r) {
         if (p >= r) {
             return;
@@ -1156,6 +1276,15 @@ public abstract class ArrayLib {
         }
     }
 
+    /**
+     * Merge.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param q the q
+     * @param r the r
+     */
     protected static final void merge(float[] a, int[] b, int p, int q, int r) {
         float[] t = new float[r - p + 1];
         int[] v = new int[r - p + 1];
@@ -1230,6 +1359,15 @@ public abstract class ArrayLib {
 
     // -- Insertion Sort --
 
+    /**
+     * Insertionsort.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param r the r
+     * @param cmp the cmp
+     */
     protected static final void insertionsort(Object[] a, int[] b, int p, int r,
             Comparator cmp)
     {
@@ -1249,6 +1387,15 @@ public abstract class ArrayLib {
 
     // -- Mergesort --
 
+    /**
+     * Mergesort.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param r the r
+     * @param cmp the cmp
+     */
     protected static final void mergesort(Object[] a, int[] b, int p, int r,
             Comparator cmp)
     {
@@ -1265,6 +1412,16 @@ public abstract class ArrayLib {
         }
     }
 
+    /**
+     * Merge.
+     *
+     * @param a the a
+     * @param b the b
+     * @param p the p
+     * @param q the q
+     * @param r the r
+     * @param cmp the cmp
+     */
     protected static final void merge(Object[] a, int[] b, int p, int q, int r,
             Comparator cmp)
     {

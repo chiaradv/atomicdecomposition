@@ -7,6 +7,7 @@ import prefuse.data.tuple.TupleSet;
 import prefuse.util.DataLib;
 import prefuse.visual.VisualItem;
 
+
 /**
  * <p>
  * Assignment Action that assigns shape values for a group of items based upon
@@ -33,11 +34,16 @@ import prefuse.visual.VisualItem;
  */
 public class DataShapeAction extends ShapeAction {
     
+    /** The Constant NO_SHAPE. */
     protected static final int NO_SHAPE = Integer.MIN_VALUE;
     
+    /** The m_data field. */
     protected String m_dataField;
+    
+    /** The m_palette. */
     protected int[]  m_palette;
     
+    /** The m_ordinal map. */
     protected Map    m_ordinalMap;
     
     
@@ -86,8 +92,9 @@ public class DataShapeAction extends ShapeAction {
     /**
      * This operation is not supported by the DataShapeAction type.
      * Calling this method will result in a thrown exception.
+     *
+     * @param defaultShape the new default shape
      * @see prefuse.action.assignment.ShapeAction#setDefaultShape(int)
-     * @throws UnsupportedOperationException
      */
     public void setDefaultShape(int defaultShape) {
         throw new UnsupportedOperationException();
@@ -96,6 +103,8 @@ public class DataShapeAction extends ShapeAction {
     // ------------------------------------------------------------------------
     
     /**
+     * Setup.
+     *
      * @see prefuse.action.EncoderAction#setup()
      */
     protected void setup() {
@@ -104,6 +113,10 @@ public class DataShapeAction extends ShapeAction {
     }
     
     /**
+     * Gets the shape.
+     *
+     * @param item the item
+     * @return the shape
      * @see prefuse.action.assignment.ShapeAction#getShape(prefuse.visual.VisualItem)
      */
     public int getShape(VisualItem item) {

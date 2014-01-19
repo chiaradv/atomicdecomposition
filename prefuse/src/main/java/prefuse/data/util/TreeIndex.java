@@ -18,6 +18,7 @@ import prefuse.util.collections.LongIntSortedMap;
 import prefuse.util.collections.ObjectIntSortedMap;
 import prefuse.util.collections.SortedMapFactory;
 
+
 /**
  * Index instance that uses red-black trees to provide an index
  * over a column of data.
@@ -26,11 +27,22 @@ import prefuse.util.collections.SortedMapFactory;
  */
 public class TreeIndex implements Index, ColumnListener, TableListener {
 
+    /** The m_table. */
     protected Table           m_table;
+    
+    /** The m_rows. */
     protected RowManager      m_rows;
+    
+    /** The m_col. */
     protected Column          m_col;
+    
+    /** The m_index. */
     protected IntSortedMap    m_index;
+    
+    /** The m_reindex. */
     protected boolean         m_reindex;
+    
+    /** The m_colidx. */
     protected int             m_colidx;
     
     /**
@@ -57,6 +69,8 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Dispose.
+     *
      * @see prefuse.data.util.Index#dispose()
      */
     public void dispose() {
@@ -65,6 +79,9 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Gets the comparator.
+     *
+     * @return the comparator
      * @see prefuse.data.util.Index#getComparator()
      */
     public Comparator getComparator() {
@@ -72,12 +89,20 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Size.
+     *
+     * @return the int
      * @see prefuse.data.util.Index#size()
      */
     public int size() {
         return m_index.size();
     }
     
+    /**
+     * Gets the column index.
+     *
+     * @return the column index
+     */
     private int getColumnIndex() {
         if ( !(m_table.getColumn(m_colidx) == m_col) ) {
             m_colidx = m_table.getColumnNumber(m_col);
@@ -89,6 +114,8 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     // Index Update Methods
 
     /**
+     * Index.
+     *
      * @see prefuse.data.util.Index#index()
      */
     public void index() {
@@ -158,6 +185,13 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     // Listener Methods
     
     /**
+     * Table changed.
+     *
+     * @param t the t
+     * @param start the start
+     * @param end the end
+     * @param col the col
+     * @param type the type
      * @see prefuse.data.event.TableListener#tableChanged(prefuse.data.Table, int, int, int, int)
      */
     public void tableChanged(Table t, int start, int end, int col, int type) {
@@ -170,6 +204,12 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
             rowChanged(r, insert);
     }
     
+    /**
+     * Row changed.
+     *
+     * @param row the row
+     * @param insert the insert
+     */
     private void rowChanged(int row, boolean insert) {
         // make sure we access the right column value
         int crow = m_rows.getColumnRow(row, getColumnIndex());
@@ -234,6 +274,12 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param type the type
+     * @param start the start
+     * @param end the end
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, int, int)
      */
     public void columnChanged(Column src, int type, int start, int end) {
@@ -241,6 +287,11 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }    
     
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, boolean)
      */
     public void columnChanged(Column src, int idx, boolean prev) {
@@ -251,6 +302,11 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, int)
      */
     public void columnChanged(Column src, int idx, int prev) {
@@ -261,6 +317,11 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, long)
      */
     public void columnChanged(Column src, int idx, long prev) {
@@ -271,6 +332,11 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, float)
      */
     public void columnChanged(Column src, int idx, float prev) {
@@ -281,6 +347,11 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, double)
      */
     public void columnChanged(Column src, int idx, double prev) {
@@ -291,6 +362,11 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
 
     /**
+     * Column changed.
+     *
+     * @param src the src
+     * @param idx the idx
+     * @param prev the prev
      * @see prefuse.data.event.ColumnListener#columnChanged(prefuse.data.column.Column, int, java.lang.Object)
      */
     public void columnChanged(Column src, int idx, Object prev) {
@@ -304,6 +380,9 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     // Retrieval Methods
     
     /**
+     * Minimum.
+     *
+     * @return the int
      * @see prefuse.data.util.Index#minimum()
      */
     public int minimum() {
@@ -311,6 +390,9 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Maximum.
+     *
+     * @return the int
      * @see prefuse.data.util.Index#maximum()
      */
     public int maximum() {
@@ -318,6 +400,9 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Median.
+     *
+     * @return the int
      * @see prefuse.data.util.Index#median()
      */
     public int median() {
@@ -325,6 +410,9 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Unique count.
+     *
+     * @return the int
      * @see prefuse.data.util.Index#uniqueCount()
      */
     public int uniqueCount() {
@@ -334,6 +422,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     // ------------------------------------------------------------------------
     
     /**
+     * All rows.
+     *
+     * @param type the type
+     * @return the int iterator
      * @see prefuse.data.util.Index#allRows(int)
      */
     public IntIterator allRows(int type) {
@@ -342,6 +434,12 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Rows.
+     *
+     * @param lo the lo
+     * @param hi the hi
+     * @param type the type
+     * @return the int iterator
      * @see prefuse.data.util.Index#rows(java.lang.Object, java.lang.Object, int)
      */
     public IntIterator rows(Object lo, Object hi, int type) {
@@ -364,6 +462,12 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Rows.
+     *
+     * @param lo the lo
+     * @param hi the hi
+     * @param type the type
+     * @return the int iterator
      * @see prefuse.data.util.Index#rows(int, int, int)
      */
     public IntIterator rows(int lo, int hi, int type) {
@@ -383,6 +487,12 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Rows.
+     *
+     * @param lo the lo
+     * @param hi the hi
+     * @param type the type
+     * @return the int iterator
      * @see prefuse.data.util.Index#rows(long, long, int)
      */
     public IntIterator rows(long lo, long hi, int type) {
@@ -402,6 +512,12 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Rows.
+     *
+     * @param lo the lo
+     * @param hi the hi
+     * @param type the type
+     * @return the int iterator
      * @see prefuse.data.util.Index#rows(float, float, int)
      */
     public IntIterator rows(float lo, float hi, int type) {
@@ -421,6 +537,12 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Rows.
+     *
+     * @param lo the lo
+     * @param hi the hi
+     * @param type the type
+     * @return the int iterator
      * @see prefuse.data.util.Index#rows(double, double, int)
      */
     public IntIterator rows(double lo, double hi, int type) {
@@ -442,6 +564,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     // ------------------------------------------------------------------------
     
     /**
+     * Rows.
+     *
+     * @param val the val
+     * @return the int iterator
      * @see prefuse.data.util.Index#rows(int)
      */
     public IntIterator rows(int val) {
@@ -449,6 +575,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Rows.
+     *
+     * @param val the val
+     * @return the int iterator
      * @see prefuse.data.util.Index#rows(long)
      */
     public IntIterator rows(long val) {
@@ -456,6 +586,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Rows.
+     *
+     * @param val the val
+     * @return the int iterator
      * @see prefuse.data.util.Index#rows(float)
      */
     public IntIterator rows(float val) {
@@ -463,6 +597,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Rows.
+     *
+     * @param val the val
+     * @return the int iterator
      * @see prefuse.data.util.Index#rows(double)
      */
     public IntIterator rows(double val) {
@@ -470,6 +608,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Rows.
+     *
+     * @param val the val
+     * @return the int iterator
      * @see prefuse.data.util.Index#rows(boolean)
      */
     public IntIterator rows(boolean val) {
@@ -481,6 +623,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
     
     /**
+     * Rows.
+     *
+     * @param val the val
+     * @return the int iterator
      * @see prefuse.data.util.Index#rows(java.lang.Object)
      */
     public IntIterator rows(Object val) {
@@ -490,6 +636,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     // ------------------------------------------------------------------------
     
     /**
+     * Gets the.
+     *
+     * @param x the x
+     * @return the int
      * @see prefuse.data.util.Index#get(double)
      */
     public int get(double x) {
@@ -498,6 +648,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
 
     /**
+     * Gets the.
+     *
+     * @param x the x
+     * @return the int
      * @see prefuse.data.util.Index#get(float)
      */
     public int get(float x) {
@@ -506,6 +660,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
 
     /**
+     * Gets the.
+     *
+     * @param x the x
+     * @return the int
      * @see prefuse.data.util.Index#get(int)
      */
     public int get(int x) {
@@ -514,6 +672,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
 
     /**
+     * Gets the.
+     *
+     * @param x the x
+     * @return the int
      * @see prefuse.data.util.Index#get(long)
      */
     public int get(long x) {
@@ -522,6 +684,10 @@ public class TreeIndex implements Index, ColumnListener, TableListener {
     }
 
     /**
+     * Gets the.
+     *
+     * @param x the x
+     * @return the int
      * @see prefuse.data.util.Index#get(java.lang.Object)
      */
     public int get(Object x) {

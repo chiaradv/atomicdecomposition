@@ -8,6 +8,7 @@ import prefuse.action.layout.Layout;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Abstract base class providing a structure for space-distortion techniques.
  *
@@ -16,9 +17,16 @@ import prefuse.visual.VisualItem;
  */
 public abstract class Distortion extends Layout {
 
+    /** The m_tmp. */
     private Point2D m_tmp = new Point2D.Double();
+    
+    /** The m_distort size. */
     protected boolean m_distortSize = true;
+    
+    /** The m_distort x. */
     protected boolean m_distortX = true;
+    
+    /** The m_distort y. */
     protected boolean m_distortY = true;
     
     // ------------------------------------------------------------------------
@@ -60,6 +68,9 @@ public abstract class Distortion extends Layout {
     // ------------------------------------------------------------------------
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {

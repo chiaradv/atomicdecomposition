@@ -3,6 +3,7 @@ package prefuse.util.force;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
 /**
  * Manages a simulation of physical forces acting on bodies. To create a
  * custom ForceSimulator, add the desired {@link Force} functions and choose an
@@ -12,12 +13,25 @@ import java.util.Iterator;
  */
 public class ForceSimulator {
 
+    /** The items. */
     private ArrayList items;
+    
+    /** The springs. */
     private ArrayList springs;
+    
+    /** The iforces. */
     private Force[] iforces;
+    
+    /** The sforces. */
     private Force[] sforces;
+    
+    /** The sflen. */
     private int iflen, sflen;
+    
+    /** The integrator. */
     private Integrator integrator;
+    
+    /** The speed limit. */
     private float speedLimit = 1.0f;
     
     /**
@@ -135,7 +149,9 @@ public class ForceSimulator {
     
     /**
      * Remove a ForceItem to the simulation.
+     *
      * @param item the ForceItem to remove
+     * @return true, if successful
      */
     public boolean removeItem(ForceItem item) {
         return items.remove(item);
@@ -204,7 +220,7 @@ public class ForceSimulator {
     }
     
     /**
-     * Accumulate all forces acting on the items in this simulation
+     * Accumulate all forces acting on the items in this simulation.
      */
     public void accumulate() {
         for ( int i = 0; i < iflen; i++ )

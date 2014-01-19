@@ -2,6 +2,7 @@ package prefuse.data.event;
 
 import javax.swing.event.TableModelEvent;
 
+
 /**
  * Constants used within prefuse data structure modification notifications.
  * 

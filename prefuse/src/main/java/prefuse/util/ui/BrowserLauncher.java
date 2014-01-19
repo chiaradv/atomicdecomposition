@@ -3,6 +3,7 @@ package prefuse.util.ui;
 import java.io.IOException;
 import java.net.URL;
 
+
 /**
  * <p>
  * Browser launcher will open a URL in an external browser on your system.
@@ -29,10 +30,19 @@ import java.net.URL;
  */
 public abstract class BrowserLauncher {
 
+    /** The Constant WIN_ID. */
     private static final String WIN_ID = "Windows";
+    
+    /** The Constant WIN_PATH. */
     private static final String WIN_PATH = "rundll32";
+    
+    /** The Constant WIN_FLAG. */
     private static final String WIN_FLAG = "url.dll,FileProtocolHandler";
+    
+    /** The Constant UNIX_PATH. */
     private static final String UNIX_PATH = "netscape";
+    
+    /** The Constant UNIX_FLAG. */
     private static final String UNIX_FLAG = "-remote openURL";
 
     /**

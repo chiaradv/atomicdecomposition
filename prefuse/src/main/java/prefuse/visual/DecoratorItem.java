@@ -1,5 +1,6 @@
 package prefuse.visual;
 
+
 /**
  * VisualItem that "decorates" another VisualItem. DecoratorItem instances
  * allow the decorated item to be retrieved, and used to compute visual

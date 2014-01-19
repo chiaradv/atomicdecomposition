@@ -17,6 +17,7 @@ import java.awt.geom.RoundRectangle2D;
 import prefuse.render.AbstractShapeRenderer;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Library of useful computer graphics routines such as geometry routines
  * for computing the intersection of different shapes and rendering methods
@@ -26,11 +27,13 @@ import prefuse.visual.VisualItem;
  */
 public class GraphicsLib {
 
-    /** Indicates no intersection between shapes */
+    /** Indicates no intersection between shapes. */
     public static final int NO_INTERSECTION = 0;
-    /** Indicates intersection between shapes */
+    
+    /** Indicates intersection between shapes. */
     public static final int COINCIDENT      = -1;
-    /** Indicates two lines are parallel */
+    
+    /** Indicates two lines are parallel. */
     public static final int PARALLEL        = -2;
     
     /**
@@ -174,8 +177,12 @@ public class GraphicsLib {
      * 
      * The running time of this algorithm is O(n log n), where n is
      * the number of input points.
-     * 
-     * @param pts
+     *
+     * @param pts the pts
+     * @param len the len
+     * @param angles the angles
+     * @param idx the idx
+     * @param stack the stack
      * @return the convex hull of the input points
      */
     public static double[] convexHull(double[] pts, int len, 
@@ -270,7 +277,14 @@ public class GraphicsLib {
     }
 
     /**
-     * Convex hull helper method for detecting a non left turn about 3 points
+     * Convex hull helper method for detecting a non left turn about 3 points.
+     *
+     * @param i0 the i0
+     * @param i1 the i1
+     * @param i2 the i2
+     * @param i3 the i3
+     * @param pts the pts
+     * @return true, if is non left
      */
     private static boolean isNonLeft(int i0, int i1, int i2, int i3, double[] pts) {
         double l1, l2, l4, l5, l6, angle1, angle2, angle;
@@ -294,7 +308,8 @@ public class GraphicsLib {
     }
     
     /**
-     * Computes the mean, or centroid, of a set of points
+     * Computes the mean, or centroid, of a set of points.
+     *
      * @param pts the points array, in x1, y1, x2, y2, ... arrangement.
      * @param len the length of the array to consider
      * @return the centroid as a length-2 float array
@@ -669,10 +684,7 @@ public class GraphicsLib {
      * Render a shape associated with a VisualItem into a graphics context. This
      * method uses the {@link java.awt.Graphics} interface methods when it can,
      * as opposed to the {@link java.awt.Graphics2D} methods such as
-     * {@link java.awt.Graphics2D#draw(java.awt.Shape)} and
-     * {@link java.awt.Graphics2D#fill(java.awt.Shape)}, resulting in a
-     * significant performance increase on the Windows platform, particularly
-     * for rectangle and line drawing calls.
+     *
      * @param g the graphics context to render to
      * @param item the item being represented by the shape, this instance is
      * used to get the correct color values for the drawing
@@ -680,6 +692,10 @@ public class GraphicsLib {
      * @param stroke the stroke type to use for drawing the object.
      * @param type the rendering type indicating if the shape should be drawn,
      * filled, or both. One of
+     * {@link java.awt.Graphics2D#draw(java.awt.Shape)} and
+     * {@link java.awt.Graphics2D#fill(java.awt.Shape)}, resulting in a
+     * significant performance increase on the Windows platform, particularly
+     * for rectangle and line drawing calls.
      * {@link prefuse.render.AbstractShapeRenderer#RENDER_TYPE_DRAW},
      * {@link prefuse.render.AbstractShapeRenderer#RENDER_TYPE_FILL},
      * {@link prefuse.render.AbstractShapeRenderer#RENDER_TYPE_DRAW_AND_FILL}, or

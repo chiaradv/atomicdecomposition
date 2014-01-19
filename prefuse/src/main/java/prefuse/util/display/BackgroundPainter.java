@@ -14,6 +14,7 @@ import java.awt.geom.AffineTransform;
 import prefuse.Display;
 import prefuse.util.io.IOLib;
 
+
 /**
  * Paints a background image in a display. The image can either pan and zoom
  * along with the display or stay stationary. Additionally, the image can
@@ -27,26 +28,36 @@ import prefuse.util.io.IOLib;
  */
 public class BackgroundPainter implements PaintListener {
 
+    /** The Constant THRESH. */
     private static final double THRESH = 0.01;
     
+    /** The m_img. */
     private Image m_img;
+    
+    /** The m_fixed. */
     private boolean m_fixed;
+    
+    /** The m_tiled. */
     private boolean m_tiled;
     
+    /** The m_identity. */
     private AffineTransform m_identity;
+    
+    /** The m_clip. */
     private Clip m_clip;
 
     /**
      * Create a new BackgroundPainter.
+     *
      * @param imageLocation a location String of where to retrieve the
      * image file from. Uses
-     * {@link prefuse.util.io.IOLib#urlFromString(String)} to resolve
-     * the String.
      * @param fixed true if the background image should stay in a fixed
      * position, invariant to panning, zooming, or rotation; false if
      * the image should be subject to view transforms
      * @param tile true to tile the image across the visible background,
      * false to only include the image once
+     * {@link prefuse.util.io.IOLib#urlFromString(String)} to resolve
+     * the String.
      */
     public BackgroundPainter(String imageLocation, boolean fixed, boolean tile)
     {
@@ -81,6 +92,9 @@ public class BackgroundPainter implements PaintListener {
     
     /**
      * Paint the background.
+     *
+     * @param d the d
+     * @param g the g
      * @see prefuse.util.display.PaintListener#prePaint(prefuse.Display, java.awt.Graphics2D)
      */
     public void prePaint(Display d, Graphics2D g) {
@@ -156,6 +170,9 @@ public class BackgroundPainter implements PaintListener {
     /**
      * Check if the given AffineTransform is a translation
      * (within thresholds -- see {@link #THRESH}.
+     *
+     * @param at the at
+     * @return true, if is translation
      */
     private static boolean isTranslation(AffineTransform at) {
         return ( Math.abs(at.getScaleX()-1.0) < THRESH &&
@@ -165,7 +182,9 @@ public class BackgroundPainter implements PaintListener {
     }
 
     /**
-     * Get an identity transform (creating it if necessary)
+     * Get an identity transform (creating it if necessary).
+     *
+     * @return the identity
      */
     private AffineTransform getIdentity() {
         if ( m_identity == null )
@@ -174,7 +193,9 @@ public class BackgroundPainter implements PaintListener {
     }
 
     /**
-     * Get a clip instance (creating it if necessary)
+     * Get a clip instance (creating it if necessary).
+     *
+     * @return the clip
      */
     private Clip getClip() {
         if ( m_clip == null )
@@ -184,6 +205,9 @@ public class BackgroundPainter implements PaintListener {
     
     /**
      * Does nothing.
+     *
+     * @param d the d
+     * @param g the g
      * @see prefuse.util.display.PaintListener#postPaint(prefuse.Display, java.awt.Graphics2D)
      */
     public void postPaint(Display d, Graphics2D g) {

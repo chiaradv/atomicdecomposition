@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import prefuse.data.Tuple;
 
+
 /**
  * Predicate representing an "xor" clause of sub-predicates.
  * 
@@ -36,6 +37,10 @@ public class XorPredicate extends CompositePredicate {
     }
     
     /**
+     * Gets the boolean.
+     *
+     * @param t the t
+     * @return the boolean
      * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
      */
     public boolean getBoolean(Tuple t) {
@@ -54,6 +59,9 @@ public class XorPredicate extends CompositePredicate {
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

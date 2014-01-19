@@ -7,6 +7,7 @@ import prefuse.data.Graph;
 import prefuse.data.Node;
 import prefuse.data.Table;
 
+
 /**
  * Node implementation that reads Node data from a backing node table.
  * 
@@ -36,6 +37,9 @@ public class TableNode extends TableTuple implements Node {
     }
     
     /**
+     * Gets the graph.
+     *
+     * @return the graph
      * @see prefuse.data.Node#getGraph()
      */
     public Graph getGraph() {
@@ -46,6 +50,9 @@ public class TableNode extends TableTuple implements Node {
     // Graph Methods
     
     /**
+     * Gets the in degree.
+     *
+     * @return the in degree
      * @see prefuse.data.Node#getInDegree()
      */
     public int getInDegree() {
@@ -53,6 +60,9 @@ public class TableNode extends TableTuple implements Node {
     }
 
     /**
+     * Gets the out degree.
+     *
+     * @return the out degree
      * @see prefuse.data.Node#getOutDegree()
      */
     public int getOutDegree() {
@@ -60,6 +70,9 @@ public class TableNode extends TableTuple implements Node {
     }
 
     /**
+     * Gets the degree.
+     *
+     * @return the degree
      * @see prefuse.data.Node#getDegree()
      */
     public int getDegree() {
@@ -67,6 +80,9 @@ public class TableNode extends TableTuple implements Node {
     }
 
     /**
+     * In edges.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#inEdges()
      */
     public Iterator inEdges() {
@@ -74,6 +90,9 @@ public class TableNode extends TableTuple implements Node {
     }
 
     /**
+     * Out edges.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#outEdges()
      */
     public Iterator outEdges() {
@@ -81,6 +100,9 @@ public class TableNode extends TableTuple implements Node {
     }
 
     /**
+     * Edges.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#edges()
      */
     public Iterator edges() {
@@ -88,6 +110,9 @@ public class TableNode extends TableTuple implements Node {
     }
     
     /**
+     * In neighbors.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#inNeighbors()
      */
     public Iterator inNeighbors() {
@@ -95,6 +120,9 @@ public class TableNode extends TableTuple implements Node {
     }
     
     /**
+     * Out neighbors.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#outNeighbors()
      */
     public Iterator outNeighbors() {
@@ -102,6 +130,9 @@ public class TableNode extends TableTuple implements Node {
     }
     
     /**
+     * Neighbors.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#neighbors()
      */
     public Iterator neighbors() {
@@ -113,6 +144,9 @@ public class TableNode extends TableTuple implements Node {
     // Tree Methods
 
     /**
+     * Gets the parent.
+     *
+     * @return the parent
      * @see prefuse.data.Node#getParent()
      */
     public Node getParent() {
@@ -120,6 +154,9 @@ public class TableNode extends TableTuple implements Node {
     }
 
     /**
+     * Gets the parent edge.
+     *
+     * @return the parent edge
      * @see prefuse.data.Node#getParentEdge()
      */
     public Edge getParentEdge() {
@@ -127,6 +164,9 @@ public class TableNode extends TableTuple implements Node {
     }
     
     /**
+     * Gets the child count.
+     *
+     * @return the child count
      * @see prefuse.data.Node#getChildCount()
      */
     public int getChildCount() {
@@ -134,6 +174,10 @@ public class TableNode extends TableTuple implements Node {
     }
 
     /**
+     * Gets the child index.
+     *
+     * @param child the child
+     * @return the child index
      * @see prefuse.data.Node#getChildIndex(prefuse.data.Node)
      */
     public int getChildIndex(Node child) {
@@ -141,6 +185,10 @@ public class TableNode extends TableTuple implements Node {
     }
     
     /**
+     * Gets the child.
+     *
+     * @param idx the idx
+     * @return the child
      * @see prefuse.data.Node#getChild(int)
      */
     public Node getChild(int idx) {
@@ -148,6 +196,9 @@ public class TableNode extends TableTuple implements Node {
     }
     
     /**
+     * Gets the first child.
+     *
+     * @return the first child
      * @see prefuse.data.Node#getFirstChild()
      */
     public Node getFirstChild() {
@@ -155,6 +206,9 @@ public class TableNode extends TableTuple implements Node {
     }
     
     /**
+     * Gets the last child.
+     *
+     * @return the last child
      * @see prefuse.data.Node#getLastChild()
      */
     public Node getLastChild() {
@@ -162,6 +216,9 @@ public class TableNode extends TableTuple implements Node {
     }
     
     /**
+     * Gets the previous sibling.
+     *
+     * @return the previous sibling
      * @see prefuse.data.Node#getPreviousSibling()
      */
     public Node getPreviousSibling() {
@@ -169,6 +226,9 @@ public class TableNode extends TableTuple implements Node {
     }
     
     /**
+     * Gets the next sibling.
+     *
+     * @return the next sibling
      * @see prefuse.data.Node#getNextSibling()
      */
     public Node getNextSibling() {
@@ -176,6 +236,9 @@ public class TableNode extends TableTuple implements Node {
     }
     
     /**
+     * Children.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#children()
      */
     public Iterator children() {
@@ -183,6 +246,9 @@ public class TableNode extends TableTuple implements Node {
     }
 
     /**
+     * Child edges.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#childEdges()
      */
     public Iterator childEdges() {
@@ -190,6 +256,9 @@ public class TableNode extends TableTuple implements Node {
     }
 
     /**
+     * Gets the depth.
+     *
+     * @return the depth
      * @see prefuse.data.Node#getDepth()
      */
     public int getDepth() {

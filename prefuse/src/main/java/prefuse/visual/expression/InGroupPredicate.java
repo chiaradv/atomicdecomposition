@@ -5,6 +5,7 @@ import prefuse.data.Tuple;
 import prefuse.data.expression.Predicate;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Expression that indicates if an item is currently a member of a particular
  * data group. The data group name is provided by a String-valued
@@ -29,6 +30,10 @@ public class InGroupPredicate extends GroupExpression implements Predicate {
     }
     
     /**
+     * Gets the.
+     *
+     * @param t the t
+     * @return the object
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */
     public Object get(Tuple t) {
@@ -36,6 +41,10 @@ public class InGroupPredicate extends GroupExpression implements Predicate {
     }
     
     /**
+     * Gets the boolean.
+     *
+     * @param t the t
+     * @return the boolean
      * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
      */
     public boolean getBoolean(Tuple t) {
@@ -51,6 +60,9 @@ public class InGroupPredicate extends GroupExpression implements Predicate {
     }
 
     /**
+     * Gets the name.
+     *
+     * @return the name
      * @see prefuse.data.expression.Function#getName()
      */
     public String getName() {
@@ -58,6 +70,10 @@ public class InGroupPredicate extends GroupExpression implements Predicate {
     }
 
     /**
+     * Gets the type.
+     *
+     * @param s the s
+     * @return the type
      * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
      */
     public Class getType(Schema s) {

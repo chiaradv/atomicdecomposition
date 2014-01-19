@@ -15,6 +15,7 @@ import prefuse.util.MathLib;
 import prefuse.util.ui.ValuedRangeModel;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Layout Action that assigns positions along a single dimension (either x or
  * y) according to a specified data field. By default, the range of values
@@ -28,22 +29,38 @@ import prefuse.visual.VisualItem;
  */
 public class AxisLayout extends Layout {
 
+    /** The m_field. */
     private String m_field;
+    
+    /** The m_scale. */
     private int m_scale = Constants.LINEAR_SCALE;
+    
+    /** The m_axis. */
     private int m_axis = Constants.X_AXIS;
+    
+    /** The m_type. */
     private int m_type = Constants.UNKNOWN;
     
     // visible region of the layout (in item coordinates)
     // if false, the table will be consulted
+    /** The m_model set. */
     private boolean m_modelSet = false;
+    
+    /** The m_model. */
     private ValuedRangeModel m_model = null;
+    
+    /** The m_filter. */
     private Predicate m_filter = null;
     
     // screen coordinate range
+    /** The m_min. */
     private double m_min;
+    
+    /** The m_range. */
     private double m_range;
     
     // value range / distribution
+    /** The m_dist. */
     private double[] m_dist = new double[2];
     
     /**
@@ -111,9 +128,10 @@ public class AxisLayout extends Layout {
     /**
      * Set the range model determining the span of the axis. This model controls
      * the minimum and maximum values of the layout, as provided by the
+     *
+     * @param model the range model for the axis.
      * {@link prefuse.util.ui.ValuedRangeModel#getLowValue()} and
      * {@link prefuse.util.ui.ValuedRangeModel#getHighValue()} methods.
-     * @param model the range model for the axis.
      */
     public void setRangeModel(ValuedRangeModel model) {
         m_model = model;
@@ -123,9 +141,10 @@ public class AxisLayout extends Layout {
     /**
      * Get the range model determining the span of the axis. This model controls
      * the minimum and maximum values of the layout, as provided by the
+     *
+     * @return the range model for the axis.
      * {@link prefuse.util.ui.ValuedRangeModel#getLowValue()} and
      * {@link prefuse.util.ui.ValuedRangeModel#getHighValue()} methods.
-     * @return the range model for the axis.
      */
     public ValuedRangeModel getRangeModel() {
         return m_model;
@@ -185,9 +204,10 @@ public class AxisLayout extends Layout {
     }
     
     /**
-     * Return the axis type of this layout, either
-     * {@link prefuse.Constants#X_AXIS} or {@link prefuse.Constants#Y_AXIS}.
+     * Return the axis type of this layout, either.
+     *
      * @return the axis type of this layout.
+     * {@link prefuse.Constants#X_AXIS} or {@link prefuse.Constants#Y_AXIS}.
      */
     public int getAxis() {
         return m_axis;
@@ -207,10 +227,11 @@ public class AxisLayout extends Layout {
     
     /**
      * Return the data type used by this layout. This value is one of
+     *
+     * @return the data type used by this layout
      * {@link prefuse.Constants#NOMINAL}, {@link prefuse.Constants#ORDINAL},
      * {@link prefuse.Constants#NUMERICAL}, or
      * {@link prefuse.Constants#UNKNOWN}.
-     * @return the data type used by this layout
      */
     public int getDataType() {
         return m_type;
@@ -233,6 +254,9 @@ public class AxisLayout extends Layout {
     // ------------------------------------------------------------------------
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {
@@ -250,6 +274,9 @@ public class AxisLayout extends Layout {
     
     /**
      * Retrieve the data type.
+     *
+     * @param ts the ts
+     * @return the data type
      */
     protected int getDataType(TupleSet ts) {
         if ( m_type == Constants.UNKNOWN ) {
@@ -290,6 +317,9 @@ public class AxisLayout extends Layout {
     
     /**
      * Set the layout position of an item.
+     *
+     * @param item the item
+     * @param frac the frac
      */
     protected void set(VisualItem item, double frac) {
         double xOrY = m_min + frac*m_range;
@@ -302,6 +332,8 @@ public class AxisLayout extends Layout {
     
     /**
      * Compute a quantitative axis layout.
+     *
+     * @param ts the ts
      */
     protected void numericalLayout(TupleSet ts) {
         if ( !m_modelSet ) {
@@ -330,6 +362,8 @@ public class AxisLayout extends Layout {
     
     /**
      * Compute an ordinal axis layout.
+     *
+     * @param ts the ts
      */
     protected void ordinalLayout(TupleSet ts) {
         if ( !m_modelSet) {

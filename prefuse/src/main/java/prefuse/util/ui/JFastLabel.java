@@ -10,6 +10,7 @@ import java.awt.RenderingHints;
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 
+
 /**
  * Swing component that acts much like a JLabel, but does not revalidate
  * its bounds when updated, making it much faster but suitable only for
@@ -19,10 +20,19 @@ import javax.swing.SwingConstants;
  */
 public class JFastLabel extends JComponent {
 
+    /** The m_text. */
     private String m_text;
+    
+    /** The m_valign. */
     private int m_valign = SwingConstants.TOP;
+    
+    /** The m_halign. */
     private int m_halign = SwingConstants.LEFT;
+    
+    /** The m_fheight. */
     private int m_fheight = -1;
+    
+    /** The m_quality. */
     private boolean m_quality = false;
     
     /**
@@ -50,7 +60,8 @@ public class JFastLabel extends JComponent {
     }
 
     /**
-     * Set the label text
+     * Set the label text.
+     *
      * @param text the label text to set
      */
     public void setText(String text) {
@@ -59,6 +70,9 @@ public class JFastLabel extends JComponent {
     }
     
     /**
+     * Sets the font.
+     *
+     * @param f the new font
      * @see java.awt.Component#setFont(java.awt.Font)
      */
     public void setFont(Font f) {
@@ -104,6 +118,9 @@ public class JFastLabel extends JComponent {
     }
     
     /**
+     * Paint component.
+     *
+     * @param g the g
      * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
      */
     public void paintComponent(Graphics g) {

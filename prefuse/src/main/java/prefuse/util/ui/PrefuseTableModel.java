@@ -11,18 +11,25 @@ import prefuse.util.StringLib;
 import prefuse.util.collections.CopyOnWriteArrayList;
 import prefuse.util.collections.IntIterator;
 
+
 /**
  * TableModel implementation that serves as an adapter between a prefuse
  * Table instance and a JTable component.
  */
 public class PrefuseTableModel implements TableModel, TableListener {
     
+    /** The m_listeners. */
     private CopyOnWriteArrayList m_listeners = new CopyOnWriteArrayList();
+    
+    /** The m_rowmap. */
     private int[] m_rowmap;
+    
+    /** The m_table. */
     private Table m_table;
     
     /**
-     * Creates a new PrefuseTableModel
+     * Creates a new PrefuseTableModel.
+     *
      * @param table the underlying prefuse table
      */
     public PrefuseTableModel(Table table) {
@@ -55,30 +62,54 @@ public class PrefuseTableModel implements TableModel, TableListener {
     // --------------------------------------------------------------------
     
     /**
+     * Gets the column count.
+     *
+     * @return the column count
      * @see javax.swing.table.TableModel#getColumnCount()
      */
     public int getColumnCount() {
         return m_table.getColumnCount();
     }
+    
     /**
+     * Gets the row count.
+     *
+     * @return the row count
      * @see javax.swing.table.TableModel#getRowCount()
      */
     public int getRowCount() {
         return m_table.getRowCount();
     }
+    
     /**
+     * Checks if is cell editable.
+     *
+     * @param rowIndex the row index
+     * @param columnIndex the column index
+     * @return true, if is cell editable
      * @see javax.swing.table.TableModel#isCellEditable(int, int)
      */
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return m_table.isCellEditable(rowIndex, columnIndex);
     }
+    
     /**
+     * Gets the column class.
+     *
+     * @param columnIndex the column index
+     * @return the column class
      * @see javax.swing.table.TableModel#getColumnClass(int)
      */
     public Class getColumnClass(int columnIndex) {
         return m_table.getColumnType(columnIndex);
     }
+    
     /**
+     * Gets the value at.
+     *
+     * @param rowIndex the row index
+     * @param columnIndex the column index
+     * @return the value at
      * @see javax.swing.table.TableModel#getValueAt(int, int)
      */
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -89,13 +120,24 @@ public class PrefuseTableModel implements TableModel, TableListener {
             return o;
         }
     }
+    
     /**
+     * Sets the value at.
+     *
+     * @param aValue the a value
+     * @param rowIndex the row index
+     * @param columnIndex the column index
      * @see javax.swing.table.TableModel#setValueAt(java.lang.Object, int, int)
      */
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         m_table.set(getRow(rowIndex), columnIndex, aValue);
     }
+    
     /**
+     * Gets the column name.
+     *
+     * @param columnIndex the column index
+     * @return the column name
      * @see javax.swing.table.TableModel#getColumnName(int)
      */
     public String getColumnName(int columnIndex) {
@@ -105,12 +147,19 @@ public class PrefuseTableModel implements TableModel, TableListener {
     // --------------------------------------------------------------------
     
     /**
+     * Adds the table model listener.
+     *
+     * @param l the l
      * @see javax.swing.table.TableModel#addTableModelListener(javax.swing.event.TableModelListener)
      */
     public void addTableModelListener(TableModelListener l) {
         m_listeners.add(l);
     }
+    
     /**
+     * Removes the table model listener.
+     *
+     * @param l the l
      * @see javax.swing.table.TableModel#removeTableModelListener(javax.swing.event.TableModelListener)
      */
     public void removeTableModelListener(TableModelListener l) {
@@ -118,6 +167,13 @@ public class PrefuseTableModel implements TableModel, TableListener {
     }
 
     /**
+     * Table changed.
+     *
+     * @param t the t
+     * @param start the start
+     * @param end the end
+     * @param col the col
+     * @param type the type
      * @see prefuse.data.event.TableListener#tableChanged(prefuse.data.Table, int, int, int, int)
      */
     public void tableChanged(Table t, int start, int end, int col, int type) {

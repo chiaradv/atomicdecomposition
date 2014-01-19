@@ -1,5 +1,6 @@
 package prefuse.util.collections;
 
+
 /**
  * Not of interest for users; only for implementors of hashtables. Used to keep
  * hash table capacities prime numbers.

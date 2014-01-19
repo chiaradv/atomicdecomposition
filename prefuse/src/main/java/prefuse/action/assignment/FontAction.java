@@ -10,6 +10,7 @@ import prefuse.util.FontLib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>Assignment Action that assigns font values to VisualItems.
  * By default, a FontAction simply sets each VisualItem to use a default 
@@ -31,6 +32,7 @@ import prefuse.visual.VisualItem;
  */
 public class FontAction extends EncoderAction {
 
+    /** The default font. */
     protected Font defaultFont = FontLib.getFont("SansSerif",Font.PLAIN,10);
     
     /**
@@ -93,10 +95,9 @@ public class FontAction extends EncoderAction {
      * the provided expression will be assigned the given font value (assuming
      * they do not match an earlier rule). The provided expression String will
      * be parsed to generate the needed rule Predicate.
-     * @param expr the expression String, should parse to a Predicate. 
+     *
+     * @param expr the expression String, should parse to a Predicate.
      * @param font the font
-     * @throws RuntimeException if the expression does not parse correctly or
-     * does not result in a Predicate instance.
      */
     public void add(String expr, Font font) {
         Predicate p = (Predicate)ExpressionParser.parse(expr);
@@ -119,10 +120,9 @@ public class FontAction extends EncoderAction {
      * the provided expression will be assigned the given font value (assuming
      * they do not match an earlier rule). The provided expression String will
      * be parsed to generate the needed rule Predicate.
-     * @param expr the expression String, should parse to a Predicate. 
+     *
+     * @param expr the expression String, should parse to a Predicate.
      * @param f the delegate FontAction to use
-     * @throws RuntimeException if the expression does not parse correctly or
-     * does not result in a Predicate instance.
      */
     public void add(String expr, FontAction f) {
         Predicate p = (Predicate)ExpressionParser.parse(expr);
@@ -132,6 +132,10 @@ public class FontAction extends EncoderAction {
     // ------------------------------------------------------------------------
     
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

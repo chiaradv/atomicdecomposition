@@ -8,20 +8,24 @@ import prefuse.visual.NodeItem;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>
- * A ControlListener that sets the highlighted status (using the
+ * A ControlListener that sets the highlighted status (using the.
+ *
  * {@link prefuse.visual.VisualItem#setHighlighted(boolean)
- * VisualItem.setHighlighted} method) for nodes neighboring the node 
+ * VisualItem.setHighlighted} method) for nodes neighboring the node
  * currently under the mouse pointer. The highlight flag might then be used
  * by a color function to change node appearance as desired.
  * </p>
- *
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
 public class NeighborHighlightControl extends ControlAdapter {
 
+    /** The activity. */
     private String activity = null;
+    
+    /** The highlight with invisible edge. */
     private boolean highlightWithInvisibleEdge = false;
     
     /**
@@ -41,6 +45,10 @@ public class NeighborHighlightControl extends ControlAdapter {
     }
     
     /**
+     * Item entered.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemEntered(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemEntered(VisualItem item, MouseEvent e) {
@@ -49,6 +57,10 @@ public class NeighborHighlightControl extends ControlAdapter {
     }
     
     /**
+     * Item exited.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemExited(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemExited(VisualItem item, MouseEvent e) {

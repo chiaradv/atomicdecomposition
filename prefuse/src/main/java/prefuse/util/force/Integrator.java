@@ -1,5 +1,6 @@
 package prefuse.util.force;
 
+
 /**
  * Interface for numerical integration routines. These routines are used
  * to update the position and velocity of items in response to forces
@@ -9,6 +10,12 @@ package prefuse.util.force;
  */
 public interface Integrator {
 
+    /**
+     * Integrate.
+     *
+     * @param sim the sim
+     * @param timestep the timestep
+     */
     public void integrate(ForceSimulator sim, long timestep);
     
 } // end of interface Integrator

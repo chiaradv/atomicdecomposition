@@ -12,6 +12,7 @@ import prefuse.util.MathLib;
 import prefuse.util.StringLib;
 import prefuse.util.collections.CopyOnWriteArrayList;
 
+
 /**
  * Abstract base class for FunctionExpression implementations. Provides
  * parameter handling support.
@@ -21,7 +22,11 @@ import prefuse.util.collections.CopyOnWriteArrayList;
 public abstract class FunctionExpression extends AbstractExpression
     implements Function
 {
+    
+    /** The m_params. */
     protected CopyOnWriteArrayList m_params;
+    
+    /** The m_pcount. */
     protected final int m_pcount; 
     
     /**
@@ -33,11 +38,17 @@ public abstract class FunctionExpression extends AbstractExpression
     }
     
     /**
+     * Gets the name.
+     *
+     * @return the name
      * @see prefuse.data.expression.Function#getName()
      */
     public abstract String getName();
     
     /**
+     * Adds the parameter.
+     *
+     * @param e the e
      * @see prefuse.data.expression.Function#addParameter(prefuse.data.expression.Expression)
      */
     public void addParameter(Expression e) {
@@ -54,6 +65,8 @@ public abstract class FunctionExpression extends AbstractExpression
     /**
      * An internal-only method that returns the current number of
      * parameters collected.
+     *
+     * @return the int
      */
     protected int paramCount() {
         return m_params==null ? 0 : m_params.size();
@@ -69,6 +82,9 @@ public abstract class FunctionExpression extends AbstractExpression
     }
     
     /**
+     * Gets the parameter count.
+     *
+     * @return the parameter count
      * @see prefuse.data.expression.Function#getParameterCount()
      */
     public int getParameterCount() {
@@ -86,6 +102,9 @@ public abstract class FunctionExpression extends AbstractExpression
     // ------------------------------------------------------------------------
     
     /**
+     * Visit.
+     *
+     * @param v the v
      * @see prefuse.data.expression.Expression#visit(prefuse.data.expression.ExpressionVisitor)
      */
     public void visit(ExpressionVisitor v) {
@@ -101,6 +120,8 @@ public abstract class FunctionExpression extends AbstractExpression
     }
     
     /**
+     * Adds the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#addChildListeners()
      */
     protected void addChildListeners() {
@@ -112,6 +133,8 @@ public abstract class FunctionExpression extends AbstractExpression
     }
     
     /**
+     * Removes the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#removeChildListeners()
      */
     protected void removeChildListeners() {
@@ -123,6 +146,9 @@ public abstract class FunctionExpression extends AbstractExpression
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

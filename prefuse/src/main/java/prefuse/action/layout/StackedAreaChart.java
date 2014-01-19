@@ -13,6 +13,7 @@ import prefuse.util.PrefuseLib;
 import prefuse.util.ui.ValuedRangeModel;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Layout Action that computes a stacked area chart, in which a series of
  * data values are consecutively stacked on top of each other.
@@ -21,23 +22,49 @@ import prefuse.visual.VisualItem;
  */
 public class StackedAreaChart extends Layout {
 
+    /** The m_field. */
     private String m_field;
+    
+    /** The m_start. */
     private String m_start;
+    
+    /** The m_end. */
     private String m_end;
     
+    /** The columns. */
     private String[] columns;
+    
+    /** The baseline. */
     private double[] baseline;
+    
+    /** The peaks. */
     private double[] peaks;
+    
+    /** The poly. */
     private float[] poly;
+    
+    /** The m_padding. */
     private double m_padding = 0.05;
+    
+    /** The m_threshold. */
     private float m_threshold;
+    
+    /** The bounds. */
     private Rectangle2D bounds;
     
+    /** The m_orientation. */
     private int m_orientation = Constants.ORIENT_BOTTOM_TOP;
+    
+    /** The m_horiz. */
     private boolean m_horiz = false;
+    
+    /** The m_top. */
     private boolean m_top = false;
     
+    /** The m_norm. */
     private boolean m_norm = false;
+    
+    /** The m_model. */
     private NumberRangeModel m_model;
     
     /**
@@ -80,7 +107,8 @@ public class StackedAreaChart extends Layout {
     // ------------------------------------------------------------------------
 
     /**
-     * Set the data columns used to compute the stacked layout
+     * Set the data columns used to compute the stacked layout.
+     *
      * @param cols the various data fields, in sorted order, that
      * should be referenced for each consecutive point of a stack layer
      */
@@ -156,11 +184,12 @@ public class StackedAreaChart extends Layout {
     
     /**
      * Returns the orientation of this layout. One of
+     *
+     * @return the orientation of this layout
      * {@link Constants#ORIENT_BOTTOM_TOP} (to grow bottom-up),
      * {@link Constants#ORIENT_TOP_BOTTOM} (to grow top-down),
      * {@link Constants#ORIENT_LEFT_RIGHT} (to grow left-right), or
      * {@link Constants#ORIENT_RIGHT_LEFT} (to grow right-left).
-     * @return the orientation of this layout
      */
     public int getOrientation() {
         return m_orientation;
@@ -168,13 +197,12 @@ public class StackedAreaChart extends Layout {
     
     /**
      * Sets the orientation of this layout. Must be one of
+     *
+     * @param orient the desired orientation of this layout
      * {@link Constants#ORIENT_BOTTOM_TOP} (to grow bottom-up),
      * {@link Constants#ORIENT_TOP_BOTTOM} (to grow top-down),
      * {@link Constants#ORIENT_LEFT_RIGHT} (to grow left-right), or
      * {@link Constants#ORIENT_RIGHT_LEFT} (to grow right-left).
-     * @param orient the desired orientation of this layout
-     * @throws IllegalArgumentException if the orientation value
-     * is not a valid value
      */
     public void setOrientation(int orient) {
         if ( orient != Constants.ORIENT_TOP_BOTTOM &&
@@ -199,8 +227,11 @@ public class StackedAreaChart extends Layout {
     // ------------------------------------------------------------------------
     
     /**
-     * @see prefuse.action.Action#run(double)
-     */
+ * Run.
+ *
+ * @param frac the frac
+ * @see prefuse.action.Action#run(double)
+ */
     public void run(double frac) {
         bounds = getLayoutBounds();
         Arrays.fill(baseline, 0);
@@ -257,6 +288,11 @@ public class StackedAreaChart extends Layout {
         }
     }
     
+    /**
+     * Gets the peaks.
+     *
+     * @return the peaks
+     */
     private double getPeaks() {
         double sum = 0;
         
@@ -297,6 +333,9 @@ public class StackedAreaChart extends Layout {
     
     /**
      * Sets the polygon values for a visual item.
+     *
+     * @param item the item
+     * @param poly the poly
      */
     private void setPolygon(VisualItem item, float[] poly) {
         float[] a = getPolygon(item, m_field);
@@ -310,6 +349,10 @@ public class StackedAreaChart extends Layout {
     
     /**
      * Get the polygon values for a visual item.
+     *
+     * @param item the item
+     * @param field the field
+     * @return the polygon
      */
     private float[] getPolygon(VisualItem item, String field) {
         float[] poly = (float[])item.get(field);

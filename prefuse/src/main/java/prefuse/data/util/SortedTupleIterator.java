@@ -10,14 +10,20 @@ import java.util.Iterator;
 
 import prefuse.data.Tuple;
 
+
 /**
  * Iterator that provides a sorted iteration over a set of tuples.
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
 public class SortedTupleIterator implements Iterator {
 
+    /** The m_tuples. */
     private ArrayList m_tuples;
+    
+    /** The m_cmp. */
     private Comparator m_cmp;
+    
+    /** The m_iter. */
     private Iterator m_iter;
     
     /**
@@ -64,6 +70,9 @@ public class SortedTupleIterator implements Iterator {
     }
     
     /**
+     * Checks for next.
+     *
+     * @return true, if successful
      * @see java.util.Iterator#hasNext()
      */
     public boolean hasNext() {
@@ -71,6 +80,9 @@ public class SortedTupleIterator implements Iterator {
     }
 
     /**
+     * Next.
+     *
+     * @return the object
      * @see java.util.Iterator#next()
      */
     public Object next() {
@@ -78,9 +90,9 @@ public class SortedTupleIterator implements Iterator {
     }
 
     /**
-     * Throws an UnsupportedOperationException
+     * Throws an UnsupportedOperationException.
+     *
      * @see java.util.Iterator#remove()
-     * @throws UnsupportedOperationException
      */
     public void remove() {
         throw new UnsupportedOperationException();

@@ -9,6 +9,7 @@ import prefuse.data.expression.parser.ExpressionParser;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>Assignment Action that assigns shape values to VisualItems.
  * Shape values are simple integer codes that indicate to
@@ -45,6 +46,7 @@ import prefuse.visual.VisualItem;
  */
 public class ShapeAction extends EncoderAction {
 
+    /** The m_default shape. */
     protected int m_defaultShape = Constants.SHAPE_RECTANGLE;
     
     /**
@@ -105,10 +107,9 @@ public class ShapeAction extends EncoderAction {
      * the provided expression will be assigned the given shape value (assuming
      * they do not match an earlier rule). The provided expression String will
      * be parsed to generate the needed rule Predicate.
-     * @param expr the expression String, should parse to a Predicate. 
+     *
+     * @param expr the expression String, should parse to a Predicate.
      * @param shape the shape value
-     * @throws RuntimeException if the expression does not parse correctly or
-     * does not result in a Predicate instance.
      */
     public void add(String expr, int shape) {
         Predicate p = (Predicate)ExpressionParser.parse(expr);
@@ -131,10 +132,9 @@ public class ShapeAction extends EncoderAction {
      * the provided expression will be assigned the given shape value (assuming
      * they do not match an earlier rule). The provided expression String will
      * be parsed to generate the needed rule Predicate.
-     * @param expr the expression String, should parse to a Predicate. 
+     *
+     * @param expr the expression String, should parse to a Predicate.
      * @param f the delegate ShapeAction to use
-     * @throws RuntimeException if the expression does not parse correctly or
-     * does not result in a Predicate instance.
      */
     public void add(String expr, ShapeAction f) {
         Predicate p = (Predicate)ExpressionParser.parse(expr);
@@ -144,6 +144,10 @@ public class ShapeAction extends EncoderAction {
     // ------------------------------------------------------------------------
     
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

@@ -5,6 +5,7 @@ import java.util.EventListener;
 import prefuse.data.Tuple;
 import prefuse.data.tuple.TupleSet;
 
+
 /**
  * Listener interface for monitoring changes to a TupleSet instance. Indicates
  * when tuples are added or removed from the set.

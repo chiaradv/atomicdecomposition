@@ -1,5 +1,6 @@
 package prefuse.util.collections;
 
+
 /**
  * Default LiteralComparator implementation that uses the natural ordering
  * of all data types for comparing values. Object values will need to
@@ -10,6 +11,7 @@ package prefuse.util.collections;
 public class DefaultLiteralComparator implements LiteralComparator {
 
     // maintain a singleton instance of this class
+    /** The s_instance. */
     private static DefaultLiteralComparator s_instance = null;
     
     /**
@@ -23,6 +25,11 @@ public class DefaultLiteralComparator implements LiteralComparator {
     }
     
     /**
+     * Compare.
+     *
+     * @param x1 the x1
+     * @param x2 the x2
+     * @return the int
      * @see prefuse.util.collections.LiteralComparator#compare(byte, byte)
      */
     public int compare(byte x1, byte x2) {
@@ -30,6 +37,11 @@ public class DefaultLiteralComparator implements LiteralComparator {
     }
     
     /**
+     * Compare.
+     *
+     * @param x1 the x1
+     * @param x2 the x2
+     * @return the int
      * @see prefuse.util.collections.LiteralComparator#compare(int, int)
      */
     public int compare(int x1, int x2) {
@@ -37,6 +49,11 @@ public class DefaultLiteralComparator implements LiteralComparator {
     }
 
     /**
+     * Compare.
+     *
+     * @param x1 the x1
+     * @param x2 the x2
+     * @return the int
      * @see prefuse.util.collections.LiteralComparator#compare(long, long)
      */
     public int compare(long x1, long x2) {
@@ -44,6 +61,11 @@ public class DefaultLiteralComparator implements LiteralComparator {
     }
 
     /**
+     * Compare.
+     *
+     * @param x1 the x1
+     * @param x2 the x2
+     * @return the int
      * @see prefuse.util.collections.LiteralComparator#compare(float, float)
      */
     public int compare(float x1, float x2) {
@@ -51,6 +73,11 @@ public class DefaultLiteralComparator implements LiteralComparator {
     }
 
     /**
+     * Compare.
+     *
+     * @param x1 the x1
+     * @param x2 the x2
+     * @return the int
      * @see prefuse.util.collections.LiteralComparator#compare(double, double)
      */
     public int compare(double x1, double x2) {
@@ -58,6 +85,11 @@ public class DefaultLiteralComparator implements LiteralComparator {
     }
 
     /**
+     * Compare.
+     *
+     * @param x1 the x1
+     * @param x2 the x2
+     * @return the int
      * @see prefuse.util.collections.LiteralComparator#compare(boolean, boolean)
      */
     public int compare(boolean x1, boolean x2) {
@@ -65,6 +97,11 @@ public class DefaultLiteralComparator implements LiteralComparator {
     }
 
     /**
+     * Compare.
+     *
+     * @param o1 the o1
+     * @param o2 the o2
+     * @return the int
      * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
      */
     public int compare(Object o1, Object o2) {

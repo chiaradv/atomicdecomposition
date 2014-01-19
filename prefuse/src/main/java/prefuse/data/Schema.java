@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import prefuse.util.PrefuseLib;
 
+
 /**
  * <p>The Schema class represents a description of a Table's columns, including
  * column names, data types, and default values. New Table
@@ -21,11 +22,22 @@ import prefuse.util.PrefuseLib;
  */
 public class Schema implements Cloneable {
 
+    /** The m_names. */
     private String[] m_names;
+    
+    /** The m_types. */
     private Class[]  m_types;
+    
+    /** The m_dflts. */
     private Object[] m_dflts;
+    
+    /** The m_lookup. */
     private HashMap  m_lookup;
+    
+    /** The m_size. */
     private int      m_size;
+    
+    /** The m_locked. */
     private boolean  m_locked;
     
     // ------------------------------------------------------------------------
@@ -95,6 +107,8 @@ public class Schema implements Cloneable {
      * Creates a copy of this Schema. This might be useful for creating
      * extended schemas from a shared base schema. Cloned copies
      * of a locked Schema will not inherit the locked status.
+     *
+     * @return the object
      * @see java.lang.Object#clone()
      */
     public Object clone() {
@@ -140,10 +154,9 @@ public class Schema implements Cloneable {
     
     /**
      * Add a column to this schema.
+     *
      * @param name the column name
      * @param type the column type (as a Class instance)
-     * @throws IllegalArgumentException is either name or type are null or
-     * the name already exists in this schema.
      */
     public void addColumn(String name, Class type) {
         addColumn(name, type, null);
@@ -151,10 +164,10 @@ public class Schema implements Cloneable {
     
     /**
      * Add a column to this schema.
+     *
      * @param name the column name
      * @param type the column type (as a Class instance)
-     * @throws IllegalArgumentException is either name or type are null or
-     * the name already exists in this schema.
+     * @param defaultValue the default value
      */
     public void addColumn(String name, Class type, Object defaultValue) {
         // check lock status
@@ -213,13 +226,13 @@ public class Schema implements Cloneable {
      * <p>The name for the current value column is the name parameter provided
      * to the method. The name for the start and end columns will be determined
      * by the return value of {@link PrefuseLib#getStartField(String)} and
-     * {@link PrefuseLib#getEndField(String)}. The default behavior for these
-     * methods is to append ":start" to the name of a stating value column
-     * and append ":end" to the the name of an ending value column.</p>
-     * 
+     *
      * @param name the name of the interpolated column to add
      * @param type the data type the columns will contain
      * @param dflt the default value for each of the columns
+     * {@link PrefuseLib#getEndField(String)}. The default behavior for these
+     * methods is to append ":start" to the name of a stating value column
+     * and append ":end" to the the name of an ending value column.</p>
      */
     public void addInterpolatedColumn(String name, Class type, Object dflt) {
         addColumn(name, type, dflt);
@@ -229,9 +242,10 @@ public class Schema implements Cloneable {
     
     /**
      * Add an interpolated column with a null default value.
-     * @see #addInterpolatedColumn(String, Class, Object)
+     *
      * @param name the name of the interpolated column to add
      * @param type the data type the columns will contain
+     * @see #addInterpolatedColumn(String, Class, Object)
      */
     public void addInterpolatedColumn(String name, Class type) {
         addInterpolatedColumn(name, type, null);
@@ -447,6 +461,9 @@ public class Schema implements Cloneable {
     
     /**
      * Compares this schema with another one for equality.
+     *
+     * @param o the o
+     * @return true, if successful
      */
     public boolean equals(Object o) {
         if ( !(o instanceof Schema) )
@@ -499,6 +516,8 @@ public class Schema implements Cloneable {
     
     /**
      * Computes a hashcode for this schema.
+     *
+     * @return the int
      */
     public int hashCode() {
         int hashcode = 0;
@@ -515,6 +534,8 @@ public class Schema implements Cloneable {
     
     /**
      * Returns a descriptive String for this schema.
+     *
+     * @return the string
      */
     public String toString() {
         StringBuffer sbuf = new StringBuffer();

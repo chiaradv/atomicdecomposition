@@ -22,6 +22,7 @@ import prefuse.data.io.TreeMLReader;
 import prefuse.util.StringLib;
 import prefuse.util.collections.ByteArrayList;
 
+
 /**
  * Library routines for input/output tasks.
  *  
@@ -29,6 +30,9 @@ import prefuse.util.collections.ByteArrayList;
  */
 public class IOLib {
 
+    /**
+     * Instantiates a new iO lib.
+     */
     private IOLib() {
         // disallow instantiation
     }
@@ -149,7 +153,8 @@ public class IOLib {
     }
     
     /**
-     * Returns the extension for a file or null if there is none
+     * Returns the extension for a file or null if there is none.
+     *
      * @param f the input file
      * @return the file extension, or null if none
      */
@@ -179,7 +184,8 @@ public class IOLib {
     }
     
     /**
-     * Returns the extension for a file or null if there is none
+     * Returns the extension for a file or null if there is none.
+     *
      * @param filename the input filename
      * @return the file extension, or null if none
      */
@@ -228,11 +234,12 @@ public class IOLib {
     /**
      * Reads data pulled from the given location string into a single String
      * result. The method attempts to retrieve an InputStream using the
-     * {@link #streamFromString(String)} method, then read the input stream
-     * into a String result.
+     *
      * @param location the location String
      * @return a String with the requested data
      * @throws IOException if an input/ouput error occurs
+     * {@link #streamFromString(String)} method, then read the input stream
+     * into a String result.
      * @see #streamFromString(String)
      */
     public static String readAsString(String location) throws IOException {

@@ -42,6 +42,7 @@ import prefuse.visual.tuple.TableDecoratorItem;
 import prefuse.visual.tuple.TableEdgeItem;
 import prefuse.visual.tuple.TableNodeItem;
 
+
 /**
  * <p>Central data structure representing an interactive Visualization.
  * This class is responsible for
@@ -157,32 +158,43 @@ import prefuse.visual.tuple.TableNodeItem;
  */
 public class Visualization {
     
-    /** Data group name for indicating all groups */
+    /** Data group name for indicating all groups. */
     public static final String ALL_ITEMS 
         = PrefuseConfig.get("visualization.allItems");
-    /** Default data group name for focus items */
+    
+    /** Default data group name for focus items. */
     public static final String FOCUS_ITEMS
         = PrefuseConfig.get("visualization.focusItems");
-    /** Default data group name for selected items */
+    
+    /** Default data group name for selected items. */
     public static final String SELECTED_ITEMS
         = PrefuseConfig.get("visualization.selectedItems");
-    /** Default data group name for search result items */
+    
+    /** Default data group name for search result items. */
     public static final String SEARCH_ITEMS
         = PrefuseConfig.get("visualization.searchItems");
     
     // visual abstraction
     // filtered tables and groups
+    /** The m_visual. */
     private Map m_visual;
+    
+    /** The m_source. */
     private Map m_source;
+    
+    /** The m_focus. */
     private Map m_focus;
     
     // actions
+    /** The m_actions. */
     private ActivityMap m_actions;
     
     // renderers
+    /** The m_renderers. */
     private RendererFactory m_renderers;
     
     // displays
+    /** The m_displays. */
     private ArrayList m_displays;
     
     // ------------------------------------------------------------------------
@@ -246,6 +258,11 @@ public class Visualization {
         }
     }
     
+    /**
+     * Check group exists.
+     *
+     * @param group the group
+     */
     protected void checkGroupExists(String group) {
     	if ( m_visual.containsKey(group) || m_focus.containsKey(group) ) {
     		throw new IllegalArgumentException(
@@ -253,6 +270,13 @@ public class Visualization {
     	}
     }
     
+    /**
+     * Adds the data group.
+     *
+     * @param group the group
+     * @param ts the ts
+     * @param src the src
+     */
     protected void addDataGroup(String group, VisualTupleSet ts, TupleSet src) {
     	checkGroupExists(group);
     	m_visual.put(group, ts);
@@ -298,8 +322,10 @@ public class Visualization {
      * name. A visual abstraction of the data will be created and registered
      * with the visualization. An exception will be thrown if the group name
      * is already in use.
+     *
      * @param group the data group name for the visualized data
      * @param table the data table to visualize
+     * @return the visual table
      */
     public synchronized VisualTable addTable(String group, Table table) {
         return addTable(group, table, (Predicate)null);
@@ -310,10 +336,12 @@ public class Visualization {
      * name. A visual abstraction of the data will be created and registered
      * with the visualization. An exception will be thrown if the group name
      * is already in use.
+     *
      * @param group the data group name for the visualized data
      * @param table the data table to visualize
      * @param filter a filter Predicate determining which data Tuples in the
      * input table are visualized
+     * @return the visual table
      */
     public synchronized VisualTable addTable(
             String group, Table table, Predicate filter)
@@ -328,9 +356,11 @@ public class Visualization {
      * name. A visual abstraction of the data will be created and registered
      * with the visualization. An exception will be thrown if the group name
      * is already in use.
+     *
      * @param group the data group name for the visualized data
      * @param table the data table to visualize
      * @param schema the data schema to use for the created VisualTable
+     * @return the visual table
      */
     public synchronized VisualTable addTable(
             String group, Table table, Schema schema)
@@ -343,11 +373,13 @@ public class Visualization {
      * name. A visual abstraction of the data will be created and registered
      * with the visualization. An exception will be thrown if the group name
      * is already in use.
+     *
      * @param group the data group name for the visualized data
      * @param table the data table to visualize
      * @param filter a filter Predicate determining which data Tuples in the
      * input table are visualized
      * @param schema the data schema to use for the created VisualTable
+     * @return the visual table
      */
     public synchronized VisualTable addTable(
             String group, Table table, Predicate filter, Schema schema)
@@ -381,10 +413,12 @@ public class Visualization {
      * name. A visual abstraction of the data will be created and registered
      * with the visualization. An exception will be thrown if the group name
      * is already in use.
+     *
      * @param group the data group name for the visualized graph. The nodes
      * and edges will be available in the "group.nodes" and "group.edges"
      * subgroups.
      * @param graph the graph to visualize
+     * @return the visual graph
      */
     public synchronized VisualGraph addGraph(String group, Graph graph) {
         return addGraph(group, graph, null);
@@ -395,12 +429,14 @@ public class Visualization {
      * name. A visual abstraction of the data will be created and registered
      * with the visualization. An exception will be thrown if the group name
      * is already in use.
+     *
      * @param group the data group name for the visualized graph. The nodes
      * and edges will be available in the "group.nodes" and "group.edges"
      * subgroups.
      * @param graph the graph to visualize
      * @param filter a filter Predicate determining which data Tuples in the
      * input graph are visualized
+     * @return the visual graph
      */
     public synchronized VisualGraph addGraph(
             String group, Graph graph, Predicate filter)
@@ -413,6 +449,7 @@ public class Visualization {
      * name. A visual abstraction of the data will be created and registered
      * with the visualization. An exception will be thrown if the group name
      * is already in use.
+     *
      * @param group the data group name for the visualized graph. The nodes
      * and edges will be available in the "group.nodes" and "group.edges"
      * subgroups.
@@ -421,6 +458,7 @@ public class Visualization {
      * input graph are visualized
      * @param nodeSchema the data schema to use for the visual node table
      * @param edgeSchema the data schema to use for the visual edge table
+     * @return the visual graph
      */
     public synchronized VisualGraph addGraph(String group, Graph graph,
             Predicate filter, Schema nodeSchema, Schema edgeSchema)
@@ -455,10 +493,12 @@ public class Visualization {
      * name. A visual abstraction of the data will be created and registered
      * with the visualization. An exception will be thrown if the group name
      * is already in use.
+     *
      * @param group the data group name for the visualized tree. The nodes
      * and edges will be available in the "group.nodes" and "group.edges"
      * subgroups.
      * @param tree the tree to visualize
+     * @return the visual tree
      */
     public synchronized VisualTree addTree(String group, Tree tree) {
         return addTree(group, tree, null);
@@ -469,12 +509,14 @@ public class Visualization {
      * name. A visual abstraction of the data will be created and registered
      * with the visualization. An exception will be thrown if the group name
      * is already in use.
+     *
      * @param group the data group name for the visualized tree. The nodes
      * and edges will be available in the "group.nodes" and "group.edges"
      * subgroups.
      * @param tree the tree to visualize
      * @param filter a filter Predicate determining which data Tuples in the
      * input graph are visualized
+     * @return the visual tree
      */
     public synchronized VisualTree addTree(
             String group, Tree tree, Predicate filter)
@@ -487,6 +529,7 @@ public class Visualization {
      * name. A visual abstraction of the data will be created and registered
      * with the visualization. An exception will be thrown if the group name
      * is already in use.
+     *
      * @param group the data group name for the visualized tree. The nodes
      * and edges will be available in the "group.nodes" and "group.edges"
      * subgroups.
@@ -495,6 +538,7 @@ public class Visualization {
      * input graph are visualized
      * @param nodeSchema the data schema to use for the visual node table
      * @param edgeSchema the data schema to use for the visual edge table
+     * @return the visual tree
      */
     public synchronized VisualTree addTree(String group, Tree tree,
             Predicate filter, Schema nodeSchema, Schema edgeSchema)
@@ -586,11 +630,12 @@ public class Visualization {
      * realizeed as {@link prefuse.visual.DecoratorItem} instances that provide
      * access to the decorated item in addition to the standard VisualItem
      * properties. The generated table is created using the
-     * {@link #addDerivedTable(String, String, Predicate, Schema)} method,
-     * but with no VisualItem properties inherited from the source group.
+     *
      * @param group the data group to use for the decorators
      * @param source the source data group to decorate
      * @return the generated VisualTable of DecoratorItem instances
+     * {@link #addDerivedTable(String, String, Predicate, Schema)} method,
+     * but with no VisualItem properties inherited from the source group.
      */
     public synchronized VisualTable addDecorators(String group,String source) {
         return addDecorators(group, source, (Predicate)null);
@@ -744,6 +789,8 @@ public class Visualization {
     
     /**
      * Get the source data TupleSet backing the given visual data group.
+     *
+     * @param group the group
      * @return the backing source data set, or null if there is no such
      * data set
      */
@@ -753,6 +800,8 @@ public class Visualization {
     
     /**
      * Get the source data TupleSet backing the given visual tuple set.
+     *
+     * @param ts the ts
      * @return the backing source data set, or null if there is no such
      * data set
      */
@@ -857,8 +906,9 @@ public class Visualization {
     /**
      * Add a new secondary, or focus, group to this visualization. By
      * default the added group is an instance of
-     * {@link prefuse.data.tuple.DefaultTupleSet}.
+     *
      * @param group the name of the focus group to add
+     * {@link prefuse.data.tuple.DefaultTupleSet}.
      */
     public void addFocusGroup(String group) {
     	checkGroupExists(group);
@@ -994,13 +1044,14 @@ public class Visualization {
     /**
      * Get an iterator over all items in the given group which match the given
      * filter expression.
+     *
      * @param group the visual data group to iterate over
      * @param expr an expression string that should parse to a Predicate
      * indicating which items should be included in the iteration. The input
      * string will be parsed using the
+     * @return a filtered iterator over VisualItems
      * {@link prefuse.data.expression.parser.ExpressionParser} class. If a
      * parse error occurs, an empty iterator is returned.
-     * @return a filtered iterator over VisualItems
      */
     public Iterator items(String group, String expr) {
         Expression e = ExpressionParser.parse(expr);
@@ -1081,8 +1132,10 @@ public class Visualization {
     /**
      * Add a data processing Action to this Visualization. The Action will be
      * updated to use this Visualization in its data processing.
+     *
      * @param name the name of the Action
      * @param action the Action to add
+     * @return the action
      */
     public Action putAction(String name, Action action) {
         action.setVisualization(this);
@@ -1126,10 +1179,11 @@ public class Visualization {
     /**
      * Schedule the Action with the given name to run immediately. The running
      * of all Actions is managed by the
-     * {@link prefuse.activity.ActivityManager}, which runs in a dedicated
-     * thread.
+     *
      * @param action the name of the Action to run
      * @return the Action scheduled to run
+     * {@link prefuse.activity.ActivityManager}, which runs in a dedicated
+     * thread.
      */
     public Activity run(String action) {
         return m_actions.run(action);
@@ -1138,12 +1192,13 @@ public class Visualization {
     /**
      * Schedule the Action with the given name to run after the specified
      * delay. The running of all Actions is managed by the
-     * {@link prefuse.activity.ActivityManager}, which runs in a dedicated
-     * thread.
+     *
      * @param action the name of the Action to run
      * @param delay the amount of time to wait, in milliseconds, before
      * running the Action
      * @return the Action scheduled to run
+     * {@link prefuse.activity.ActivityManager}, which runs in a dedicated
+     * thread.
      */
     public Activity runAfter(String action, long delay) {
         return m_actions.runAt(action, System.currentTimeMillis()+delay);
@@ -1152,12 +1207,13 @@ public class Visualization {
     /**
      * Schedule the Action with the given name to run at the specified
      * time. The running of all Actions is managed by the
-     * {@link prefuse.activity.ActivityManager}, which runs in a dedicated
-     * thread.
+     *
      * @param action the name of the Action to run
      * @param startTime the absolute system time, in milliseconds since the
      * epoch, at which to run the Action.
      * @return the Action scheduled to run
+     * {@link prefuse.activity.ActivityManager}, which runs in a dedicated
+     * thread.
      */
     public Activity runAt(String action, long startTime) {
         return m_actions.runAt(action, startTime);
@@ -1181,11 +1237,12 @@ public class Visualization {
     /**
      * Schedule the Action with the given name to always run after another Action
      * finishes running. The running of all Actions is managed by the
-     * {@link prefuse.activity.ActivityManager}, which runs in a dedicated
-     * thread.
+     *
      * @param before the name of the Action to wait for
      * @param after the name of the Action to run after the first one finishes
      * @return the Action scheduled to always run after the first one finishes
+     * {@link prefuse.activity.ActivityManager}, which runs in a dedicated
+     * thread.
      */
     public Activity alwaysRunAfter(String before, String after) {
         return m_actions.alwaysRunAfter(before, after);
@@ -1224,10 +1281,11 @@ public class Visualization {
     
     /**
      * Get the renderer for the given item. Consults this visualization's
-     * {@link prefuse.render.RendererFactory} and returns the result.
+     *
      * @param item the item to retreive the renderer for
      * @return the {@link prefuse.render.Renderer} for drawing the
      * given item
+     * {@link prefuse.render.RendererFactory} and returns the result.
      */
     public Renderer getRenderer(VisualItem item) {
         if ( item.getVisualization() != this ) {
@@ -1293,8 +1351,9 @@ public class Visualization {
     
     /**
      * Add a display to this visualization. Called automatically by the
-     * {@link prefuse.Display#setVisualization(Visualization)} method.
+     *
      * @param display the Display to add
+     * {@link prefuse.Display#setVisualization(Visualization)} method.
      */
     void addDisplay(Display display) {
         m_displays.add(display);

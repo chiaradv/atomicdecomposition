@@ -16,6 +16,7 @@ import prefuse.util.ui.ValuedRangeModel;
 import prefuse.visual.VisualItem;
 import prefuse.visual.VisualTable;
 
+
 /**
  * Layout Action that positions axis grid lines and labels for a given
  * range model.
@@ -24,19 +25,37 @@ import prefuse.visual.VisualTable;
  */
 public class AxisLabelLayout extends Layout {
 
+    /** The Constant FRAC. */
     public static final String FRAC = "frac";
+    
+    /** The Constant LABEL. */
     public static final String LABEL = "_label";
+    
+    /** The Constant VALUE. */
     public static final String VALUE = "_value";
     
+    /** The m_layout. */
     private AxisLayout m_layout; // pointer to matching layout, if any
+    
+    /** The m_model. */
     private ValuedRangeModel m_model;
+    
+    /** The m_prevhi. */
     private double m_lo, m_hi, m_prevlo, m_prevhi;
     
+    /** The m_nf. */
     private NumberFormat m_nf = NumberFormat.getInstance();
+    
+    /** The m_axis. */
     private int m_axis;
+    
+    /** The m_asc. */
     private boolean m_asc = true;
+    
+    /** The m_scale. */
     private int m_scale = Constants.LINEAR_SCALE;
     
+    /** The m_spacing. */
     private double m_spacing; // desired spacing between axis labels
     
     /**
@@ -208,6 +227,9 @@ public class AxisLabelLayout extends Layout {
     // ------------------------------------------------------------------------
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.GroupAction#run(double)
      */
     public void run(double frac) {
@@ -268,6 +290,8 @@ public class AxisLabelLayout extends Layout {
 
     /**
      * Calculates a quantitative, linearly scaled layout.
+     *
+     * @param labels the labels
      */
     protected void linearLayout(VisualTable labels) {
         Rectangle2D b = getLayoutBounds();
@@ -320,6 +344,8 @@ public class AxisLabelLayout extends Layout {
     
     /**
      * Calculates a quantitative, square root scaled layout.
+     *
+     * @param labels the labels
      */
     protected void sqrtLayout(VisualTable labels) {
         Rectangle2D b = getLayoutBounds();
@@ -371,6 +397,8 @@ public class AxisLabelLayout extends Layout {
     /**
      * Calculates a quantitative, logarithmically-scaled layout.
      * TODO: This method is currently not working correctly.
+     *
+     * @param labels the labels
      */
     protected void logLayout(VisualTable labels) {
         Rectangle2D b = getLayoutBounds();
@@ -418,6 +446,9 @@ public class AxisLabelLayout extends Layout {
     
     /**
      * Get the "breadth" of a rectangle, based on the axis type.
+     *
+     * @param b the b
+     * @return the breadth
      */
     protected double getBreadth(Rectangle2D b) {
         switch ( m_axis ) {
@@ -430,6 +461,9 @@ public class AxisLabelLayout extends Layout {
     
     /**
      * Adjust a value according to the current scale type.
+     *
+     * @param v the v
+     * @return the double
      */
     protected double adjust(double v) {
         switch ( m_scale ) {
@@ -445,6 +479,10 @@ public class AxisLabelLayout extends Layout {
     
     /**
      * Compute a linear step between axis marks.
+     *
+     * @param span the span
+     * @param scale the scale
+     * @return the linear step
      */
     protected double getLinearStep(double span, double scale) {
         double log10 = Math.log(span)/Math.log(10);
@@ -472,6 +510,8 @@ public class AxisLabelLayout extends Layout {
     
     /**
      * Compute an ordinal layout of axis marks.
+     *
+     * @param labels the labels
      */
     protected void ordinalLayout(VisualTable labels) {
         ObjectRangeModel model = (ObjectRangeModel)m_model;
@@ -517,6 +557,10 @@ public class AxisLabelLayout extends Layout {
     
     /**
      * Compute an ordinal step between axis marks.
+     *
+     * @param span the span
+     * @param scale the scale
+     * @return the ordinal step
      */
     protected int getOrdinalStep(double span, double scale) {
         return (scale >= m_spacing ? 1 : (int)Math.ceil(m_spacing/scale));
@@ -527,6 +571,10 @@ public class AxisLabelLayout extends Layout {
     
     /**
      * Set the layout values for an axis label item.
+     *
+     * @param item the item
+     * @param xOrY the x or y
+     * @param b the b
      */
     protected void set(VisualItem item, double xOrY, Rectangle2D b) {
         switch ( m_axis ) {
@@ -547,7 +595,9 @@ public class AxisLabelLayout extends Layout {
     }
     
     /**
-     * Reset an axis label VisualItem
+     * Reset an axis label VisualItem.
+     *
+     * @param item the item
      */
     protected void reset(VisualItem item) {
         item.setVisible(false);
@@ -565,6 +615,8 @@ public class AxisLabelLayout extends Layout {
     
     /**
      * Remove axis labels no longer being used.
+     *
+     * @param labels the labels
      */
     protected void garbageCollect(VisualTable labels) {
         Iterator iter = labels.tuples();
@@ -578,6 +630,8 @@ public class AxisLabelLayout extends Layout {
     
     /**
      * Create a new table for representing axis labels.
+     *
+     * @return the table
      */
     protected VisualTable getTable() {
         TupleSet ts = m_vis.getGroup(m_group);

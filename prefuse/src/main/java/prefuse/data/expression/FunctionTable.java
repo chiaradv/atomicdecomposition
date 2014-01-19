@@ -10,6 +10,7 @@ import prefuse.visual.expression.SearchPredicate;
 import prefuse.visual.expression.ValidatedPredicate;
 import prefuse.visual.expression.VisiblePredicate;
 
+
 /**
  * Function table that allows lookup of registered FunctionExpressions
  * by their function name.
@@ -18,10 +19,14 @@ import prefuse.visual.expression.VisiblePredicate;
  */
 public class FunctionTable {
     
+    /**
+     * Instantiates a new function table.
+     */
     private FunctionTable() {
         // prevent instantiation
     }
     
+    /** The s_function table. */
     private static HashMap s_functionTable;
     static {
         s_functionTable = new HashMap();

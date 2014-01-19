@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import prefuse.data.parser.DataParseException;
 import prefuse.data.parser.ParserFactory;
 
+
 /**
  * TableReader for delimited text files, such as tab-delimited or
  * pipe-delimited text files. Such files typically list one row of table
@@ -20,6 +21,7 @@ import prefuse.data.parser.ParserFactory;
  */
 public class DelimitedTextTableReader extends AbstractTextTableReader {
 
+    /** The m_delim. */
     private String m_delim;
    
     /**
@@ -63,6 +65,12 @@ public class DelimitedTextTableReader extends AbstractTextTableReader {
     // ------------------------------------------------------------------------
     
     /**
+     * Read.
+     *
+     * @param is the is
+     * @param trl the trl
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws DataParseException the data parse exception
      * @see prefuse.data.io.AbstractTextTableReader#read(java.io.InputStream, prefuse.data.io.TableReadListener)
      */
     protected void read(InputStream is, TableReadListener trl)

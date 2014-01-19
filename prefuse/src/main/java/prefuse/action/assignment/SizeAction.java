@@ -8,6 +8,7 @@ import prefuse.data.expression.parser.ExpressionParser;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>Assignment Action that assigns size values to VisualItems.</p>
  * 
@@ -33,6 +34,7 @@ import prefuse.visual.VisualItem;
  */
 public class SizeAction extends EncoderAction {
 
+    /** The m_default size. */
     protected double m_defaultSize = 1.0;
     
     /**
@@ -93,10 +95,9 @@ public class SizeAction extends EncoderAction {
      * the provided expression will be assigned the given size value (assuming
      * they do not match an earlier rule). The provided expression String will
      * be parsed to generate the needed rule Predicate.
-     * @param expr the expression String, should parse to a Predicate. 
+     *
+     * @param expr the expression String, should parse to a Predicate.
      * @param size the size value
-     * @throws RuntimeException if the expression does not parse correctly or
-     * does not result in a Predicate instance.
      */
     public void add(String expr, double size) {
         Predicate p = (Predicate)ExpressionParser.parse(expr);
@@ -119,10 +120,9 @@ public class SizeAction extends EncoderAction {
      * the provided expression will be assigned the given size value (assuming
      * they do not match an earlier rule). The provided expression String will
      * be parsed to generate the needed rule Predicate.
-     * @param expr the expression String, should parse to a Predicate. 
+     *
+     * @param expr the expression String, should parse to a Predicate.
      * @param f the delegate SizeAction to use
-     * @throws RuntimeException if the expression does not parse correctly or
-     * does not result in a Predicate instance.
      */
     public void add(String expr, SizeAction f) {
         Predicate p = (Predicate)ExpressionParser.parse(expr);
@@ -132,6 +132,10 @@ public class SizeAction extends EncoderAction {
     // ------------------------------------------------------------------------
     
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

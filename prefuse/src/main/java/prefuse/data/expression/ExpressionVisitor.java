@@ -1,5 +1,6 @@
 package prefuse.data.expression;
 
+
 /**
  * Visitor interface for objects that visit each sub-expression of an
  * Expression instance, performing some computation or data collection.

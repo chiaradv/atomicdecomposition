@@ -6,11 +6,12 @@ import prefuse.data.Tuple;
 import prefuse.data.search.SearchTupleSet;
 import prefuse.visual.VisualItem;
 
+
 /**
- * Expression that returns the current query string of a data group of the type
+ * Expression that returns the current query string of a data group of the type.
+ *
  * {@link prefuse.data.search.SearchTupleSet}. The data group name is provided
  * by a String-valued sub-expression.
- * 
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
 public class QueryExpression extends GroupExpression {
@@ -31,6 +32,9 @@ public class QueryExpression extends GroupExpression {
     }
     
     /**
+     * Gets the name.
+     *
+     * @return the name
      * @see prefuse.data.expression.Function#getName()
      */
     public String getName() {
@@ -38,6 +42,10 @@ public class QueryExpression extends GroupExpression {
     }
 
     /**
+     * Gets the type.
+     *
+     * @param s the s
+     * @return the type
      * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
      */
     public Class getType(Schema s) {
@@ -45,6 +53,10 @@ public class QueryExpression extends GroupExpression {
     }
     
     /**
+     * Gets the.
+     *
+     * @param t the t
+     * @return the object
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */
     public Object get(Tuple t) {

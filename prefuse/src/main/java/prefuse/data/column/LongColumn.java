@@ -5,6 +5,7 @@ import java.util.Arrays;
 import prefuse.data.DataReadOnlyException;
 import prefuse.data.DataTypeException;
 
+
 /**
  * Column implementation for storing long values.
  * 
@@ -12,7 +13,10 @@ import prefuse.data.DataTypeException;
  */
 public class LongColumn extends AbstractColumn {
 
+    /** The m_values. */
     private long[] m_values;
+    
+    /** The m_size. */
     private int    m_size;
     
     /**
@@ -51,6 +55,9 @@ public class LongColumn extends AbstractColumn {
     // Column Metadata
     
     /**
+     * Gets the row count.
+     *
+     * @return the row count
      * @see prefuse.data.column.Column#getRowCount()
      */
     public int getRowCount() {
@@ -58,6 +65,9 @@ public class LongColumn extends AbstractColumn {
     }
     
     /**
+     * Sets the maximum row.
+     *
+     * @param nrows the new maximum row
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
     public void setMaximumRow(int nrows) {
@@ -76,6 +86,10 @@ public class LongColumn extends AbstractColumn {
     // Data Access Methods
     
     /**
+     * Gets the.
+     *
+     * @param row the row
+     * @return the object
      * @see prefuse.data.column.Column#get(int)
      */
     public Object get(int row) {
@@ -83,6 +97,11 @@ public class LongColumn extends AbstractColumn {
     }
 
     /**
+     * Sets the.
+     *
+     * @param val the val
+     * @param row the row
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.Column#set(java.lang.Object, int)
      */
     public void set(Object val, int row) throws DataTypeException {
@@ -105,6 +124,11 @@ public class LongColumn extends AbstractColumn {
     // Data Type Convenience Methods
     
     /**
+     * Gets the long.
+     *
+     * @param row the row
+     * @return the long
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.AbstractColumn#getLong(int)
      */
     public long getLong(int row) throws DataTypeException {
@@ -115,6 +139,11 @@ public class LongColumn extends AbstractColumn {
     }
 
     /**
+     * Sets the long.
+     *
+     * @param val the val
+     * @param row the row
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.AbstractColumn#setLong(long, int)
      */
     public void setLong(long val, int row) throws DataTypeException {
@@ -153,13 +182,23 @@ public class LongColumn extends AbstractColumn {
     // ------------------------------------------------------------------------
     
     /**
-     * @see prefuse.data.column.Column#getInt(int)
-     */
+ * Gets the int.
+ *
+ * @param row the row
+ * @return the int
+ * @throws DataTypeException the data type exception
+ * @see prefuse.data.column.Column#getInt(int)
+ */
     public int getInt(int row) throws DataTypeException {
         return (int)getLong(row);
     }
     
     /**
+     * Gets the float.
+     *
+     * @param row the row
+     * @return the float
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.Column#getFloat(int)
      */
     public float getFloat(int row) throws DataTypeException {
@@ -167,6 +206,11 @@ public class LongColumn extends AbstractColumn {
     }
     
     /**
+     * Gets the double.
+     *
+     * @param row the row
+     * @return the double
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.Column#getDouble(int)
      */
     public double getDouble(int row) throws DataTypeException {

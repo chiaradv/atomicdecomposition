@@ -6,6 +6,7 @@ import java.util.Iterator;
 import prefuse.data.tuple.TupleSet;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Layout action that positions visual items along a circle. By default,
  * items are sorted in the order in which they iterated over.
@@ -14,6 +15,7 @@ import prefuse.visual.VisualItem;
  */
 public class CircleLayout extends Layout {
     
+    /** The m_radius. */
     private double m_radius; // radius of the circle layout
     
     /**
@@ -53,6 +55,9 @@ public class CircleLayout extends Layout {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {

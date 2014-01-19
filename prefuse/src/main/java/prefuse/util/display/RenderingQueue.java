@@ -6,6 +6,7 @@ import prefuse.util.ArrayLib;
 import prefuse.visual.VisualItem;
 import prefuse.visual.sort.ItemSorter;
 
+
 /**
  * A helper class representing rendering and picking queues. This functionality
  * is listed separately to keep the Display implementation a bit cleaner.
@@ -15,23 +16,40 @@ import prefuse.visual.sort.ItemSorter;
  */
 public class RenderingQueue {
 
+    /** The Constant DEFAULT_SIZE. */
     private static final int DEFAULT_SIZE = 256;
     
+    /** The sort. */
     public ItemSorter   sort   = new ItemSorter();
     
     // rendering queue
+    /** The ritems. */
     public VisualItem[] ritems  = new VisualItem[DEFAULT_SIZE];
+    
+    /** The rscores. */
     public int[]        rscores = new int[DEFAULT_SIZE];
+    
+    /** The rsize. */
     public int          rsize   = 0;
     
     // picking queue
+    /** The pitems. */
     public VisualItem[] pitems  = new VisualItem[DEFAULT_SIZE];
+    
+    /** The pscores. */
     public int[]        pscores = new int[DEFAULT_SIZE];
+    
+    /** The psize. */
     public int          psize   = 0;
+    
+    /** The psorted. */
     public boolean      psorted = false;
     
     // buffer queues for use in sorting, these prevent continual re-allocation
+    /** The items_buf. */
     transient static VisualItem[] items_buf;
+    
+    /** The scores_buf. */
     transient static int[]        scores_buf;
     
     /**
@@ -111,7 +129,11 @@ public class RenderingQueue {
     }
     
     /**
-     * Sort a queue of items based upon an array of ordering scores. 
+     * Sort a queue of items based upon an array of ordering scores.
+     *
+     * @param items the items
+     * @param scores the scores
+     * @param size the size
      */
     private void sort(VisualItem[] items, int[] scores, int size) {
         if ( sort == null ) return;

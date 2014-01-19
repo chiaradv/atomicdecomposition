@@ -9,6 +9,7 @@ import prefuse.data.Tuple;
 import prefuse.util.StringLib;
 import prefuse.util.collections.IntIterator;
 
+
 /**
  * Manager class for Tuples. There is a unique Tuple for each row of a table.
  * All data structures and Tuples are created lazily, on an as-needed basis.
@@ -20,15 +21,24 @@ import prefuse.util.collections.IntIterator;
  */
 public class TupleManager {
 
+    /** The m_graph. */
     protected Graph        m_graph;
+    
+    /** The m_table. */
     protected Table        m_table;
+    
+    /** The m_tuple type. */
     protected Class        m_tupleType;
     
+    /** The m_tuples. */
     private   TableTuple[] m_tuples;
     
     /**
      * Create a new TupleManager for the given Table.
+     *
      * @param t the data Table to generate Tuples for
+     * @param g the g
+     * @param tupleType the tuple type
      */
     public TupleManager(Table t, Graph g, Class tupleType) {
         init(t, g, tupleType);
@@ -36,7 +46,10 @@ public class TupleManager {
     
     /**
      * Initialize this TupleManager for use with a given Table.
+     *
      * @param t the data Table to generate Tuples for
+     * @param g the g
+     * @param tupleType the tuple type
      */
     public void init(Table t, Graph g, Class tupleType) {
         if ( m_table != null ) {
@@ -59,6 +72,8 @@ public class TupleManager {
     
     /**
      * Ensure the tuple array exists.
+     *
+     * @param row the row
      */
     private void ensureTupleArray(int row) {
         int nrows = Math.max(m_table.getRowCount(), row+1);
@@ -122,7 +137,7 @@ public class TupleManager {
     }
     
     /**
-     * Invalidate all tuples managed by this TupleManager
+     * Invalidate all tuples managed by this TupleManager.
      */
     public void invalidateAll() {
         if ( m_tuples == null ) return;
@@ -147,7 +162,10 @@ public class TupleManager {
      */
     public class TupleManagerIterator implements Iterator {
 
+        /** The m_tuples. */
         private TupleManager m_tuples;
+        
+        /** The m_rows. */
         private IntIterator  m_rows;
         
         /**
@@ -161,6 +179,9 @@ public class TupleManager {
         }
         
         /**
+         * Checks for next.
+         *
+         * @return true, if successful
          * @see java.util.Iterator#hasNext()
          */
         public boolean hasNext() {
@@ -168,6 +189,9 @@ public class TupleManager {
         }
 
         /**
+         * Next.
+         *
+         * @return the object
          * @see java.util.Iterator#next()
          */
         public Object next() {
@@ -175,6 +199,8 @@ public class TupleManager {
         }
 
         /**
+         * Removes the.
+         *
          * @see java.util.Iterator#remove()
          */
         public void remove() {

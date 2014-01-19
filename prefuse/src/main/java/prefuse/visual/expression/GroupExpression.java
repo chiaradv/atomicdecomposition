@@ -8,6 +8,7 @@ import prefuse.data.expression.Expression;
 import prefuse.data.expression.Function;
 import prefuse.data.expression.ObjectLiteral;
 
+
 /**
  * Abstract base class for Expression instances dealing with data groups
  * within a Visualization. Maintains an Expression that serves as the
@@ -19,9 +20,12 @@ import prefuse.data.expression.ObjectLiteral;
 public abstract class GroupExpression extends AbstractExpression
     implements Function
 {
+    
+    /** The Constant s_logger. */
     private static final Logger s_logger
         = Logger.getLogger(GroupExpression.class.getName());
 
+    /** The m_group. */
     protected Expression m_group;
     
     /**
@@ -40,7 +44,8 @@ public abstract class GroupExpression extends AbstractExpression
     }
     
     /**
-     * Evaluate the group name expression for the given Tuple
+     * Evaluate the group name expression for the given Tuple.
+     *
      * @param t the input Tuple to the group name expression
      * @return the String result of the expression
      */
@@ -55,6 +60,8 @@ public abstract class GroupExpression extends AbstractExpression
     
     /**
      * Attempts to add the given expression as the group expression.
+     *
+     * @param e the e
      * @see prefuse.data.expression.Function#addParameter(prefuse.data.expression.Expression)
      */
     public void addParameter(Expression e) {
@@ -66,6 +73,9 @@ public abstract class GroupExpression extends AbstractExpression
     }
 
     /**
+     * Gets the parameter count.
+     *
+     * @return the parameter count
      * @see prefuse.data.expression.Function#getParameterCount()
      */
     public int getParameterCount() {
@@ -73,6 +83,9 @@ public abstract class GroupExpression extends AbstractExpression
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

@@ -5,6 +5,7 @@ import javax.swing.DefaultBoundedRangeModel;
 import prefuse.util.TypeLib;
 import prefuse.util.ui.ValuedRangeModel;
 
+
 /**
  * Range model for numerical data. Designed to support range-based dynamic
  * queries.
@@ -14,7 +15,11 @@ import prefuse.util.ui.ValuedRangeModel;
 public class NumberRangeModel extends DefaultBoundedRangeModel
     implements ValuedRangeModel
 {
+    
+    /** The m_type. */
     protected Class m_type;
+    
+    /** The m_hi. */
     protected Number m_min, m_max, m_lo, m_hi;
     
     // ------------------------------------------------------------------------
@@ -119,12 +124,24 @@ public class NumberRangeModel extends DefaultBoundedRangeModel
     
     /**
      * Set the range settings in the pixel-space coordinates.
+     *
+     * @param val the val
+     * @param ext the ext
+     * @param min the min
+     * @param max the max
      */
     protected void setRange(int val, int ext, int min, int max) {
         super.setRangeProperties(val, ext, min, max, false);
     }
     
     /**
+     * Sets the range properties.
+     *
+     * @param val the val
+     * @param extent the extent
+     * @param min the min
+     * @param max the max
+     * @param adj the adj
      * @see javax.swing.BoundedRangeModel#setRangeProperties(int, int, int, int, boolean)
      */
     public void setRangeProperties(int val, int extent, int min, int max,
@@ -190,6 +207,9 @@ public class NumberRangeModel extends DefaultBoundedRangeModel
     }
     
     /**
+     * Gets the min value.
+     *
+     * @return the min value
      * @see prefuse.util.ui.ValuedRangeModel#getMinValue()
      */
     public Object getMinValue() {
@@ -205,6 +225,9 @@ public class NumberRangeModel extends DefaultBoundedRangeModel
     }
     
     /**
+     * Gets the max value.
+     *
+     * @return the max value
      * @see prefuse.util.ui.ValuedRangeModel#getMaxValue()
      */
     public Object getMaxValue() {
@@ -220,6 +243,9 @@ public class NumberRangeModel extends DefaultBoundedRangeModel
     }
     
     /**
+     * Gets the low value.
+     *
+     * @return the low value
      * @see prefuse.util.ui.ValuedRangeModel#getLowValue()
      */
     public Object getLowValue() {
@@ -237,6 +263,9 @@ public class NumberRangeModel extends DefaultBoundedRangeModel
     }
     
     /**
+     * Gets the high value.
+     *
+     * @return the high value
      * @see prefuse.util.ui.ValuedRangeModel#getHighValue()
      */
     public Object getHighValue() {
@@ -253,6 +282,12 @@ public class NumberRangeModel extends DefaultBoundedRangeModel
         setValueRange((Number)getLowValue(), n, m_min, m_max);
     }
     
+    /**
+     * Value.
+     *
+     * @param val the val
+     * @return the object
+     */
     protected Object value(int val) {
         int min = getMinimum();
         int max = getMaximum();
@@ -273,7 +308,8 @@ public class NumberRangeModel extends DefaultBoundedRangeModel
     
     /**
      * Not supported, throws an exception.
-     * @throws UnsupportedOperationException
+     *
+     * @param min the new minimum
      * @see javax.swing.BoundedRangeModel#setMinimum(int)
      */
     public void setMinimum(int min) {
@@ -282,7 +318,8 @@ public class NumberRangeModel extends DefaultBoundedRangeModel
     
     /**
      * Not supported, throws an exception.
-     * @throws UnsupportedOperationException
+     *
+     * @param max the new maximum
      * @see javax.swing.BoundedRangeModel#setMaximum(int)
      */
     public void setMaximum(int max) {
@@ -290,6 +327,9 @@ public class NumberRangeModel extends DefaultBoundedRangeModel
     }
     
     /**
+     * Sets the value.
+     *
+     * @param val the new value
      * @see javax.swing.BoundedRangeModel#setValue(int)
      */
     public void setValue(int val) {
@@ -298,6 +338,9 @@ public class NumberRangeModel extends DefaultBoundedRangeModel
     }
     
     /**
+     * Sets the extent.
+     *
+     * @param extent the new extent
      * @see javax.swing.BoundedRangeModel#setExtent(int)
      */
     public void setExtent(int extent) {

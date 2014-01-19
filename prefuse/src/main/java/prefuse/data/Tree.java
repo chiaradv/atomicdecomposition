@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import prefuse.util.PrefuseConfig;
 import prefuse.util.collections.IntIterator;
 
+
 /**
  * <p>Graph subclass that models a tree structure of hierarchical
  * parent-child relationships. For each edge, the source node is considered
@@ -36,13 +37,15 @@ import prefuse.util.collections.IntIterator;
  */
 public class Tree extends Graph {
 
+    /** The Constant s_logger. */
     private static final Logger s_logger
         = Logger.getLogger(Tree.class.getName());
     
-    /** Default data field used to denote the source node in an edge table */
+    /** Default data field used to denote the source node in an edge table. */
     public static final String DEFAULT_SOURCE_KEY 
         = PrefuseConfig.get("data.tree.sourceKey");
-    /** Default data field used to denote the target node in an edge table */
+    
+    /** Default data field used to denote the target node in an edge table. */
     public static final String DEFAULT_TARGET_KEY
         = PrefuseConfig.get("data.tree.targetKey");
     
@@ -124,6 +127,9 @@ public class Tree extends Graph {
     }
         
     /**
+     * Creates the link table.
+     *
+     * @return the table
      * @see prefuse.data.Graph#createLinkTable()
      */
     protected Table createLinkTable() {
@@ -133,6 +139,12 @@ public class Tree extends Graph {
     }
     
     /**
+     * Update degrees.
+     *
+     * @param e the e
+     * @param s the s
+     * @param t the t
+     * @param incr the incr
      * @see prefuse.data.Graph#updateDegrees(int, int, int, int)
      */
     protected void updateDegrees(int e, int s, int t, int incr) {
@@ -478,7 +490,8 @@ public class Tree extends Graph {
     }
     
     /**
-     * Get a node's parent node id
+     * Get a node's parent node id.
+     *
      * @param node the child node id (node table row number)
      * @return the parent node id, or -1 if there is no parent
      */
@@ -488,7 +501,8 @@ public class Tree extends Graph {
     }
 
     /**
-     * Get a node's parent node
+     * Get a node's parent node.
+     *
      * @param n the child node
      * @return the parent node, or null if there is no parent
      */
@@ -502,7 +516,8 @@ public class Tree extends Graph {
     
     /**
      * Get an iterator over the edge ids for edges connecting child nodes to
-     * a given parent
+     * a given parent.
+     *
      * @param node the parent node id (node table row number)
      * @return an iterator over the edge ids for edges conencting child nodes
      * to a given parent
@@ -512,7 +527,8 @@ public class Tree extends Graph {
     }
     
     /**
-     * Get an iterator over the edges connecting child nodes to a given parent 
+     * Get an iterator over the edges connecting child nodes to a given parent.
+     *
      * @param n the parent node
      * @return an iterator over the edges connecting child nodes to a given
      * parent
@@ -581,6 +597,9 @@ public class Tree extends Graph {
     
     /**
      * isValidTree's recursive helper method.
+     *
+     * @param node the node
+     * @param counts the counts
      */
     private void isValidHelper(int node, int[] counts) {
         IntIterator edges = childEdgeRows(node);
@@ -648,7 +667,7 @@ public class Tree extends Graph {
     // ------------------------------------------------------------------------
     // Tree Linkage Schema (appended to the Graph Linkage Schema)
     
-    /** Links table data field storing the index number of a child node */
+    /** Links table data field storing the index number of a child node. */
     protected static final String CHILDINDEX = "_childIndex";
     /** Schema addition to be added onto {@link Graph#LINKS_SCHEMA}. */
     protected static final Schema TREE_LINKS_SCHEMA = new Schema();

@@ -1,5 +1,6 @@
 package prefuse.data.expression;
 
+
 /**
  * Expression sub-interface representing a function in the prefuse
  * expression language.
@@ -8,7 +9,7 @@ package prefuse.data.expression;
  */
 public interface Function extends Expression {
 
-    /** Constant indicating a vriable argument count */
+    /** Constant indicating a vriable argument count. */
     public static final int VARARGS = -1;
     
     /**

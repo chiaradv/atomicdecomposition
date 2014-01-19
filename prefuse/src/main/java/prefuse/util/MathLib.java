@@ -4,27 +4,34 @@ import java.util.Arrays;
 
 import prefuse.Constants;
 
+
 /**
- * Library of mathematical constants and methods not included in the
+ * Library of mathematical constants and methods not included in the.
+ *
  * {@link java.lang.Math} class.
- * 
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
 public class MathLib {
 
-    /** The value 2 * PI */
+    /** The value 2 * PI. */
     public static final double TWO_PI = 2*Math.PI;
-    /** The natural logarithm of 10 */
+    
+    /** The natural logarithm of 10. */
     public static final double LOG10 = Math.log(10);
-    /** The natural logarithm of 2 */
+    
+    /** The natural logarithm of 2. */
     public static final double LOG2 = Math.log(2);
     
+    /**
+     * Instantiates a new math lib.
+     */
     private MathLib() {
         // prevent instantiation
     }
     
     /**
-     * The base 2 logarithm of the input value
+     * The base 2 logarithm of the input value.
+     *
      * @param x the input value
      * @return the base 2 logarithm
      */
@@ -33,7 +40,8 @@ public class MathLib {
     }
 
     /**
-     * The base 10 logarithm of the input value
+     * The base 10 logarithm of the input value.
+     *
      * @param x the input value
      * @return the base 10 logarithm
      */
@@ -71,22 +79,23 @@ public class MathLib {
     /**
      * Interpolates a value within a range using a specified scale,
      * returning the fractional position of the value within that scale.
+     *
      * @param scale The scale on which to perform the interpolation, one of
-     * {@link prefuse.Constants#LINEAR_SCALE},
-     * {@link prefuse.Constants#LOG_SCALE},
-     * {@link prefuse.Constants#SQRT_SCALE}, or
-     * {@link prefuse.Constants#QUANTILE_SCALE}.
      * @param val the interpolation value, a fraction between 0 and 1.0.
      * @param dist a double array describing the distribution of the data.
      * For the {@link prefuse.Constants#QUANTILE_SCALE} option, this should
      * be a collection of quantile boundaries, as determined by the
+     * @return the fractional position of the value within the scale,
+     * a double between 0 and 1.
+     * {@link prefuse.Constants#LINEAR_SCALE},
+     * {@link prefuse.Constants#LOG_SCALE},
+     * {@link prefuse.Constants#SQRT_SCALE}, or
+     * {@link prefuse.Constants#QUANTILE_SCALE}.
      * {@link #quantiles(int, double[])} method. For any other scale type,
      * the first value of the array must contain the minimum value of the
      * distribution and the last value of the array must contain the
      * maximum value of the distribution; all values in between will be
      * ignored.
-     * @return the fractional position of the value within the scale,
-     * a double between 0 and 1.
      */
     public static double interp(int scale, double val, double dist[]) {
         switch ( scale ) {

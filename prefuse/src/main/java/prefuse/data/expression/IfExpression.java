@@ -4,6 +4,7 @@ import prefuse.data.Schema;
 import prefuse.data.Tuple;
 import prefuse.util.TypeLib;
 
+
 /**
  * Expression instance representing an "if then else" clause in the prefuse
  * expression language.
@@ -12,8 +13,13 @@ import prefuse.util.TypeLib;
  */
 public class IfExpression extends AbstractExpression {
 
+    /** The m_test. */
     private Predicate m_test;
+    
+    /** The m_then. */
     private Expression m_then;
+    
+    /** The m_else. */
     private Expression m_else;
     
     /**
@@ -43,7 +49,8 @@ public class IfExpression extends AbstractExpression {
     }
 
     /**
-     * Get the then expression
+     * Get the then expression.
+     *
      * @return the then expression
      */
     public Expression getThenExpression() {
@@ -51,7 +58,8 @@ public class IfExpression extends AbstractExpression {
     }
 
     /**
-     * Get the else expression
+     * Get the else expression.
+     *
      * @return the else expression
      */
     public Expression getElseExpression() {
@@ -70,7 +78,8 @@ public class IfExpression extends AbstractExpression {
     }
 
     /**
-     * Set the then expression
+     * Set the then expression.
+     *
      * @param e the then expression to set
      */
     public void setThenExpression(Expression e) {
@@ -81,7 +90,8 @@ public class IfExpression extends AbstractExpression {
     }
 
     /**
-     * Set the else expression
+     * Set the else expression.
+     *
      * @param e the else expression to set
      */
     public void setElseExpression(Expression e) {
@@ -94,6 +104,10 @@ public class IfExpression extends AbstractExpression {
     // ------------------------------------------------------------------------    
     
     /**
+     * Gets the type.
+     *
+     * @param s the s
+     * @return the type
      * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
      */
     public Class getType(Schema s) {
@@ -103,6 +117,10 @@ public class IfExpression extends AbstractExpression {
     }
 
     /**
+     * Gets the.
+     *
+     * @param t the t
+     * @return the object
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */
     public Object get(Tuple t) {
@@ -110,6 +128,10 @@ public class IfExpression extends AbstractExpression {
     }
 
     /**
+     * Gets the boolean.
+     *
+     * @param t the t
+     * @return the boolean
      * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
      */
     public boolean getBoolean(Tuple t) {
@@ -117,6 +139,10 @@ public class IfExpression extends AbstractExpression {
     }
 
     /**
+     * Gets the double.
+     *
+     * @param t the t
+     * @return the double
      * @see prefuse.data.expression.Expression#getDouble(prefuse.data.Tuple)
      */
     public double getDouble(Tuple t) {
@@ -124,6 +150,10 @@ public class IfExpression extends AbstractExpression {
     }
 
     /**
+     * Gets the float.
+     *
+     * @param t the t
+     * @return the float
      * @see prefuse.data.expression.Expression#getFloat(prefuse.data.Tuple)
      */
     public float getFloat(Tuple t) {
@@ -131,6 +161,10 @@ public class IfExpression extends AbstractExpression {
     }
 
     /**
+     * Gets the int.
+     *
+     * @param t the t
+     * @return the int
      * @see prefuse.data.expression.Expression#getInt(prefuse.data.Tuple)
      */
     public int getInt(Tuple t) {
@@ -138,6 +172,10 @@ public class IfExpression extends AbstractExpression {
     }
 
     /**
+     * Gets the long.
+     *
+     * @param t the t
+     * @return the long
      * @see prefuse.data.expression.Expression#getLong(prefuse.data.Tuple)
      */
     public long getLong(Tuple t) {
@@ -147,6 +185,9 @@ public class IfExpression extends AbstractExpression {
     // ------------------------------------------------------------------------
     
     /**
+     * Visit.
+     *
+     * @param v the v
      * @see prefuse.data.expression.Expression#visit(prefuse.data.expression.ExpressionVisitor)
      */
     public void visit(ExpressionVisitor v) {
@@ -157,6 +198,8 @@ public class IfExpression extends AbstractExpression {
     }
     
     /**
+     * Adds the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#addChildListeners()
      */
     protected void addChildListeners() {
@@ -166,6 +209,8 @@ public class IfExpression extends AbstractExpression {
     }
     
     /**
+     * Removes the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#removeChildListeners()
      */
     protected void removeChildListeners() {
@@ -175,6 +220,9 @@ public class IfExpression extends AbstractExpression {
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

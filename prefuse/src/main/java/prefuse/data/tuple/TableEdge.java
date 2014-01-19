@@ -5,6 +5,7 @@ import prefuse.data.Graph;
 import prefuse.data.Node;
 import prefuse.data.Table;
 
+
 /**
  * Edge implementation that reads Edge data from a backing edge table.
  * 
@@ -34,6 +35,9 @@ public class TableEdge extends TableTuple implements Edge {
     }
     
     /**
+     * Gets the graph.
+     *
+     * @return the graph
      * @see prefuse.data.Edge#getGraph()
      */
     public Graph getGraph() {
@@ -41,6 +45,9 @@ public class TableEdge extends TableTuple implements Edge {
     }
     
     /**
+     * Checks if is directed.
+     *
+     * @return true, if is directed
      * @see prefuse.data.Edge#isDirected()
      */
     public boolean isDirected() {
@@ -48,6 +55,9 @@ public class TableEdge extends TableTuple implements Edge {
     }
     
     /**
+     * Gets the source node.
+     *
+     * @return the source node
      * @see prefuse.data.Edge#getSourceNode()
      */
     public Node getSourceNode() {
@@ -55,6 +65,9 @@ public class TableEdge extends TableTuple implements Edge {
     }
 
     /**
+     * Gets the target node.
+     *
+     * @return the target node
      * @see prefuse.data.Edge#getTargetNode()
      */
     public Node getTargetNode() {
@@ -62,6 +75,10 @@ public class TableEdge extends TableTuple implements Edge {
     }
 
     /**
+     * Gets the adjacent node.
+     *
+     * @param n the n
+     * @return the adjacent node
      * @see prefuse.data.Edge#getAdjacentNode(prefuse.data.Node)
      */
     public Node getAdjacentNode(Node n) {

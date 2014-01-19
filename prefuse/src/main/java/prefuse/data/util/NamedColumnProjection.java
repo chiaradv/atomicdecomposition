@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import prefuse.data.column.Column;
 
+
 /**
  * ColumnProjection instance that includes or excludes columns based on
  * the column name.
@@ -12,7 +13,10 @@ import prefuse.data.column.Column;
  */
 public class NamedColumnProjection extends AbstractColumnProjection {
 
+    /** The m_names. */
     private HashSet m_names;
+    
+    /** The m_include. */
     private boolean m_include;
 
     /**
@@ -49,7 +53,8 @@ public class NamedColumnProjection extends AbstractColumnProjection {
     }
     
     /**
-     * Remove a column name from this projection
+     * Remove a column name from this projection.
+     *
      * @param name the column name to remove
      * @return true if the name was succesffuly removed, false otherwise
      */
@@ -58,6 +63,11 @@ public class NamedColumnProjection extends AbstractColumnProjection {
     }
     
     /**
+     * Include.
+     *
+     * @param col the col
+     * @param name the name
+     * @return true, if successful
      * @see prefuse.data.util.ColumnProjection#include(prefuse.data.column.Column, java.lang.String)
      */
     public boolean include(Column col, String name) {

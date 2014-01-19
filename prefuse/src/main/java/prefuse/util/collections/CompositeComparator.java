@@ -2,17 +2,25 @@ package prefuse.util.collections;
 
 import java.util.Comparator;
 
+
 /**
  * Comparator that makes comparison using an ordered list of
- * individual comparators;
- * 
+ * individual comparators;.
+ *
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
 public class CompositeComparator implements Comparator {
 
+    /** The Constant INCREMENT. */
     private static final int INCREMENT = 2;
+    
+    /** The m_cmp. */
     private Comparator[] m_cmp;
+    
+    /** The m_rev. */
     private int m_rev = 1;
+    
+    /** The m_size. */
     private int m_size = 0;
 
     /**
@@ -88,6 +96,11 @@ public class CompositeComparator implements Comparator {
     // ------------------------------------------------------------------------
     
     /**
+     * Compare.
+     *
+     * @param o1 the o1
+     * @param o2 the o2
+     * @return the int
      * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
      */
     public int compare(Object o1, Object o2) {

@@ -4,6 +4,7 @@ import prefuse.action.ItemAction;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Animator that linearly interpolates between two positions. This
  * is useful for performing animated transitions.
@@ -28,6 +29,10 @@ public class LocationAnimator extends ItemAction {
     }
 
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

@@ -7,6 +7,7 @@ import prefuse.data.event.ColumnListener;
 import prefuse.data.parser.DataParser;
 
 
+
 /**
  * Interface for a data column in a table.
  * 
@@ -18,13 +19,15 @@ public interface Column {
     // Column Metadata
     
     /**
-     * Returns the number of rows in this data column
+     * Returns the number of rows in this data column.
+     *
      * @return the number of rows
      */
     public int getRowCount();
     
     /**
-     * Sets the number of rows in this data column
+     * Sets the number of rows in this data column.
+     *
      * @param nrows the number of rows
      */
     public void setMaximumRow(int nrows);
@@ -36,9 +39,10 @@ public interface Column {
     public boolean isReadOnly();
     
     /**
-     * Sets if the values in this column are read-only
-     * @param readOnly true to ensure the values can not be edited, 
-     *  false otherwise
+     * Sets if the values in this column are read-only.
+     *
+     * @param readOnly true to ensure the values can not be edited,
+     * false otherwise
      */
     public void setReadOnly(boolean readOnly);
     
@@ -50,7 +54,8 @@ public interface Column {
     public boolean isCellEditable(int row);
     
     /**
-     * Returns the most specific superclass for the values in the column
+     * Returns the most specific superclass for the values in the column.
+     *
      * @return the Class of the column's data values
      */
     public Class getColumnType();
@@ -73,13 +78,15 @@ public interface Column {
     // Listener Methods
     
     /**
-     * Adds a listener to be notified when this column changes
+     * Adds a listener to be notified when this column changes.
+     *
      * @param listener the ColumnListener to add
      */
     public void addColumnListener(ColumnListener listener);
 
     /**
-     * Removes a listener, causing it to no longer be notified of changes
+     * Removes a listener, causing it to no longer be notified of changes.
+     *
      * @param listener the ColumnListener to remove
      */
     public void removeColumnListener(ColumnListener listener);
@@ -89,13 +96,16 @@ public interface Column {
     // Data Access Methods
     
     /**
-     * Returns the default value for rows that have not been set explicitly. 
+     * Returns the default value for rows that have not been set explicitly.
+     *
+     * @return the default value
      */
     public Object getDefaultValue();
     
     /**
      * Reverts the specified row back to the column's default value.
-     * @param row
+     *
+     * @param row the row
      */
     public void revertToDefault(int row);
     
@@ -116,16 +126,19 @@ public interface Column {
     public boolean canSet(Class type);
     
     /**
-     * Get the data value at the specified row
+     * Get the data value at the specified row.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value
      */
     public Object get(int row);
         
     /**
-     * Set the data value at the specified row
+     * Set the data value at the specified row.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
+     * @throws DataTypeException the data type exception
      */
     public void set(Object val, int row) throws DataTypeException;
     
@@ -152,20 +165,22 @@ public interface Column {
     public boolean canSetInt();
     
     /**
-     * Get the data value at the specified row as an integer
+     * Get the data value at the specified row as an integer.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as an integer
-     * @throws DataTypeException if this column does not 
-     *  support the integer type
+     * @throws DataTypeException if this column does not
+     * support the integer type
      */
     public int getInt(int row) throws DataTypeException;
     
     /**
-     * Set the data value at the specified row as an integer
+     * Set the data value at the specified row as an integer.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the integer type
+     * @throws DataTypeException if this column does not
+     * support the integer type
      */
     public void setInt(int val, int row) throws DataTypeException;
 
@@ -186,20 +201,22 @@ public interface Column {
     public boolean canSetLong();
     
     /**
-     * Get the data value at the specified row as a long
+     * Get the data value at the specified row as a long.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a long
-     * @throws DataTypeException if this column does not 
-     *  support the long type
+     * @throws DataTypeException if this column does not
+     * support the long type
      */
     public long getLong(int row) throws DataTypeException;
     
     /**
-     * Set the data value at the specified row as a long
+     * Set the data value at the specified row as a long.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the long type
+     * @throws DataTypeException if this column does not
+     * support the long type
      */
     public void setLong(long val, int row) throws DataTypeException;
     
@@ -220,20 +237,22 @@ public interface Column {
     public boolean canSetFloat();
     
     /**
-     * Get the data value at the specified row as a float
+     * Get the data value at the specified row as a float.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a float
-     * @throws DataTypeException if this column does not 
-     *  support the float type
+     * @throws DataTypeException if this column does not
+     * support the float type
      */
     public float getFloat(int row) throws DataTypeException;
     
     /**
-     * Set the data value at the specified row as a float
+     * Set the data value at the specified row as a float.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the float type
+     * @throws DataTypeException if this column does not
+     * support the float type
      */
     public void setFloat(float val, int row) throws DataTypeException;
     
@@ -254,20 +273,22 @@ public interface Column {
     public boolean canSetDouble();
     
     /**
-     * Get the data value at the specified row as a double
+     * Get the data value at the specified row as a double.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a double
-     * @throws DataTypeException if this column does not 
-     *  support the double type
+     * @throws DataTypeException if this column does not
+     * support the double type
      */
     public double getDouble(int row) throws DataTypeException;
     
     /**
-     * Set the data value at the specified row as a double
+     * Set the data value at the specified row as a double.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the double type
+     * @throws DataTypeException if this column does not
+     * support the double type
      */
     public void setDouble(double val, int row) throws DataTypeException;
     
@@ -288,20 +309,22 @@ public interface Column {
     public boolean canSetBoolean();
     
     /**
-     * Get the data value at the specified row as a boolean
+     * Get the data value at the specified row as a boolean.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a boolean
-     * @throws DataTypeException if this column does not 
-     *  support the boolean type
+     * @throws DataTypeException if this column does not
+     * support the boolean type
      */
     public boolean getBoolean(int row) throws DataTypeException;
     
     /**
-     * Set the data value at the specified row as a boolean
+     * Set the data value at the specified row as a boolean.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the boolean type
+     * @throws DataTypeException if this column does not
+     * support the boolean type
      */
     public void setBoolean(boolean val, int row) throws DataTypeException;
     
@@ -322,20 +345,22 @@ public interface Column {
     public boolean canSetString();
     
     /**
-     * Get the data value at the specified row as a String
+     * Get the data value at the specified row as a String.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a String
-     * @throws DataTypeException if this column does not 
-     *  support the String type
+     * @throws DataTypeException if this column does not
+     * support the String type
      */
     public String getString(int row) throws DataTypeException;
     
     /**
-     * Set the data value at the specified row as a String
+     * Set the data value at the specified row as a String.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the String type
+     * @throws DataTypeException if this column does not
+     * support the String type
      */
     public void setString(String val, int row) throws DataTypeException;
     
@@ -356,20 +381,22 @@ public interface Column {
     public boolean canSetDate();
     
     /**
-     * Get the data value at the specified row as a Date
+     * Get the data value at the specified row as a Date.
+     *
      * @param row the row from which to retrieve the value
      * @return the data value as a Date
-     * @throws DataTypeException if this column does not 
-     *  support the Date type
+     * @throws DataTypeException if this column does not
+     * support the Date type
      */
     public Date getDate(int row) throws DataTypeException;
     
     /**
-     * Set the data value at the specified row as a Date
+     * Set the data value at the specified row as a Date.
+     *
      * @param val the value to set
      * @param row the row at which to set the value
-     * @throws DataTypeException if this column does not 
-     *  support the Date type
+     * @throws DataTypeException if this column does not
+     * support the Date type
      */
     public void setDate(Date val, int row) throws DataTypeException;
     

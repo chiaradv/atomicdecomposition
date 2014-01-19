@@ -11,6 +11,7 @@ package prefuse.util.collections;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 /**
  * Hash map holding (key,value) associations of type <tt>(int-->Object)</tt>;
  * Automatically grows and shrinks as needed; Implemented using open addressing
@@ -27,12 +28,22 @@ import java.util.Arrays;
  */
 public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
     
+    /** The Constant defaultCapacity. */
     protected static final int defaultCapacity = 277;
+    
+    /** The Constant defaultMinLoadFactor. */
     protected static final double defaultMinLoadFactor = 0.2;
+    
+    /** The Constant defaultMaxLoadFactor. */
     protected static final double defaultMaxLoadFactor = 0.5;
     
+    /** The Constant FREE. */
     protected static final byte FREE = 0;
+    
+    /** The Constant FULL. */
     protected static final byte FULL = 1;
+    
+    /** The Constant REMOVED. */
     protected static final byte REMOVED = 2;
     
     /**
@@ -65,11 +76,8 @@ public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
     /**
      * Constructs an empty map with the specified initial capacity and default
      * load factors.
-     * 
-     * @param initialCapacity
-     *            the initial capacity of the map.
-     * @throws IllegalArgumentException
-     *             if the initial capacity is less than zero.
+     *
+     * @param initialCapacity the initial capacity of the map.
      */
     public IntObjectHashMap(int initialCapacity) {
         this(initialCapacity, defaultMinLoadFactor, defaultMaxLoadFactor);
@@ -78,16 +86,10 @@ public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
     /**
      * Constructs an empty map with the specified initial capacity and the
      * specified minimum and maximum load factor.
-     * 
-     * @param initialCapacity
-     *            the initial capacity.
-     * @param minLoadFactor
-     *            the minimum load factor.
-     * @param maxLoadFactor
-     *            the maximum load factor.
-     * @throws IllegalArgumentException
-     *             if
-     *             <tt>initialCapacity < 0 || (minLoadFactor < 0.0 || minLoadFactor >= 1.0) || (maxLoadFactor <= 0.0 || maxLoadFactor >= 1.0) || (minLoadFactor >= maxLoadFactor)</tt>.
+     *
+     * @param initialCapacity the initial capacity.
+     * @param minLoadFactor the minimum load factor.
+     * @param maxLoadFactor the maximum load factor.
      */
     public IntObjectHashMap(int initialCapacity, double minLoadFactor,
             double maxLoadFactor) {
@@ -126,6 +128,8 @@ public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
 
     /**
      * Returns <tt>true</tt> if the receiver contains the specified key.
+     *
+     * @param key the key
      * @return <tt>true</tt> if the receiver contains the specified key.
      */
     public boolean containsKey(int key) {
@@ -134,6 +138,8 @@ public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
 
     /**
      * Returns <tt>true</tt> if the receiver contains the specified value.
+     *
+     * @param value the value
      * @return <tt>true</tt> if the receiver contains the specified value.
      */
     public boolean containsValue(Object value) {
@@ -180,14 +186,15 @@ public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
     }
 
     /**
-     * @param key
-     *            the key to be added to the receiver.
+     * Index of insertion.
+     *
+     * @param key the key to be added to the receiver.
      * @return the index where the key would need to be inserted, if it is not
-     *         already contained. Returns -index-1 if the key is already
-     *         contained at slot index. Therefore, if the returned index < 0,
-     *         then it is already contained at slot -index-1. If the returned
-     *         index >= 0, then it is NOT already contained and should be
-     *         inserted at slot index.
+     * already contained. Returns -index-1 if the key is already
+     * contained at slot index. Therefore, if the returned index < 0,
+     * then it is already contained at slot -index-1. If the returned
+     * index >= 0, then it is NOT already contained and should be
+     * inserted at slot index.
      */
     protected int indexOfInsertion(int key) {
         final int tab[] = table;
@@ -237,10 +244,11 @@ public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
     }
 
     /**
-     * @param key
-     *            the key to be searched in the receiver.
+     * Index of key.
+     *
+     * @param key the key to be searched in the receiver.
      * @return the index where the key is contained in the receiver, returns -1
-     *         if the key was not found.
+     * if the key was not found.
      */
     protected int indexOfKey(int key) {
         final int tab[] = table;
@@ -270,10 +278,11 @@ public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
     }
 
     /**
-     * @param value
-     *            the value to be searched in the receiver.
+     * Index of value.
+     *
+     * @param value the value to be searched in the receiver.
      * @return the index where the value is contained in the receiver, returns
-     *         -1 if the value was not found.
+     * -1 if the value was not found.
      */
     protected int indexOfValue(Object value) {
         final Object val[] = values;
@@ -311,9 +320,9 @@ public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
      * has a new size that equals <tt>this.size()</tt>.
      * <p>
      * This method can be used to iterate over the keys of the receiver.
-     * 
-     * @param list
-     *            the list to be filled 
+     *
+     * @param list the list to be filled
+     * @return the int
      */
     public int keys(int[] list) {
         int[] tab = table;
@@ -379,6 +388,8 @@ public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
      * larger capacity. This method is called automatically when the number of
      * keys in the receiver exceeds the high water mark or falls below the low
      * water mark.
+     *
+     * @param newCapacity the new capacity
      */
     protected void rehash(int newCapacity) {
         int oldCapacity = table.length;
@@ -441,16 +452,10 @@ public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
 
     /**
      * Initializes the receiver.
-     * 
-     * @param initialCapacity
-     *            the initial capacity of the receiver.
-     * @param minLoadFactor
-     *            the minLoadFactor of the receiver.
-     * @param maxLoadFactor
-     *            the maxLoadFactor of the receiver.
-     * @throws IllegalArgumentException
-     *             if
-     *             <tt>initialCapacity < 0 || (minLoadFactor < 0.0 || minLoadFactor >= 1.0) || (maxLoadFactor <= 0.0 || maxLoadFactor >= 1.0) || (minLoadFactor >= maxLoadFactor)</tt>.
+     *
+     * @param initialCapacity the initial capacity of the receiver.
+     * @param minLoadFactor the minLoadFactor of the receiver.
+     * @param maxLoadFactor the maxLoadFactor of the receiver.
      */
     protected void setUp(int initialCapacity, double minLoadFactor,
             double maxLoadFactor) {

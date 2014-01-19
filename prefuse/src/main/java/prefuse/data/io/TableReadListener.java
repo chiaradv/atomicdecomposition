@@ -2,6 +2,7 @@ package prefuse.data.io;
 
 import prefuse.data.parser.DataParseException;
 
+
 /**
  * Callback interface used by AbstractTextTableReader instances to be
  * used when a table value is encountered in parsing.

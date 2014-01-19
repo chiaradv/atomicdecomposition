@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import prefuse.data.Table;
 import prefuse.util.collections.IntIterator;
 
+
 /**
  * TableWriter that writes out a delimited text table, using a designated
  * character string to demarcate data columns. By default, a header row
@@ -16,7 +17,10 @@ import prefuse.util.collections.IntIterator;
  */
 public class DelimitedTextTableWriter extends AbstractTableWriter {
 
+    /** The m_delim. */
     private String  m_delim;
+    
+    /** The m_print header. */
     private boolean m_printHeader;
     
     /**
@@ -82,6 +86,11 @@ public class DelimitedTextTableWriter extends AbstractTableWriter {
     // ------------------------------------------------------------------------
 
     /**
+     * Write table.
+     *
+     * @param table the table
+     * @param os the os
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.TableWriter#writeTable(prefuse.data.Table, java.io.OutputStream)
      */
     public void writeTable(Table table, OutputStream os) throws DataIOException {

@@ -4,6 +4,7 @@ import java.util.EventListener;
 
 import prefuse.data.column.Column;
 
+
 /**
  * Listener interface for monitoring changes to a data column.
  * 
@@ -13,11 +14,12 @@ public interface ColumnListener extends EventListener {
 
     /**
      * Notification that a data column has changed.
+     *
      * @param src the column that has changed
      * @param type One of {@link EventConstants#INSERT},
-     * {@link EventConstants#DELETE}, or {@link EventConstants#UPDATE}.
      * @param start the first column index that has been changed
      * @param end the last column index that has been changed
+     * {@link EventConstants#DELETE}, or {@link EventConstants#UPDATE}.
      */
     public void columnChanged(Column src, int type, int start, int end);
     

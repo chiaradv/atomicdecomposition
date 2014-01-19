@@ -5,6 +5,7 @@ import java.util.Iterator;
 import prefuse.data.Edge;
 import prefuse.data.Node;
 
+
 /**
  * Iterator over neighbors of a given Node. Resolves Edge instances to
  * provide direct iteration over the Node instances.
@@ -13,7 +14,10 @@ import prefuse.data.Node;
  */
 public class NeighborIterator implements Iterator {
 
+    /** The m_edges. */
     private Iterator m_edges;
+    
+    /** The m_node. */
     private Node     m_node;
     
     /**
@@ -27,6 +31,8 @@ public class NeighborIterator implements Iterator {
     }
     
     /**
+     * Removes the.
+     *
      * @see java.util.Iterator#remove()
      */
     public void remove() {
@@ -34,6 +40,9 @@ public class NeighborIterator implements Iterator {
     }
 
     /**
+     * Checks for next.
+     *
+     * @return true, if successful
      * @see java.util.Iterator#hasNext()
      */
     public boolean hasNext() {
@@ -41,6 +50,9 @@ public class NeighborIterator implements Iterator {
     }
 
     /**
+     * Next.
+     *
+     * @return the object
      * @see java.util.Iterator#next()
      */
     public Object next() {

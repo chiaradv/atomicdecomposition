@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import prefuse.util.collections.IntObjectHashMap;
 
+
 /**
  * <p>Library routines for processing color values. The standard color
  * representation used by prefuse is to store each color as single
@@ -30,10 +31,16 @@ import prefuse.util.collections.IntObjectHashMap;
  */
 public class ColorLib {
 
+    /** The Constant HEX_PREFIX. */
     public static final char HEX_PREFIX = '#';
     
+    /** The Constant colorMap. */
     private static final IntObjectHashMap colorMap = new IntObjectHashMap();
+    
+    /** The misses. */
     private static int misses = 0;
+    
+    /** The lookups. */
     private static int lookups = 0;
     
     // ------------------------------------------------------------------------
@@ -324,6 +331,7 @@ public class ColorLib {
     // ------------------------------------------------------------------------
     // Color Calculations
     
+    /** The Constant scale. */
     private static final float scale = 0.7f;
     
     /**
@@ -481,11 +489,13 @@ public class ColorLib {
      * (red, orange, yellow, olive, green, cyan, blue, purple, magenta,
      * and pink). If the size is greater than 12, these colors will be
      * continually repeated, but with varying saturation levels.
+     *
      * @param size the size of the color palette
      * @param s1 the initial saturation to use
      * @param s2 the final (most distant) saturation to use
      * @param b the brightness value to use
      * @param a the alpha value to use
+     * @return the category palette
      */
     public static int[] getCategoryPalette(int size, 
             float s1, float s2, float b, float a)
@@ -507,7 +517,9 @@ public class ColorLib {
      * (red, orange, yellow, olive, green, cyan, blue, purple, magenta,
      * and pink). If the size is greater than 12, these colors will be
      * continually repeated, but with varying saturation levels.
+     *
      * @param size the size of the color palette
+     * @return the category palette
      */
     public static int[] getCategoryPalette(int size) {
         return getCategoryPalette(size, 1.f, 0.4f, 1.f, 1.0f);

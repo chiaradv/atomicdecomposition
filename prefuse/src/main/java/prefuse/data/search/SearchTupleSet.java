@@ -5,6 +5,7 @@ import java.util.Iterator;
 import prefuse.data.Tuple;
 import prefuse.data.tuple.DefaultTupleSet;
 
+
 /**
  * <p>Abstract base class for TupleSet implementations that support text
  * search. These sets provide search engine functionality -- Tuple data fields
@@ -49,10 +50,9 @@ public abstract class SearchTupleSet extends DefaultTupleSet {
      * to construct an internal data structure allowing fast searches
      * over these attributes. To index multiple fields, simply call
      * this method multiple times with the desired field names.
+     *
      * @param tuples an Iterator over Tuple instances to index
      * @param field the name of the attribute to index
-     * @throws ClassCastException is a non-Tuple instance is
-     * encountered in the iteration.
      */
     public void index(Iterator tuples, String field) {
         while ( tuples.hasNext() ) {
@@ -90,14 +90,21 @@ public abstract class SearchTupleSet extends DefaultTupleSet {
     /**
      * This method is not supported by this implementation. Don't call it!
      * Instead, use the {@link #search(String) search} or
+     *
+     * @param t the t
+     * @return the tuple
      * {@link #clear() clear} methods.
      */
     public Tuple addTuple(Tuple t) {
         throw new UnsupportedOperationException();
     }
+    
     /**
      * This method is not supported by this implementation. Don't call it!
      * Instead, use the {@link #search(String) search} or
+     *
+     * @param t the t
+     * @return true, if successful
      * {@link #clear() clear} methods.
      */
     public boolean removeTuple(Tuple t) {

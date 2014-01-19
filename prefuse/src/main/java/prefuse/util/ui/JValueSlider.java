@@ -23,6 +23,7 @@ import javax.swing.event.ChangeListener;
 
 import prefuse.util.StringLib;
 
+
 /**
  * Swing component that contains a slider, and title label, and editable
  * text box displaying the slider value.
@@ -31,15 +32,28 @@ import prefuse.util.StringLib;
  */
 public class JValueSlider extends JComponent {
 
+    /** The m_value. */
     private Number     m_min, m_max, m_value;
+    
+    /** The m_ignore. */
     private boolean    m_ignore = false;
     
+    /** The m_label. */
     private JLabel     m_label;
+    
+    /** The m_slider. */
     private JSlider    m_slider;
+    
+    /** The m_field. */
     private JTextField m_field;
+    
+    /** The m_listeners. */
     private List       m_listeners;
     
+    /** The m_smin. */
     private int m_smin = 0;
+    
+    /** The m_srange. */
     private int m_srange = 100;
     
     /**
@@ -116,7 +130,7 @@ public class JValueSlider extends JComponent {
     }
     
     /**
-     * Initialize the UI
+     * Initialize the UI.
      */
     protected void initUI() {
         m_slider.addChangeListener(new ChangeListener() {
@@ -177,6 +191,10 @@ public class JValueSlider extends JComponent {
     
     /**
      * Check if any label text is obscured.
+     *
+     * @param c the c
+     * @param s the s
+     * @return true, if is text obscured
      */
     private static boolean isTextObscured(JComponent c, String s) {
         Graphics g = c.getGraphics();
@@ -206,7 +224,8 @@ public class JValueSlider extends JComponent {
     }
     
     /**
-     * Compute the current slider value from the current slider position
+     * Compute the current slider value from the current slider position.
+     *
      * @return the current value
      */
     private Number getSliderValue() {
@@ -231,7 +250,7 @@ public class JValueSlider extends JComponent {
     }
     
     /**
-     * Private set the slider position based upon the current value
+     * Private set the slider position based upon the current value.
      */
     private void setSliderValue() {
         int val;
@@ -331,6 +350,9 @@ public class JValueSlider extends JComponent {
     // ------------------------------------------------------------------------
     
     /**
+     * Sets the background.
+     *
+     * @param c the new background
      * @see java.awt.Component#setBackground(java.awt.Color)
      */
     public void setBackground(Color c) {
@@ -341,6 +363,9 @@ public class JValueSlider extends JComponent {
     }
     
     /**
+     * Sets the foreground.
+     *
+     * @param c the new foreground
      * @see java.awt.Component#setForeground(java.awt.Color)
      */
     public void setForeground(Color c) {
@@ -351,6 +376,9 @@ public class JValueSlider extends JComponent {
     }
     
     /**
+     * Sets the font.
+     *
+     * @param f the new font
      * @see java.awt.Component#setFont(java.awt.Font)
      */
     public void setFont(Font f) {
@@ -361,6 +389,9 @@ public class JValueSlider extends JComponent {
     }
     
     /**
+     * Sets the preferred size.
+     *
+     * @param d the new preferred size
      * @see javax.swing.JComponent#setPreferredSize(java.awt.Dimension)
      */
     public void setPreferredSize(Dimension d) {

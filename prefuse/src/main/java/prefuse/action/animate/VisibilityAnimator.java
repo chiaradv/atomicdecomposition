@@ -7,6 +7,7 @@ import prefuse.util.ColorLib;
 import prefuse.visual.VisualItem;
 import prefuse.visual.expression.StartVisiblePredicate;
 
+
 /**
  * Animator that interpolates the visibility status of VisualItems. Items
  * not currently visible but with end visibility true are faded in, while
@@ -33,6 +34,9 @@ public class VisibilityAnimator extends GroupAction {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.GroupAction#run(double)
      */
     public void run(double frac) {
@@ -43,6 +47,9 @@ public class VisibilityAnimator extends GroupAction {
         }
     }
     
+    /**
+     * Setup.
+     */
     private void setup() {
         // handle fade-in nodes
         Iterator items = m_vis.visibleItems(m_group);
@@ -75,6 +82,9 @@ public class VisibilityAnimator extends GroupAction {
         }
     }
     
+    /**
+     * Finish.
+     */
     private void finish() {
         // set faded-out nodes to permanently invisible
         Iterator items = m_vis.items(m_group, StartVisiblePredicate.TRUE);

@@ -3,6 +3,7 @@ package prefuse.data.expression;
 import prefuse.data.Schema;
 import prefuse.data.Tuple;
 
+
 /**
  * Abstract base class for dedicated Predicate instances.
  * 
@@ -14,6 +15,9 @@ public abstract class AbstractPredicate extends AbstractExpression
 
     /**
      * Returns boolean.class.
+     *
+     * @param s the s
+     * @return the type
      * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
      */
     public Class getType(Schema s) {
@@ -21,7 +25,10 @@ public abstract class AbstractPredicate extends AbstractExpression
     }
 
     /**
-     * Returns the wrapper Object type for the result of
+     * Returns the wrapper Object type for the result of.
+     *
+     * @param t the t
+     * @return the object
      * {@link Expression#getBoolean(Tuple)}.
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */

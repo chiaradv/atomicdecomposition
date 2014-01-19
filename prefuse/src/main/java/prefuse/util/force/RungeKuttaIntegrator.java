@@ -2,6 +2,7 @@ package prefuse.util.force;
 
 import java.util.Iterator;
 
+
 /**
  * Updates velocity and position data using the 4th-Order Runge-Kutta method.
  * It is slower but more accurate than other techniques such as Euler's Method.
@@ -12,6 +13,10 @@ import java.util.Iterator;
 public class RungeKuttaIntegrator implements Integrator {
     
     /**
+     * Integrate.
+     *
+     * @param sim the sim
+     * @param timestep the timestep
      * @see prefuse.util.force.Integrator#integrate(prefuse.util.force.ForceSimulator, long)
      */
     public void integrate(ForceSimulator sim, long timestep) {

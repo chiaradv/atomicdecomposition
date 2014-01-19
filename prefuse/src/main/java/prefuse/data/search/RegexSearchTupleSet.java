@@ -10,6 +10,7 @@ import prefuse.data.tuple.DefaultTupleSet;
 import prefuse.data.tuple.TupleSet;
 import prefuse.util.StringLib;
 
+
 /**
  * SearchTupleSet implementation that treats the query as a regular expression
  * to match against all indexed Tuple data fields.
@@ -24,8 +25,13 @@ import prefuse.util.StringLib;
  */
 public class RegexSearchTupleSet extends SearchTupleSet {
     
+    /** The m_query. */
     private String m_query = "";
+    
+    /** The m_case sensitive. */
     private boolean m_caseSensitive;
+    
+    /** The m_source. */
     private LinkedHashMap m_source = new LinkedHashMap();
     
     /**
@@ -45,6 +51,9 @@ public class RegexSearchTupleSet extends SearchTupleSet {
     }
     
     /**
+     * Gets the query.
+     *
+     * @return the query
      * @see prefuse.data.search.SearchTupleSet#getQuery()
      */
     public String getQuery() {
@@ -52,6 +61,9 @@ public class RegexSearchTupleSet extends SearchTupleSet {
     }
 
     /**
+     * Search.
+     *
+     * @param query the query
      * @see prefuse.data.search.SearchTupleSet#search(java.lang.String)
      */
     public void search(String query) {
@@ -95,6 +107,10 @@ public class RegexSearchTupleSet extends SearchTupleSet {
     }
 
     /**
+     * Index.
+     *
+     * @param t the t
+     * @param field the field
      * @see prefuse.data.search.SearchTupleSet#index(prefuse.data.Tuple, java.lang.String)
      */
     public void index(Tuple t, String field) {
@@ -107,6 +123,10 @@ public class RegexSearchTupleSet extends SearchTupleSet {
     }
 
     /**
+     * Unindex.
+     *
+     * @param t the t
+     * @param field the field
      * @see prefuse.data.search.SearchTupleSet#unindex(prefuse.data.Tuple, java.lang.String)
      */
     public void unindex(Tuple t, String field) {
@@ -118,6 +138,8 @@ public class RegexSearchTupleSet extends SearchTupleSet {
 
     /**
      * Returns true, as unidexing is supported by this class.
+     *
+     * @return true, if is unindex supported
      * @see prefuse.data.search.SearchTupleSet#isUnindexSupported()
      */
     public boolean isUnindexSupported() {

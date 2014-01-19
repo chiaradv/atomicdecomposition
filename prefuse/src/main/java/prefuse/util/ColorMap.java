@@ -1,5 +1,6 @@
 package prefuse.util;
 
+
 /**
  * A color map provides a mapping from numeric values to specific colors.
  * This useful for assigning colors to visualized items. The numeric values
@@ -10,7 +11,10 @@ package prefuse.util;
  */
 public class ColorMap {
 
+    /** The palette. */
     private int[] palette;
+    
+    /** The max value. */
     private double minValue, maxValue;
     
     /**

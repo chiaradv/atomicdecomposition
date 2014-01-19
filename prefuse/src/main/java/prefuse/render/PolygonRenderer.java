@@ -9,6 +9,7 @@ import prefuse.util.GraphicsLib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>Renderer for drawing a polygon, either as a closed shape, or as a
  * series of potentially unclosed curves. VisualItems must have a data field
@@ -47,12 +48,22 @@ public class PolygonRenderer extends AbstractShapeRenderer {
         POLYGON_SCHEMA.addColumn(POLYGON, float[].class);
     }
     
+    /** The m_poly type. */
     private int     m_polyType = Constants.POLY_TYPE_LINE;
+    
+    /** The m_slack. */
     private float   m_slack = 0.08f;
+    
+    /** The m_epsilon. */
     private float   m_epsilon = 0.1f;
+    
+    /** The m_closed. */
     private boolean m_closed = true;
+    
+    /** The m_polyfield. */
     private String  m_polyfield = POLYGON;
     
+    /** The m_path. */
     private GeneralPath m_path = new GeneralPath();
     
     /**
@@ -142,6 +153,10 @@ public class PolygonRenderer extends AbstractShapeRenderer {
     }
 
     /**
+     * Gets the raw shape.
+     *
+     * @param item the item
+     * @return the raw shape
      * @see prefuse.render.AbstractShapeRenderer#getRawShape(prefuse.visual.VisualItem)
      */
     protected Shape getRawShape(VisualItem item) {

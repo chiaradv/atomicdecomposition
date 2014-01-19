@@ -17,6 +17,7 @@ import prefuse.util.io.IOLib;
 import prefuse.util.io.SimpleFileFilter;
 
 
+
 /**
  * Swing ActionListener that reveals a dialog box that allows users to
  * export the current Display view to an image file.
@@ -25,8 +26,13 @@ import prefuse.util.io.SimpleFileFilter;
  */
 public class ExportDisplayAction extends AbstractAction {
 
+    /** The display. */
     private Display display;
+    
+    /** The chooser. */
     private JFileChooser chooser;
+    
+    /** The scaler. */
     private ScaleSelector scaler;
     
     /**
@@ -37,6 +43,9 @@ public class ExportDisplayAction extends AbstractAction {
         this.display = display;
     }
     
+    /**
+     * Inits the.
+     */
     private void init() {
         scaler  = new ScaleSelector();
         chooser = new JFileChooser();
@@ -60,6 +69,8 @@ public class ExportDisplayAction extends AbstractAction {
     
     /**
      * Shows the image export dialog and processes the results.
+     *
+     * @param evt the evt
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     public void actionPerformed(ActionEvent evt) {

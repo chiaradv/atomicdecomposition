@@ -5,6 +5,7 @@ import java.util.Arrays;
 import prefuse.data.DataReadOnlyException;
 import prefuse.data.DataTypeException;
 
+
 /**
  * Column instance for sotring flaot values.
  * 
@@ -12,7 +13,10 @@ import prefuse.data.DataTypeException;
  */
 public class FloatColumn extends AbstractColumn {
 
+    /** The m_values. */
     private float[] m_values;
+    
+    /** The m_size. */
     private int     m_size;
     
     /**
@@ -51,6 +55,9 @@ public class FloatColumn extends AbstractColumn {
     // Column Metadata
     
     /**
+     * Gets the row count.
+     *
+     * @return the row count
      * @see prefuse.data.column.Column#getRowCount()
      */
     public int getRowCount() {
@@ -58,6 +65,9 @@ public class FloatColumn extends AbstractColumn {
     }
     
     /**
+     * Sets the maximum row.
+     *
+     * @param nrows the new maximum row
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
     public void setMaximumRow(int nrows) {
@@ -76,6 +86,10 @@ public class FloatColumn extends AbstractColumn {
     // Data Access Methods
     
     /**
+     * Gets the.
+     *
+     * @param row the row
+     * @return the object
      * @see prefuse.data.column.Column#get(int)
      */
     public Object get(int row) {
@@ -83,6 +97,11 @@ public class FloatColumn extends AbstractColumn {
     }
 
     /**
+     * Sets the.
+     *
+     * @param val the val
+     * @param row the row
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.Column#set(java.lang.Object, int)
      */
     public void set(Object val, int row) throws DataTypeException {
@@ -105,6 +124,11 @@ public class FloatColumn extends AbstractColumn {
     // Data Type Convenience Methods
     
     /**
+     * Gets the float.
+     *
+     * @param row the row
+     * @return the float
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.AbstractColumn#getFloat(int)
      */
     public float getFloat(int row) throws DataTypeException {
@@ -115,6 +139,11 @@ public class FloatColumn extends AbstractColumn {
     }
 
     /**
+     * Sets the float.
+     *
+     * @param val the val
+     * @param row the row
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.AbstractColumn#setFloat(float, int)
      */
     public void setFloat(float val, int row) throws DataTypeException {
@@ -153,13 +182,23 @@ public class FloatColumn extends AbstractColumn {
     // ------------------------------------------------------------------------
     
     /**
-     * @see prefuse.data.column.Column#getInt(int)
-     */
+ * Gets the int.
+ *
+ * @param row the row
+ * @return the int
+ * @throws DataTypeException the data type exception
+ * @see prefuse.data.column.Column#getInt(int)
+ */
     public int getInt(int row) throws DataTypeException {
         return (int)getFloat(row);
     }
     
     /**
+     * Gets the long.
+     *
+     * @param row the row
+     * @return the long
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.Column#getLong(int)
      */
     public long getLong(int row) throws DataTypeException {
@@ -167,6 +206,11 @@ public class FloatColumn extends AbstractColumn {
     }
     
     /**
+     * Gets the double.
+     *
+     * @param row the row
+     * @return the double
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.Column#getDouble(int)
      */
     public double getDouble(int row) throws DataTypeException {

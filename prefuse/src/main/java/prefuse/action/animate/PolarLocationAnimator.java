@@ -8,6 +8,7 @@ import prefuse.util.MathLib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Animator that interpolates between starting and ending display locations
  * by linearly interpolating between polar coordinates.
@@ -16,11 +17,17 @@ import prefuse.visual.VisualItem;
  */
 public class PolarLocationAnimator extends ItemAction {
     
+    /** The m_anchor. */
     private Point2D m_anchor = new Point2D.Double();
+    
+    /** The m_linear. */
     private String  m_linear = null;
     
     // temp variables
+    /** The y. */
     private double ax, ay, sx, sy, ex, ey, x, y;
+    
+    /** The ett. */
     private double dt1, dt2, sr, st, er, et, r, t, stt, ett;
     
     /**
@@ -56,6 +63,9 @@ public class PolarLocationAnimator extends ItemAction {
         m_linear = linearGroup;
     }
 
+    /**
+     * Sets the anchor.
+     */
     private void setAnchor() {
         Display d = getVisualization().getDisplay(0);
         m_anchor.setLocation(d.getWidth()/2,d.getHeight()/2);
@@ -65,6 +75,9 @@ public class PolarLocationAnimator extends ItemAction {
     }
 
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {
@@ -73,6 +86,10 @@ public class PolarLocationAnimator extends ItemAction {
     }
     
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

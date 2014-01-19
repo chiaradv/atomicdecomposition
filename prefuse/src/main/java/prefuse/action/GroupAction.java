@@ -2,6 +2,7 @@ package prefuse.action;
 
 import prefuse.Visualization;
 
+
 /**
  * An Action that can be parameterized to process a particular group of items.
  * 
@@ -9,7 +10,7 @@ import prefuse.Visualization;
  */
 public abstract class GroupAction extends Action {
 
-    /** A reference to the group to be processed by this Action */
+    /** A reference to the group to be processed by this Action. */
     protected String m_group;
     
     /**
@@ -133,6 +134,9 @@ public abstract class GroupAction extends Action {
     // ------------------------------------------------------------------------
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public abstract void run(double frac);

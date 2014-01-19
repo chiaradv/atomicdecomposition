@@ -1,5 +1,6 @@
 package prefuse.activity;
 
+
 /**
  * A pacing function that provides slow-in, slow-out animation, where the
  * animation begins at a slower rate, speeds up through the middle of the
@@ -13,7 +14,10 @@ package prefuse.activity;
 public class SlowInSlowOutPacer implements Pacer {
     
     /**
-     * Pacing function providing slow-in, slow-out animation
+     * Pacing function providing slow-in, slow-out animation.
+     *
+     * @param f the f
+     * @return the double
      * @see prefuse.activity.Pacer#pace(double)
      */
     public double pace(double f) {
@@ -21,8 +25,10 @@ public class SlowInSlowOutPacer implements Pacer {
     }
     
     /**
-     * Computes a normalized sigmoid
+     * Computes a normalized sigmoid.
+     *
      * @param x input value in the interval [0,1]
+     * @return the double
      */
     private double sigmoid(double x) {
         x = 12.0*x - 6.0;

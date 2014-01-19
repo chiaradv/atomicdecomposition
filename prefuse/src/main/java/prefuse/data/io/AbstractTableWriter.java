@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 
 import prefuse.data.Table;
 
+
 /**
  * Abstract base class implementation of the TableWriter interface. Provides
  * implementations for all but the
@@ -17,6 +18,11 @@ import prefuse.data.Table;
 public abstract class AbstractTableWriter implements TableWriter {
 
     /**
+     * Write table.
+     *
+     * @param table the table
+     * @param filename the filename
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.TableWriter#writeTable(prefuse.data.Table, java.lang.String)
      */
     public void writeTable(Table table, String filename) throws DataIOException
@@ -25,6 +31,11 @@ public abstract class AbstractTableWriter implements TableWriter {
     }
 
     /**
+     * Write table.
+     *
+     * @param table the table
+     * @param f the f
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.TableWriter#writeTable(prefuse.data.Table, java.io.File)
      */
     public void writeTable(Table table, File f) throws DataIOException {

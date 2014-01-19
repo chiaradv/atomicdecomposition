@@ -14,6 +14,7 @@ import prefuse.visual.NodeItem;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>Layout instance implementing the Fruchterman-Reingold algorithm for
  * force-directed placement of graph nodes. The computational complexity of
@@ -29,15 +30,28 @@ import prefuse.visual.VisualItem;
  */
 public class FruchtermanReingoldLayout extends Layout {
 
+    /** The force constant. */
     private double forceConstant;
+    
+    /** The temp. */
     private double temp;
+    
+    /** The max iter. */
     private int maxIter = 700;
     
+    /** The m_node group. */
     protected String m_nodeGroup;
+    
+    /** The m_edge group. */
     protected String m_edgeGroup;
+    
+    /** The m_fidx. */
     protected int m_fidx;
     
+    /** The Constant EPSILON. */
     private static final double EPSILON = 0.000001D;
+    
+    /** The Constant ALPHA. */
     private static final double ALPHA = 0.1;
     
     /**
@@ -49,7 +63,8 @@ public class FruchtermanReingoldLayout extends Layout {
     }
     
     /**
-     * Create a new FruchtermanReingoldLayout
+     * Create a new FruchtermanReingoldLayout.
+     *
      * @param graph the data field to layout. Must resolve to a Graph instance.
      * @param maxIter the maximum number of iterations of the algorithm to run
      */
@@ -77,6 +92,9 @@ public class FruchtermanReingoldLayout extends Layout {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {
@@ -111,6 +129,12 @@ public class FruchtermanReingoldLayout extends Layout {
         finish(g);
     }
     
+    /**
+     * Inits the.
+     *
+     * @param g the g
+     * @param b the b
+     */
     private void init(Graph g, Rectangle2D b) {
         initSchema(g.getNodes());
         
@@ -131,6 +155,11 @@ public class FruchtermanReingoldLayout extends Layout {
         }
     }
     
+    /**
+     * Finish.
+     *
+     * @param g the g
+     */
     private void finish(Graph g) {
         Iterator nodeIter = g.nodes();
         while ( nodeIter.hasNext() ) {
@@ -141,6 +170,12 @@ public class FruchtermanReingoldLayout extends Layout {
         }
     }
     
+    /**
+     * Calc positions.
+     *
+     * @param n the n
+     * @param b the b
+     */
     public void calcPositions(NodeItem n, Rectangle2D b) {
         Params np = getParams(n);
         double deltaLength = Math.max(EPSILON,
@@ -177,6 +212,11 @@ public class FruchtermanReingoldLayout extends Layout {
         np.loc[1] = y;
     }
 
+    /**
+     * Calc attraction.
+     *
+     * @param e the e
+     */
     public void calcAttraction(EdgeItem e) {
         NodeItem n1 = e.getSourceItem();
         Params n1p = getParams(n1);
@@ -201,6 +241,12 @@ public class FruchtermanReingoldLayout extends Layout {
         n2p.disp[0] += xDisp; n2p.disp[1] += yDisp;
     }
 
+    /**
+     * Calc repulsion.
+     *
+     * @param g the g
+     * @param n1 the n1
+     */
     public void calcRepulsion(Graph g, NodeItem n1) {
         Params np = getParams(n1);
         np.disp[0] = 0.0; np.disp[1] = 0.0;
@@ -228,6 +274,11 @@ public class FruchtermanReingoldLayout extends Layout {
         }
     }
     
+    /**
+     * Cool.
+     *
+     * @param curIter the cur iter
+     */
     private void cool(int curIter) {
         temp *= (1.0 - curIter / (double) maxIter);
     }
@@ -247,12 +298,23 @@ public class FruchtermanReingoldLayout extends Layout {
         PARAMS_SCHEMA.addColumn(PARAMS, Params.class);
     }
     
+    /**
+     * Inits the schema.
+     *
+     * @param ts the ts
+     */
     protected void initSchema(TupleSet ts) {
         try {
             ts.addColumns(PARAMS_SCHEMA);
         } catch ( IllegalArgumentException iae ) {};
     }
     
+    /**
+     * Gets the params.
+     *
+     * @param item the item
+     * @return the params
+     */
     private Params getParams(VisualItem item) {
         Params rp = (Params)item.get(PARAMS);
         if ( rp == null ) {
@@ -266,7 +328,11 @@ public class FruchtermanReingoldLayout extends Layout {
      * Wrapper class holding parameters used for each node in this layout.
      */
     public static class Params implements Cloneable {
+        
+        /** The loc. */
         double[] loc = new double[2];
+        
+        /** The disp. */
         double[] disp = new double[2];
     }
     

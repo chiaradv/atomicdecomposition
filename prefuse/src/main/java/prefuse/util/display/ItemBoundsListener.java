@@ -6,6 +6,7 @@ package prefuse.util.display;
 
 import prefuse.Display;
 
+
 /**
  * Listener interface for monitoring changes to the space occupied by
  * VisualItems within the space of a Display.

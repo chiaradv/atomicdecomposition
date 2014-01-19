@@ -1,5 +1,6 @@
 package prefuse.util.collections;
 
+
 /**
  * Exception indicating a comparator is incompatible with the data type
  * to be compared.

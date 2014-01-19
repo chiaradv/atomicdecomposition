@@ -13,6 +13,7 @@ import prefuse.data.event.TableListener;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Changes a node's location when dragged on screen. Other effects
  * include fixing a node's position when the mouse if over it, and
@@ -23,12 +24,25 @@ import prefuse.visual.VisualItem;
  */
 public class DragControl extends ControlAdapter implements TableListener {
 
+    /** The active item. */
     private VisualItem activeItem;
+    
+    /** The action. */
     protected String action;
+    
+    /** The down. */
     protected Point2D down = new Point2D.Double();
+    
+    /** The temp. */
     protected Point2D temp = new Point2D.Double();
+    
+    /** The reset item. */
     protected boolean dragged, wasFixed, resetItem;
+    
+    /** The fix on mouse over. */
     private boolean fixOnMouseOver = true;
+    
+    /** The repaint. */
     protected boolean repaint = true;
     
     /**
@@ -97,6 +111,10 @@ public class DragControl extends ControlAdapter implements TableListener {
     }
     
     /**
+     * Item entered.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemEntered(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemEntered(VisualItem item, MouseEvent e) {
@@ -112,6 +130,10 @@ public class DragControl extends ControlAdapter implements TableListener {
     }
     
     /**
+     * Item exited.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemExited(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemExited(VisualItem item, MouseEvent e) {
@@ -125,6 +147,10 @@ public class DragControl extends ControlAdapter implements TableListener {
     } //
     
     /**
+     * Item pressed.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemPressed(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemPressed(VisualItem item, MouseEvent e) {
@@ -141,6 +167,10 @@ public class DragControl extends ControlAdapter implements TableListener {
     }
     
     /**
+     * Item released.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemReleased(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemReleased(VisualItem item, MouseEvent e) {
@@ -154,6 +184,10 @@ public class DragControl extends ControlAdapter implements TableListener {
     }
     
     /**
+     * Item dragged.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemDragged(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemDragged(VisualItem item, MouseEvent e) {
@@ -179,6 +213,13 @@ public class DragControl extends ControlAdapter implements TableListener {
     }
 
     /**
+     * Table changed.
+     *
+     * @param t the t
+     * @param start the start
+     * @param end the end
+     * @param col the col
+     * @param type the type
      * @see prefuse.data.event.TableListener#tableChanged(prefuse.data.Table, int, int, int, int)
      */
     public void tableChanged(Table t, int start, int end, int col, int type) {

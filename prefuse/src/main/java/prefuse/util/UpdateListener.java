@@ -9,6 +9,7 @@ import prefuse.data.event.TupleSetListener;
 import prefuse.data.expression.Expression;
 import prefuse.data.tuple.TupleSet;
 
+
 /**
  * Convenience listener class that implements ExpressionListener,
  * TupleSetListener, and ComponentListener and routes all the
@@ -29,6 +30,9 @@ public abstract class UpdateListener
     public abstract void update(Object source);
     
     /**
+     * Expression changed.
+     *
+     * @param expr the expr
      * @see prefuse.data.event.ExpressionListener#expressionChanged(prefuse.data.expression.Expression)
      */
     public void expressionChanged(Expression expr) {
@@ -36,6 +40,11 @@ public abstract class UpdateListener
     }
     
     /**
+     * Tuple set changed.
+     *
+     * @param tset the tset
+     * @param added the added
+     * @param removed the removed
      * @see prefuse.data.event.TupleSetListener#tupleSetChanged(prefuse.data.tuple.TupleSet, prefuse.data.Tuple[], prefuse.data.Tuple[])
      */
     public void tupleSetChanged(TupleSet tset, Tuple[] added, Tuple[] removed) {
@@ -43,6 +52,9 @@ public abstract class UpdateListener
     }
     
     /**
+     * Component resized.
+     *
+     * @param e the e
      * @see java.awt.event.ComponentListener#componentResized(java.awt.event.ComponentEvent)
      */
     public void componentResized(ComponentEvent e) {
@@ -51,20 +63,28 @@ public abstract class UpdateListener
 
     /**
      * Does nothing.
+     *
+     * @param e the e
      * @see java.awt.event.ComponentListener#componentHidden(java.awt.event.ComponentEvent)
      */
     public void componentHidden(ComponentEvent e) {
         // do nothing
     }
+    
     /**
      * Does nothing.
+     *
+     * @param e the e
      * @see java.awt.event.ComponentListener#componentMoved(java.awt.event.ComponentEvent)
      */
     public void componentMoved(ComponentEvent e) {
         // do nothing
     }
+    
     /**
      * Does nothing.
+     *
+     * @param e the e
      * @see java.awt.event.ComponentListener#componentShown(java.awt.event.ComponentEvent)
      */
     public void componentShown(ComponentEvent e) {

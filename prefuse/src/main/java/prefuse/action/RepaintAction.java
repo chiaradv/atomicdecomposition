@@ -2,6 +2,7 @@ package prefuse.action;
 
 import prefuse.Visualization;
 
+
 /**
  * Issues a repaint request to a Visualization.
  *
@@ -28,6 +29,8 @@ public class RepaintAction extends Action {
     /**
      * Calls the {@link prefuse.Visualization#repaint()} method on
      * this Action's associated Visualization.
+     *
+     * @param frac the frac
      */
     public void run(double frac) {
         getVisualization().repaint();

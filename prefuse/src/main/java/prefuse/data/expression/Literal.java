@@ -3,6 +3,7 @@ package prefuse.data.expression;
 import prefuse.data.Tuple;
 import prefuse.util.TypeLib;
 
+
 /**
  * Abstarct base class for a Literal Expression that evaluates to a
  * constant value.

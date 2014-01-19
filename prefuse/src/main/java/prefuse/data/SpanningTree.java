@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import prefuse.data.tuple.TupleManager;
 import prefuse.visual.tuple.TableEdgeItem;
 
+
 /**
  * Special tree instance for storing a spanning tree over a graph
  * instance. The spanning tree ensures that only Node and Edge instances
@@ -90,6 +91,9 @@ public class SpanningTree extends Tree {
     
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param parent the parent
+     * @return the int
      * @see prefuse.data.Tree#addChild(int)
      */
     public int addChild(int parent) {
@@ -99,6 +103,9 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param parent the parent
+     * @return the node
      * @see prefuse.data.Tree#addChild(prefuse.data.Node)
      */
     public Node addChild(Node parent) {
@@ -108,6 +115,10 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param parent the parent
+     * @param child the child
+     * @return the int
      * @see prefuse.data.Tree#addChildEdge(int, int)
      */
     public int addChildEdge(int parent, int child) {
@@ -117,6 +128,10 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param parent the parent
+     * @param child the child
+     * @return the edge
      * @see prefuse.data.Tree#addChildEdge(prefuse.data.Node, prefuse.data.Node)
      */
     public Edge addChildEdge(Node parent, Node child) {
@@ -126,6 +141,8 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @return the node
      * @see prefuse.data.Tree#addRoot()
      */
     public Node addRoot() {
@@ -135,6 +152,8 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @return the int
      * @see prefuse.data.Tree#addRootRow()
      */
     public int addRootRow() {
@@ -144,6 +163,9 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param node the node
+     * @return true, if successful
      * @see prefuse.data.Tree#removeChild(int)
      */
     public boolean removeChild(int node) {
@@ -153,6 +175,9 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param n the n
+     * @return true, if successful
      * @see prefuse.data.Tree#removeChild(prefuse.data.Node)
      */
     public boolean removeChild(Node n) {
@@ -162,6 +187,9 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param e the e
+     * @return true, if successful
      * @see prefuse.data.Tree#removeChildEdge(prefuse.data.Edge)
      */
     public boolean removeChildEdge(Edge e) {
@@ -171,6 +199,9 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param edge the edge
+     * @return true, if successful
      * @see prefuse.data.Tree#removeChildEdge(int)
      */
     public boolean removeChildEdge(int edge) {
@@ -180,6 +211,8 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param root the new root
      * @see prefuse.data.Tree#setRoot(prefuse.data.Node)
      */
     void setRoot(Node root) {
@@ -189,6 +222,10 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param s the s
+     * @param t the t
+     * @return the int
      * @see prefuse.data.Graph#addEdge(int, int)
      */
     public int addEdge(int s, int t) {
@@ -198,6 +235,10 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param s the s
+     * @param t the t
+     * @return the edge
      * @see prefuse.data.Graph#addEdge(prefuse.data.Node, prefuse.data.Node)
      */
     public Edge addEdge(Node s, Node t) {
@@ -207,6 +248,8 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @return the node
      * @see prefuse.data.Graph#addNode()
      */
     public Node addNode() {
@@ -216,6 +259,8 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @return the int
      * @see prefuse.data.Graph#addNodeRow()
      */
     public int addNodeRow() {
@@ -234,6 +279,9 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param e the e
+     * @return true, if successful
      * @see prefuse.data.Graph#removeEdge(prefuse.data.Edge)
      */
     public boolean removeEdge(Edge e) {
@@ -243,6 +291,9 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param edge the edge
+     * @return true, if successful
      * @see prefuse.data.Graph#removeEdge(int)
      */
     public boolean removeEdge(int edge) {
@@ -252,6 +303,9 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param node the node
+     * @return true, if successful
      * @see prefuse.data.Graph#removeNode(int)
      */
     public boolean removeNode(int node) {
@@ -261,6 +315,9 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param n the n
+     * @return true, if successful
      * @see prefuse.data.Graph#removeNode(prefuse.data.Node)
      */
     public boolean removeNode(Node n) {
@@ -270,6 +327,9 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param t the t
+     * @return true, if successful
      * @see prefuse.data.tuple.TupleSet#removeTuple(prefuse.data.Tuple)
      */
     public boolean removeTuple(Tuple t) {
@@ -279,6 +339,8 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param edges the new edge table
      * @see prefuse.data.Graph#setEdgeTable(prefuse.data.Table)
      */
     public void setEdgeTable(Table edges) {
@@ -288,6 +350,9 @@ public class SpanningTree extends Tree {
 
     /**
      * Unsupported operation. Spanning trees should not be edited.
+     *
+     * @param ntm the ntm
+     * @param etm the etm
      * @see prefuse.data.Graph#setTupleManagers(prefuse.data.tuple.TupleManager, prefuse.data.tuple.TupleManager)
      */
     public void setTupleManagers(TupleManager ntm, TupleManager etm) {

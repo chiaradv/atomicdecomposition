@@ -12,6 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.UIManager;
 
+
 /**
  * Library routines for user interface tasks.
  * 
@@ -109,7 +110,8 @@ public class UILib {
     }
     
     /**
-     * Add a strut, or rigid spacing, to a UI component
+     * Add a strut, or rigid spacing, to a UI component.
+     *
      * @param b the component to add the strut to, should be either a Box or a
      * Container using a BoxLayout.
      * @param horiz indicates if the strust should horizontal (true) or vertical
@@ -123,7 +125,8 @@ public class UILib {
     }
     
     /**
-     * Add a glue, or variable spacing, to a UI component
+     * Add a glue, or variable spacing, to a UI component.
+     *
      * @param b the component to add the glue to, should be either a Box or a
      * Container using a BoxLayout.
      * @param horiz indicates if the glue should horizontal (true) or vertical
@@ -135,15 +138,16 @@ public class UILib {
     }
     
     /**
-     * Add a strut, or rigid spacing, to a UI component
+     * Add a strut, or rigid spacing, to a UI component.
+     *
      * @param b the component to add the strut to, should be either a Box or a
      * Container using a BoxLayout.
      * @param layout the desired layout orientation of the strut. One of
+     * @param size the length, in pixels, of the strut
      * {@link javax.swing.BoxLayout#X_AXIS},
      * {@link javax.swing.BoxLayout#Y_AXIS},
      * {@link javax.swing.BoxLayout#LINE_AXIS}, or
      * {@link javax.swing.BoxLayout#PAGE_AXIS}.
-     * @param size the length, in pixels, of the strut
      */
     public static void addStrut(JComponent b, int layout, int size) {
         if ( size < 1 ) return;
@@ -153,7 +157,8 @@ public class UILib {
     }
     
     /**
-     * Add a glue, or variable spacing, to a UI component
+     * Add a glue, or variable spacing, to a UI component.
+     *
      * @param b the component to add the glue to, should be either a Box or a
      * Container using a BoxLayout.
      * @param layout the desired layout orientation of the glue. One of
@@ -169,15 +174,16 @@ public class UILib {
     }
     
     /**
-     * Resolve the axis type of a component, given a layout orientation
+     * Resolve the axis type of a component, given a layout orientation.
+     *
      * @param c a Swing Component, should be either a Box or a Container
      * using a BoxLayout.
      * @param layout the layout orientation of the component. One of
+     * @return one of {@link javax.swing.BoxLayout#X_AXIS}, or
      * {@link javax.swing.BoxLayout#X_AXIS},
      * {@link javax.swing.BoxLayout#Y_AXIS},
      * {@link javax.swing.BoxLayout#LINE_AXIS}, or
      * {@link javax.swing.BoxLayout#PAGE_AXIS}.
-     * @return one of {@link javax.swing.BoxLayout#X_AXIS}, or
      * {@link javax.swing.BoxLayout#Y_AXIS},
      */
     public static int getAxis(JComponent c, int layout) {

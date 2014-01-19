@@ -9,6 +9,7 @@ import prefuse.data.Tuple;
 import prefuse.util.collections.DefaultLiteralComparator;
 import prefuse.util.collections.LiteralComparator;
 
+
 /**
  * Comparator that compares Tuples based on the value of a single field.
  * 
@@ -16,10 +17,19 @@ import prefuse.util.collections.LiteralComparator;
  */
 public class TupleComparator implements Comparator {
 
+    /** The m_field. */
     private String m_field;
+    
+    /** The m_col. */
     private int m_col;
+    
+    /** The m_cmp. */
     private Comparator m_cmp;
+    
+    /** The m_type. */
     private Class m_type;
+    
+    /** The m_rev. */
     private int m_rev;
     
     /**
@@ -63,9 +73,11 @@ public class TupleComparator implements Comparator {
     
     /**
      * Creates a new TupleComparator.
+     *
      * @param col the column number of the data field to compare
      * @param type the expected type of the data field
      * @param ascend true to sort in ascending order, false for descending
+     * @param c the c
      */
     public TupleComparator(int col, Class type, boolean ascend, Comparator c) {
         m_field = null;
@@ -78,6 +90,10 @@ public class TupleComparator implements Comparator {
     /**
      * Compares two tuples. If either input Object is not a Tuple,
      * a ClassCastException will be thrown.
+     *
+     * @param o1 the o1
+     * @param o2 the o2
+     * @return the int
      * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
      */
     public int compare(Object o1, Object o2) {

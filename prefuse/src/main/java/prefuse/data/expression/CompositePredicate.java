@@ -3,6 +3,7 @@ package prefuse.data.expression;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
 /**
  * Abstract base class for Predicate instances that maintain one or
  * more sub-predicates (clauses).
@@ -11,6 +12,7 @@ import java.util.Iterator;
  */
 public abstract class CompositePredicate extends AbstractPredicate {
 
+    /** The m_clauses. */
     protected ArrayList m_clauses = new ArrayList(2);
     
     /**
@@ -137,6 +139,9 @@ public abstract class CompositePredicate extends AbstractPredicate {
     // ------------------------------------------------------------------------
     
     /**
+     * Visit.
+     *
+     * @param v the v
      * @see prefuse.data.expression.Expression#visit(prefuse.data.expression.ExpressionVisitor)
      */
     public void visit(ExpressionVisitor v) {
@@ -152,6 +157,8 @@ public abstract class CompositePredicate extends AbstractPredicate {
     // ------------------------------------------------------------------------
     
     /**
+     * Adds the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#addChildListeners()
      */
     protected void addChildListeners() {
@@ -162,6 +169,8 @@ public abstract class CompositePredicate extends AbstractPredicate {
     }
     
     /**
+     * Removes the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#removeChildListeners()
      */
     protected void removeChildListeners() {

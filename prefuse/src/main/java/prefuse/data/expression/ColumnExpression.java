@@ -3,6 +3,7 @@ package prefuse.data.expression;
 import prefuse.data.Schema;
 import prefuse.data.Tuple;
 
+
 /**
  * Expression instance that returns the value stored in a Tuple data field.
  * 
@@ -10,6 +11,7 @@ import prefuse.data.Tuple;
  */
 public class ColumnExpression extends AbstractExpression implements Predicate {
 
+    /** The m_field. */
     protected final String m_field;
     
     /**
@@ -32,6 +34,10 @@ public class ColumnExpression extends AbstractExpression implements Predicate {
     // Expression Interface
     
     /**
+     * Gets the type.
+     *
+     * @param s the s
+     * @return the type
      * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
      */
     public Class getType(Schema s) {
@@ -39,6 +45,10 @@ public class ColumnExpression extends AbstractExpression implements Predicate {
     }
 
     /**
+     * Gets the.
+     *
+     * @param t the t
+     * @return the object
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */
     public Object get(Tuple t) {
@@ -46,6 +56,10 @@ public class ColumnExpression extends AbstractExpression implements Predicate {
     }
 
     /**
+     * Gets the int.
+     *
+     * @param t the t
+     * @return the int
      * @see prefuse.data.expression.Expression#getInt(prefuse.data.Tuple)
      */
     public int getInt(Tuple t) {
@@ -53,6 +67,10 @@ public class ColumnExpression extends AbstractExpression implements Predicate {
     }
 
     /**
+     * Gets the long.
+     *
+     * @param t the t
+     * @return the long
      * @see prefuse.data.expression.Expression#getLong(prefuse.data.Tuple)
      */
     public long getLong(Tuple t) {
@@ -60,6 +78,10 @@ public class ColumnExpression extends AbstractExpression implements Predicate {
     }
 
     /**
+     * Gets the float.
+     *
+     * @param t the t
+     * @return the float
      * @see prefuse.data.expression.Expression#getFloat(prefuse.data.Tuple)
      */
     public float getFloat(Tuple t) {
@@ -67,6 +89,10 @@ public class ColumnExpression extends AbstractExpression implements Predicate {
     }
 
     /**
+     * Gets the double.
+     *
+     * @param t the t
+     * @return the double
      * @see prefuse.data.expression.Expression#getDouble(prefuse.data.Tuple)
      */
     public double getDouble(Tuple t) {
@@ -74,6 +100,10 @@ public class ColumnExpression extends AbstractExpression implements Predicate {
     }
 
     /**
+     * Gets the boolean.
+     *
+     * @param t the t
+     * @return the boolean
      * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
      */
     public boolean getBoolean(Tuple t) {
@@ -81,6 +111,9 @@ public class ColumnExpression extends AbstractExpression implements Predicate {
     }
 
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

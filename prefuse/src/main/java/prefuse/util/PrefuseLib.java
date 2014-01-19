@@ -10,6 +10,7 @@ import prefuse.Display;
 import prefuse.data.Schema;
 import prefuse.visual.VisualItem;
 
+
 /**
  * General library routines used by the prefuse toolkit.
  * 
@@ -38,6 +39,9 @@ public class PrefuseLib {
     
     // ------------------------------------------------------------------------
     
+    /**
+     * Instantiates a new prefuse lib.
+     */
     private PrefuseLib() {
         // prevent instantiation
     }
@@ -70,6 +74,8 @@ public class PrefuseLib {
     /**
      * Returns a string showing debugging info such as number of visualized
      * items and the current frame rate.
+     *
+     * @param d the d
      * @return the debug string
      */
     public static String getDisplayStats(Display d) {
@@ -102,11 +108,14 @@ public class PrefuseLib {
     // VisualItem Methods
     
     /**
-     * Returns a scale factor by which to scale a 2D shape to grow 
+     * Returns a scale factor by which to scale a 2D shape to grow
      * the area by the desired input size value. This is used to scale shapes
      * by total pixel area, rather than scaling each dimension by the
      * size value itself, which grows the pixel area quadratically rather
      * than linearly.
+     *
+     * @param size the size
+     * @return the size2 d
      */
     public static double getSize2D(double size) {
         return Math.pow(size, SIZE_SCALE_FACTOR);
@@ -283,6 +292,8 @@ public class PrefuseLib {
      * Indicates if a group is a child group, a non-top-level data group in
      * a set of nested data groups (e.g., the node or edge table of a
      * graph or tree).
+     *
+     * @param group the group
      * @return true if the group is a nested, or child, group
      */
     public static boolean isChildGroup(String group) {

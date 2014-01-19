@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 
 import prefuse.visual.VisualItem;
 
+
 /**
  * Control that executes an action when the mouse passes over an item.
  * 
@@ -11,6 +12,7 @@ import prefuse.visual.VisualItem;
  */
 public class HoverActionControl extends ControlAdapter {
 
+    /** The m_action. */
     private String m_action;
    
     /**
@@ -23,6 +25,10 @@ public class HoverActionControl extends ControlAdapter {
     }
     
     /**
+     * Item entered.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemEntered(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemEntered(VisualItem item, MouseEvent e) {
@@ -30,6 +36,10 @@ public class HoverActionControl extends ControlAdapter {
     }
 
     /**
+     * Item exited.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemExited(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemExited(VisualItem item, MouseEvent e) {

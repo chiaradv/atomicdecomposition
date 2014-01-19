@@ -2,6 +2,7 @@ package prefuse.util.ui;
 
 import javax.swing.BoundedRangeModel;
 
+
 /**
  * BoundedRangeModel that additionally supports a mapping between the integer
  * range used by interface components and a richer range of values, such

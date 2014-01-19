@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Interface for rendering VisualItems, providing drawing as well as location
  * checking and bounding box routines.

@@ -14,6 +14,7 @@ import prefuse.util.PrefuseLib;
 import prefuse.visual.VisualItem;
 import prefuse.visual.expression.InGroupPredicate;
 
+
 /**
  * Filter Action that sets visible all items within a specified graph distance
  * from a set of focus items; all other items will be set to invisible.
@@ -22,19 +23,27 @@ import prefuse.visual.expression.InGroupPredicate;
  */
 public class GraphDistanceFilter extends GroupAction {
 
+    /** The m_distance. */
     protected int m_distance;
+    
+    /** The m_sources. */
     protected String m_sources;
+    
+    /** The m_group p. */
     protected Predicate m_groupP;
+    
+    /** The m_bfs. */
     protected BreadthFirstIterator m_bfs;
    
     /**
      * Create a new GraphDistanceFilter that processes the given data group
      * and uses a graph distance of 1. By default, the
-     * {@link prefuse.Visualization#FOCUS_ITEMS} group will be used as the
-     * source nodes from which to measure the distance.
+     *
      * @param group the group to process. This group should resolve to a
      * Graph instance, otherwise exceptions will be thrown when this
      * Action is run.
+     * {@link prefuse.Visualization#FOCUS_ITEMS} group will be used as the
+     * source nodes from which to measure the distance.
      */
     public GraphDistanceFilter(String group) {
         this(group, 1);
@@ -43,13 +52,14 @@ public class GraphDistanceFilter extends GroupAction {
     /**
      * Create a new GraphDistanceFilter that processes the given data group
      * and uses the given graph distance. By default, the
-     * {@link prefuse.Visualization#FOCUS_ITEMS} group will be used as the
-     * source nodes from which to measure the distance.
+     *
      * @param group the group to process. This group should resolve to a
      * Graph instance, otherwise exceptions will be thrown when this
      * Action is run.
      * @param distance the graph distance within which items will be
      * visible.
+     * {@link prefuse.Visualization#FOCUS_ITEMS} group will be used as the
+     * source nodes from which to measure the distance.
      */
     public GraphDistanceFilter(String group, int distance) {
         this(group, Visualization.FOCUS_ITEMS, distance);
@@ -113,6 +123,9 @@ public class GraphDistanceFilter extends GroupAction {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.GroupAction#run(double)
      */
     public void run(double frac) {

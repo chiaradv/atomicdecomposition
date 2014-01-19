@@ -7,6 +7,7 @@ import javax.swing.DefaultBoundedRangeModel;
 
 import prefuse.util.ui.ValuedRangeModel;
 
+
 /**
  * Supports an ordered range of arbitrary objects. Designed to support
  * range-based dynamic queries over ordered, but not necessarily numerical,
@@ -16,7 +17,11 @@ import prefuse.util.ui.ValuedRangeModel;
 public class ObjectRangeModel extends DefaultBoundedRangeModel
     implements ValuedRangeModel
 {
+    
+    /** The m_objects. */
     private Object[] m_objects;
+    
+    /** The m_ordinal. */
     private Map m_ordinal;
     
     /**
@@ -83,6 +88,9 @@ public class ObjectRangeModel extends DefaultBoundedRangeModel
     }
     
     /**
+     * Gets the min value.
+     *
+     * @return the min value
      * @see prefuse.util.ui.ValuedRangeModel#getMinValue()
      */
     public Object getMinValue() {
@@ -90,6 +98,9 @@ public class ObjectRangeModel extends DefaultBoundedRangeModel
     }
     
     /**
+     * Gets the max value.
+     *
+     * @return the max value
      * @see prefuse.util.ui.ValuedRangeModel#getMaxValue()
      */
     public Object getMaxValue() {
@@ -97,6 +108,9 @@ public class ObjectRangeModel extends DefaultBoundedRangeModel
     }
     
     /**
+     * Gets the low value.
+     *
+     * @return the low value
      * @see prefuse.util.ui.ValuedRangeModel#getLowValue()
      */
     public Object getLowValue() {
@@ -104,6 +118,9 @@ public class ObjectRangeModel extends DefaultBoundedRangeModel
     }
     
     /**
+     * Gets the high value.
+     *
+     * @return the high value
      * @see prefuse.util.ui.ValuedRangeModel#getHighValue()
      */
     public Object getHighValue() {

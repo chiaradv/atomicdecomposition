@@ -10,6 +10,7 @@ import prefuse.data.expression.Expression;
 import prefuse.data.expression.Predicate;
 import prefuse.data.util.Sort;
 
+
 /**
  * A collection of data tuples. This is the top level interface for all
  * data collections in the prefuse framework.
@@ -139,7 +140,8 @@ public interface TupleSet {
     
     /**
      * Return an iterator over the tuples in this tuple set, filtered by
-     * the given predicate
+     * the given predicate.
+     *
      * @param filter predicate to apply to tuples in this set, only tuples
      * for which the predicate evaluates to true are included in the iteration.
      * If this value is null, no filtering will be performed.
@@ -199,14 +201,16 @@ public interface TupleSet {
                                              PropertyChangeListener lstnr);
     
     /**
-     * Set an arbitrary client property with this TupleSet
+     * Set an arbitrary client property with this TupleSet.
+     *
      * @param key the name of the property to set
      * @param value the value of the property to use
      */
     public void putClientProperty(String key, Object value);
     
     /**
-     * Get an client property bound to this TupleSet
+     * Get an client property bound to this TupleSet.
+     *
      * @param key the name of the property to retrieve
      * @return the client property value, or null if no value was
      * found for the given key.

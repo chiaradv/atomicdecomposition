@@ -8,6 +8,7 @@ import prefuse.util.TypeLib;
 import prefuse.util.collections.DefaultLiteralComparator;
 import prefuse.util.collections.LiteralComparator;
 
+
 /**
  * Predicate instance that evaluates if a value is contained within
  * a bounded range.
@@ -16,16 +17,22 @@ import prefuse.util.collections.LiteralComparator;
  */
 public class RangePredicate extends BinaryExpression implements Predicate {
 
-    /** Indicates the both the left and right bounds are inclusive */
+    /** Indicates the both the left and right bounds are inclusive. */
     public static final int IN_IN = 0;
-    /** Indicates an inclusive left bound and exclusive right bound */
+    
+    /** Indicates an inclusive left bound and exclusive right bound. */
     public static final int IN_EX = 1;
-    /** Indicates an exclusive left bound and inclusive right bound */
+    
+    /** Indicates an exclusive left bound and inclusive right bound. */
     public static final int EX_IN = 2;
-    /** Indicates the both the left and right bounds are exclusive */
+    
+    /** Indicates the both the left and right bounds are exclusive. */
     public static final int EX_EX = 3;
     
+    /** The m_middle. */
     private Expression m_middle;
+    
+    /** The m_cmp. */
     private Comparator m_cmp;
     
     // ------------------------------------------------------------------------
@@ -94,7 +101,8 @@ public class RangePredicate extends BinaryExpression implements Predicate {
     // Accessors
     
     /**
-     * Get the middle expression being tested for inclusion in the range
+     * Get the middle expression being tested for inclusion in the range.
+     *
      * @return the middle expression
      */
     public Expression getMiddleExpression() {
@@ -113,6 +121,10 @@ public class RangePredicate extends BinaryExpression implements Predicate {
     // Expression Interface
     
     /**
+     * Gets the boolean.
+     *
+     * @param t the t
+     * @return the boolean
      * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
      */
     public boolean getBoolean(Tuple t) {
@@ -185,6 +197,10 @@ public class RangePredicate extends BinaryExpression implements Predicate {
     }
     
     /**
+     * Gets the type.
+     *
+     * @param s the s
+     * @return the type
      * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
      */
     public Class getType(Schema s) {
@@ -192,6 +208,10 @@ public class RangePredicate extends BinaryExpression implements Predicate {
     }
 
     /**
+     * Gets the.
+     *
+     * @param t the t
+     * @return the object
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */
     public Object get(Tuple t) {
@@ -199,6 +219,9 @@ public class RangePredicate extends BinaryExpression implements Predicate {
     }
     
     /**
+     * Visit.
+     *
+     * @param v the v
      * @see prefuse.data.expression.Expression#visit(prefuse.data.expression.ExpressionVisitor)
      */
     public void visit(ExpressionVisitor v) {
@@ -209,6 +232,8 @@ public class RangePredicate extends BinaryExpression implements Predicate {
     }
     
     /**
+     * Adds the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#addChildListeners()
      */
     protected void addChildListeners() {
@@ -217,6 +242,8 @@ public class RangePredicate extends BinaryExpression implements Predicate {
     }
     
     /**
+     * Removes the child listeners.
+     *
      * @see prefuse.data.expression.AbstractExpression#removeChildListeners()
      */
     protected void removeChildListeners() {
@@ -225,6 +252,9 @@ public class RangePredicate extends BinaryExpression implements Predicate {
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

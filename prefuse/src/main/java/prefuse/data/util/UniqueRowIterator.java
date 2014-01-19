@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 import prefuse.util.collections.IntIterator;
 
+
 /**
  * IntIterator over rows that ensures that no duplicates appear in the
  * iteration. Uses a bitset to note rows it has has seen and not pass along
@@ -14,8 +15,13 @@ import prefuse.util.collections.IntIterator;
  */
 public class UniqueRowIterator extends IntIterator {
 
+    /** The m_iter. */
     private IntIterator m_iter;
+    
+    /** The m_next. */
     private int m_next;
+    
+    /** The m_visited. */
     private BitSet m_visited;
     
     /**
@@ -28,6 +34,9 @@ public class UniqueRowIterator extends IntIterator {
         advance();
     }
     
+    /**
+     * Advance.
+     */
     private void advance() {
         int r = -1;
         while ( r == -1 && m_iter.hasNext() ) {
@@ -38,6 +47,12 @@ public class UniqueRowIterator extends IntIterator {
         m_next = r;
     }
     
+    /**
+     * Visit.
+     *
+     * @param row the row
+     * @return true, if successful
+     */
     private boolean visit(int row) {
         if ( m_visited.get(row) ) {
             return true;
@@ -48,6 +63,9 @@ public class UniqueRowIterator extends IntIterator {
     }
     
     /**
+     * Checks for next.
+     *
+     * @return true, if successful
      * @see java.util.Iterator#hasNext()
      */
     public boolean hasNext() {
@@ -55,6 +73,9 @@ public class UniqueRowIterator extends IntIterator {
     }
 
     /**
+     * Next int.
+     *
+     * @return the int
      * @see prefuse.util.collections.LiteralIterator#nextInt()
      */
     public int nextInt() {

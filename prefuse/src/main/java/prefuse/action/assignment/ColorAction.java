@@ -14,6 +14,7 @@ import prefuse.util.PrefuseLib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>Assignment Action that assigns color values to VisualItems for a
  * given color field (e.g., the stroke, text, or fill color).</p>
@@ -46,12 +47,19 @@ import prefuse.visual.VisualItem;
  */
 public class ColorAction extends EncoderAction {
     
+    /** The m_color field. */
     protected String m_colorField;
+    
+    /** The m_start field. */
     protected String m_startField;
+    
+    /** The m_end field. */
     protected String m_endField;
     
+    /** The m_eidx. */
     protected int m_cidx, m_sidx, m_eidx;
     
+    /** The m_default color. */
     protected int m_defaultColor = ColorLib.gray(0); // initial default = black
     
     /**
@@ -81,10 +89,11 @@ public class ColorAction extends EncoderAction {
      * Constructor, sets the data group, filter predicate and color field
      * for color assignment.
      * Uses an initial default color value of black [RGB value (0,0,0)].
+     *
      * @param group the data group processed by this Action
      * @param filter the filter predicate
-     *  {@link prefuse.data.expression.Predicate}
      * @param field the color field assigned by this Action
+     * {@link prefuse.data.expression.Predicate}
      */
     public ColorAction(String group, Predicate filter, String field) {
     	super(group, filter);
@@ -94,11 +103,12 @@ public class ColorAction extends EncoderAction {
     /**
      * Constructor, sets the data group, filter predicate,
      * color field, and default color value for color assignment.
+     *
      * @param group the data group processed by this Action
-     * @param filter the filter predicate 
-     * 	{@link prefuse.data.expression.Predicate}
+     * @param filter the filter predicate
      * @param field the color field assigned by this Action
      * @param color the default color value assigned by this ColorAction
+     * {@link prefuse.data.expression.Predicate}
      */
     public ColorAction(String group, Predicate filter, String field, int color)
     {
@@ -110,7 +120,8 @@ public class ColorAction extends EncoderAction {
      * Set the color field name that this ColorAction should set. The
      * ColorAction will automatically try to update the start and end
      * values for this field if it is an interpolated field.
-     * @param field
+     *
+     * @param field the new field
      */
     public void setField(String field) {
         m_colorField = field;
@@ -119,7 +130,8 @@ public class ColorAction extends EncoderAction {
     }
     
     /**
-     * Returns the default color for this ColorAction
+     * Returns the default color for this ColorAction.
+     *
      * @return the default color value
      */
     public int getDefaultColor() {
@@ -151,10 +163,9 @@ public class ColorAction extends EncoderAction {
      * the provided expression will be assigned the given color value (assuming
      * they do not match an earlier rule). The provided expression String will
      * be parsed to generate the needed rule Predicate.
-     * @param expr the expression String, should parse to a Predicate. 
+     *
+     * @param expr the expression String, should parse to a Predicate.
      * @param color the color value
-     * @throws RuntimeException if the expression does not parse correctly or
-     * does not result in a Predicate instance.
      */
     public void add(String expr, int color) {
         Predicate p = (Predicate)ExpressionParser.parse(expr);
@@ -177,10 +188,9 @@ public class ColorAction extends EncoderAction {
      * the provided expression will be assigned the given color value (assuming
      * they do not match an earlier rule). The provided expression String will
      * be parsed to generate the needed rule Predicate.
-     * @param expr the expression String, should parse to a Predicate. 
+     *
+     * @param expr the expression String, should parse to a Predicate.
      * @param f the delegate ColorAction to use
-     * @throws RuntimeException if the expression does not parse correctly or
-     * does not result in a Predicate instance.
      */
     public void add(String expr, ColorAction f) {
         Predicate p = (Predicate)ExpressionParser.parse(expr);
@@ -190,6 +200,10 @@ public class ColorAction extends EncoderAction {
     // ------------------------------------------------------------------------
     
     /**
+     * Process.
+     *
+     * @param item the item
+     * @param frac the frac
      * @see prefuse.action.ItemAction#process(prefuse.visual.VisualItem, double)
      */
     public void process(VisualItem item, double frac) {

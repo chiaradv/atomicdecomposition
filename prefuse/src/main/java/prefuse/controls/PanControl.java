@@ -8,6 +8,7 @@ import prefuse.util.ui.UILib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Pans the display, changing the viewable region of the visualization.
  * By default, panning is accomplished by clicking on the background of a
@@ -17,8 +18,13 @@ import prefuse.visual.VisualItem;
  */
 public class PanControl extends ControlAdapter {
 
+    /** The m_pan over item. */
     private boolean m_panOverItem;
+    
+    /** The m_y down. */
     private int m_xDown, m_yDown;
+    
+    /** The m_button. */
     private int m_button;
     
     /**
@@ -48,12 +54,13 @@ public class PanControl extends ControlAdapter {
     }
     
     /**
-     * Create a new PanControl
+     * Create a new PanControl.
+     *
      * @param mouseButton the mouse button that should initiate a pan. One of
-     * {@link Control#LEFT_MOUSE_BUTTON}, {@link Control#MIDDLE_MOUSE_BUTTON},
-     * or {@link Control#RIGHT_MOUSE_BUTTON}.
      * @param panOverItem if true, the panning control will work even while
      * the mouse is over a visual item.
+     * {@link Control#LEFT_MOUSE_BUTTON}, {@link Control#MIDDLE_MOUSE_BUTTON},
+     * or {@link Control#RIGHT_MOUSE_BUTTON}.
      */
     public PanControl(int mouseButton, boolean panOverItem) {
         m_button = mouseButton;
@@ -63,6 +70,9 @@ public class PanControl extends ControlAdapter {
     // ------------------------------------------------------------------------
     
     /**
+     * Mouse pressed.
+     *
+     * @param e the e
      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
      */
     public void mousePressed(MouseEvent e) {
@@ -75,6 +85,9 @@ public class PanControl extends ControlAdapter {
     }
     
     /**
+     * Mouse dragged.
+     *
+     * @param e the e
      * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
      */
     public void mouseDragged(MouseEvent e) {
@@ -90,6 +103,9 @@ public class PanControl extends ControlAdapter {
     }
     
     /**
+     * Mouse released.
+     *
+     * @param e the e
      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
      */
     public void mouseReleased(MouseEvent e) {
@@ -101,6 +117,10 @@ public class PanControl extends ControlAdapter {
     }
     
     /**
+     * Item pressed.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemPressed(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemPressed(VisualItem item, MouseEvent e) {
@@ -109,6 +129,10 @@ public class PanControl extends ControlAdapter {
     }
 
     /**
+     * Item dragged.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemDragged(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemDragged(VisualItem item, MouseEvent e) {
@@ -117,6 +141,10 @@ public class PanControl extends ControlAdapter {
     }
     
     /**
+     * Item released.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemReleased(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemReleased(VisualItem item, MouseEvent e) {

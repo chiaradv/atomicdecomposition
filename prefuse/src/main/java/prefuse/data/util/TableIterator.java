@@ -6,6 +6,7 @@ import java.util.Date;
 import prefuse.data.Table;
 import prefuse.util.collections.IntIterator;
 
+
 /**
  * An iterator over table rows, providing convenience methods for accessing and
  * manipulating table data.
@@ -14,10 +15,16 @@ import prefuse.util.collections.IntIterator;
  */
 public class TableIterator extends IntIterator {
 
+    /** The m_table. */
     private Table       m_table;
+    
+    /** The m_rows. */
     private IntIterator m_rows;
+    
+    /** The m_mod count. */
     private int         m_modCount;
     
+    /** The m_cur. */
     protected int m_cur = -1;
 
     /**
@@ -36,6 +43,8 @@ public class TableIterator extends IntIterator {
     
     /**
      * Returns the next table row.
+     *
+     * @return the int
      * @see prefuse.util.collections.LiteralIterator#nextInt()
      */
     public int nextInt() {
@@ -46,6 +55,9 @@ public class TableIterator extends IntIterator {
     }
 
     /**
+     * Checks for next.
+     *
+     * @return true, if successful
      * @see java.util.Iterator#hasNext()
      */
     public boolean hasNext() {
@@ -157,7 +169,9 @@ public class TableIterator extends IntIterator {
     
     /**
      * Get the data value at the given field as an <code>int</code>.
+     *
      * @param field the data field to retrieve
+     * @return the int
      * @see #canGetInt(String)
      */
     public final int getInt(String field) {
@@ -202,7 +216,9 @@ public class TableIterator extends IntIterator {
     
     /**
      * Get the data value at the given field as a <code>long</code>.
+     *
      * @param field the data field to retrieve
+     * @return the long
      * @see #canGetLong(String)
      */
     public final long getLong(String field) {
@@ -247,7 +263,9 @@ public class TableIterator extends IntIterator {
     
     /**
      * Get the data value at the given field as a <code>float</code>.
+     *
      * @param field the data field to retrieve
+     * @return the float
      * @see #canGetFloat(String)
      */
     public final float getFloat(String field) {
@@ -292,7 +310,9 @@ public class TableIterator extends IntIterator {
     
     /**
      * Get the data value at the given field as a <code>double</code>.
+     *
      * @param field the data field to retrieve
+     * @return the double
      * @see #canGetDouble(String)
      */
     public final double getDouble(String field) {
@@ -337,7 +357,9 @@ public class TableIterator extends IntIterator {
     
     /**
      * Get the data value at the given field as a <code>boolean</code>.
+     *
      * @param field the data field to retrieve
+     * @return the boolean
      * @see #canGetBoolean(String)
      */
     public final boolean getBoolean(String field) {
@@ -382,7 +404,9 @@ public class TableIterator extends IntIterator {
     
     /**
      * Get the data value at the given field as a <code>String</code>.
+     *
      * @param field the data field to retrieve
+     * @return the string
      * @see #canGetString(String)
      */
     public final String getString(String field) {
@@ -427,7 +451,9 @@ public class TableIterator extends IntIterator {
     
     /**
      * Get the data value at the given field as a <code>Date</code>.
+     *
      * @param field the data field to retrieve
+     * @return the date
      * @see #canGetDate(String)
      */
     public final Date getDate(String field) {

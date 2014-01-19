@@ -7,17 +7,21 @@ import prefuse.data.expression.Expression;
 import prefuse.data.search.SearchTupleSet;
 import prefuse.visual.VisualItem;
 
+
 /**
- * Expression that indicates if an item is currently a member of a data group of the type
+ * Expression that indicates if an item is currently a member of a data group of the type.
+ *
  * {@link prefuse.data.search.SearchTupleSet}, but including a possible special case in
  * which all items should be pass through the predicate if no search query is specified.
  * The data group name is provided by a String-valued sub-expression.
- * 
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
 public class SearchPredicate extends InGroupPredicate {
 
+    /** The m_inc empty. */
     private Expression m_incEmpty;
+    
+    /** The param count. */
     private int paramCount = 0;
     
     /**
@@ -32,9 +36,10 @@ public class SearchPredicate extends InGroupPredicate {
     
     /**
      * Create a new SearchPredicate. By default, looks into the
-     * {@link prefuse.Visualization#ALL_ITEMS} data group.
+     *
      * @param includeAllByDefault indicates if all items
      * should pass the predicate if no search query has been specified.
+     * {@link prefuse.Visualization#ALL_ITEMS} data group.
      */
     public SearchPredicate(boolean includeAllByDefault) {
         this(Visualization.SEARCH_ITEMS, includeAllByDefault);
@@ -42,10 +47,11 @@ public class SearchPredicate extends InGroupPredicate {
     
     /**
      * Create a new SearchPredicate.
+     *
      * @param group the data group to look up, should resolve to a
-     * {@link prefuse.data.search.SearchTupleSet} instance.
      * @param includeAllByDefault indicates if all items
      * should pass the predicate if no search query has been specified.
+     * {@link prefuse.data.search.SearchTupleSet} instance.
      */
     public SearchPredicate(String group, boolean includeAllByDefault) {
         super(group);
@@ -54,6 +60,10 @@ public class SearchPredicate extends InGroupPredicate {
     }
     
     /**
+     * Gets the boolean.
+     *
+     * @param t the t
+     * @return the boolean
      * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
      */
     public boolean getBoolean(Tuple t) {
@@ -73,6 +83,9 @@ public class SearchPredicate extends InGroupPredicate {
     }
 
     /**
+     * Adds the parameter.
+     *
+     * @param e the e
      * @see prefuse.data.expression.Function#addParameter(prefuse.data.expression.Expression)
      */
     public void addParameter(Expression e) {
@@ -86,6 +99,9 @@ public class SearchPredicate extends InGroupPredicate {
     }
 
     /**
+     * Gets the name.
+     *
+     * @return the name
      * @see prefuse.data.expression.Function#getName()
      */
     public String getName() {
@@ -93,6 +109,9 @@ public class SearchPredicate extends InGroupPredicate {
     }
 
     /**
+     * Gets the parameter count.
+     *
+     * @return the parameter count
      * @see prefuse.data.expression.Function#getParameterCount()
      */
     public int getParameterCount() {
@@ -100,6 +119,9 @@ public class SearchPredicate extends InGroupPredicate {
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

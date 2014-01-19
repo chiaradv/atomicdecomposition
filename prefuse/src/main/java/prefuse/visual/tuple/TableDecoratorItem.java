@@ -6,6 +6,7 @@ import prefuse.visual.DecoratorItem;
 import prefuse.visual.VisualItem;
 import prefuse.visual.VisualTable;
 
+
 /**
  * DecoratorItem implementation that uses data values from a backing
  * VisualTable.
@@ -30,6 +31,9 @@ public class TableDecoratorItem extends TableVisualItem
     }
     
     /**
+     * Gets the decorated item.
+     *
+     * @return the decorated item
      * @see prefuse.visual.DecoratorItem#getDecoratedItem()
      */
     public VisualItem getDecoratedItem() {

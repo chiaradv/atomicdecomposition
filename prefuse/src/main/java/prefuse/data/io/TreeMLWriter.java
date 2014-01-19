@@ -14,6 +14,7 @@ import prefuse.data.Node;
 import prefuse.data.Schema;
 import prefuse.util.io.XMLWriter;
 
+
 /**
  * GraphWriter instance that writes a tree file formatted using the
  * TreeML file format. TreeML is an XML format originally created for
@@ -37,9 +38,7 @@ public class TreeMLWriter extends AbstractGraphWriter {
      */
     public interface Tokens extends TreeMLReader.Tokens {}
     
-    /**
-     * Map containing legal data types and their names in the GraphML spec
-     */
+    /** Map containing legal data types and their names in the GraphML spec. */
     private static final HashMap TYPES = new HashMap();
     static {
         TYPES.put(int.class, Tokens.INT);
@@ -52,6 +51,11 @@ public class TreeMLWriter extends AbstractGraphWriter {
     }
     
     /**
+     * Write graph.
+     *
+     * @param graph the graph
+     * @param os the os
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.GraphWriter#writeGraph(prefuse.data.Graph, java.io.OutputStream)
      */
     public void writeGraph(Graph graph, OutputStream os) throws DataIOException
@@ -148,7 +152,9 @@ public class TreeMLWriter extends AbstractGraphWriter {
      * The TreeML spec only allows the types <code>int</code>,
      * <code>long</code>, <code>float</code>, <code>double</code>,
      * <code>boolean</code>, <code>string</code>, and <code>date</code>.
+     *
      * @param s the Schema to check
+     * @throws DataIOException the data io exception
      */
     private void checkTreeMLSchema(Schema s) throws DataIOException {
         for ( int i=0; i<s.getColumnCount(); ++i ) {

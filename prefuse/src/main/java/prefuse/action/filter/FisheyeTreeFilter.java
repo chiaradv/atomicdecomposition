@@ -14,6 +14,7 @@ import prefuse.visual.NodeItem;
 import prefuse.visual.VisualItem;
 import prefuse.visual.expression.InGroupPredicate;
 
+
 /**
  * <p>Filter Action that computes a fisheye degree-of-interest function over
  * a tree structure (or the spanning tree of a graph structure). Visibility
@@ -36,12 +37,19 @@ import prefuse.visual.expression.InGroupPredicate;
  */
 public class FisheyeTreeFilter extends GroupAction {
 
+    /** The m_sources. */
     private String m_sources;
+    
+    /** The m_group p. */
     private Predicate m_groupP;
     
+    /** The m_threshold. */
     private int m_threshold;
     
+    /** The m_root. */
     private NodeItem m_root;
+    
+    /** The m_divisor. */
     private double m_divisor;
     
     /**
@@ -126,6 +134,9 @@ public class FisheyeTreeFilter extends GroupAction {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.GroupAction#run(double)
      */
     public void run(double frac) {
@@ -158,6 +169,9 @@ public class FisheyeTreeFilter extends GroupAction {
 
     /**
      * Visit a focus node.
+     *
+     * @param n the n
+     * @param c the c
      */
     private void visitFocus(NodeItem n, NodeItem c) {
         if ( n.getDOI() <= -1 ) {
@@ -170,6 +184,11 @@ public class FisheyeTreeFilter extends GroupAction {
     
     /**
      * Visit a specific node and update its degree-of-interest.
+     *
+     * @param n the n
+     * @param c the c
+     * @param doi the doi
+     * @param ldist the ldist
      */
     private void visit(NodeItem n, NodeItem c, int doi, int ldist) {
         PrefuseLib.updateVisible(n, true);
@@ -185,6 +204,8 @@ public class FisheyeTreeFilter extends GroupAction {
     
     /**
      * Visit tree ancestors and their other descendants.
+     *
+     * @param n the n
      */
     private void visitAncestors(NodeItem n) {
         if ( n == m_root ) return;
@@ -193,6 +214,9 @@ public class FisheyeTreeFilter extends GroupAction {
     
     /**
      * Traverse tree descendents.
+     *
+     * @param p the p
+     * @param skip the skip
      */
     private void visitDescendants(NodeItem p, NodeItem skip) {
         int lidx = ( skip == null ? 0 : p.getChildIndex(skip) );

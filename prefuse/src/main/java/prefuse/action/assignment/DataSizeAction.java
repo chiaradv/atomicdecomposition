@@ -9,6 +9,7 @@ import prefuse.util.MathLib;
 import prefuse.util.PrefuseLib;
 import prefuse.visual.VisualItem;
 
+
 /**
  * <p>
  * Assignment Action that assigns size values for a group of items based upon
@@ -51,21 +52,37 @@ import prefuse.visual.VisualItem;
  */
 public class DataSizeAction extends SizeAction {
     
+    /** The Constant NO_SIZE. */
     protected static final double NO_SIZE = Double.NaN;
     
+    /** The m_data field. */
     protected String m_dataField;
     
+    /** The m_min size. */
     protected double m_minSize = 1;
+    
+    /** The m_size range. */
     protected double m_sizeRange;
     
+    /** The m_scale. */
     protected int m_scale = Constants.LINEAR_SCALE;
+    
+    /** The m_bins. */
     protected int m_bins = Constants.CONTINUOUS;
     
+    /** The m_infer bounds. */
     protected boolean m_inferBounds = true;
+    
+    /** The m_infer range. */
     protected boolean m_inferRange = true;
+    
+    /** The m_is2 d area. */
     protected boolean m_is2DArea = true;
+    
+    /** The m_dist. */
     protected double[] m_dist;
     
+    /** The m_temp scale. */
     protected int m_tempScale;
     
     /**
@@ -157,7 +174,8 @@ public class DataSizeAction extends SizeAction {
     }
     
     /**
-     * Returns the number of "bins" or distinct categories of sizes
+     * Returns the number of "bins" or distinct categories of sizes.
+     *
      * @return the number of bins.
      */
     public int getBinCount() {
@@ -165,8 +183,9 @@ public class DataSizeAction extends SizeAction {
     }
 
     /**
-     * Sets the number of "bins" or distinct categories of sizes
-     * @param count the number of bins to set. The value 
+     * Sets the number of "bins" or distinct categories of sizes.
+     *
+     * @param count the number of bins to set. The value
      * {@link Constants#CONTINUOUS} indicates not to use any binning. If the
      * scale type set using the {@link #setScale(int)} method is
      * {@link Constants#QUANTILE_SCALE}, the bin count <strong>must</strong>
@@ -284,8 +303,9 @@ public class DataSizeAction extends SizeAction {
     /**
      * This operation is not supported by the DataSizeAction type.
      * Calling this method will result in a thrown exception.
+     *
+     * @param defaultSize the new default size
      * @see prefuse.action.assignment.SizeAction#setDefaultSize(double)
-     * @throws UnsupportedOperationException
      */
     public void setDefaultSize(double defaultSize) {
         throw new UnsupportedOperationException();
@@ -294,6 +314,8 @@ public class DataSizeAction extends SizeAction {
     // ------------------------------------------------------------------------
     
     /**
+     * Setup.
+     *
      * @see prefuse.action.EncoderAction#setup()
      */
     protected void setup() {
@@ -330,6 +352,8 @@ public class DataSizeAction extends SizeAction {
     }
     
     /**
+     * Finish.
+     *
      * @see prefuse.action.EncoderAction#finish()
      */
     protected void finish() {
@@ -338,6 +362,10 @@ public class DataSizeAction extends SizeAction {
     }
     
     /**
+     * Gets the size.
+     *
+     * @param item the item
+     * @return the size
      * @see prefuse.action.assignment.SizeAction#getSize(prefuse.visual.VisualItem)
      */
     public double getSize(VisualItem item) {

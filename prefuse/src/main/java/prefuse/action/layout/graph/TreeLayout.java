@@ -6,6 +6,7 @@ import prefuse.data.Tree;
 import prefuse.data.tuple.TupleSet;
 import prefuse.visual.NodeItem;
 
+
 /**
  * Abstract base class providing convenience methods for tree layout algorithms.
  *
@@ -14,6 +15,7 @@ import prefuse.visual.NodeItem;
  */
 public abstract class TreeLayout extends Layout {
 
+    /** The m_root. */
     protected NodeItem m_root;
 
     /**
@@ -37,12 +39,11 @@ public abstract class TreeLayout extends Layout {
 
     /**
      * Explicitly set the node to use as the layout root.
+     *
      * @param root the node to use as the root.  A null value is legal, and
      * indicates that the root of the spanning tree of the backing graph will
      * be used as the layout root. If the node is not a member of this layout's
      * data group, an exception will be thrown.
-     * @throws IllegalArgumentException if the provided root is not a member of
-     * this layout's data group.
      */
     public void setLayoutRoot(NodeItem root) {
         if ( !root.isInGroup(m_group) )
@@ -55,9 +56,8 @@ public abstract class TreeLayout extends Layout {
      * Return the NodeItem to use as the root for this tree layout.  If the
      * layout root is not set, this method has the side effect of setting it
      * to the root of the graph's spanning tree.
+     *
      * @return the root node to use for this tree layout.
-     * @throws IllegalStateException if the action's data group does not
-     * resolve to a {@link prefuse.data.Graph} instance.
      */
     public NodeItem getLayoutRoot() {
         if ( m_root != null )

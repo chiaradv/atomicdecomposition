@@ -3,6 +3,7 @@ package prefuse.data.util;
 import prefuse.data.event.ProjectionListener;
 import prefuse.util.collections.CopyOnWriteArrayList;
 
+
 /**
  * Abstract base class for column projection instances. Implements the
  * listener functionality.
@@ -14,9 +15,13 @@ public abstract class AbstractColumnProjection implements ColumnProjection {
     // ------------------------------------------------------------------------
     // Listener Methods
     
+    /** The m_listeners. */
     private CopyOnWriteArrayList m_listeners;
     
     /**
+     * Adds the projection listener.
+     *
+     * @param lstnr the lstnr
      * @see prefuse.data.util.ColumnProjection#addProjectionListener(prefuse.data.event.ProjectionListener)
      */
     public void addProjectionListener(ProjectionListener lstnr) {
@@ -27,6 +32,9 @@ public abstract class AbstractColumnProjection implements ColumnProjection {
     }
 
     /**
+     * Removes the projection listener.
+     *
+     * @param lstnr the lstnr
      * @see prefuse.data.util.ColumnProjection#removeProjectionListener(prefuse.data.event.ProjectionListener)
      */
     public void removeProjectionListener(ProjectionListener lstnr) {
@@ -36,6 +44,9 @@ public abstract class AbstractColumnProjection implements ColumnProjection {
             m_listeners = null;
     }
     
+    /**
+     * Fire update.
+     */
     public void fireUpdate() {
         if ( m_listeners == null )
             return;

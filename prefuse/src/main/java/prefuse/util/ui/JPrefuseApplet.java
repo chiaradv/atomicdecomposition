@@ -4,6 +4,7 @@ import javax.swing.JApplet;
 
 import prefuse.activity.ActivityManager;
 
+
 /**
  * A convenience class for creating applets that incorporate
  * prefuse visualizations. Clients can subclass this class to

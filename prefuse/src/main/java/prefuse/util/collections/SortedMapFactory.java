@@ -6,6 +6,7 @@ import java.util.Date;
 import prefuse.data.DataTypeException;
 
 
+
 /**
  * Factory class that generates the appropriate IntSortedMap implementation
  * given a key data type.
@@ -14,6 +15,15 @@ import prefuse.data.DataTypeException;
  */
 public class SortedMapFactory {
 
+    /**
+     * Gets the map.
+     *
+     * @param type the type
+     * @param cmp the cmp
+     * @param unique the unique
+     * @return the map
+     * @throws IncompatibleComparatorException the incompatible comparator exception
+     */
     public static IntSortedMap getMap(
             Class type, Comparator cmp, boolean unique)
         throws IncompatibleComparatorException
@@ -52,6 +62,13 @@ public class SortedMapFactory {
         }
     }
     
+    /**
+     * Comparator check.
+     *
+     * @param type the type
+     * @param cmp the cmp
+     * @return true, if successful
+     */
     public static boolean comparatorCheck(Class type, Comparator cmp) {
         if ( cmp == null )
         {

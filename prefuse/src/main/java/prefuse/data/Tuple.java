@@ -3,6 +3,7 @@ package prefuse.data;
 import java.util.Date;
 
 
+
 /**
  * Tuples are objects representing a row of a data table, providing
  * a simplified interface to table data. They maintain a pointer to a
@@ -194,7 +195,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as an <code>int</code>.
+     *
      * @param field the data field to retrieve
+     * @return the int
      * @see #canGetInt(String)
      */
     public int getInt(String field);
@@ -209,7 +212,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as an <code>int</code>.
+     *
      * @param col the column number of the data field to retrieve
+     * @return the int
      * @see #canGetInt(String)
      */
     public int getInt(int col);
@@ -245,7 +250,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>long</code>.
+     *
      * @param field the data field to retrieve
+     * @return the long
      * @see #canGetLong(String)
      */
     public long getLong(String field);
@@ -260,7 +267,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>long</code>.
+     *
      * @param col the column number of the data field to retrieve
+     * @return the long
      * @see #canGetLong(String)
      */
     public long getLong(int col);
@@ -296,7 +305,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>float</code>.
+     *
      * @param field the data field to retrieve
+     * @return the float
      * @see #canGetFloat(String)
      */
     public float getFloat(String field);
@@ -311,7 +322,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>float</code>.
+     *
      * @param col the column number of the data field to retrieve
+     * @return the float
      * @see #canGetFloat(String)
      */
     public float getFloat(int col);
@@ -347,7 +360,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>double</code>.
+     *
      * @param field the data field to retrieve
+     * @return the double
      * @see #canGetDouble(String)
      */
     public double getDouble(String field);
@@ -362,7 +377,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>double</code>.
+     *
      * @param col the column number of the data field to retrieve
+     * @return the double
      * @see #canGetDouble(String)
      */
     public double getDouble(int col);
@@ -398,7 +415,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>boolean</code>.
+     *
      * @param field the data field to retrieve
+     * @return the boolean
      * @see #canGetBoolean(String)
      */
     public boolean getBoolean(String field);
@@ -413,7 +432,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>boolean</code>.
+     *
      * @param col the column number of the data field to retrieve
+     * @return the boolean
      * @see #canGetBoolean(String)
      */
     public boolean getBoolean(int col);
@@ -449,7 +470,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>String</code>.
+     *
      * @param field the data field to retrieve
+     * @return the string
      * @see #canGetString(String)
      */
     public String getString(String field);
@@ -464,7 +487,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>String</code>.
+     *
      * @param col the column number of the data field to retrieve
+     * @return the string
      * @see #canGetString(String)
      */
     public String getString(int col);
@@ -500,7 +525,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>Date</code>.
+     *
      * @param field the data field to retrieve
+     * @return the date
      * @see #canGetDate(String)
      */
     public Date getDate(String field);
@@ -515,7 +542,9 @@ public interface Tuple {
     
     /**
      * Get the data value at the given field as a <code>Date</code>.
+     *
      * @param col the column number of the data field to retrieve
+     * @return the date
      * @see #canGetDate(String)
      */
     public Date getDate(int col);

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Layout Action that sets x, y coordinates for a visual item by simply
  * looking them up from another data field.
@@ -13,8 +14,13 @@ import prefuse.visual.VisualItem;
  */
 public class SpecifiedLayout extends Layout {
 
+    /** The m_xfield. */
     private String m_xfield = null;
+    
+    /** The m_yfield. */
     private String m_yfield = null;
+    
+    /** The m_fixedfield. */
     private String m_fixedfield = null;
     
     /**
@@ -86,6 +92,9 @@ public class SpecifiedLayout extends Layout {
     }
 
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {

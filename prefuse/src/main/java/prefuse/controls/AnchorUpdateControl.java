@@ -8,6 +8,7 @@ import prefuse.action.layout.Layout;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Follows the mouse cursor, updating the anchor parameter for any number
  * of layout instances to match the current cursor position. Will also
@@ -17,9 +18,16 @@ import prefuse.visual.VisualItem;
  */
 public class AnchorUpdateControl extends ControlAdapter {
     
+    /** The m_anchor over item. */
     private boolean m_anchorOverItem;
+    
+    /** The m_layouts. */
     private Layout[] m_layouts;
+    
+    /** The m_action. */
     private String m_action;
+    
+    /** The m_tmp. */
     private Point2D  m_tmp = new Point2D.Double();
     
     /**
@@ -77,6 +85,9 @@ public class AnchorUpdateControl extends ControlAdapter {
     // ------------------------------------------------------------------------
 
     /**
+     * Mouse exited.
+     *
+     * @param e the e
      * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
      */
     public void mouseExited(MouseEvent e) {
@@ -86,6 +97,9 @@ public class AnchorUpdateControl extends ControlAdapter {
     }
     
     /**
+     * Mouse moved.
+     *
+     * @param e the e
      * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
      */
     public void mouseMoved(MouseEvent e) {
@@ -93,6 +107,9 @@ public class AnchorUpdateControl extends ControlAdapter {
     }
     
     /**
+     * Mouse dragged.
+     *
+     * @param e the e
      * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
      */
     public void mouseDragged(MouseEvent e) {
@@ -100,6 +117,10 @@ public class AnchorUpdateControl extends ControlAdapter {
     }
     
     /**
+     * Item dragged.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemDragged(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemDragged(VisualItem item, MouseEvent e) {
@@ -107,6 +128,10 @@ public class AnchorUpdateControl extends ControlAdapter {
     }
 
     /**
+     * Item moved.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemMoved(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemMoved(VisualItem item, MouseEvent e) {

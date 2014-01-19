@@ -11,6 +11,7 @@ import java.io.PrintStream;
 
 import prefuse.util.io.IOLib;
 
+
 /**
  * Helper class that stores character length counts for each column in
  * a fixed width text table. This class is needed for reading and writing
@@ -22,7 +23,10 @@ import prefuse.util.io.IOLib;
  */
 public class FixedWidthTextTableSchema {
 	
+	/** The names. */
 	private String[] names = new String[0];
+	
+	/** The cols. */
 	private int[] cols = new int[1];
 	
 	/**
@@ -32,6 +36,11 @@ public class FixedWidthTextTableSchema {
 		
 	}
 	
+	/**
+	 * Ensure capacity.
+	 *
+	 * @param cap the cap
+	 */
 	private void ensureCapacity(int cap) {
 		String[] nnames = new String[names.length+1];
 		System.arraycopy(names, 0, nnames, 0, names.length);
@@ -63,7 +72,8 @@ public class FixedWidthTextTableSchema {
 	}
 	
 	/**
-	 * Gets the name of the requested column
+	 * Gets the name of the requested column.
+	 *
 	 * @param idx the index of the column
 	 * @return the name of the column
 	 */
@@ -72,7 +82,8 @@ public class FixedWidthTextTableSchema {
 	}
 	
 	/**
-	 * Gets the character length of the given column
+	 * Gets the character length of the given column.
+	 *
 	 * @param idx the index of the column
 	 * @return the character length of the column in the fixed-width format
 	 */
@@ -81,7 +92,8 @@ public class FixedWidthTextTableSchema {
 	}
 	
 	/**
-	 * Gets the starting character number for the given column index
+	 * Gets the starting character number for the given column index.
+	 *
 	 * @param idx the index of the column
 	 * @return the text character position at which this column starts on a
 	 * line

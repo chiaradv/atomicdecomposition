@@ -8,6 +8,7 @@ import prefuse.data.tuple.TupleSet;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Implements a uniform grid-based layout. This component can either use
  * preset grid dimensions or analyze a grid-shaped graph to determine them
@@ -17,8 +18,13 @@ import prefuse.visual.VisualItem;
  */
 public class GridLayout extends Layout {
 
+    /** The rows. */
     protected int rows;
+    
+    /** The cols. */
     protected int cols;
+    
+    /** The analyze. */
     protected boolean analyze = false;
     
     /**
@@ -49,6 +55,9 @@ public class GridLayout extends Layout {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {

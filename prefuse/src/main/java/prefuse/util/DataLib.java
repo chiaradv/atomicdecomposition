@@ -17,6 +17,7 @@ import prefuse.data.column.ColumnMetadata;
 import prefuse.data.tuple.TupleSet;
 import prefuse.util.collections.DefaultLiteralComparator;
 
+
 /**
  * Functions for processing an iterator of tuples, including the creation
  * of arrays of particular tuple data values and summary
@@ -263,8 +264,10 @@ public class DataLib {
 
     /**
      * Get the Tuple with the minimum data field value.
+     *
      * @param tuples a TupleSet
      * @param field the column / data field name
+     * @param cmp the cmp
      * @return the Tuple with the minimum data field value
      */
     public static Tuple min(TupleSet tuples, String field, Comparator cmp) {
@@ -326,8 +329,10 @@ public class DataLib {
 
     /**
      * Get the Tuple with the maximum data field value.
+     *
      * @param tuples a TupleSet
      * @param field the column / data field name
+     * @param cmp the cmp
      * @return the Tuple with the maximum data field value
      */
     public static Tuple max(TupleSet tuples, String field, Comparator cmp) {
@@ -392,8 +397,10 @@ public class DataLib {
 
     /**
      * Get the Tuple with the median data field value.
+     *
      * @param tuples a TupleSet
      * @param field the column / data field name
+     * @param cmp the cmp
      * @return the Tuple with the median data field value
      */
     public static Tuple median(TupleSet tuples, String field, Comparator cmp) {
@@ -505,10 +512,10 @@ public class DataLib {
     
     /**
      * Infer the data field type across all tuples in a TupleSet.
+     *
      * @param tuples the TupleSet to analyze
      * @param field the data field to type check
      * @return the inferred data type
-     * @throws IllegalArgumentException if incompatible types are used
      */
     public static Class inferType(TupleSet tuples, String field) {
         if ( tuples instanceof Table ) {

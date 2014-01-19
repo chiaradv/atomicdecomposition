@@ -2,6 +2,7 @@ package prefuse.visual;
 
 import prefuse.data.Edge;
 
+
 /**
  * VisualItem that represents an edge in a graph. This interface combines
  * the {@link VisualItem} interface with the {@link prefuse.data.Edge}

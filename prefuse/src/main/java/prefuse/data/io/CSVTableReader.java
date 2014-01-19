@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import prefuse.data.parser.DataParseException;
 import prefuse.data.parser.ParserFactory;
 
+
 /**
  * TableReader for Comma Separated Value (CSV) files. CSV files list
  * each row of a table on a line, separating each data column by a line.
@@ -39,6 +40,12 @@ public class CSVTableReader extends AbstractTextTableReader {
     }
     
     /**
+     * Read.
+     *
+     * @param is the is
+     * @param trl the trl
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws DataParseException the data parse exception
      * @see prefuse.data.io.AbstractTextTableReader#read(java.io.InputStream, prefuse.data.io.TableReadListener)
      */
     public void read(InputStream is, TableReadListener trl)

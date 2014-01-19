@@ -18,6 +18,7 @@ import prefuse.util.PrefuseConfig;
 import prefuse.util.collections.CompositeIntIterator;
 import prefuse.util.collections.IntIterator;
 
+
 /**
  * Factory class that creates optimized filter iterators. When possible,
  * this factory will attempt to create an optimized query plan by using
@@ -28,6 +29,7 @@ import prefuse.util.collections.IntIterator;
  */
 public class FilterIteratorFactory {
 
+    /** The Constant OPTIMIZATION_THRESHOLD. */
     private static final int OPTIMIZATION_THRESHOLD
         = PrefuseConfig.getInt("data.filter.optimizeThreshold");
     
@@ -130,6 +132,14 @@ public class FilterIteratorFactory {
         return null;
     }
     
+    /**
+     * Gets the column iterator.
+     *
+     * @param t the t
+     * @param field the field
+     * @param val the val
+     * @return the column iterator
+     */
     protected static IntIterator getColumnIterator(
             Table t, String field, boolean val)
     {
@@ -144,6 +154,13 @@ public class FilterIteratorFactory {
         }
     }
     
+    /**
+     * Gets the or iterator.
+     *
+     * @param t the t
+     * @param op the op
+     * @return the or iterator
+     */
     protected static IntIterator getOrIterator(Table t, OrPredicate op) {
         int size = op.size();
         if ( size > 1 ) {
@@ -166,6 +183,13 @@ public class FilterIteratorFactory {
         }
     }
     
+    /**
+     * Gets the and iterator.
+     *
+     * @param t the t
+     * @param ap the ap
+     * @return the and iterator
+     */
     protected static IntIterator getAndIterator(Table t, AndPredicate ap) {
         // possible TODO: add scoring to select best optimized iterator
         // for now just work from the end backwards and take the first
@@ -188,6 +212,13 @@ public class FilterIteratorFactory {
         return new FilterRowIterator(rows, t, ap.getSubPredicate(clause));
     }
     
+    /**
+     * Gets the comparison iterator.
+     *
+     * @param t the t
+     * @param cp the cp
+     * @return the comparison iterator
+     */
     protected static IntIterator getComparisonIterator(Table t, 
                                            ComparisonPredicate cp)
     {
@@ -308,6 +339,13 @@ public class FilterIteratorFactory {
         }        
     }
     
+    /**
+     * Gets the range iterator.
+     *
+     * @param t the t
+     * @param rp the rp
+     * @return the range iterator
+     */
     protected static IntIterator getRangeIterator(Table t, RangePredicate rp) {
         ColumnExpression col;
         Expression l, r;

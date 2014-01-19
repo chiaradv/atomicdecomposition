@@ -8,6 +8,7 @@ import prefuse.data.Node;
 import prefuse.data.Tuple;
 import prefuse.util.collections.Queue;
 
+
 /**
  * Provides a distance-limited breadth first traversal over nodes, edges,
  * or both, using any number of traversal "roots".
@@ -16,10 +17,19 @@ import prefuse.util.collections.Queue;
  */
 public class BreadthFirstIterator implements Iterator {
 
+    /** The m_queue. */
     protected Queue m_queue = new Queue();
+    
+    /** The m_depth. */
     protected int   m_depth;
+    
+    /** The m_traversal. */
     protected int   m_traversal;
+    
+    /** The m_include nodes. */
     protected boolean m_includeNodes;
+    
+    /** The m_include edges. */
     protected boolean m_includeEdges;
     
     /**
@@ -123,6 +133,8 @@ public class BreadthFirstIterator implements Iterator {
     // ------------------------------------------------------------------------
     
     /**
+     * Removes the.
+     *
      * @see java.util.Iterator#remove()
      */
     public void remove() {
@@ -130,6 +142,9 @@ public class BreadthFirstIterator implements Iterator {
     }
 
     /**
+     * Checks for next.
+     *
+     * @return true, if successful
      * @see java.util.Iterator#hasNext()
      */
     public boolean hasNext() {
@@ -156,6 +171,9 @@ public class BreadthFirstIterator implements Iterator {
     }
     
     /**
+     * Next.
+     *
+     * @return the object
      * @see java.util.Iterator#next()
      */
     public Object next() {        

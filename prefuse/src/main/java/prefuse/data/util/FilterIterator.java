@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import prefuse.data.Tuple;
 import prefuse.data.expression.Predicate;
 
+
 /**
  * Iterator over tuples that filters the output by a given predicate.
  * 
@@ -13,8 +14,13 @@ import prefuse.data.expression.Predicate;
  */
 public class FilterIterator implements Iterator {
     
+    /** The predicate. */
     private Predicate predicate;
+    
+    /** The tuples. */
     private Iterator tuples;
+    
+    /** The next. */
     private Tuple next;
     
     /**
@@ -28,6 +34,11 @@ public class FilterIterator implements Iterator {
         next = advance();
     }
     
+    /**
+     * Advance.
+     *
+     * @return the tuple
+     */
     private Tuple advance() {
         while ( tuples.hasNext() ) {
             Tuple t = (Tuple)tuples.next();
@@ -41,6 +52,9 @@ public class FilterIterator implements Iterator {
     }
 
     /**
+     * Next.
+     *
+     * @return the object
      * @see java.util.Iterator#next()
      */
     public Object next() {
@@ -53,6 +67,9 @@ public class FilterIterator implements Iterator {
     }
     
     /**
+     * Checks for next.
+     *
+     * @return true, if successful
      * @see java.util.Iterator#hasNext()
      */
     public boolean hasNext() {

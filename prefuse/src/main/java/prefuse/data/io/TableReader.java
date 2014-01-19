@@ -6,6 +6,7 @@ import java.net.URL;
 
 import prefuse.data.Table;
 
+
 /**
  * Interface for classes that read in Table data from a particular file format.
  * 
@@ -19,34 +20,38 @@ public interface TableReader {
      * using the {@link prefuse.util.io.IOLib#streamFromString(String)} method,
      * allowing URLs, classpath references, and files on the file system
      * to be accessed.
+     *
      * @param location the location to read the table from
      * @return the loaded Table
-     * @throws DataIOException
+     * @throws DataIOException the data io exception
      * @see prefuse.util.io.IOLib#streamFromString(String)
      */
     public Table readTable(String location) throws DataIOException;
     
     /**
      * Read in a table from the given URL.
+     *
      * @param url the url to read the graph from
      * @return the loaded Table
-     * @throws DataIOException
+     * @throws DataIOException the data io exception
      */
     public Table readTable(URL url) throws DataIOException;
     
     /**
      * Read in a table from the given File.
+     *
      * @param f the file to read the table from
      * @return the loaded Table
-     * @throws DataIOException
+     * @throws DataIOException the data io exception
      */
     public Table readTable(File f) throws DataIOException;
     
     /**
      * Read in a table from the given InputStream.
+     *
      * @param is the InputStream to read the table from
      * @return the loaded Table
-     * @throws DataIOException
+     * @throws DataIOException the data io exception
      */
     public Table readTable(InputStream is) throws DataIOException;
     

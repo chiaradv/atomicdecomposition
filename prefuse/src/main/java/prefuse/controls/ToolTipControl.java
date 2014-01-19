@@ -6,6 +6,7 @@ import prefuse.Display;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Control that enables a tooltip display for items based on mouse hover.
  * 
@@ -13,7 +14,10 @@ import prefuse.visual.VisualItem;
  */
 public class ToolTipControl extends ControlAdapter {
 
+    /** The label. */
     private String[] label;
+    
+    /** The sbuf. */
     private StringBuffer sbuf;
     
     /**
@@ -36,6 +40,10 @@ public class ToolTipControl extends ControlAdapter {
     }
     
     /**
+     * Item entered.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemEntered(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemEntered(VisualItem item, MouseEvent e) {
@@ -62,6 +70,10 @@ public class ToolTipControl extends ControlAdapter {
     }
     
     /**
+     * Item exited.
+     *
+     * @param item the item
+     * @param e the e
      * @see prefuse.controls.Control#itemExited(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
      */
     public void itemExited(VisualItem item, MouseEvent e) {

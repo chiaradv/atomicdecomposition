@@ -2,6 +2,7 @@ package prefuse.util.force;
 
 import java.util.Iterator;
 
+
 /**
  * Updates velocity and position data using Euler's Method. This is the
  * simplest and fastest method, but is somewhat inaccurate and less smooth
@@ -13,6 +14,10 @@ import java.util.Iterator;
 public class EulerIntegrator implements Integrator {
     
     /**
+     * Integrate.
+     *
+     * @param sim the sim
+     * @param timestep the timestep
      * @see prefuse.util.force.Integrator#integrate(prefuse.util.force.ForceSimulator, long)
      */
     public void integrate(ForceSimulator sim, long timestep) {

@@ -8,6 +8,7 @@
  */
 package prefuse.util.collections;
 
+
 /**
  * Abstract base class for hash maps holding objects or primitive data types
  * such as <code>int</code>, <code>float</code>, etc. as keys and/or
@@ -39,6 +40,7 @@ public abstract class AbstractHashMap {
      */
     protected int lowWaterMark;
 
+    /** The high water mark. */
     protected int highWaterMark;
 
     /**
@@ -51,10 +53,13 @@ public abstract class AbstractHashMap {
      */
     protected double maxLoadFactor;
 
+    /** The Constant defaultCapacity. */
     protected static final int defaultCapacity = 277;
 
+    /** The Constant defaultMinLoadFactor. */
     protected static final double defaultMinLoadFactor = 0.2;
 
+    /** The Constant defaultMaxLoadFactor. */
     protected static final double defaultMaxLoadFactor = 0.5;
 
     /**
@@ -69,6 +74,11 @@ public abstract class AbstractHashMap {
      * (approximately) satisfies the invariant
      * <tt>c * minLoadFactor <= size <= c * maxLoadFactor</tt> and has at
      * least one FREE slot for the given size.
+     *
+     * @param size the size
+     * @param minLoad the min load
+     * @param maxLoad the max load
+     * @return the int
      */
     protected int chooseGrowCapacity(int size, double minLoad, double maxLoad) {
         return nextPrime(Math.max(size + 1,
@@ -78,7 +88,9 @@ public abstract class AbstractHashMap {
     /**
      * Returns new high water mark threshold based on current capacity and
      * maxLoadFactor.
-     * 
+     *
+     * @param capacity the capacity
+     * @param maxLoad the max load
      * @return int the new threshold.
      */
     protected int chooseHighWaterMark(int capacity, double maxLoad) {
@@ -93,7 +105,9 @@ public abstract class AbstractHashMap {
     /**
      * Returns new low water mark threshold based on current capacity and
      * minLoadFactor.
-     * 
+     *
+     * @param capacity the capacity
+     * @param minLoad the min load
      * @return int the new threshold.
      */
     protected int chooseLowWaterMark(int capacity, double minLoad) {
@@ -105,6 +119,11 @@ public abstract class AbstractHashMap {
      * growing, that (approximately) satisfies the invariant
      * <tt>c * minLoadFactor <= size <= c * maxLoadFactor</tt> and has at
      * least one FREE slot for the given size.
+     *
+     * @param size the size
+     * @param minLoad the min load
+     * @param maxLoad the max load
+     * @return the int
      */
     protected int chooseMeanCapacity(int size, double minLoad, double maxLoad) {
         return nextPrime(Math.max(size + 1,
@@ -116,6 +135,11 @@ public abstract class AbstractHashMap {
      * (approximately) satisfies the invariant
      * <tt>c * minLoadFactor <= size <= c * maxLoadFactor</tt> and has at
      * least one FREE slot for the given size.
+     *
+     * @param size the size
+     * @param minLoad the min load
+     * @param maxLoad the max load
+     * @return the int
      */
     protected int chooseShrinkCapacity(int size, double minLoad, double maxLoad) {
         return nextPrime(Math.max(size + 1,
@@ -173,16 +197,10 @@ public abstract class AbstractHashMap {
     /**
      * Initializes the receiver. You will almost certainly need to override this
      * method in subclasses to initialize the hash table.
-     * 
-     * @param initialCapacity
-     *            the initial capacity of the receiver.
-     * @param minLoadFactor
-     *            the minLoadFactor of the receiver.
-     * @param maxLoadFactor
-     *            the maxLoadFactor of the receiver.
-     * @throws IllegalArgumentException
-     *             if
-     *             <tt>initialCapacity < 0 || (minLoadFactor < 0.0 || minLoadFactor >= 1.0) || (maxLoadFactor <= 0.0 || maxLoadFactor >= 1.0) || (minLoadFactor >= maxLoadFactor)</tt>.
+     *
+     * @param initialCapacity the initial capacity of the receiver.
+     * @param minLoadFactor the minLoadFactor of the receiver.
+     * @param maxLoadFactor the maxLoadFactor of the receiver.
      */
     protected void setUp(int initialCapacity, double minLoadFactor,
             double maxLoadFactor) {

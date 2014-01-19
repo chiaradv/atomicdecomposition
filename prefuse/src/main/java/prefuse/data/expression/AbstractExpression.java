@@ -4,6 +4,7 @@ import prefuse.data.Tuple;
 import prefuse.data.event.ExpressionListener;
 import prefuse.util.collections.CopyOnWriteArrayList;
 
+
 /**
  * Abstract base class for Expression implementations. Provides support for
  * listeners and defaults every Expression evaluation method to an
@@ -14,9 +15,14 @@ import prefuse.util.collections.CopyOnWriteArrayList;
 public abstract class AbstractExpression
     implements Expression, ExpressionListener
 {
+    
+    /** The m_listeners. */
     private CopyOnWriteArrayList m_listeners = new CopyOnWriteArrayList();
     
     /**
+     * Visit.
+     *
+     * @param v the v
      * @see prefuse.data.expression.Expression#visit(prefuse.data.expression.ExpressionVisitor)
      */
     public void visit(ExpressionVisitor v) {
@@ -24,6 +30,9 @@ public abstract class AbstractExpression
     }
 
     /**
+     * Adds the expression listener.
+     *
+     * @param lstnr the lstnr
      * @see prefuse.data.expression.Expression#addExpressionListener(prefuse.data.event.ExpressionListener)
      */
     public final void addExpressionListener(ExpressionListener lstnr) {
@@ -34,6 +43,9 @@ public abstract class AbstractExpression
     }
     
     /**
+     * Removes the expression listener.
+     *
+     * @param lstnr the lstnr
      * @see prefuse.data.expression.Expression#removeExpressionListener(prefuse.data.event.ExpressionListener)
      */
     public final void removeExpressionListener(ExpressionListener lstnr) {
@@ -76,6 +88,8 @@ public abstract class AbstractExpression
 
     /**
      * Relay an expression change event.
+     *
+     * @param expr the expr
      * @see prefuse.data.event.ExpressionListener#expressionChanged(prefuse.data.expression.Expression)
      */
     public void expressionChanged(Expression expr) {
@@ -87,6 +101,9 @@ public abstract class AbstractExpression
     
     /**
      * By default, throws an UnsupportedOperationException.
+     *
+     * @param t the t
+     * @return the object
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */
     public Object get(Tuple t) {
@@ -95,6 +112,9 @@ public abstract class AbstractExpression
 
     /**
      * By default, throws an UnsupportedOperationException.
+     *
+     * @param t the t
+     * @return the int
      * @see prefuse.data.expression.Expression#getInt(prefuse.data.Tuple)
      */
     public int getInt(Tuple t) {
@@ -103,6 +123,9 @@ public abstract class AbstractExpression
 
     /**
      * By default, throws an UnsupportedOperationException.
+     *
+     * @param t the t
+     * @return the long
      * @see prefuse.data.expression.Expression#getLong(prefuse.data.Tuple)
      */
     public long getLong(Tuple t) {
@@ -111,6 +134,9 @@ public abstract class AbstractExpression
 
     /**
      * By default, throws an UnsupportedOperationException.
+     *
+     * @param t the t
+     * @return the float
      * @see prefuse.data.expression.Expression#getFloat(prefuse.data.Tuple)
      */
     public float getFloat(Tuple t) {
@@ -119,6 +145,9 @@ public abstract class AbstractExpression
 
     /**
      * By default, throws an UnsupportedOperationException.
+     *
+     * @param t the t
+     * @return the double
      * @see prefuse.data.expression.Expression#getDouble(prefuse.data.Tuple)
      */
     public double getDouble(Tuple t) {
@@ -127,6 +156,9 @@ public abstract class AbstractExpression
 
     /**
      * By default, throws an UnsupportedOperationException.
+     *
+     * @param t the t
+     * @return the boolean
      * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
      */
     public boolean getBoolean(Tuple t) {

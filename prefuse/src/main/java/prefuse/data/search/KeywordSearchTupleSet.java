@@ -12,6 +12,7 @@ import prefuse.data.Tuple;
 import prefuse.util.StringLib;
 import prefuse.util.collections.IntObjectHashMap;
 
+
 /**
  * <p>
  * SearchTupleSet implementation that performs text searches on indexed Tuple
@@ -29,15 +30,23 @@ import prefuse.util.collections.IntObjectHashMap;
  */
 public class KeywordSearchTupleSet extends SearchTupleSet {
     
+    /** The Constant s_logger. */
     private static final Logger s_logger 
         = Logger.getLogger(KeywordSearchTupleSet.class.getName());
     
+    /** The m_map. */
     protected IntObjectHashMap m_map = new IntObjectHashMap();
+    
+    /** The m_query. */
     protected String m_query = "";
     
+    /** The m_lucene. */
     protected LuceneSearcher m_lucene = null;
+    
+    /** The m_store term vectors. */
     protected boolean m_storeTermVectors = false;
     
+    /** The m_id. */
     protected int m_id = 1;
     
     /**
@@ -115,6 +124,10 @@ public class KeywordSearchTupleSet extends SearchTupleSet {
     }
     
     /**
+     * Index.
+     *
+     * @param t the t
+     * @param field the field
      * @see prefuse.data.search.SearchTupleSet#index(prefuse.data.Tuple, java.lang.String)
      */
     public void index(Tuple t, String field) {
@@ -129,6 +142,8 @@ public class KeywordSearchTupleSet extends SearchTupleSet {
 
     /**
      * Returns false, as unindexing values is not currently supported.
+     *
+     * @return true, if is unindex supported
      * @see prefuse.data.search.SearchTupleSet#isUnindexSupported()
      */
     public boolean isUnindexSupported() {
@@ -137,8 +152,10 @@ public class KeywordSearchTupleSet extends SearchTupleSet {
     
     /**
      * This method throws an exception, as unidexing is not supported.
+     *
+     * @param t the t
+     * @param attrName the attr name
      * @see prefuse.data.search.SearchTupleSet#unindex(prefuse.data.Tuple, java.lang.String)
-     * @throws UnsupportedOperationException
      */
     public void unindex(Tuple t, String attrName) {
         throw new UnsupportedOperationException();

@@ -8,6 +8,7 @@ import prefuse.data.Node;
 import prefuse.data.Table;
 import prefuse.visual.NodeItem;
 
+
 /**
  * NodeItem implementation that used data values from a backing
  * VisualTable of nodes.
@@ -16,6 +17,7 @@ import prefuse.visual.NodeItem;
  */
 public class TableNodeItem extends TableVisualItem implements NodeItem {
 
+    /** The m_graph. */
     protected Graph m_graph;
 
     /**
@@ -35,6 +37,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * Gets the graph.
+     *
+     * @return the graph
      * @see prefuse.data.Node#getGraph()
      */
     public Graph getGraph() {
@@ -46,6 +51,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     // Instead we must re-implement the entire Node interface.
     
     /**
+     * Gets the in degree.
+     *
+     * @return the in degree
      * @see prefuse.data.Node#getInDegree()
      */
     public int getInDegree() {
@@ -53,6 +61,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
 
     /**
+     * Gets the out degree.
+     *
+     * @return the out degree
      * @see prefuse.data.Node#getOutDegree()
      */
     public int getOutDegree() {
@@ -60,6 +71,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
 
     /**
+     * Gets the degree.
+     *
+     * @return the degree
      * @see prefuse.data.Node#getDegree()
      */
     public int getDegree() {
@@ -67,6 +81,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
 
     /**
+     * In edges.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#inEdges()
      */
     public Iterator inEdges() {
@@ -74,6 +91,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
 
     /**
+     * Out edges.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#outEdges()
      */
     public Iterator outEdges() {
@@ -81,6 +101,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * Edges.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#edges()
      */
     public Iterator edges() {
@@ -88,6 +111,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * In neighbors.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#inNeighbors()
      */
     public Iterator inNeighbors() {
@@ -95,6 +121,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * Out neighbors.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#outNeighbors()
      */
     public Iterator outNeighbors() {
@@ -102,6 +131,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * Neighbors.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#neighbors()
      */
     public Iterator neighbors() {
@@ -111,6 +143,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     // ------------------------------------------------------------------------
     
     /**
+     * Gets the parent.
+     *
+     * @return the parent
      * @see prefuse.data.Node#getParent()
      */
     public Node getParent() {
@@ -118,6 +153,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
 
     /**
+     * Gets the parent edge.
+     *
+     * @return the parent edge
      * @see prefuse.data.Node#getParentEdge()
      */
     public Edge getParentEdge() {
@@ -125,6 +163,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * Gets the child count.
+     *
+     * @return the child count
      * @see prefuse.data.Node#getChildCount()
      */
     public int getChildCount() {
@@ -132,6 +173,10 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
 
     /**
+     * Gets the child index.
+     *
+     * @param child the child
+     * @return the child index
      * @see prefuse.data.Node#getChildIndex(prefuse.data.Node)
      */
     public int getChildIndex(Node child) {
@@ -139,6 +184,10 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * Gets the child.
+     *
+     * @param idx the idx
+     * @return the child
      * @see prefuse.data.Node#getChild(int)
      */
     public Node getChild(int idx) {
@@ -146,6 +195,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * Gets the first child.
+     *
+     * @return the first child
      * @see prefuse.data.Node#getFirstChild()
      */
     public Node getFirstChild() {
@@ -153,6 +205,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * Gets the last child.
+     *
+     * @return the last child
      * @see prefuse.data.Node#getLastChild()
      */
     public Node getLastChild() {
@@ -160,6 +215,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * Gets the previous sibling.
+     *
+     * @return the previous sibling
      * @see prefuse.data.Node#getPreviousSibling()
      */
     public Node getPreviousSibling() {
@@ -167,6 +225,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * Gets the next sibling.
+     *
+     * @return the next sibling
      * @see prefuse.data.Node#getNextSibling()
      */
     public Node getNextSibling() {
@@ -174,6 +235,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
     
     /**
+     * Children.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#children()
      */
     public Iterator children() {
@@ -181,6 +245,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
 
     /**
+     * Child edges.
+     *
+     * @return the iterator
      * @see prefuse.data.Node#childEdges()
      */
     public Iterator childEdges() {
@@ -188,6 +255,9 @@ public class TableNodeItem extends TableVisualItem implements NodeItem {
     }
 
     /**
+     * Gets the depth.
+     *
+     * @return the depth
      * @see prefuse.data.Node#getDepth()
      */
     public int getDepth() {

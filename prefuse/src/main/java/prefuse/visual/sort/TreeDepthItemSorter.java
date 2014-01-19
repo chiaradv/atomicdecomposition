@@ -7,6 +7,7 @@ import prefuse.visual.EdgeItem;
 import prefuse.visual.NodeItem;
 import prefuse.visual.VisualItem;
 
+
 /**
  * ItemSorter that sorts items by tree depths. By default items deeper
  * in the tree are given lower scores, so that parent nodes are drawn
@@ -17,15 +18,31 @@ import prefuse.visual.VisualItem;
  */
 public class TreeDepthItemSorter extends ItemSorter {
 
+    /** The Constant AGGREGATE. */
     protected static final int AGGREGATE = 0;
+    
+    /** The Constant EDGE. */
     protected static final int EDGE      = 1;
+    
+    /** The Constant ITEM. */
     protected static final int ITEM      = 2;
+    
+    /** The Constant NODE. */
     protected static final int NODE      = 3;
+    
+    /** The Constant DECORATOR. */
     protected static final int DECORATOR = 4;
     
+    /** The m_children above. */
     private int m_childrenAbove;
+    
+    /** The m_hover. */
     private int m_hover;
+    
+    /** The m_highlight. */
     private int m_highlight;
+    
+    /** The m_depth. */
     private int m_depth;
     
     /**
@@ -58,6 +75,9 @@ public class TreeDepthItemSorter extends ItemSorter {
     /**
      * Score items similarly to {@link ItemSorter}, but additionally
      * ranks items based on their tree depth.
+     *
+     * @param item the item
+     * @return the int
      * @see prefuse.visual.sort.ItemSorter#score(prefuse.visual.VisualItem)
      */
     public int score(VisualItem item) {

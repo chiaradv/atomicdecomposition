@@ -3,6 +3,7 @@ package prefuse.data.util;
 import prefuse.data.column.Column;
 import prefuse.data.event.ProjectionListener;
 
+
 /**
  * Interface for filtering only a subset of a Table columns, computing
  * a projection of the available data fields. Used in conjunction with
@@ -22,13 +23,15 @@ public interface ColumnProjection {
     public boolean include(Column col, String name);
     
     /**
-     * Add a listener to this column projection
+     * Add a listener to this column projection.
+     *
      * @param lstnr the listener to add
      */
     public void addProjectionListener(ProjectionListener lstnr);
     
     /**
-     * Remove a listener from this column projection
+     * Remove a listener from this column projection.
+     *
      * @param lstnr the listener to remove
      */
     public void removeProjectionListener(ProjectionListener lstnr);

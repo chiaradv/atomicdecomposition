@@ -2,6 +2,7 @@ package prefuse.data.parser;
 
 import prefuse.util.ColorLib;
 
+
 /**
  * DataParser instance the parses int color values from a
  * hexadecimal text string.
@@ -12,6 +13,8 @@ public class ColorIntParser implements DataParser {
     
     /**
      * Returns int.class.
+     *
+     * @return the type
      * @see prefuse.data.parser.DataParser#getType()
      */
     public Class getType() {
@@ -19,6 +22,10 @@ public class ColorIntParser implements DataParser {
     }
     
     /**
+     * Format.
+     *
+     * @param value the value
+     * @return the string
      * @see prefuse.data.parser.DataParser#format(java.lang.Object)
      */
     public String format(Object value) {
@@ -30,6 +37,10 @@ public class ColorIntParser implements DataParser {
     }
     
     /**
+     * Can parse.
+     *
+     * @param text the text
+     * @return true, if successful
      * @see prefuse.data.parser.DataParser#canParse(java.lang.String)
      */
     public boolean canParse(String text) {
@@ -46,6 +57,11 @@ public class ColorIntParser implements DataParser {
     }
     
     /**
+     * Parses the.
+     *
+     * @param text the text
+     * @return the object
+     * @throws DataParseException the data parse exception
      * @see prefuse.data.parser.DataParser#parse(java.lang.String)
      */
     public Object parse(String text) throws DataParseException {

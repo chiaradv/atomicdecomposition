@@ -4,6 +4,7 @@ import prefuse.data.Schema;
 import prefuse.data.Tuple;
 import prefuse.util.TypeLib;
 
+
 /**
  * Expression supporting basic arithmetic: add, subtract, multiply,
  * divide, exponentiate (pow), and modulo (%).
@@ -25,6 +26,7 @@ public class ArithmeticExpression extends BinaryExpression {
     /** Indicates a modulo operation. */
     public static final int MOD = 5;
 
+    /** The m_type. */
     private Class m_type;    
     
     /**
@@ -41,6 +43,10 @@ public class ArithmeticExpression extends BinaryExpression {
     }
     
     /**
+     * Gets the type.
+     *
+     * @param s the s
+     * @return the type
      * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
      */
     public Class getType(Schema s) {
@@ -55,6 +61,10 @@ public class ArithmeticExpression extends BinaryExpression {
     }
 
     /**
+     * Gets the.
+     *
+     * @param t the t
+     * @return the object
      * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
      */
     public Object get(Tuple t) {
@@ -74,6 +84,10 @@ public class ArithmeticExpression extends BinaryExpression {
     }
 
     /**
+     * Gets the int.
+     *
+     * @param t the t
+     * @return the int
      * @see prefuse.data.expression.Expression#getInt(prefuse.data.Tuple)
      */
     public int getInt(Tuple t) {
@@ -99,6 +113,10 @@ public class ArithmeticExpression extends BinaryExpression {
     }
 
     /**
+     * Gets the long.
+     *
+     * @param t the t
+     * @return the long
      * @see prefuse.data.expression.Expression#getLong(prefuse.data.Tuple)
      */
     public long getLong(Tuple t) {
@@ -124,6 +142,10 @@ public class ArithmeticExpression extends BinaryExpression {
     }
 
     /**
+     * Gets the float.
+     *
+     * @param t the t
+     * @return the float
      * @see prefuse.data.expression.Expression#getFloat(prefuse.data.Tuple)
      */
     public float getFloat(Tuple t) {
@@ -149,6 +171,10 @@ public class ArithmeticExpression extends BinaryExpression {
     }
 
     /**
+     * Gets the double.
+     *
+     * @param t the t
+     * @return the double
      * @see prefuse.data.expression.Expression#getDouble(prefuse.data.Tuple)
      */
     public double getDouble(Tuple t) {
@@ -174,6 +200,9 @@ public class ArithmeticExpression extends BinaryExpression {
     }
 
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

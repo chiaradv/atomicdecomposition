@@ -12,6 +12,7 @@ import prefuse.data.parser.TypeInferencer;
 import prefuse.util.collections.ByteArrayList;
 import prefuse.util.io.IOLib;
 
+
 /**
  * Abstract base class for TableReader instances that read in a table
  * from a textual data file.
@@ -20,7 +21,10 @@ import prefuse.util.io.IOLib;
  */
 public abstract class AbstractTextTableReader extends AbstractTableReader {
 
+    /** The m_pfactory. */
     private ParserFactory m_pfactory;
+    
+    /** The m_has header. */
     private boolean m_hasHeader;
     
     /**
@@ -50,6 +54,11 @@ public abstract class AbstractTextTableReader extends AbstractTableReader {
     }
     
     /**
+     * Read table.
+     *
+     * @param is the is
+     * @return the table
+     * @throws DataIOException the data io exception
      * @see prefuse.data.io.AbstractTableReader#readTable(java.io.InputStream)
      */
     public Table readTable(InputStream is) throws DataIOException {
@@ -212,10 +221,11 @@ public abstract class AbstractTextTableReader extends AbstractTableReader {
     /**
      * Scans the input stream, making call backs for each encountered entry
      * on the provided TextReadListener.
+     *
      * @param is the InputStream to read
      * @param trl the TextReadListener that will receive callbacks
-     * @throws IOException
-     * @throws DataParseException
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws DataParseException the data parse exception
      */
     protected abstract void read(InputStream is, TableReadListener trl)
         throws IOException, DataParseException;

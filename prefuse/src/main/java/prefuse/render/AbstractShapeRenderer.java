@@ -10,6 +10,7 @@ import prefuse.util.GraphicsLib;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * <p>Abstract base class implementation of the Renderer interface for
  * supporting the drawing of basic shapes. Subclasses should override the
@@ -32,20 +33,41 @@ import prefuse.visual.VisualItem;
  */
 public abstract class AbstractShapeRenderer implements Renderer {
     
+    /** The Constant RENDER_TYPE_NONE. */
     public static final int RENDER_TYPE_NONE = 0;
+    
+    /** The Constant RENDER_TYPE_DRAW. */
     public static final int RENDER_TYPE_DRAW = 1;
+    
+    /** The Constant RENDER_TYPE_FILL. */
     public static final int RENDER_TYPE_FILL = 2;
+    
+    /** The Constant RENDER_TYPE_DRAW_AND_FILL. */
     public static final int RENDER_TYPE_DRAW_AND_FILL = 3;
 
+    /** The m_render type. */
     private int m_renderType = RENDER_TYPE_DRAW_AND_FILL;
+    
+    /** The m_transform. */
     protected AffineTransform m_transform = new AffineTransform();
+    
+    /** The m_manage bounds. */
     protected boolean m_manageBounds = true;
     
+    /**
+     * Sets the manage bounds.
+     *
+     * @param b the new manage bounds
+     */
     public void setManageBounds(boolean b) {
         m_manageBounds = b;
     }
     
     /**
+     * Render.
+     *
+     * @param g the g
+     * @param item the item
      * @see prefuse.render.Renderer#render(java.awt.Graphics2D, prefuse.visual.VisualItem)
      */
     public void render(Graphics2D g, VisualItem item) {
@@ -57,7 +79,11 @@ public abstract class AbstractShapeRenderer implements Renderer {
     /**
      * Draws the specified shape into the provided Graphics context, using
      * stroke and fill color values from the specified VisualItem. This method
-     * can be called by subclasses in custom rendering routines. 
+     * can be called by subclasses in custom rendering routines.
+     *
+     * @param g the g
+     * @param item the item
+     * @param shape the shape
      */
     protected void drawShape(Graphics2D g, VisualItem item, Shape shape) {
         GraphicsLib.paint(g, item, shape, getStroke(item), getRenderType(item));
@@ -66,7 +92,9 @@ public abstract class AbstractShapeRenderer implements Renderer {
     /**
      * Returns the shape describing the boundary of an item. The shape's
      * coordinates should be in abolute (item-space) coordinates.
+     *
      * @param item the item for which to get the Shape
+     * @return the shape
      */
     public Shape getShape(VisualItem item) {
         AffineTransform at = getTransform(item);
@@ -108,8 +136,10 @@ public abstract class AbstractShapeRenderer implements Renderer {
     }
 
     /**
-     * Returns a value indicating if a shape is drawn by its outline, by a 
+     * Returns a value indicating if a shape is drawn by its outline, by a
      * fill, or both. The default is to draw both.
+     *
+     * @param item the item
      * @return the rendering type
      */
     public int getRenderType(VisualItem item) {
@@ -131,6 +161,11 @@ public abstract class AbstractShapeRenderer implements Renderer {
     }
     
     /**
+     * Locate point.
+     *
+     * @param p the p
+     * @param item the item
+     * @return true, if successful
      * @see prefuse.render.Renderer#locatePoint(java.awt.geom.Point2D, prefuse.visual.VisualItem)
      */
     public boolean locatePoint(Point2D p, VisualItem item) {
@@ -144,6 +179,9 @@ public abstract class AbstractShapeRenderer implements Renderer {
     }
 
     /**
+     * Sets the bounds.
+     *
+     * @param item the new bounds
      * @see prefuse.render.Renderer#setBounds(prefuse.visual.VisualItem)
      */
     public void setBounds(VisualItem item) {

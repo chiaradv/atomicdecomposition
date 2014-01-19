@@ -1,5 +1,6 @@
 package prefuse.data.parser;
 
+
 /**
  * Exception indicating an error occurred during parsing of data values.
  *  

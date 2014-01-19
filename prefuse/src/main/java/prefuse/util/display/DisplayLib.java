@@ -8,6 +8,7 @@ import prefuse.Display;
 import prefuse.visual.VisualItem;
 
 
+
 /**
  * Library routines pertaining to a prefuse Display.
  *
@@ -15,6 +16,9 @@ import prefuse.visual.VisualItem;
  */
 public class DisplayLib {
 
+    /**
+     * Instantiates a new display lib.
+     */
     private DisplayLib() {
         // don't instantiate
     }

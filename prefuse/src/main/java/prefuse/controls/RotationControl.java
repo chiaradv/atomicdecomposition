@@ -8,6 +8,7 @@ import prefuse.Display;
 import prefuse.util.ui.UILib;
 
 
+
 /**
  * Control that can be used to rotate the display. This results in a
  * transformation of the display itself, such that all aspects are
@@ -21,8 +22,13 @@ import prefuse.util.ui.UILib;
  */
 public class RotationControl extends ControlAdapter {
 
+    /** The down. */
     private Point down = new Point();
+    
+    /** The base angle. */
     private double baseAngle = 0; // the baseline angle of the rotation
+    
+    /** The m_button. */
     private int m_button;         // the mouse button to use
     
     /**
@@ -34,10 +40,11 @@ public class RotationControl extends ControlAdapter {
     }
     
     /**
-     * Create a new RotateControl
+     * Create a new RotateControl.
+     *
      * @param mouseButton the mouse button that should initiate a rotation. One
      * of {@link Control#LEFT_MOUSE_BUTTON},
-     * {@link Control#MIDDLE_MOUSE_BUTTON}, or 
+     * {@link Control#MIDDLE_MOUSE_BUTTON}, or
      * {@link Control#RIGHT_MOUSE_BUTTON}.
      */
     public RotationControl(int mouseButton) {
@@ -45,6 +52,9 @@ public class RotationControl extends ControlAdapter {
     }
     
     /**
+     * Mouse pressed.
+     *
+     * @param e the e
      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
      */
     public void mousePressed(MouseEvent e) {
@@ -58,6 +68,9 @@ public class RotationControl extends ControlAdapter {
     }
     
     /**
+     * Mouse dragged.
+     *
+     * @param e the e
      * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent)
      */
     public void mouseDragged(MouseEvent e) {
@@ -76,6 +89,9 @@ public class RotationControl extends ControlAdapter {
     }
     
     /**
+     * Mouse released.
+     *
+     * @param e the e
      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
      */
     public void mouseReleased(MouseEvent e) {

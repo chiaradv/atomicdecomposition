@@ -3,6 +3,7 @@ package prefuse.action.distortion;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
+
 /**
  * <p>
  * Computes a bifocal distortion of space, magnifying a focus region of space
@@ -23,7 +24,10 @@ import java.awt.geom.Rectangle2D;
  */
 public class BifocalDistortion extends Distortion {
     
+    /** The ry. */
     private double rx, ry; // magnification ranges
+    
+    /** The my. */
     private double mx, my; // magnification factor
     
     /**
@@ -85,6 +89,12 @@ public class BifocalDistortion extends Distortion {
     }
     
     /**
+     * Distort x.
+     *
+     * @param x the x
+     * @param a the a
+     * @param b the b
+     * @return the double
      * @see prefuse.action.distortion.Distortion#distortX(double, java.awt.geom.Point2D, java.awt.geom.Rectangle2D)
      */
     protected double distortX(double x, Point2D a, Rectangle2D b) {
@@ -92,6 +102,12 @@ public class BifocalDistortion extends Distortion {
     }
     
     /**
+     * Distort y.
+     *
+     * @param y the y
+     * @param a the a
+     * @param b the b
+     * @return the double
      * @see prefuse.action.distortion.Distortion#distortY(double, java.awt.geom.Point2D, java.awt.geom.Rectangle2D)
      */
     protected double distortY(double y, Point2D a, Rectangle2D b) {
@@ -99,6 +115,14 @@ public class BifocalDistortion extends Distortion {
     }
     
     /**
+     * Distort size.
+     *
+     * @param bbox the bbox
+     * @param x the x
+     * @param y the y
+     * @param anchor the anchor
+     * @param bounds the bounds
+     * @return the double
      * @see prefuse.action.distortion.Distortion#distortSize(java.awt.geom.Rectangle2D, double, double, java.awt.geom.Point2D, java.awt.geom.Rectangle2D)
      */
     protected double distortSize(Rectangle2D bbox, double x, double y, 
@@ -136,6 +160,17 @@ public class BifocalDistortion extends Distortion {
         }
     }
     
+    /**
+     * Bifocal.
+     *
+     * @param x the x
+     * @param a the a
+     * @param r the r
+     * @param mag the mag
+     * @param min the min
+     * @param max the max
+     * @return the double
+     */
     private double bifocal(double x, double a, double r, 
                            double mag, double min, double max)
     {

@@ -5,6 +5,7 @@ import java.util.BitSet;
 import prefuse.data.DataReadOnlyException;
 import prefuse.data.DataTypeException;
 
+
 /**
  * Column implementation storing boolean values. Uses a BitSet representation
  * for space efficient storage.
@@ -13,7 +14,10 @@ import prefuse.data.DataTypeException;
  */
 public class BooleanColumn extends AbstractColumn {
 
+    /** The m_bits. */
     private BitSet m_bits;    
+    
+    /** The m_size. */
     private int    m_size;
     
     /**
@@ -52,6 +56,9 @@ public class BooleanColumn extends AbstractColumn {
     // Column Metadata
     
     /**
+     * Gets the row count.
+     *
+     * @return the row count
      * @see prefuse.data.column.Column#getRowCount()
      */
     public int getRowCount() {
@@ -59,6 +66,9 @@ public class BooleanColumn extends AbstractColumn {
     }
     
     /**
+     * Sets the maximum row.
+     *
+     * @param nrows the new maximum row
      * @see prefuse.data.column.Column#setMaximumRow(int)
      */
     public void setMaximumRow(int nrows) {
@@ -73,6 +83,10 @@ public class BooleanColumn extends AbstractColumn {
     // Data Access Methods    
     
     /**
+     * Gets the.
+     *
+     * @param row the row
+     * @return the object
      * @see prefuse.data.column.Column#get(int)
      */
     public Object get(int row) {
@@ -80,6 +94,11 @@ public class BooleanColumn extends AbstractColumn {
     }
 
     /**
+     * Sets the.
+     *
+     * @param val the val
+     * @param row the row
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.Column#set(java.lang.Object, int)
      */
     public void set(Object val, int row) throws DataTypeException {
@@ -102,6 +121,11 @@ public class BooleanColumn extends AbstractColumn {
     // Data Type Convenience Methods
     
     /**
+     * Gets the boolean.
+     *
+     * @param row the row
+     * @return the boolean
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.AbstractColumn#getBoolean(int)
      */
     public boolean getBoolean(int row) throws DataTypeException {
@@ -112,6 +136,11 @@ public class BooleanColumn extends AbstractColumn {
     }
 
     /**
+     * Sets the boolean.
+     *
+     * @param val the val
+     * @param row the row
+     * @throws DataTypeException the data type exception
      * @see prefuse.data.column.AbstractColumn#setBoolean(boolean, int)
      */
     public void setBoolean(boolean val, int row) throws DataTypeException {

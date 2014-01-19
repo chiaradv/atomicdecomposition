@@ -17,6 +17,7 @@ import prefuse.util.StringLib;
 import prefuse.util.collections.CopyOnWriteArrayList;
 import prefuse.visual.VisualTree;
 
+
 /**
  * Swing component that displays a prefuse Tree instance in a Swing
  * JTree component. Graph instances can also be displayed by first
@@ -28,7 +29,10 @@ import prefuse.visual.VisualTree;
  */
 public class JPrefuseTree extends JTree {
 
+    /** The m_tree. */
     private Tree m_tree;
+    
+    /** The m_field. */
     private String m_field;
     
     /**
@@ -57,6 +61,14 @@ public class JPrefuseTree extends JTree {
     /**
      * Returns a String label for Node instances by looking up the
      * label data field specified in the constructor of this class.
+     *
+     * @param value the value
+     * @param selected the selected
+     * @param expanded the expanded
+     * @param leaf the leaf
+     * @param row the row
+     * @param hasFocus the has focus
+     * @return the string
      * @see javax.swing.JTree#convertValueToText(java.lang.Object, boolean, boolean, boolean, int, boolean)
      */
     public String convertValueToText(Object value, boolean selected,
@@ -85,9 +97,13 @@ public class JPrefuseTree extends JTree {
      */
     public class PrefuseTreeModel implements TreeModel, GraphListener {
 
+        /** The m_listeners. */
         private CopyOnWriteArrayList m_listeners = new CopyOnWriteArrayList();
         
         /**
+         * Gets the root.
+         *
+         * @return the root
          * @see javax.swing.tree.TreeModel#getRoot()
          */
         public Object getRoot() {
@@ -95,6 +111,11 @@ public class JPrefuseTree extends JTree {
         }
 
         /**
+         * Gets the child.
+         *
+         * @param node the node
+         * @param idx the idx
+         * @return the child
          * @see javax.swing.tree.TreeModel#getChild(java.lang.Object, int)
          */
         public Object getChild(Object node, int idx) {
@@ -106,6 +127,10 @@ public class JPrefuseTree extends JTree {
         }
 
         /**
+         * Gets the child count.
+         *
+         * @param node the node
+         * @return the child count
          * @see javax.swing.tree.TreeModel#getChildCount(java.lang.Object)
          */
         public int getChildCount(Object node) {
@@ -113,6 +138,10 @@ public class JPrefuseTree extends JTree {
         }
 
         /**
+         * Checks if is leaf.
+         *
+         * @param node the node
+         * @return true, if is leaf
          * @see javax.swing.tree.TreeModel#isLeaf(java.lang.Object)
          */
         public boolean isLeaf(Object node) {
@@ -120,6 +149,10 @@ public class JPrefuseTree extends JTree {
         }
 
         /**
+         * Value for path changed.
+         *
+         * @param path the path
+         * @param newValue the new value
          * @see javax.swing.tree.TreeModel#valueForPathChanged(javax.swing.tree.TreePath, java.lang.Object)
          */
         public void valueForPathChanged(TreePath path, Object newValue) {
@@ -127,6 +160,11 @@ public class JPrefuseTree extends JTree {
         }
 
         /**
+         * Gets the index of child.
+         *
+         * @param parent the parent
+         * @param child the child
+         * @return the index of child
          * @see javax.swing.tree.TreeModel#getIndexOfChild(java.lang.Object, java.lang.Object)
          */
         public int getIndexOfChild(Object parent, Object child) {
@@ -134,6 +172,9 @@ public class JPrefuseTree extends JTree {
         }
 
         /**
+         * Adds the tree model listener.
+         *
+         * @param tml the tml
          * @see javax.swing.tree.TreeModel#addTreeModelListener(javax.swing.event.TreeModelListener)
          */
         public void addTreeModelListener(TreeModelListener tml) {
@@ -142,6 +183,9 @@ public class JPrefuseTree extends JTree {
         }
 
         /**
+         * Removes the tree model listener.
+         *
+         * @param tml the tml
          * @see javax.swing.tree.TreeModel#removeTreeModelListener(javax.swing.event.TreeModelListener)
          */
         public void removeTreeModelListener(TreeModelListener tml) {
@@ -149,6 +193,14 @@ public class JPrefuseTree extends JTree {
         }
 
         /**
+         * Graph changed.
+         *
+         * @param g the g
+         * @param table the table
+         * @param start the start
+         * @param end the end
+         * @param col the col
+         * @param type the type
          * @see prefuse.data.event.GraphListener#graphChanged(prefuse.data.Graph, java.lang.String, int, int, int, int)
          */
         public void graphChanged(Graph g, String table, int start, int end,

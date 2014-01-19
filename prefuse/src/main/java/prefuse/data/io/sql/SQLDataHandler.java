@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import prefuse.data.Table;
 
+
 /**
  * Interface for taking a value in a SQL ResultSet and translating it into
  * a Java data value for use in a prefuse Table.

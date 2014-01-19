@@ -4,6 +4,7 @@ import java.awt.Font;
 
 import prefuse.util.collections.IntObjectHashMap;
 
+
 /**
  * Library maintaining a cache of fonts and other useful font computation
  * routines.
@@ -12,8 +13,13 @@ import prefuse.util.collections.IntObjectHashMap;
  */
 public class FontLib {
 
+    /** The Constant fontMap. */
     private static final IntObjectHashMap fontMap = new IntObjectHashMap();
+    
+    /** The misses. */
     private static int misses = 0;
+    
+    /** The lookups. */
     private static int lookups = 0;
     
     /**
@@ -31,7 +37,8 @@ public class FontLib {
     }
     
     /**
-     * Get a Font instance with the given font family name, style, and size
+     * Get a Font instance with the given font family name, style, and size.
+     *
      * @param name the font name. Any font installed on your system should
      * be valid. Common examples include "Arial", "Verdana", "Tahoma",
      * "Times New Roman", "Georgia", and "Courier New".
@@ -46,7 +53,8 @@ public class FontLib {
     }
     
     /**
-     * Get a Font instance with the given font family name, style, and size
+     * Get a Font instance with the given font family name, style, and size.
+     *
      * @param name the font name. Any font installed on your system should
      * be valid. Common examples include "Arial", "Verdana", "Tahoma",
      * "Times New Roman", "Georgia", and "Courier New".

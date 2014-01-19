@@ -7,6 +7,7 @@ import prefuse.data.expression.Predicate;
 import prefuse.visual.VisualItem;
 import prefuse.visual.expression.VisiblePredicate;
 
+
 /**
  * An Action that processes VisualItems one item at a time. By default,
  * it only processes items that are visible. Use the
@@ -17,7 +18,7 @@ import prefuse.visual.expression.VisiblePredicate;
  */
 public abstract class ItemAction extends GroupAction {
     
-    /** A reference to filtering predicate for this Action */
+    /** A reference to filtering predicate for this Action. */
     protected Predicate m_predicate;
     
     /**
@@ -94,6 +95,9 @@ public abstract class ItemAction extends GroupAction {
     }
     
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {

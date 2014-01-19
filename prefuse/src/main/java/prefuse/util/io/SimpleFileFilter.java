@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import javax.swing.filechooser.FileFilter;
 
+
 /**
  * A simple file filter for a particular file extension.
  *  
@@ -13,8 +14,13 @@ import javax.swing.filechooser.FileFilter;
  */
 public class SimpleFileFilter extends FileFilter {
     
+    /** The exts. */
     private ArrayList exts = new ArrayList();
+    
+    /** The desc. */
     private String desc;
+    
+    /** The data. */
     private Object data;
     
     /**
@@ -48,6 +54,10 @@ public class SimpleFileFilter extends FileFilter {
     }
     
     /**
+     * Accept.
+     *
+     * @param f the f
+     * @return true, if successful
      * @see javax.swing.filechooser.FileFilter#accept(java.io.File)
      */
     public boolean accept(File f) {
@@ -75,6 +85,9 @@ public class SimpleFileFilter extends FileFilter {
     }
     
     /**
+     * Gets the description.
+     *
+     * @return the description
      * @see javax.swing.filechooser.FileFilter#getDescription()
      */
     public String getDescription() {

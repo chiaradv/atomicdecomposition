@@ -5,6 +5,7 @@ import prefuse.data.expression.NotPredicate;
 import prefuse.data.expression.Predicate;
 import prefuse.visual.VisualItem;
 
+
 /**
  * Expression that indicates if an item's start visible flag is set.
  * 

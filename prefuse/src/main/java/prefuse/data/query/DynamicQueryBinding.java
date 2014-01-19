@@ -5,6 +5,7 @@ import javax.swing.JComponent;
 import prefuse.data.expression.Predicate;
 import prefuse.data.tuple.TupleSet;
 
+
 /**
  * <p>Abstract base class for dynamic query bindings, which support
  * data queries that can be dynamically edited with direct manipulation
@@ -47,10 +48,11 @@ public abstract class DynamicQueryBinding {
      * Returns the query predicate bound to this dynamic query. The predicate's
      * behavior can vary dynamically based on interaction with user interface
      * components created by this binding. To automatically monitor changes to
-     * this predicate, clients should register an 
+     * this predicate, clients should register an
+     *
+     * @return the dynamic query {@link prefuse.data.expression.Predicate}
      * {@link prefuse.data.event.ExpressionListener} with the
      * {@link prefuse.data.expression.Predicate} returned by this method.
-     * @return the dynamic query {@link prefuse.data.expression.Predicate}
      */
     public Predicate getPredicate() {
         return m_query;

@@ -14,6 +14,7 @@ import prefuse.data.tuple.TupleSet;
 import prefuse.util.collections.CompositeComparator;
 import prefuse.util.collections.NullComparator;
 
+
 /**
  * <p>Utility class representing sorting criteria, this can be given as
  * input to the {@link TupleSet#tuples(Predicate, Sort)} method to
@@ -48,12 +49,22 @@ import prefuse.util.collections.NullComparator;
  */
 public class Sort {
 
+    /** The Constant ASC. */
     private static final String ASC  = " ASC";
+    
+    /** The Constant DESC. */
     private static final String DESC = " DESC";
+    
+    /** The Constant asc. */
     private static final String asc  = ASC.toLowerCase();
+    
+    /** The Constant desc. */
     private static final String desc = DESC.toLowerCase();
     
+    /** The m_fields. */
     private String[]  m_fields;
+    
+    /** The m_ascend. */
     private boolean[] m_ascend;
     
     /**
@@ -161,6 +172,12 @@ public class Sort {
     
     // ------------------------------------------------------------------------
     
+    /**
+     * Subparse.
+     *
+     * @param s the s
+     * @param res the res
+     */
     private static void subparse(String s, Object[] res) {
         s = s.trim();
         
@@ -193,23 +210,24 @@ public class Sort {
      * Parse a comma-delimited String of data fields to sort on, along
      * with optional ASC or DESC modifiers, to generate a new Sort
      * specification. This string should consist
-	 * of a comma-delimited list of field names, which optional "ASC" or
-	 * "DESC" modifiers to specify ascending or descending sorts. If no
-	 * modifier is given, ascending order is assumed. Field
-	 * names which include spaces or other non-standard characters should
-	 * be written in brackets ([]), just as is done in 
-	 * {@link prefuse.data.expression.parser.ExpressionParser expression
-	 * language statements}. For example, the
-	 * following string</p>
-	 * 
-	 * <pre>"Profit DESC, [Product Type]"</pre>   
-	 * 
-	 * <p>sorts first by the data field "Profit" in descending order,
-	 * additionally sorting in ascending order by the data field
-	 * "Product Type" for tuples which have identical values in the
-	 * "Profit" field.</p>
+     * of a comma-delimited list of field names, which optional "ASC" or
+     * "DESC" modifiers to specify ascending or descending sorts. If no
+     * modifier is given, ascending order is assumed. Field
+     * names which include spaces or other non-standard characters should
+     * be written in brackets ([]), just as is done in
+     *
      * @param s the sort specification String
      * @return a new Sort specification
+     * {@link prefuse.data.expression.parser.ExpressionParser expression
+     * language statements}. For example, the
+     * following string</p>
+     * 
+     * <pre>"Profit DESC, [Product Type]"</pre>
+     * 
+     * <p>sorts first by the data field "Profit" in descending order,
+     * additionally sorting in ascending order by the data field
+     * "Product Type" for tuples which have identical values in the
+     * "Profit" field.</p>
      */
     public static Sort parse(String s) {
         Sort sort = new Sort();
@@ -244,6 +262,9 @@ public class Sort {
     }
     
     /**
+     * To string.
+     *
+     * @return the string
      * @see java.lang.Object#toString()
      */
     public String toString() {

@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import prefuse.util.ui.JForcePanel;
 
+
 /**
  * Swing Action components that brings up a dialog allowing users to configure
  * a force simulation.
@@ -18,6 +19,7 @@ import prefuse.util.ui.JForcePanel;
  */
 public class ForceConfigAction extends AbstractAction {
 
+    /** The dialog. */
     private JDialog dialog;
     
     /**
@@ -34,6 +36,9 @@ public class ForceConfigAction extends AbstractAction {
     }
     
     /**
+     * Action performed.
+     *
+     * @param e the e
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     public void actionPerformed(ActionEvent e) {

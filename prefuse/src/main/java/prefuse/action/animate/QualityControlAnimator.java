@@ -2,6 +2,7 @@ package prefuse.action.animate;
 
 import prefuse.action.Action;
 
+
 /**
  * Animator that toggles rendering quality to allow for smooth animations but
  * high quality rendering of still images. At the beginning of an animation,
@@ -13,6 +14,9 @@ import prefuse.action.Action;
 public class QualityControlAnimator extends Action {
 
     /**
+     * Run.
+     *
+     * @param frac the frac
      * @see prefuse.action.Action#run(double)
      */
     public void run(double frac) {
