@@ -27,6 +27,7 @@ public class Record {
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append(entity);

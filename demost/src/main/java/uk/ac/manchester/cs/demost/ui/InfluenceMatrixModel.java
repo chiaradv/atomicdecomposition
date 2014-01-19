@@ -45,12 +45,14 @@ public class InfluenceMatrixModel {
         Comparator<Record> comp = null;
         if (i == 0) {
             comp = new Comparator<Record>() {
+                @Override
                 public int compare(Record o1, Record o2) {
                     return o1.entity.compareTo(o2.entity);
                 }
             };
         } else {
             comp = new Comparator<Record>() {
+                @Override
                 public int compare(Record o1, Record o2) {
                     return o2.getValue(i - 1) - o1.getValue(i - 1);
                 }

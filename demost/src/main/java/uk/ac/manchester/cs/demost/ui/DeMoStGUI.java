@@ -122,6 +122,7 @@ public class DeMoStGUI extends JFrame {
         /** The listeners. */
         List<TableModelListener> listeners = new ArrayList<TableModelListener>();
 
+        @Override
         public void addTableModelListener(TableModelListener l) {
             if (listeners.contains(l)) {
                 return;
@@ -129,6 +130,7 @@ public class DeMoStGUI extends JFrame {
             listeners.add(l);
         }
 
+        @Override
         public Class<?> getColumnClass(int columnIndex) {
             if (columnIndex == 0) {
                 return Object.class;
@@ -136,18 +138,22 @@ public class DeMoStGUI extends JFrame {
             return Integer.class;
         }
 
+        @Override
         public int getColumnCount() {
             return 6;
         }
 
+        @Override
         public String getColumnName(int columnIndex) {
             return influenceMatrixModel.headings[columnIndex];
         }
 
+        @Override
         public int getRowCount() {
             return influenceMatrixModel.getRecords().size();
         }
 
+        @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             final Record record = influenceMatrixModel.getRecord(rowIndex);
             if (columnIndex == 0) {
@@ -156,14 +162,17 @@ public class DeMoStGUI extends JFrame {
             return record.influenceValues[columnIndex - 1];
         }
 
+        @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
             return false;
         }
 
+        @Override
         public void removeTableModelListener(TableModelListener l) {
             listeners.remove(l);
         }
 
+        @Override
         public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
             System.out
                     .println("DeMoStView.InfluenceTableMode.setValueAt() NOT DOING IT!");
@@ -176,14 +185,17 @@ public class DeMoStGUI extends JFrame {
      * component's <code>addRedListener</code> method. When the red event
      * occurs, that object's appropriate method is invoked. */
     private final class RedListener implements ListDataListener, ListSelectionListener {
+        @Override
         public void intervalRemoved(ListDataEvent e) {
             refresh(selected());
         }
 
+        @Override
         public void intervalAdded(ListDataEvent e) {
             refresh(selected());
         }
 
+        @Override
         public void contentsChanged(ListDataEvent e) {
             refresh(selected());
         }
@@ -211,6 +223,7 @@ public class DeMoStGUI extends JFrame {
             return list;
         }
 
+        @Override
         public void valueChanged(ListSelectionEvent e) {
             if (!e.getValueIsAdjusting()) {
                 refresh(selected());
@@ -225,6 +238,7 @@ public class DeMoStGUI extends JFrame {
      * method. When the ontologyChange event occurs, that object's appropriate
      * method is invoked. */
     private final class OntologyChangeListener implements OWLOntologyChangeListener {
+        @Override
         public void ontologiesChanged(List<? extends OWLOntologyChange> changes)
                 throws OWLException {
             // TODO: filter out modifications on non logical axioms as they are
@@ -240,6 +254,7 @@ public class DeMoStGUI extends JFrame {
      * the component's <code>addSelectionListener</code> method. When the
      * selection event occurs, that object's appropriate method is invoked. */
     private final class SelectionListener implements GraphSelectionModelListener {
+        @Override
         public void selectionChanged(GraphSelectionEvent graphSelectionEvent) {
             Set<VisualItem> selectedItems = graphSelectionEvent.getSelected();
             Set<Tuple> originalTuples = new HashSet<Tuple>(selectedItems.size());
@@ -345,6 +360,7 @@ public class DeMoStGUI extends JFrame {
         final RedListener redListener = new RedListener();
         selectedEntitiesListModel.addListDataListener(redListener);
         showAllGraphButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 selectedEntitiesListModel.clear();
             }
@@ -395,28 +411,38 @@ public class DeMoStGUI extends JFrame {
         influenceMatrixModel.sort(1);
         final JTable statsTable = new JTable(new InfluenceTableMode(influenceMatrixModel));
         statsTable.getTableHeader().addMouseListener(new MouseListener() {
+            @Override
             public void mouseReleased(MouseEvent e) {}
 
+            @Override
             public void mousePressed(MouseEvent e) {}
 
+            @Override
             public void mouseExited(MouseEvent e) {}
 
+            @Override
             public void mouseEntered(MouseEvent e) {}
 
+            @Override
             public void mouseClicked(MouseEvent e) {
                 influenceMatrixModel.sort(statsTable.getTableHeader().columnAtPoint(
                         e.getPoint()));
             }
         });
         statsTable.addMouseListener(new MouseListener() {
+            @Override
             public void mouseReleased(MouseEvent e) {}
 
+            @Override
             public void mousePressed(MouseEvent e) {}
 
+            @Override
             public void mouseExited(MouseEvent e) {}
 
+            @Override
             public void mouseEntered(MouseEvent e) {}
 
+            @Override
             public void mouseClicked(MouseEvent e) {
                 influenceMatrixModel.sort(statsTable.columnAtPoint(e.getPoint()));
             }
@@ -490,6 +516,7 @@ public class DeMoStGUI extends JFrame {
             }
         }
         Collections.sort(list, new Comparator<Node>() {
+            @Override
             public int compare(Node node, Node anotherNode) {
                 int toReturn = 0;
                 if (node == null) {

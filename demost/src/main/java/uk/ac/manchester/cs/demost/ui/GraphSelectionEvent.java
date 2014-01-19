@@ -9,7 +9,6 @@ import java.util.Set;
 
 import prefuse.visual.VisualItem;
 
-
 /** The Class GraphSelectionEvent. */
 public class GraphSelectionEvent extends EventObject {
     private static final long serialVersionUID = 7964245710073066407L;
