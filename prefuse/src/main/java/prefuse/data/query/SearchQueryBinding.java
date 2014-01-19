@@ -20,9 +20,9 @@ import prefuse.visual.VisualTupleSet;
  * @see prefuse.data.search.SearchTupleSet */
 public class SearchQueryBinding extends DynamicQueryBinding {
     /** The m_set. */
-    private SearchTupleSet m_set;
+    private final SearchTupleSet m_set;
     /** The m_lstnr. */
-    private Listener m_lstnr;
+    private final Listener m_lstnr;
     /** The m_lock. */
     private Object m_lock;
 
@@ -73,6 +73,7 @@ public class SearchQueryBinding extends DynamicQueryBinding {
      * @return a {@link prefuse.util.ui.JSearchPanel} bound to this dynamic
      *         query.
      * @see prefuse.data.query.DynamicQueryBinding#createComponent() */
+    @Override
     public JComponent createComponent() {
         return createSearchPanel();
     }
@@ -105,6 +106,7 @@ public class SearchQueryBinding extends DynamicQueryBinding {
     // ------------------------------------------------------------------------
     /** The Class SearchBindingPredicate. */
     private class SearchBindingPredicate extends AbstractPredicate {
+        @Override
         public boolean getBoolean(Tuple t) {
             String q = m_set.getQuery();
             return q == null || q.length() == 0 || m_set.containsTuple(t);
@@ -118,6 +120,7 @@ public class SearchQueryBinding extends DynamicQueryBinding {
 
     /** The Class Listener. */
     private class Listener implements TupleSetListener {
+        @Override
         public void tupleSetChanged(TupleSet tset, Tuple[] added, Tuple[] removed) {
             ((SearchBindingPredicate) getPredicate()).touch();
         }

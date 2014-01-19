@@ -103,7 +103,7 @@ import prefuse.visual.sort.ItemSorter;
  * @see prefuse.controls */
 public class Display extends JComponent {
     /** The Constant s_logger. */
-    private static final Logger s_logger = Logger.getLogger(Display.class.getName());
+    protected static final Logger s_logger = Logger.getLogger(Display.class.getName());
     // visual item source
     /** The m_vis. */
     protected Visualization m_vis;
@@ -154,7 +154,7 @@ public class Display extends JComponent {
     /** The nframes. */
     protected int nframes = 0;
     /** The sample interval. */
-    private int sampleInterval = 10;
+    private final int sampleInterval = 10;
     /** The mark. */
     private long mark = -1L;
     /* Custom tooltip, null to use regular tooltip mechanisms */
@@ -227,6 +227,7 @@ public class Display extends JComponent {
         registerDefaultCommands();
         // invalidate the display when the filter changes
         m_predicate.addExpressionListener(new UpdateListener() {
+            @Override
             public void update(Object src) {
                 damageReport();
             }
@@ -259,6 +260,7 @@ public class Display extends JComponent {
         registerKeyboardAction(new ActionListener() {
             private PaintListener m_debug = null;
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 if (m_debug == null) {
                     m_debug = new DebugStatsPainter();
@@ -272,6 +274,7 @@ public class Display extends JComponent {
         }, "debug info", KeyStroke.getKeyStroke("ctrl D"), WHEN_FOCUSED);
         // add quality toggle
         registerKeyboardAction(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 setHighQuality(!isHighQuality());
                 repaint();
@@ -291,6 +294,7 @@ public class Display extends JComponent {
      * @param height
      *            the height of the Display in pixels
      * @see java.awt.Component#setSize(int, int) */
+    @Override
     public void setSize(int width, int height) {
         m_offscreen = null;
         setPreferredSize(new Dimension(width, height));
@@ -302,6 +306,7 @@ public class Display extends JComponent {
      * @param d
      *            the dimensions of the Display in pixels
      * @see java.awt.Component#setSize(java.awt.Dimension) */
+    @Override
     public void setSize(Dimension d) {
         m_offscreen = null;
         setPreferredSize(d);
@@ -312,6 +317,7 @@ public class Display extends JComponent {
      * report is generated.
      * 
      * @see java.awt.Component#invalidate() */
+    @Override
     public void invalidate() {
         damageReport();
         super.invalidate();
@@ -328,6 +334,7 @@ public class Display extends JComponent {
      * @param h
      *            the h
      * @see java.awt.Component#setBounds(int, int, int, int) */
+    @Override
     public void setBounds(int x, int y, int w, int h) {
         m_offscreen = null;
         super.setBounds(x, y, w, h);
@@ -338,6 +345,7 @@ public class Display extends JComponent {
      * 
      * @param f
      *            the Font to use */
+    @Override
     public void setFont(Font f) {
         super.setFont(f);
         m_editor.setFont(f);
@@ -538,6 +546,7 @@ public class Display extends JComponent {
      * @return the j tool tip
      * @see #setCustomToolTip(JToolTip)
      * @see javax.swing.JComponent#createToolTip() */
+    @Override
     public JToolTip createToolTip() {
         if (m_customToolTip == null) {
             return super.createToolTip();
@@ -739,6 +748,7 @@ public class Display extends JComponent {
      * @param g
      *            the g
      * @see java.awt.Component#update(java.awt.Graphics) */
+    @Override
     public void update(Graphics g) {
         paint(g);
     }
@@ -800,6 +810,7 @@ public class Display extends JComponent {
      * @param g
      *            the g
      * @see javax.swing.JComponent#paintComponent(java.awt.Graphics) */
+    @Override
     public void paintComponent(Graphics g) {
         if (m_offscreen == null) {
             m_offscreen = getNewOffscreenBuffer(getWidth(), getHeight());
@@ -938,6 +949,7 @@ public class Display extends JComponent {
      * 
      * @param g
      *            the printer graphics context. */
+    @Override
     protected void printComponent(Graphics g) {
         boolean wasHighQuality = m_highQuality;
         try {
@@ -1304,9 +1316,9 @@ public class Display extends JComponent {
         // TODO: change mechanism so that multiple transform
         // activities can be running at once?
         /** The dst. */
-        private double[] src, dst;
+        private final double[] src, dst;
         /** The m_at. */
-        private AffineTransform m_at;
+        private final AffineTransform m_at;
 
         /** Instantiates a new transform activity. */
         public TransformActivity() {
@@ -1399,6 +1411,7 @@ public class Display extends JComponent {
             this.run();
         }
 
+        @Override
         protected void run(long elapsedTime) {
             double f = getPace(elapsedTime);
             damageReport();
@@ -1579,6 +1592,7 @@ public class Display extends JComponent {
             return false;
         }
 
+        @Override
         public void mouseDragged(MouseEvent e) {
             synchronized (m_vis) {
                 if (activeItem != null) {
@@ -1591,6 +1605,7 @@ public class Display extends JComponent {
             }
         }
 
+        @Override
         public void mouseMoved(MouseEvent e) {
             synchronized (m_vis) {
                 boolean earlyReturn = false;
@@ -1619,6 +1634,7 @@ public class Display extends JComponent {
             }
         }
 
+        @Override
         public void mouseWheelMoved(MouseWheelEvent e) {
             synchronized (m_vis) {
                 if (activeItem != null) {
@@ -1631,6 +1647,7 @@ public class Display extends JComponent {
             }
         }
 
+        @Override
         public void mouseClicked(MouseEvent e) {
             synchronized (m_vis) {
                 if (activeItem != null) {
@@ -1643,6 +1660,7 @@ public class Display extends JComponent {
             }
         }
 
+        @Override
         public void mousePressed(MouseEvent e) {
             synchronized (m_vis) {
                 mouseDown = true;
@@ -1656,6 +1674,7 @@ public class Display extends JComponent {
             }
         }
 
+        @Override
         public void mouseReleased(MouseEvent e) {
             synchronized (m_vis) {
                 if (activeItem != null) {
@@ -1675,12 +1694,14 @@ public class Display extends JComponent {
             }
         }
 
+        @Override
         public void mouseEntered(MouseEvent e) {
             synchronized (m_vis) {
                 fireMouseEntered(e);
             }
         }
 
+        @Override
         public void mouseExited(MouseEvent e) {
             synchronized (m_vis) {
                 if (!mouseDown && activeItem != null) {
@@ -1693,6 +1714,7 @@ public class Display extends JComponent {
             }
         }
 
+        @Override
         public void keyPressed(KeyEvent e) {
             synchronized (m_vis) {
                 if (activeItem != null) {
@@ -1705,6 +1727,7 @@ public class Display extends JComponent {
             }
         }
 
+        @Override
         public void keyReleased(KeyEvent e) {
             synchronized (m_vis) {
                 if (activeItem != null) {
@@ -1717,6 +1740,7 @@ public class Display extends JComponent {
             }
         }
 
+        @Override
         public void keyTyped(KeyEvent e) {
             synchronized (m_vis) {
                 if (activeItem != null) {

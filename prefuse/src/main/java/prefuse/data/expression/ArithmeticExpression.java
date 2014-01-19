@@ -4,15 +4,11 @@ import prefuse.data.Schema;
 import prefuse.data.Tuple;
 import prefuse.util.TypeLib;
 
-
-/**
- * Expression supporting basic arithmetic: add, subtract, multiply,
- * divide, exponentiate (pow), and modulo (%).
+/** Expression supporting basic arithmetic: add, subtract, multiply, divide,
+ * exponentiate (pow), and modulo (%).
  * 
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class ArithmeticExpression extends BinaryExpression {
-
     /** Indicates an addition operation. */
     public static final int ADD = 0;
     /** Indicates a subtraction operation. */
@@ -25,209 +21,200 @@ public class ArithmeticExpression extends BinaryExpression {
     public static final int POW = 4;
     /** Indicates a modulo operation. */
     public static final int MOD = 5;
-
     /** The m_type. */
-    private Class m_type;    
-    
-    /**
-     * Create a new ArithmeticExpression.
-     * @param operation the operation to perform
-     * @param left the left sub-expression
-     * @param right the right sub-expression
-     */
-    public ArithmeticExpression(int operation, 
-            Expression left, Expression right)
-    {
+    private Class m_type;
+
+    /** Create a new ArithmeticExpression.
+     * 
+     * @param operation
+     *            the operation to perform
+     * @param left
+     *            the left sub-expression
+     * @param right
+     *            the right sub-expression */
+    public ArithmeticExpression(int operation, Expression left, Expression right) {
         super(operation, ADD, MOD, left, right);
         m_type = null;
     }
-    
-    /**
-     * Gets the type.
-     *
-     * @param s the s
+
+    /** Gets the type.
+     * 
+     * @param s
+     *            the s
      * @return the type
-     * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
-     */
+     * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema) */
+    @Override
     public Class getType(Schema s) {
-        if ( m_type == null ) {
+        if (m_type == null) {
             Class lType = m_left.getType(s);
             Class rType = m_right.getType(s);
-        
             // determine this class's type
             m_type = TypeLib.getNumericType(lType, rType);
         }
         return m_type;
     }
 
-    /**
-     * Gets the.
-     *
-     * @param t the t
+    /** Gets the.
+     * 
+     * @param t
+     *            the t
      * @return the object
-     * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
-     */
+     * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple) */
+    @Override
     public Object get(Tuple t) {
         Class type = getType(t.getSchema());
-        if ( int.class == type || byte.class == type ) {
+        if (int.class == type || byte.class == type) {
             return new Integer(getInt(t));
-        } else if ( long.class == type ) {
+        } else if (long.class == type) {
             return new Long(getInt(t));
-        } else if ( float.class == type ) {
+        } else if (float.class == type) {
             return new Float(getFloat(t));
-        } else if ( double.class == type ) {
+        } else if (double.class == type) {
             return new Double(getDouble(t));
         } else {
             throw new IllegalStateException();
         }
-        
     }
 
-    /**
-     * Gets the int.
-     *
-     * @param t the t
+    /** Gets the int.
+     * 
+     * @param t
+     *            the t
      * @return the int
-     * @see prefuse.data.expression.Expression#getInt(prefuse.data.Tuple)
-     */
+     * @see prefuse.data.expression.Expression#getInt(prefuse.data.Tuple) */
+    @Override
     public int getInt(Tuple t) {
         int x = m_left.getInt(t);
         int y = m_right.getInt(t);
-        
         // compute return value
-        switch ( m_op ) {
-        case ADD:
-            return x+y;
-        case SUB:
-            return x-y;
-        case MUL:
-            return x*y;
-        case DIV:
-            return x/y;
-        case POW:
-            return (int)Math.pow(x,y);
-        case MOD:
-            return x%y;
+        switch (m_op) {
+            case ADD:
+                return x + y;
+            case SUB:
+                return x - y;
+            case MUL:
+                return x * y;
+            case DIV:
+                return x / y;
+            case POW:
+                return (int) Math.pow(x, y);
+            case MOD:
+                return x % y;
         }
         throw new IllegalStateException("Unknown operation type.");
     }
 
-    /**
-     * Gets the long.
-     *
-     * @param t the t
+    /** Gets the long.
+     * 
+     * @param t
+     *            the t
      * @return the long
-     * @see prefuse.data.expression.Expression#getLong(prefuse.data.Tuple)
-     */
+     * @see prefuse.data.expression.Expression#getLong(prefuse.data.Tuple) */
+    @Override
     public long getLong(Tuple t) {
         long x = m_left.getLong(t);
         long y = m_right.getLong(t);
-        
         // compute return value
-        switch ( m_op ) {
-        case ADD:
-            return x+y;
-        case SUB:
-            return x-y;
-        case MUL:
-            return x*y;
-        case DIV:
-            return x/y;
-        case POW:
-            return (long)Math.pow(x,y);
-        case MOD:
-            return x%y;
+        switch (m_op) {
+            case ADD:
+                return x + y;
+            case SUB:
+                return x - y;
+            case MUL:
+                return x * y;
+            case DIV:
+                return x / y;
+            case POW:
+                return (long) Math.pow(x, y);
+            case MOD:
+                return x % y;
         }
         throw new IllegalStateException("Unknown operation type.");
     }
 
-    /**
-     * Gets the float.
-     *
-     * @param t the t
+    /** Gets the float.
+     * 
+     * @param t
+     *            the t
      * @return the float
-     * @see prefuse.data.expression.Expression#getFloat(prefuse.data.Tuple)
-     */
+     * @see prefuse.data.expression.Expression#getFloat(prefuse.data.Tuple) */
+    @Override
     public float getFloat(Tuple t) {
         float x = m_left.getFloat(t);
         float y = m_right.getFloat(t);
-        
         // compute return value
-        switch ( m_op ) {
-        case ADD:
-            return x+y;
-        case SUB:
-            return x-y;
-        case MUL:
-            return x*y;
-        case DIV:
-            return x/y;
-        case POW:
-            return (float)Math.pow(x,y);
-        case MOD:
-            return (float)Math.IEEEremainder(x,y);
+        switch (m_op) {
+            case ADD:
+                return x + y;
+            case SUB:
+                return x - y;
+            case MUL:
+                return x * y;
+            case DIV:
+                return x / y;
+            case POW:
+                return (float) Math.pow(x, y);
+            case MOD:
+                return (float) Math.IEEEremainder(x, y);
         }
         throw new IllegalStateException("Unknown operation type.");
     }
 
-    /**
-     * Gets the double.
-     *
-     * @param t the t
+    /** Gets the double.
+     * 
+     * @param t
+     *            the t
      * @return the double
-     * @see prefuse.data.expression.Expression#getDouble(prefuse.data.Tuple)
-     */
+     * @see prefuse.data.expression.Expression#getDouble(prefuse.data.Tuple) */
+    @Override
     public double getDouble(Tuple t) {
         double x = m_left.getDouble(t);
         double y = m_right.getDouble(t);
-        
         // compute return value
-        switch ( m_op ) {
-        case ADD:
-            return x+y;
-        case SUB:
-            return x-y;
-        case MUL:
-            return x*y;
-        case DIV:
-            return x/y;
-        case POW:
-            return Math.pow(x,y);
-        case MOD:
-            return Math.IEEEremainder(x,y);
+        switch (m_op) {
+            case ADD:
+                return x + y;
+            case SUB:
+                return x - y;
+            case MUL:
+                return x * y;
+            case DIV:
+                return x / y;
+            case POW:
+                return Math.pow(x, y);
+            case MOD:
+                return Math.IEEEremainder(x, y);
         }
         throw new IllegalStateException("Unknown operation type.");
     }
 
-    /**
-     * To string.
-     *
+    /** To string.
+     * 
      * @return the string
-     * @see java.lang.Object#toString()
-     */
+     * @see java.lang.Object#toString() */
+    @Override
     public String toString() {
         char op = '?';
-        switch ( m_op ) {
-        case ADD:
-            op = '+';
-            break;
-        case SUB:
-            op = '-';
-            break;
-        case MUL:
-            op = '*';
-            break;
-        case DIV:
-            op = '/';
-            break;
-        case POW:
-            op = '^';
-            break;
-        case MOD:
-            op = '%';
-            break;
+        switch (m_op) {
+            case ADD:
+                op = '+';
+                break;
+            case SUB:
+                op = '-';
+                break;
+            case MUL:
+                op = '*';
+                break;
+            case DIV:
+                op = '/';
+                break;
+            case POW:
+                op = '^';
+                break;
+            case MOD:
+                op = '%';
+                break;
         }
-        return '('+m_left.toString()+' '+op+' '+m_right.toString()+')';
+        return '(' + m_left.toString() + ' ' + op + ' ' + m_right.toString() + ')';
     }
-    
 } // end of class ArithmeticExpression

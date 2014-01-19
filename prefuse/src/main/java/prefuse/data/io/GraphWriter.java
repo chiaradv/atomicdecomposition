@@ -9,7 +9,6 @@ import java.io.OutputStream;
 
 import prefuse.data.Graph;
 
-
 /** Interface for classes that write Graph data to a particular file format.
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a> */

@@ -23,6 +23,7 @@ public abstract class AbstractGraphWriter implements GraphWriter {
      *             the data io exception
      * @see prefuse.data.io.GraphWriter#writeGraph(prefuse.data.Graph,
      *      java.lang.String) */
+    @Override
     public void writeGraph(Graph graph, String filename) throws DataIOException {
         writeGraph(graph, new File(filename));
     }
@@ -37,6 +38,7 @@ public abstract class AbstractGraphWriter implements GraphWriter {
      *             the data io exception
      * @see prefuse.data.io.GraphWriter#writeGraph(prefuse.data.Graph,
      *      java.io.File) */
+    @Override
     public void writeGraph(Graph graph, File f) throws DataIOException {
         try {
             writeGraph(graph, new FileOutputStream(f));

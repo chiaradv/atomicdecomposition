@@ -6,43 +6,36 @@ import java.util.NoSuchElementException;
 import prefuse.data.Tuple;
 import prefuse.data.expression.Predicate;
 
-
-/**
- * Iterator over tuples that filters the output by a given predicate.
+/** Iterator over tuples that filters the output by a given predicate.
  * 
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class FilterIterator implements Iterator {
-    
     /** The predicate. */
-    private Predicate predicate;
-    
+    private final Predicate predicate;
     /** The tuples. */
     private Iterator tuples;
-    
     /** The next. */
     private Tuple next;
-    
-    /**
-     * Create a new FilterIterator.
-     * @param tuples an iterator over tuples
-     * @param p the filter predicate to use
-     */
+
+    /** Create a new FilterIterator.
+     * 
+     * @param tuples
+     *            an iterator over tuples
+     * @param p
+     *            the filter predicate to use */
     public FilterIterator(Iterator tuples, Predicate p) {
-        this.predicate = p;
+        predicate = p;
         this.tuples = tuples;
         next = advance();
     }
-    
-    /**
-     * Advance.
-     *
-     * @return the tuple
-     */
+
+    /** Advance.
+     * 
+     * @return the tuple */
     private Tuple advance() {
-        while ( tuples.hasNext() ) {
-            Tuple t = (Tuple)tuples.next();
-            if ( predicate.getBoolean(t) ) {
+        while (tuples.hasNext()) {
+            Tuple t = (Tuple) tuples.next();
+            if (predicate.getBoolean(t)) {
                 return t;
             }
         }
@@ -51,37 +44,34 @@ public class FilterIterator implements Iterator {
         return null;
     }
 
-    /**
-     * Next.
-     *
+    /** Next.
+     * 
      * @return the object
-     * @see java.util.Iterator#next()
-     */
+     * @see java.util.Iterator#next() */
+    @Override
     public Object next() {
-        if ( !hasNext() ) {
+        if (!hasNext()) {
             throw new NoSuchElementException("No more elements");
         }
         Tuple retval = next;
         next = advance();
         return retval;
     }
-    
-    /**
-     * Checks for next.
-     *
+
+    /** Checks for next.
+     * 
      * @return true, if successful
-     * @see java.util.Iterator#hasNext()
-     */
+     * @see java.util.Iterator#hasNext() */
+    @Override
     public boolean hasNext() {
-        return ( tuples != null );
+        return tuples != null;
     }
-    
-    /**
-     * Not supported.
-     * @see java.util.Iterator#remove()
-     */
+
+    /** Not supported.
+     * 
+     * @see java.util.Iterator#remove() */
+    @Override
     public void remove() {
         throw new UnsupportedOperationException();
     }
-    
 } // end of class FilterIterator

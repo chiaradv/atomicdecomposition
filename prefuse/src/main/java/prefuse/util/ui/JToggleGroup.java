@@ -46,7 +46,7 @@ public class JToggleGroup extends JPanel {
     /** The m_group. */
     protected ButtonGroup m_group;
     /** The m_lstnr. */
-    private Listener m_lstnr;
+    private final Listener m_lstnr;
 
     /** Create a new JToggleGroup.
      * 
@@ -254,6 +254,7 @@ public class JToggleGroup extends JPanel {
      * @param background
      *            the new background
      * @see java.awt.Component#setBackground(java.awt.Color) */
+    @Override
     public void setBackground(Color background) {
         for (int i = 0; i < getComponentCount(); ++i) {
             getComponent(i).setBackground(background);
@@ -265,6 +266,7 @@ public class JToggleGroup extends JPanel {
      * @param foreground
      *            the new foreground
      * @see java.awt.Component#setBackground(java.awt.Color) */
+    @Override
     public void setForeground(Color foreground) {
         for (int i = 0; i < getComponentCount(); ++i) {
             getComponent(i).setForeground(foreground);
@@ -276,6 +278,7 @@ public class JToggleGroup extends JPanel {
      * @param font
      *            the new font
      * @see java.awt.Component#setFont(java.awt.Font) */
+    @Override
     public void setFont(Font font) {
         for (int i = 0; i < getComponentCount(); ++i) {
             getComponent(i).setFont(font);
@@ -302,6 +305,7 @@ public class JToggleGroup extends JPanel {
         /** The m_ignore. */
         private boolean m_ignore = false;
 
+        @Override
         public void valueChanged(ListSelectionEvent neverUsed) {
             if (m_ignore) {
                 return;
@@ -334,6 +338,7 @@ public class JToggleGroup extends JPanel {
             m_ignore = false;
         }
 
+        @Override
         public void actionPerformed(ActionEvent e) {
             if (m_ignore) {
                 return;

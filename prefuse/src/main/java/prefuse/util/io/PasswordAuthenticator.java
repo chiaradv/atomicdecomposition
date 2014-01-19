@@ -3,7 +3,6 @@ package prefuse.util.io;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 
-
 /** A basic username/password authenticator for use with HTTP-Auth. The username
  * or password can be reset for subsequent use as a different user or on a
  * different website.
@@ -63,6 +62,7 @@ public class PasswordAuthenticator extends Authenticator {
     /** Get the singleton PasswordAuthentication instance.
      * 
      * @return the PasswordAuthentication instance */
+    @Override
     protected PasswordAuthentication getPasswordAuthentication() {
         if (m_auth == null) {
             m_auth = new PasswordAuthentication(m_username, m_password.toCharArray());

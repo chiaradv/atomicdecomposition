@@ -1,6 +1,5 @@
 package prefuse.util.force;
 
-
 /** Represents a constant gravitational force, like the pull of gravity for an
  * object on the Earth (F = mg). The force experienced by a given item is
  * calculated as the product of a GravitationalConstant parameter and the mass
@@ -49,6 +48,7 @@ public class GravitationalForce extends AbstractForce {
      * 
      * @return true, if is item force
      * @see prefuse.util.force.Force#isItemForce() */
+    @Override
     public boolean isItemForce() {
         return true;
     }
@@ -57,6 +57,7 @@ public class GravitationalForce extends AbstractForce {
      * 
      * @return the parameter names
      * @see prefuse.util.force.AbstractForce#getParameterNames() */
+    @Override
     protected String[] getParameterNames() {
         return pnames;
     }
@@ -66,6 +67,7 @@ public class GravitationalForce extends AbstractForce {
      * @param item
      *            the item
      * @see prefuse.util.force.Force#getForce(prefuse.util.force.ForceItem) */
+    @Override
     public void getForce(ForceItem item) {
         float theta = params[DIRECTION];
         float coeff = params[GRAVITATIONAL_CONST] * item.mass;

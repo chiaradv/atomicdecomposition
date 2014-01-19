@@ -4,7 +4,6 @@ import java.awt.geom.Point2D;
 
 import prefuse.Display;
 
-
 /** Abstract base class for zoom controls.
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a> */

@@ -116,7 +116,7 @@ public class Graph extends CompositeTupleSet {
     /** Update listener. */
     private Listener m_listener;
     /** Listener list. */
-    private CopyOnWriteArrayList m_listeners = new CopyOnWriteArrayList();
+    private final CopyOnWriteArrayList m_listeners = new CopyOnWriteArrayList();
 
     // ------------------------------------------------------------------------
     // Constructors
@@ -1089,6 +1089,7 @@ public class Graph extends CompositeTupleSet {
     /** Clear this graph, removing all nodes and edges.
      * 
      * @see prefuse.data.tuple.TupleSet#clear() */
+    @Override
     public void clear() {
         m_nodeTuples.invalidateAll();
         m_edgeTuples.invalidateAll();
@@ -1102,6 +1103,7 @@ public class Graph extends CompositeTupleSet {
      *            the t
      * @return true, if successful
      * @see prefuse.data.tuple.TupleSet#removeTuple(prefuse.data.Tuple) */
+    @Override
     public boolean removeTuple(Tuple t) {
         // TODO: check underlying table tuples as well?
         if (t instanceof Node) {
@@ -1119,6 +1121,7 @@ public class Graph extends CompositeTupleSet {
      *            the filter
      * @return the iterator
      * @see prefuse.data.tuple.TupleSet#tuples(prefuse.data.expression.Predicate) */
+    @Override
     public Iterator tuples(Predicate filter) {
         if (filter == null) {
             return tuples();
@@ -1133,6 +1136,7 @@ public class Graph extends CompositeTupleSet {
      * 
      * @return the iterator
      * @see prefuse.data.tuple.TupleSet#tuples() */
+    @Override
     public Iterator tuples() {
         return new CompositeIterator(edges(), nodes());
     }
@@ -1287,6 +1291,7 @@ public class Graph extends CompositeTupleSet {
             }
         }
 
+        @Override
         public void tableChanged(Table t, int start, int end, int col, int type) {
             if (!containsSet(t)) {
                 throw new IllegalStateException(
@@ -1316,10 +1321,12 @@ public class Graph extends CompositeTupleSet {
             fireGraphEvent(t, start, end, col, type);
         }
 
+        @Override
         public void columnChanged(Column src, int idx, int prev) {
             columnChanged(src, idx, (long) prev);
         }
 
+        @Override
         public void columnChanged(Column src, int idx, long prev) {
             if (src == m_scol || src == m_tcol) {
                 boolean isSrc = src == m_scol;
@@ -1341,26 +1348,31 @@ public class Graph extends CompositeTupleSet {
             }
         }
 
+        @Override
         public void columnChanged(Column src, int type, int start, int end) {
             // should never be called
             throw new IllegalStateException();
         }
 
+        @Override
         public void columnChanged(Column src, int idx, float prev) {
             // should never be called
             throw new IllegalStateException();
         }
 
+        @Override
         public void columnChanged(Column src, int idx, double prev) {
             // should never be called
             throw new IllegalStateException();
         }
 
+        @Override
         public void columnChanged(Column src, int idx, boolean prev) {
             // should never be called
             throw new IllegalStateException();
         }
 
+        @Override
         public void columnChanged(Column src, int idx, Object prev) {
             // should never be called
             throw new IllegalStateException();

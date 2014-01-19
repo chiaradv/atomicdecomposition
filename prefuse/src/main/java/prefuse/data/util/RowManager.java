@@ -222,10 +222,12 @@ public class RowManager {
             next = advance(reverse ? m_curid : m_firstid);
         }
 
+        @Override
         public boolean hasNext() {
             return reverse ? next >= 0 : next <= m_curid;
         }
 
+        @Override
         public int nextInt() {
             // advance the iterator
             last = next;
@@ -233,6 +235,7 @@ public class RowManager {
             return last;
         }
 
+        @Override
         public void remove() {
             m_table.removeRow(last);
         }
@@ -262,11 +265,11 @@ public class RowManager {
      * rows of this RowManager. */
     public class ColumnRowIterator extends IntIterator {
         /** The rows. */
-        private IntIterator rows;
+        private final IntIterator rows;
         /** The row. */
         private int row;
         /** The col. */
-        private int col;
+        private final int col;
 
         /** Instantiates a new column row iterator.
          * 
@@ -279,15 +282,18 @@ public class RowManager {
             this.col = col;
         }
 
+        @Override
         public boolean hasNext() {
             return rows.hasNext();
         }
 
+        @Override
         public int nextInt() {
             row = rows.nextInt();
             return getColumnRow(row, col);
         }
 
+        @Override
         public void remove() {
             m_table.removeRow(row);
         }

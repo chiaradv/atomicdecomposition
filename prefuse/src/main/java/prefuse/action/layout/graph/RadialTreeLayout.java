@@ -129,6 +129,7 @@ public class RadialTreeLayout extends TreeLayout {
      * @param frac
      *            the frac
      * @see prefuse.action.Action#run(double) */
+    @Override
     public void run(double frac) {
         Graph g = (Graph) m_vis.getGroup(m_group);
         initSchema(g.getNodes());
@@ -158,6 +159,7 @@ public class RadialTreeLayout extends TreeLayout {
 
     /** Clears references to graph tuples. The group and visualization are
      * retained. */
+    @Override
     public void reset() {
         super.reset();
         m_prevRoot = null;
@@ -298,14 +300,17 @@ public class RadialTreeLayout extends TreeLayout {
         return new Iterator() {
             int cur = 0;
 
+            @Override
             public Object next() {
                 return n.getChild(idx[cur++]);
             }
 
+            @Override
             public boolean hasNext() {
                 return cur < idx.length;
             }
 
+            @Override
             public void remove() {
                 throw new UnsupportedOperationException();
             }
@@ -382,6 +387,7 @@ public class RadialTreeLayout extends TreeLayout {
         /** The angle. */
         double angle;
 
+        @Override
         public Object clone() {
             Params p = new Params();
             p.width = width;

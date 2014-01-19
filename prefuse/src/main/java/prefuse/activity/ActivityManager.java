@@ -39,9 +39,9 @@ public class ActivityManager extends Thread {
     /** The s_instance. */
     private static ActivityManager s_instance;
     /** The m_activities. */
-    private ArrayList m_activities;
+    private final ArrayList m_activities;
     /** The m_tmp. */
-    private ArrayList m_tmp;
+    private final ArrayList m_tmp;
     /** The m_next time. */
     private long m_nextTime;
     /** The m_run. */
@@ -323,6 +323,7 @@ public class ActivityManager extends Thread {
 
     /** Main scheduling thread loop. This is automatically started upon
      * initialization of the ActivityManager. */
+    @Override
     public void run() {
         _setRunning(true);
         while (_keepRunning()) {
@@ -394,6 +395,7 @@ public class ActivityManager extends Thread {
             this.remove = remove;
         }
 
+        @Override
         public void activityFinished(Activity a) {
             if (remove) {
                 a.removeActivityListener(this);
@@ -401,6 +403,7 @@ public class ActivityManager extends Thread {
             scheduleNow(after);
         }
 
+        @Override
         public void activityCancelled(Activity a) {
             if (remove) {
                 a.removeActivityListener(this);

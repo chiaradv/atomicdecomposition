@@ -12,7 +12,6 @@ import prefuse.data.event.EventConstants;
 import prefuse.data.expression.Predicate;
 import prefuse.visual.tuple.TableVisualItem;
 
-
 /** A visual abstraction of a Table data structure. Serves as a backing table for
  * VisualItem tuples. VisualTable dervies from CascadedTable, so can inherit
  * another table's values. Commonly, a VisualTable is used to take a raw data
@@ -151,6 +150,7 @@ public class VisualTable extends CascadedTable implements VisualTupleSet {
      *            the col
      * @param type
      *            the type */
+    @Override
     protected void fireTableEvent(int row0, int row1, int col, int type) {
         // table attributes changed, so we invalidate the bounds
         if (type == EventConstants.UPDATE) {
@@ -185,6 +185,7 @@ public class VisualTable extends CascadedTable implements VisualTupleSet {
      * 
      * @return the visualization
      * @see prefuse.visual.VisualTupleSet#getVisualization() */
+    @Override
     public Visualization getVisualization() {
         return m_vis;
     }
@@ -200,6 +201,7 @@ public class VisualTable extends CascadedTable implements VisualTupleSet {
     /** Get the visualization data group name for this table.
      * 
      * @return the data group name */
+    @Override
     public String getGroup() {
         return m_group;
     }

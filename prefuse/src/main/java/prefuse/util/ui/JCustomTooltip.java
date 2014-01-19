@@ -117,6 +117,7 @@ public class JCustomTooltip extends JToolTip {
      * 
      * @return the preferred size
      * @see java.awt.Component#getPreferredSize() */
+    @Override
     public Dimension getPreferredSize() {
         if (getComponentCount() > 0) {
             Dimension d = getComponent(0).getPreferredSize();
@@ -133,6 +134,7 @@ public class JCustomTooltip extends JToolTip {
      * @param g
      *            the g
      * @see javax.swing.JComponent#paintComponent(java.awt.Graphics) */
+    @Override
     public void paintComponent(Graphics g) {
         if (getComponentCount() > 0) {
             // paint background
@@ -147,12 +149,13 @@ public class JCustomTooltip extends JToolTip {
      * persistence management. */
     private class Listener extends MouseAdapter implements AncestorListener {
         /** The point. */
-        private Point point = new Point();
+        private final Point point = new Point();
         /** The showing. */
         private boolean showing = false;
         /** The popup. */
         private Popup popup;
 
+        @Override
         public void ancestorAdded(AncestorEvent event) {
             if (showing) {
                 return;
@@ -177,6 +180,7 @@ public class JCustomTooltip extends JToolTip {
             showing = true;
         }
 
+        @Override
         public void mouseEntered(MouseEvent e) {
             // Window ttip = SwingUtilities.getWindowAncestor(getParent());
             // ttip.removeMouseListener(this);
@@ -201,6 +205,7 @@ public class JCustomTooltip extends JToolTip {
             // showing = true;
         }
 
+        @Override
         public void mouseExited(MouseEvent e) {
             if (!showing) {
                 return;
@@ -218,8 +223,10 @@ public class JCustomTooltip extends JToolTip {
             }
         }
 
+        @Override
         public void ancestorMoved(AncestorEvent event) {}
 
+        @Override
         public void ancestorRemoved(AncestorEvent event) {}
     }
 } // end of class JCustomTooltip

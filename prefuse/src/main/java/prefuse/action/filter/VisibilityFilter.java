@@ -10,71 +10,68 @@ import prefuse.util.PrefuseLib;
 import prefuse.visual.VisualItem;
 import prefuse.visual.expression.VisiblePredicate;
 
-
-/**
- * Filter Action that sets visible all items that meet a given Predicate
+/** Filter Action that sets visible all items that meet a given Predicate
  * condition and sets all other items invisible.
  * 
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class VisibilityFilter extends GroupAction {
-    
     /** The m_filter. */
     private Predicate m_filter;
-    
     /** The m_predicate. */
     private Predicate m_predicate;
-    
-    /**
-     * Create a new VisibilityFilter.
-     * @param p the test predicate used to determine visibility
-     */
+
+    /** Create a new VisibilityFilter.
+     * 
+     * @param p
+     *            the test predicate used to determine visibility */
     public VisibilityFilter(Predicate p) {
         setPredicate(p);
     }
 
-    /**
-     * Create a new VisibilityFilter.
-     * @param group the data group to process
-     * @param p the test predicate used to determine visibility
-     */
+    /** Create a new VisibilityFilter.
+     * 
+     * @param group
+     *            the data group to process
+     * @param p
+     *            the test predicate used to determine visibility */
     public VisibilityFilter(String group, Predicate p) {
         super(group);
         setPredicate(p);
     }
 
-    /**
-     * Create a new VisibilityFilter.
-     * @param vis the Visualization to process
-     * @param group the data group to process
-     * @param p the test predicate used to determine visibility
-     */
+    /** Create a new VisibilityFilter.
+     * 
+     * @param vis
+     *            the Visualization to process
+     * @param group
+     *            the data group to process
+     * @param p
+     *            the test predicate used to determine visibility */
     public VisibilityFilter(Visualization vis, String group, Predicate p) {
         super(vis, group);
         setPredicate(p);
     }
 
-    /**
-     * Set the test predicate used to determine visibility.
-     * @param p the test predicate to set
-     */
+    /** Set the test predicate used to determine visibility.
+     * 
+     * @param p
+     *            the test predicate to set */
     protected void setPredicate(Predicate p) {
         m_predicate = p;
         m_filter = new OrPredicate(p, VisiblePredicate.TRUE);
     }
-    
-    /**
-     * Run.
-     *
-     * @param frac the frac
-     * @see prefuse.action.Action#run(double)
-     */
+
+    /** Run.
+     * 
+     * @param frac
+     *            the frac
+     * @see prefuse.action.Action#run(double) */
+    @Override
     public void run(double frac) {
         Iterator items = m_vis.items(m_group, m_filter);
-        while ( items.hasNext() ) {
-            VisualItem item = (VisualItem)items.next();
+        while (items.hasNext()) {
+            VisualItem item = (VisualItem) items.next();
             PrefuseLib.updateVisible(item, m_predicate.getBoolean(item));
         }
     }
-
 } // end of class VisibilityAction

@@ -3,70 +3,64 @@ package prefuse.data.expression;
 import prefuse.data.Schema;
 import prefuse.data.Tuple;
 
-
-/**
- * Literal expression of a boolean value.
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
-public class BooleanLiteral extends Literal implements Predicate
-{
+/** Literal expression of a boolean value.
+ * 
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
+public class BooleanLiteral extends Literal implements Predicate {
     /** The true boolean literal. */
     public static final BooleanLiteral TRUE = new BooleanLiteral(true);
     /** The false boolean literal. */
     public static final BooleanLiteral FALSE = new BooleanLiteral(false);
-    
     /** The m_value. */
     private final boolean m_value;
-    
-    /**
-     * Create a new BooleanLiteral.
-     * @param b the boolean value
-     */
+
+    /** Create a new BooleanLiteral.
+     * 
+     * @param b
+     *            the boolean value */
     public BooleanLiteral(boolean b) {
         m_value = b;
     }
 
-    /**
-     * Gets the boolean.
-     *
-     * @param tuple the tuple
+    /** Gets the boolean.
+     * 
+     * @param tuple
+     *            the tuple
      * @return the boolean
-     * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
-     */
+     * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple) */
+    @Override
     public boolean getBoolean(Tuple tuple) {
         return m_value;
     }
 
-    /**
-     * Gets the type.
-     *
-     * @param s the s
+    /** Gets the type.
+     * 
+     * @param s
+     *            the s
      * @return the type
-     * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema)
-     */
+     * @see prefuse.data.expression.Expression#getType(prefuse.data.Schema) */
+    @Override
     public Class getType(Schema s) {
         return boolean.class;
     }
 
-    /**
-     * Gets the.
-     *
-     * @param t the t
+    /** Gets the.
+     * 
+     * @param t
+     *            the t
      * @return the object
-     * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple)
-     */
+     * @see prefuse.data.expression.Expression#get(prefuse.data.Tuple) */
+    @Override
     public Object get(Tuple t) {
-        return ( getBoolean(t) ? Boolean.TRUE : Boolean.FALSE );
+        return getBoolean(t) ? Boolean.TRUE : Boolean.FALSE;
     }
-    
-    /**
-     * To string.
-     *
+
+    /** To string.
+     * 
      * @return the string
-     * @see java.lang.Object#toString()
-     */
+     * @see java.lang.Object#toString() */
+    @Override
     public String toString() {
         return String.valueOf(m_value).toUpperCase();
     }
-    
 } // end of class BooleanLiteral

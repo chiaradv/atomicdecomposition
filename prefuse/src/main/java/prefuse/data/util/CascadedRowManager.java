@@ -3,58 +3,55 @@ package prefuse.data.util;
 import prefuse.data.CascadedTable;
 import prefuse.data.Table;
 
-
-/**
- * RowManager instance that additionally takes into account tables which
- * inherit from a parent table but can also have their own, dedicated
- * columns.
+/** RowManager instance that additionally takes into account tables which inherit
+ * from a parent table but can also have their own, dedicated columns.
  * 
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class CascadedRowManager extends FilteredRowManager {
-    
-    /**
-     * Create a new CascadedRowManager.
-     * @param table the table to manage
-     */
+    /** Create a new CascadedRowManager.
+     * 
+     * @param table
+     *            the table to manage */
     public CascadedRowManager(Table table) {
         super(table);
     }
-    
-    /**
-     * Gets the column row.
-     *
-     * @param row the row
-     * @param col the col
+
+    /** Gets the column row.
+     * 
+     * @param row
+     *            the row
+     * @param col
+     *            the col
      * @return the column row
-     * @see prefuse.data.util.RowManager#getColumnRow(int, int)
-     */
+     * @see prefuse.data.util.RowManager#getColumnRow(int, int) */
+    @Override
     public int getColumnRow(int row, int col) {
-        if ( !isValidRow(row) )
+        if (!isValidRow(row)) {
             return -1;
-        else if ( col >= ((CascadedTable)getTable()).getLocalColumnCount() )
-            return ((CascadedTable)m_table).getParentTable()
-                        .getColumnRow(getParentRow(row), col);
-        else
+        } else if (col >= ((CascadedTable) getTable()).getLocalColumnCount()) {
+            return ((CascadedTable) m_table).getParentTable().getColumnRow(
+                    getParentRow(row), col);
+        } else {
             return row;
+        }
     }
-    
-    /**
-     * Gets the table row.
-     *
-     * @param columnRow the column row
-     * @param col the col
+
+    /** Gets the table row.
+     * 
+     * @param columnRow
+     *            the column row
+     * @param col
+     *            the col
      * @return the table row
-     * @see prefuse.data.util.RowManager#getTableRow(int, int)
-     */
+     * @see prefuse.data.util.RowManager#getTableRow(int, int) */
+    @Override
     public int getTableRow(int columnRow, int col) {
         int row;
-        if ( col < ((CascadedTable)getTable()).getLocalColumnCount() ) {
+        if (col < ((CascadedTable) getTable()).getLocalColumnCount()) {
             row = columnRow;
         } else {
             row = getChildRow(columnRow);
         }
         return isValidRow(row) ? row : -1;
     }
-    
 } // end of class CascadedRowManager

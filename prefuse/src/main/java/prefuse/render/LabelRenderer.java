@@ -19,7 +19,6 @@ import prefuse.util.GraphicsLib;
 import prefuse.util.StringLib;
 import prefuse.visual.VisualItem;
 
-
 /** Renderer that draws a label, which consists of a text string, an image, or
  * both.
  * <p>
@@ -317,6 +316,7 @@ public class LabelRenderer extends AbstractShapeRenderer {
      *            the item
      * @return the raw shape
      * @see prefuse.render.AbstractShapeRenderer#getRawShape(prefuse.visual.VisualItem) */
+    @Override
     protected Shape getRawShape(VisualItem item) {
         m_text = getText(item);
         Image img = getImage(item);
@@ -411,6 +411,7 @@ public class LabelRenderer extends AbstractShapeRenderer {
      *            the item
      * @see prefuse.render.Renderer#render(java.awt.Graphics2D,
      *      prefuse.visual.VisualItem) */
+    @Override
     public void render(Graphics2D g, VisualItem item) {
         RectangularShape shape = (RectangularShape) getShape(item);
         if (shape == null) {

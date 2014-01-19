@@ -3,7 +3,6 @@ package prefuse.data.expression.parser;
 
 import java.io.IOException;
 
-
 /** An implementation of interface CharStream, where the stream is assumed to
  * contain only ASCII characters (with java-like unicode escape processing). */
 public class JavaCharStream {

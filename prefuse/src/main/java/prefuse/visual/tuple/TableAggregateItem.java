@@ -14,100 +14,94 @@ import prefuse.visual.AggregateItem;
 import prefuse.visual.AggregateTable;
 import prefuse.visual.VisualItem;
 
-
-/**
- * AggregateItem implementation that uses data values from a backing
+/** AggregateItem implementation that uses data values from a backing
  * AggregateTable.
  * 
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
-public class TableAggregateItem extends TableVisualItem 
-    implements AggregateItem
-{   
-    /**
-     * Initialize a new TableAggregateItem for the given table and row. This
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
+public class TableAggregateItem extends TableVisualItem implements AggregateItem {
+    /** Initialize a new TableAggregateItem for the given table and row. This
      * method is used by the appropriate TupleManager instance, and should not
      * be called directly by client code, unless by a client-supplied custom
      * TupleManager.
-     * @param table the data Table
-     * @param graph ignored by this class
-     * @param row the table row index
-     */
+     * 
+     * @param table
+     *            the data Table
+     * @param graph
+     *            ignored by this class
+     * @param row
+     *            the table row index */
+    @Override
     protected void init(Table table, Graph graph, int row) {
         m_table = table;
         m_row = m_table.isValidRow(row) ? row : -1;
     }
 
-    /**
-     * Gets the aggregate size.
-     *
+    /** Gets the aggregate size.
+     * 
      * @return the aggregate size
-     * @see prefuse.visual.AggregateItem#getAggregateSize()
-     */
+     * @see prefuse.visual.AggregateItem#getAggregateSize() */
+    @Override
     public int getAggregateSize() {
-        return ((AggregateTable)m_table).getAggregateSize(m_row);
+        return ((AggregateTable) m_table).getAggregateSize(m_row);
     }
 
-    /**
-     * Contains item.
-     *
-     * @param item the item
+    /** Contains item.
+     * 
+     * @param item
+     *            the item
      * @return true, if successful
-     * @see prefuse.visual.AggregateItem#containsItem(prefuse.visual.VisualItem)
-     */
+     * @see prefuse.visual.AggregateItem#containsItem(prefuse.visual.VisualItem) */
+    @Override
     public boolean containsItem(VisualItem item) {
-        return ((AggregateTable)m_table).aggregateContains(m_row, item);
+        return ((AggregateTable) m_table).aggregateContains(m_row, item);
     }
 
-    /**
-     * Adds the item.
-     *
-     * @param item the item
-     * @see prefuse.visual.AggregateItem#addItem(prefuse.visual.VisualItem)
-     */
+    /** Adds the item.
+     * 
+     * @param item
+     *            the item
+     * @see prefuse.visual.AggregateItem#addItem(prefuse.visual.VisualItem) */
+    @Override
     public void addItem(VisualItem item) {
-        ((AggregateTable)m_table).addToAggregate(m_row, item);
+        ((AggregateTable) m_table).addToAggregate(m_row, item);
     }
 
-    /**
-     * Removes the item.
-     *
-     * @param item the item
-     * @see prefuse.visual.AggregateItem#removeItem(prefuse.visual.VisualItem)
-     */
+    /** Removes the item.
+     * 
+     * @param item
+     *            the item
+     * @see prefuse.visual.AggregateItem#removeItem(prefuse.visual.VisualItem) */
+    @Override
     public void removeItem(VisualItem item) {
-        ((AggregateTable)m_table).removeFromAggregate(m_row, item);
+        ((AggregateTable) m_table).removeFromAggregate(m_row, item);
     }
 
-    /**
-     * Removes the all items.
-     *
-     * @see prefuse.visual.AggregateItem#removeAllItems()
-     */
+    /** Removes the all items.
+     * 
+     * @see prefuse.visual.AggregateItem#removeAllItems() */
+    @Override
     public void removeAllItems() {
-        ((AggregateTable)m_table).removeAllFromAggregate(m_row);
+        ((AggregateTable) m_table).removeAllFromAggregate(m_row);
     }
 
-    /**
-     * Items.
-     *
+    /** Items.
+     * 
      * @return the iterator
-     * @see prefuse.visual.AggregateItem#items()
-     */
+     * @see prefuse.visual.AggregateItem#items() */
+    @Override
     public Iterator items() {
-        return ((AggregateTable)m_table).aggregatedTuples(m_row);
-    }
-    
-    /**
-     * Items.
-     *
-     * @param filter the filter
-     * @return the iterator
-     * @see prefuse.visual.AggregateItem#items()
-     */
-    public Iterator items(Predicate filter) {
-        return new FilterIterator(
-            ((AggregateTable)m_table).aggregatedTuples(m_row), filter);
+        return ((AggregateTable) m_table).aggregatedTuples(m_row);
     }
 
+    /** Items.
+     * 
+     * @param filter
+     *            the filter
+     * @return the iterator
+     * @see prefuse.visual.AggregateItem#items() */
+    @Override
+    public Iterator items(Predicate filter) {
+        return new FilterIterator(((AggregateTable) m_table).aggregatedTuples(m_row),
+                filter);
+    }
 } // end of class TableAggregateItem

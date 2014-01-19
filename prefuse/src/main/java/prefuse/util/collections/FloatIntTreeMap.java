@@ -7,7 +7,8 @@ package prefuse.util.collections;
 public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMap {
     // dummy entry used as wrapper for queries
     /** The dummy. */
-    private FloatEntry dummy = new FloatEntry(Float.MIN_VALUE, Integer.MAX_VALUE, NIL, 0);
+    private final FloatEntry dummy = new FloatEntry(Float.MIN_VALUE, Integer.MAX_VALUE,
+            NIL, 0);
 
     // ------------------------------------------------------------------------
     // Constructors
@@ -47,6 +48,7 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
     /** Clear.
      * 
      * @see java.util.Map#clear() */
+    @Override
     public void clear() {
         ++modCount;
         size = 0;
@@ -59,6 +61,7 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
      *            the key
      * @return true, if successful
      * @see java.util.Map#containsKey(java.lang.Object) */
+    @Override
     public boolean containsKey(float key) {
         return find(key, 0) != NIL;
     }
@@ -69,6 +72,7 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
      *            the key
      * @return the int
      * @see java.util.Map#get(java.lang.Object) */
+    @Override
     public int get(float key) {
         Entry ret = find(key, 0);
         return ret == NIL ? Integer.MIN_VALUE : ret.val;
@@ -82,6 +86,7 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
      *            the value
      * @return the int
      * @see java.util.Map#put(java.lang.Object, java.lang.Object) */
+    @Override
     public int put(float key, int value) {
         Entry t = root;
         lastOrder = 0;
@@ -124,6 +129,7 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
      *            the key
      * @return the int
      * @see java.util.Map#remove(java.lang.Object) */
+    @Override
     public int remove(float key) {
         // remove the last instance with the given key
         Entry x;
@@ -140,6 +146,7 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
         return val;
     }
 
+    @Override
     public int remove(float key, int val) {
         // remove the last instance with the given key
         Entry x = findCeiling(key, 0);
@@ -163,6 +170,7 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
      * 
      * @return the float
      * @see java.util.SortedMap#firstKey() */
+    @Override
     public float firstKey() {
         return minimum(root).getFloatKey();
     }
@@ -171,15 +179,18 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
      * 
      * @return the float
      * @see java.util.SortedMap#lastKey() */
+    @Override
     public float lastKey() {
         return maximum(root).getFloatKey();
     }
 
     // -- Collection view methods ---------------------------------------------
+    @Override
     public LiteralIterator keyIterator() {
         return new KeyIterator();
     }
 
+    @Override
     public LiteralIterator keyRangeIterator(float fromKey, boolean fromInc, float toKey,
             boolean toInc) {
         Entry start, end;
@@ -195,6 +206,7 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
         return new KeyIterator(start, end);
     }
 
+    @Override
     public IntIterator valueRangeIterator(float fromKey, boolean fromInc, float toKey,
             boolean toInc) {
         return new ValueIterator((EntryIterator) keyRangeIterator(fromKey, fromInc,
@@ -204,6 +216,7 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
     // ------------------------------------------------------------------------
     // Internal Binary Search Tree / Red-Black Tree methods
     // Adapted from Cormen, Leiserson, and Rivest's Introduction to Algorithms
+    @Override
     protected int compare(Entry e1, Entry e2) {
         int c = cmp.compare(e1.getFloatKey(), e2.getFloatKey());
         if (allowDuplicates) {
@@ -292,18 +305,22 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
             this.key = key;
         }
 
+        @Override
         public float getFloatKey() {
             return key;
         }
 
+        @Override
         public Object getKey() {
             return new Float(key);
         }
 
+        @Override
         public boolean keyEquals(Entry e) {
             return e instanceof FloatEntry && key == ((FloatEntry) e).key;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (!(o instanceof FloatEntry)) {
                 return false;
@@ -312,16 +329,19 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
             return key == e.key && val == e.val;
         }
 
+        @Override
         public int hashCode() {
             int khash = Float.floatToIntBits(key);
             int vhash = val;
             return khash ^ vhash ^ order;
         }
 
+        @Override
         public String toString() {
             return key + "=" + val;
         }
 
+        @Override
         public void copyFields(Entry x) {
             super.copyFields(x);
             key = x.getFloatKey();
@@ -347,10 +367,12 @@ public class FloatIntTreeMap extends AbstractTreeMap implements FloatIntSortedMa
             super(start, end);
         }
 
+        @Override
         public boolean isFloatSupported() {
             return true;
         }
 
+        @Override
         public float nextFloat() {
             return nextEntry().getFloatKey();
         }

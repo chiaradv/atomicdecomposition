@@ -10,78 +10,76 @@ import java.net.URL;
 import prefuse.data.Graph;
 import prefuse.util.io.IOLib;
 
-
-
-/**
- * Abstract base class implementation of the GraphReader interface. Provides
+/** Abstract base class implementation of the GraphReader interface. Provides
  * implementations for all but the
- * {@link prefuse.data.io.GraphReader#readGraph(InputStream)} method. 
+ * {@link prefuse.data.io.GraphReader#readGraph(InputStream)} method.
  * 
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
 public abstract class AbstractGraphReader implements GraphReader {
-
-    /**
-     * Read graph.
-     *
-     * @param location the location
+    /** Read graph.
+     * 
+     * @param location
+     *            the location
      * @return the graph
-     * @throws DataIOException the data io exception
-     * @see prefuse.data.io.GraphReader#readGraph(java.lang.String)
-     */
-    public Graph readGraph(String location) throws DataIOException
-    {
+     * @throws DataIOException
+     *             the data io exception
+     * @see prefuse.data.io.GraphReader#readGraph(java.lang.String) */
+    @Override
+    public Graph readGraph(String location) throws DataIOException {
         try {
             InputStream is = IOLib.streamFromString(location);
-            if ( is == null )
+            if (is == null) {
                 throw new DataIOException("Couldn't find " + location
-                    + ". Not a valid file, URL, or resource locator.");
+                        + ". Not a valid file, URL, or resource locator.");
+            }
             return readGraph(is);
-        } catch ( IOException e ) {
+        } catch (IOException e) {
             throw new DataIOException(e);
-        }   
+        }
     }
 
-    /**
-     * Read graph.
-     *
-     * @param url the url
+    /** Read graph.
+     * 
+     * @param url
+     *            the url
      * @return the graph
-     * @throws DataIOException the data io exception
-     * @see prefuse.data.io.GraphReader#readGraph(java.net.URL)
-     */
+     * @throws DataIOException
+     *             the data io exception
+     * @see prefuse.data.io.GraphReader#readGraph(java.net.URL) */
+    @Override
     public Graph readGraph(URL url) throws DataIOException {
         try {
             return readGraph(url.openStream());
-        } catch ( IOException e ) {
+        } catch (IOException e) {
             throw new DataIOException(e);
         }
     }
 
-    /**
-     * Read graph.
-     *
-     * @param f the f
+    /** Read graph.
+     * 
+     * @param f
+     *            the f
      * @return the graph
-     * @throws DataIOException the data io exception
-     * @see prefuse.data.io.GraphReader#readGraph(java.io.File)
-     */
+     * @throws DataIOException
+     *             the data io exception
+     * @see prefuse.data.io.GraphReader#readGraph(java.io.File) */
+    @Override
     public Graph readGraph(File f) throws DataIOException {
         try {
             return readGraph(new FileInputStream(f));
-        } catch ( FileNotFoundException e ) {
+        } catch (FileNotFoundException e) {
             throw new DataIOException(e);
         }
     }
-    
-    /**
-     * Read graph.
-     *
-     * @param is the is
-     * @return the graph
-     * @throws DataIOException the data io exception
-     * @see prefuse.data.io.GraphReader#readGraph(java.io.InputStream)
-     */
-    public abstract Graph readGraph(InputStream is) throws DataIOException;
 
+    /** Read graph.
+     * 
+     * @param is
+     *            the is
+     * @return the graph
+     * @throws DataIOException
+     *             the data io exception
+     * @see prefuse.data.io.GraphReader#readGraph(java.io.InputStream) */
+    @Override
+    public abstract Graph readGraph(InputStream is) throws DataIOException;
 } // end of class AbstractGraphReader

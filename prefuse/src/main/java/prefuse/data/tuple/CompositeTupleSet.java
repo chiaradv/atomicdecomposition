@@ -33,13 +33,13 @@ public class CompositeTupleSet extends AbstractTupleSet {
     private static final Logger s_logger = Logger.getLogger(CompositeTupleSet.class
             .getName());
     /** The m_map. */
-    private Map m_map;   // map names to tuple sets
+    private final Map m_map;   // map names to tuple sets
     /** The m_sets. */
-    private Set m_sets;  // support quick reverse lookup
+    private final Set m_sets;  // support quick reverse lookup
     /** The m_count. */
     private int m_count; // count of total tuples
     /** The m_lstnr. */
-    private Listener m_lstnr;
+    private final Listener m_lstnr;
 
     /** Create a new, empty CompositeTupleSet. */
     public CompositeTupleSet() {
@@ -153,6 +153,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      * their data cleared.
      * 
      * @see prefuse.data.tuple.TupleSet#clear() */
+    @Override
     public void clear() {
         Iterator sets = m_map.entrySet().iterator();
         while (sets.hasNext()) {
@@ -170,6 +171,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      *            the t
      * @return the tuple
      * @see prefuse.data.tuple.TupleSet#addTuple(prefuse.data.Tuple) */
+    @Override
     public Tuple addTuple(Tuple t) {
         throw new UnsupportedOperationException();
     }
@@ -180,6 +182,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      *            the t
      * @return the tuple
      * @see prefuse.data.tuple.TupleSet#setTuple(prefuse.data.Tuple) */
+    @Override
     public Tuple setTuple(Tuple t) {
         throw new UnsupportedOperationException();
     }
@@ -191,6 +194,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      *            the t
      * @return true, if successful
      * @see prefuse.data.tuple.TupleSet#removeTuple(prefuse.data.Tuple) */
+    @Override
     public boolean removeTuple(Tuple t) {
         Table table = t.getTable();
         if (m_sets.contains(table)) {
@@ -206,6 +210,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      *            the t
      * @return true, if successful
      * @see prefuse.data.tuple.TupleSet#containsTuple(prefuse.data.Tuple) */
+    @Override
     public boolean containsTuple(Tuple t) {
         Iterator it = m_map.entrySet().iterator();
         while (it.hasNext()) {
@@ -222,6 +227,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      * 
      * @return the tuple count
      * @see prefuse.data.tuple.TupleSet#getTupleCount() */
+    @Override
     public int getTupleCount() {
         if (m_lstnr != null) {
             return m_count;
@@ -241,6 +247,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      * 
      * @return the iterator
      * @see prefuse.data.tuple.TupleSet#tuples() */
+    @Override
     public Iterator tuples() {
         CompositeIterator ci = new CompositeIterator(m_map.size());
         Iterator it = m_map.entrySet().iterator();
@@ -258,6 +265,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      *            the filter
      * @return the iterator
      * @see prefuse.data.tuple.TupleSet#tuples(prefuse.data.expression.Predicate) */
+    @Override
     public Iterator tuples(Predicate filter) {
         CompositeIterator ci = new CompositeIterator(m_map.size());
         Iterator it = m_map.entrySet().iterator();
@@ -274,6 +282,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      * 
      * @return true, if is adds the column supported
      * @see prefuse.data.tuple.TupleSet#isAddColumnSupported() */
+    @Override
     public boolean isAddColumnSupported() {
         return true;
     }
@@ -288,6 +297,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      *            the default value {@link TupleSet#isAddColumnSupported()}.
      * @see prefuse.data.tuple.TupleSet#addColumn(java.lang.String,
      *      java.lang.Class, java.lang.Object) */
+    @Override
     public void addColumn(String name, Class type, Object defaultValue) {
         Iterator it = m_map.entrySet().iterator();
         while (it.hasNext()) {
@@ -313,6 +323,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      *            the type {@link TupleSet#isAddColumnSupported()}.
      * @see prefuse.data.tuple.TupleSet#addColumn(java.lang.String,
      *      java.lang.Class) */
+    @Override
     public void addColumn(String name, Class type) {
         Iterator it = m_map.entrySet().iterator();
         while (it.hasNext()) {
@@ -338,6 +349,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      *            the expr {@link TupleSet#isAddColumnSupported()}.
      * @see prefuse.data.tuple.TupleSet#addColumn(java.lang.String,
      *      prefuse.data.expression.Expression) */
+    @Override
     public void addColumn(String name, Expression expr) {
         Iterator it = m_map.entrySet().iterator();
         while (it.hasNext()) {
@@ -363,6 +375,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
      *            the expr {@link TupleSet#isAddColumnSupported()}.
      * @see prefuse.data.tuple.TupleSet#addColumn(java.lang.String,
      *      java.lang.String) */
+    @Override
     public void addColumn(String name, String expr) {
         Expression ex = ExpressionParser.parse(expr);
         Throwable t = ExpressionParser.getError();
@@ -378,6 +391,7 @@ public class CompositeTupleSet extends AbstractTupleSet {
     /** Listener that relays tuple set change events as they occur and updates
      * the total tuple count appropriately. */
     private class Listener implements TupleSetListener {
+        @Override
         public void tupleSetChanged(TupleSet tset, Tuple[] add, Tuple[] rem) {
             m_count += add.length - rem.length;
             fireTupleEvent(add, rem);

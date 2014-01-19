@@ -1,6 +1,5 @@
 package prefuse.util.force;
 
-
 /** Force function that computes the force acting on ForceItems due to a given
  * Spring.
  * 
@@ -49,6 +48,7 @@ public class SpringForce extends AbstractForce {
      * 
      * @return true, if is spring force
      * @see prefuse.util.force.Force#isSpringForce() */
+    @Override
     public boolean isSpringForce() {
         return true;
     }
@@ -57,6 +57,7 @@ public class SpringForce extends AbstractForce {
      * 
      * @return the parameter names
      * @see prefuse.util.force.AbstractForce#getParameterNames() */
+    @Override
     protected String[] getParameterNames() {
         return pnames;
     }
@@ -66,6 +67,7 @@ public class SpringForce extends AbstractForce {
      * @param s
      *            the Spring for which to compute the force
      * @see prefuse.util.force.Force#getForce(prefuse.util.force.Spring) */
+    @Override
     public void getForce(Spring s) {
         ForceItem item1 = s.item1;
         ForceItem item2 = s.item2;

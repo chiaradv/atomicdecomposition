@@ -10,22 +10,16 @@ import prefuse.visual.expression.SearchPredicate;
 import prefuse.visual.expression.ValidatedPredicate;
 import prefuse.visual.expression.VisiblePredicate;
 
-
-/**
- * Function table that allows lookup of registered FunctionExpressions
- * by their function name.
+/** Function table that allows lookup of registered FunctionExpressions by their
+ * function name.
  * 
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class FunctionTable {
-    
-    /**
-     * Instantiates a new function table.
-     */
+    /** Instantiates a new function table. */
     private FunctionTable() {
         // prevent instantiation
     }
-    
+
     /** The s_function table. */
     private static HashMap s_functionTable;
     static {
@@ -39,7 +33,6 @@ public class FunctionTable {
         addFunction("OUTDEGREE", OutDegreeFunction.class);
         addFunction("CHILDCOUNT", ChildCountFunction.class);
         addFunction("TREEDEPTH", TreeDepthFunction.class);
-        
         // numeric functions
         addFunction("ABS", AbsFunction.class);
         addFunction("ACOS", AcosFunction.class);
@@ -71,10 +64,8 @@ public class FunctionTable {
         addFunction("SQRT", SqrtFunction.class);
         addFunction("SUM", SumFunction.class);
         addFunction("TAN", TanFunction.class);
-        
         addFunction("SAFELOG10", SafeLog10Function.class);
         addFunction("SAFESQRT", SafeSqrtFunction.class);
-        
         // string functions
         addFunction("CAP", CapFunction.class);
         addFunction("CONCAT", ConcatFunction.class);
@@ -97,7 +88,6 @@ public class FunctionTable {
         addFunction("SUBSTRING", SubstringFunction.class);
         addFunction("UPPER", UpperFunction.class);
         addFunction("UCASE", UpperFunction.class);
-        
         // color functions
         addFunction("RGB", RGBFunction.class);
         addFunction("RGBA", RGBAFunction.class);
@@ -106,7 +96,6 @@ public class FunctionTable {
         addFunction("HSB", HSBFunction.class);
         addFunction("HSBA", HSBAFunction.class);
         addFunction("COLORINTERP", ColorInterpFunction.class);
-        
         // visualization functions
         addFunction("GROUPSIZE", GroupSizeFunction.class);
         addFunction("HOVER", HoverPredicate.class);
@@ -116,60 +105,60 @@ public class FunctionTable {
         addFunction("VISIBLE", VisiblePredicate.class);
         addFunction("VALIDATED", ValidatedPredicate.class);
     }
-    
-    /**
-     * Indicates if a function of the given name is included in the function
+
+    /** Indicates if a function of the given name is included in the function
      * table.
-     * @param name the function name
-     * @return true if the function is in the table, false otherwise
-     */
+     * 
+     * @param name
+     *            the function name
+     * @return true if the function is in the table, false otherwise */
     public static boolean hasFunction(String name) {
         return s_functionTable.containsKey(name);
     }
-    
-    /**
-     * Add a function to the function table. It will then become available
-     * for use with compiled statements of the prefuse expression language.
-     * @param name the name of the function. This name must not already
-     * be registered in the table, i.e. there is no function overloading.
-     * @param type the Class instance of the function itself
-     */
+
+    /** Add a function to the function table. It will then become available for
+     * use with compiled statements of the prefuse expression language.
+     * 
+     * @param name
+     *            the name of the function. This name must not already be
+     *            registered in the table, i.e. there is no function
+     *            overloading.
+     * @param type
+     *            the Class instance of the function itself */
     public static void addFunction(String name, Class type) {
-        if ( !Function.class.isAssignableFrom(type) ) {
+        if (!Function.class.isAssignableFrom(type)) {
             throw new IllegalArgumentException(
-                "Type argument must be a subclass of FunctionExpression.");
+                    "Type argument must be a subclass of FunctionExpression.");
         }
-        if ( hasFunction(name) ) {
-            throw new IllegalArgumentException(
-                "Function with that name already exists");
+        if (hasFunction(name)) {
+            throw new IllegalArgumentException("Function with that name already exists");
         }
         String lo = name.toLowerCase();
         String hi = name.toUpperCase();
-        if ( !name.equals(lo) && !name.equals(hi) )
-            throw new IllegalArgumentException(
-                "Name can't have mixed case, try \""+hi+"\" instead.");
+        if (!name.equals(lo) && !name.equals(hi)) {
+            throw new IllegalArgumentException("Name can't have mixed case, try \"" + hi
+                    + "\" instead.");
+        }
         s_functionTable.put(lo, type);
         s_functionTable.put(hi, type);
     }
-    
-    /**
-     * Get a new Function instance for the function with the given name.
-     * @param name the name of the function to create
-     * @return the instantiated Function
-     */
+
+    /** Get a new Function instance for the function with the given name.
+     * 
+     * @param name
+     *            the name of the function to create
+     * @return the instantiated Function */
     public static Function createFunction(String name) {
-        Class type = (Class)s_functionTable.get(name);
-        if ( type == null ) {
-            throw new IllegalArgumentException(
-                    "Unrecognized function name");
+        Class type = (Class) s_functionTable.get(name);
+        if (type == null) {
+            throw new IllegalArgumentException("Unrecognized function name");
         }
         try {
-            return (Function)type.newInstance();
+            return (Function) type.newInstance();
         } catch (InstantiationException e) {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
-
 } // end of class FunctionTable

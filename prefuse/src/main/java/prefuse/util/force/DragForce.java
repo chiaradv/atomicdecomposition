@@ -1,6 +1,5 @@
 package prefuse.util.force;
 
-
 /** Implements a viscosity/drag force to help stabilize items.
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a> */
@@ -35,6 +34,7 @@ public class DragForce extends AbstractForce {
      * 
      * @return true, if is item force
      * @see prefuse.util.force.Force#isItemForce() */
+    @Override
     public boolean isItemForce() {
         return true;
     }
@@ -43,6 +43,7 @@ public class DragForce extends AbstractForce {
      * 
      * @return the parameter names
      * @see prefuse.util.force.AbstractForce#getParameterNames() */
+    @Override
     protected String[] getParameterNames() {
         return pnames;
     }
@@ -52,6 +53,7 @@ public class DragForce extends AbstractForce {
      * @param item
      *            the item
      * @see prefuse.util.force.Force#getForce(prefuse.util.force.ForceItem) */
+    @Override
     public void getForce(ForceItem item) {
         item.force[0] -= params[DRAG_COEFF] * item.velocity[0];
         item.force[1] -= params[DRAG_COEFF] * item.velocity[1];

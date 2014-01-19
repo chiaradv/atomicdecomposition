@@ -22,13 +22,13 @@ public class ScaleSelector extends JComponent implements ChangeListener {
     /** The Constant MAX_SIZE. */
     private final static int MAX_SIZE = 135;
     /** The preview. */
-    private ImagePanel preview;
+    private final ImagePanel preview;
     /** The value. */
-    private JLabel value;
+    private final JLabel value;
     /** The size. */
-    private JLabel size;
+    private final JLabel size;
     /** The slider. */
-    private JSlider slider;
+    private final JSlider slider;
     /** The image. */
     private Image image;
     /** The height. */
@@ -101,6 +101,7 @@ public class ScaleSelector extends JComponent implements ChangeListener {
      * @param evt
      *            the evt
      * @see javax.swing.event.ChangeListener#stateChanged(javax.swing.event.ChangeEvent) */
+    @Override
     public void stateChanged(ChangeEvent evt) {
         int scale = slider.getValue();
         value.setText("x" + String.valueOf(scale));
@@ -127,6 +128,7 @@ public class ScaleSelector extends JComponent implements ChangeListener {
             setMaximumSize(d);
         }
 
+        @Override
         public void paintComponent(Graphics g) {
             double scale = 0.4 + 0.06 * getScale();
             int w = (int) Math.round(scale * image.getWidth(null));

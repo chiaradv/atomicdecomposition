@@ -17,7 +17,6 @@ import prefuse.util.StrokeLib;
 import prefuse.visual.EdgeItem;
 import prefuse.visual.VisualItem;
 
-
 /** <p>
  * Renderer that draws edges as lines connecting nodes. Both straight and curved
  * lines are supported. Curved lines are drawn using cubic Bezier curves.
@@ -118,6 +117,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
      *            the item
      * @return the render type
      * @see prefuse.render.AbstractShapeRenderer#getRenderType(prefuse.visual.VisualItem) */
+    @Override
     public int getRenderType(VisualItem item) {
         return RENDER_TYPE_DRAW;
     }
@@ -128,6 +128,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
      *            the item
      * @return the raw shape
      * @see prefuse.render.AbstractShapeRenderer#getRawShape(prefuse.visual.VisualItem) */
+    @Override
     protected Shape getRawShape(VisualItem item) {
         EdgeItem edge = (EdgeItem) item;
         VisualItem item1 = edge.getSourceItem();
@@ -195,6 +196,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
      *            the item
      * @see prefuse.render.Renderer#render(java.awt.Graphics2D,
      *      prefuse.visual.VisualItem) */
+    @Override
     public void render(Graphics2D g, VisualItem item) {
         // render the edge line
         super.render(g, item);
@@ -255,6 +257,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
      *            the item
      * @return the transform
      * @see prefuse.render.AbstractShapeRenderer#getTransform(prefuse.visual.VisualItem) */
+    @Override
     protected AffineTransform getTransform(VisualItem item) {
         return null;
     }
@@ -268,6 +271,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
      * @return true, if successful
      * @see prefuse.render.Renderer#locatePoint(java.awt.geom.Point2D,
      *      prefuse.visual.VisualItem) */
+    @Override
     public boolean locatePoint(Point2D p, VisualItem item) {
         Shape s = getShape(item);
         if (s == null) {
@@ -284,6 +288,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
      * @param item
      *            the new bounds
      * @see prefuse.render.Renderer#setBounds(prefuse.visual.VisualItem) */
+    @Override
     public void setBounds(VisualItem item) {
         if (!m_manageBounds) {
             return;
@@ -326,6 +331,7 @@ public class EdgeRenderer extends AbstractShapeRenderer {
      *            the item
      * @return the stroke
      * @see prefuse.render.AbstractShapeRenderer#getStroke(prefuse.visual.VisualItem) */
+    @Override
     protected BasicStroke getStroke(VisualItem item) {
         return StrokeLib.getDerivedStroke(item.getStroke(), m_curWidth);
     }

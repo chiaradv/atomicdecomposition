@@ -128,6 +128,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
     /** Returns the number of elements in this list.
      * 
      * @return the number of elements in this list */
+    @Override
     public int size() {
         return getArray().length;
     }
@@ -135,6 +136,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
     /** Returns <tt>true</tt> if this list contains no elements.
      * 
      * @return <tt>true</tt> if this list contains no elements */
+    @Override
     public boolean isEmpty() {
         return size() == 0;
     }
@@ -213,12 +215,14 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * @param o
      *            element whose presence in this list is to be tested
      * @return <tt>true</tt> if this list contains the specified element */
+    @Override
     public boolean contains(Object o) {
         Object[] elements = getArray();
         return indexOf(o, elements, 0, elements.length) >= 0;
     }
 
     /** {@inheritDoc} */
+    @Override
     public int indexOf(Object o) {
         Object[] elements = getArray();
         return indexOf(o, elements, 0, elements.length);
@@ -244,6 +248,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
     }
 
     /** {@inheritDoc} */
+    @Override
     public int lastIndexOf(Object o) {
         Object[] elements = getArray();
         return lastIndexOf(o, elements, elements.length - 1);
@@ -272,6 +277,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * copied.)
      * 
      * @return a clone of this list */
+    @Override
     public Object clone() {
         try {
             return super.clone();
@@ -291,6 +297,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * This method acts as bridge between array-based and collection-based APIs.
      * 
      * @return an array containing all the elements in this list */
+    @Override
     public Object[] toArray() {
         Object[] elements = getArray();
         return copyOf(elements, elements.length);
@@ -329,6 +336,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      *            stored, if it is big enough; otherwise, a new array of the
      *            same runtime type is allocated for this purpose.
      * @return an array containing all the elements in this list */
+    @Override
     public Object[] toArray(Object a[]) {
         Object[] elements = getArray();
         int len = elements.length;
@@ -348,6 +356,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * 
      * @throws IndexOutOfBoundsException
      *             {@inheritDoc} */
+    @Override
     public Object get(int index) {
         return getArray()[index];
     }
@@ -360,6 +369,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * @param element
      *            the element
      * @return the object */
+    @Override
     public synchronized Object set(int index, Object element) {
         Object[] elements = getArray();
         int len = elements.length;
@@ -377,6 +387,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * @param e
      *            element to be appended to this list
      * @return <tt>true</tt> (as per the spec for {@link Collection#add}) */
+    @Override
     public boolean add(Object e) {
         synchronized (this) {
             Object[] elements = getArray();
@@ -396,6 +407,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      *            the index
      * @param element
      *            the element */
+    @Override
     public synchronized void add(int index, Object element) {
         Object[] elements = getArray();
         int len = elements.length;
@@ -422,6 +434,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * @param index
      *            the index
      * @return the object */
+    @Override
     public synchronized Object remove(int index) {
         Object[] elements = getArray();
         int len = elements.length;
@@ -450,6 +463,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * @param o
      *            element to be removed from this list, if present
      * @return <tt>true</tt> if this list contained the specified element */
+    @Override
     public synchronized boolean remove(Object o) {
         Object[] elements = getArray();
         int len = elements.length;
@@ -538,6 +552,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * @return <tt>true</tt> if this list contains all of the elements of the
      *         specified collection
      * @see #contains(Object) */
+    @Override
     public boolean containsAll(Collection c) {
         Object[] elements = getArray();
         int len = elements.length;
@@ -558,6 +573,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      *            collection containing elements to be removed from this list
      * @return <tt>true</tt> if this list changed as a result of the call
      * @see #remove(Object) */
+    @Override
     public synchronized boolean removeAll(Collection c) {
         Object[] elements = getArray();
         int len = elements.length;
@@ -587,6 +603,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      *            collection containing elements to be retained in this list
      * @return <tt>true</tt> if this list changed as a result of the call
      * @see #remove(Object) */
+    @Override
     public synchronized boolean retainAll(Collection c) {
         Object[] elements = getArray();
         int len = elements.length;
@@ -644,6 +661,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
 
     /** Removes all of the elements from this list. The list will be empty after
      * this call returns. */
+    @Override
     public synchronized void clear() {
         setArray(new Object[0]);
     }
@@ -656,6 +674,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      *            collection containing elements to be added to this list
      * @return <tt>true</tt> if this list changed as a result of the call
      * @see #add(Object) */
+    @Override
     public boolean addAll(Collection c) {
         int numNew = c.size();
         if (numNew == 0) {
@@ -688,6 +707,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      *            collection containing elements to be added to this list
      * @return <tt>true</tt> if this list changed as a result of the call
      * @see #add(int,Object) */
+    @Override
     public boolean addAll(int index, Collection c) {
         int numNew = c.size();
         synchronized (this) {
@@ -765,6 +785,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * representation of each element.
      * 
      * @return the string */
+    @Override
     public String toString() {
         Object[] elements = getArray();
         int maxIndex = elements.length - 1;
@@ -791,6 +812,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * @param o
      *            the object to be compared for equality with this list
      * @return <tt>true</tt> if the specified object is equal to this list */
+    @Override
     public boolean equals(Object o) {
         if (o == this) {
             return true;
@@ -817,6 +839,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * This implementation uses the definition in {@link List#hashCode}.
      * 
      * @return the hash code value for this list */
+    @Override
     public int hashCode() {
         int hashCode = 1;
         Object[] elements = getArray();
@@ -836,6 +859,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * <tt>remove</tt> method.
      * 
      * @return an iterator over the elements in this list in proper sequence */
+    @Override
     public Iterator iterator() {
         return new COWIterator(getArray(), 0);
     }
@@ -846,6 +870,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * the iterator was constructed. No synchronization is needed while
      * traversing the iterator. The iterator does <em>NOT</em> support the
      * <tt>remove</tt>, <tt>set</tt> or <tt>add</tt> methods. */
+    @Override
     public ListIterator listIterator() {
         return new COWIterator(getArray(), 0);
     }
@@ -858,6 +883,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * 
      * @throws IndexOutOfBoundsException
      *             {@inheritDoc} */
+    @Override
     public ListIterator listIterator(final int index) {
         Object[] elements = getArray();
         int len = elements.length;
@@ -885,14 +911,17 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             snapshot = elements;
         }
 
+        @Override
         public boolean hasNext() {
             return cursor < snapshot.length;
         }
 
+        @Override
         public boolean hasPrevious() {
             return cursor > 0;
         }
 
+        @Override
         public Object next() {
             try {
                 return snapshot[cursor++];
@@ -901,6 +930,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public Object previous() {
             try {
                 return snapshot[--cursor];
@@ -909,15 +939,18 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public int nextIndex() {
             return cursor;
         }
 
+        @Override
         public int previousIndex() {
             return cursor - 1;
         }
 
         /** Not supported. Always throws UnsupportedOperationException. */
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
@@ -926,6 +959,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
          * 
          * @param e
          *            the e */
+        @Override
         public void set(Object e) {
             throw new UnsupportedOperationException();
         }
@@ -934,6 +968,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
          * 
          * @param e
          *            the e */
+        @Override
         public void add(Object e) {
             throw new UnsupportedOperationException();
         }
@@ -956,6 +991,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
      * @param toIndex
      *            high endpoint (exclusive) of the subList
      * @return a view of the specified range within this list */
+    @Override
     public synchronized List subList(int fromIndex, int toIndex) {
         Object[] elements = getArray();
         int len = elements.length;
@@ -1020,6 +1056,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public Object set(int index, Object element) {
             synchronized (l) {
                 rangeCheck(index);
@@ -1030,6 +1067,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public Object get(int index) {
             synchronized (l) {
                 rangeCheck(index);
@@ -1038,6 +1076,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public int size() {
             synchronized (l) {
                 checkForComodification();
@@ -1045,6 +1084,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public void add(int index, Object element) {
             synchronized (l) {
                 checkForComodification();
@@ -1057,6 +1097,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public void clear() {
             synchronized (l) {
                 checkForComodification();
@@ -1066,6 +1107,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public Object remove(int index) {
             synchronized (l) {
                 rangeCheck(index);
@@ -1077,6 +1119,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public Iterator iterator() {
             synchronized (l) {
                 checkForComodification();
@@ -1084,6 +1127,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public ListIterator listIterator(final int index) {
             synchronized (l) {
                 checkForComodification();
@@ -1095,6 +1139,7 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public List subList(int fromIndex, int toIndex) {
             synchronized (l) {
                 checkForComodification();
@@ -1131,10 +1176,12 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             i = l.listIterator(index + offset);
         }
 
+        @Override
         public boolean hasNext() {
             return nextIndex() < size;
         }
 
+        @Override
         public Object next() {
             if (hasNext()) {
                 return i.next();
@@ -1143,10 +1190,12 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public boolean hasPrevious() {
             return previousIndex() >= 0;
         }
 
+        @Override
         public Object previous() {
             if (hasPrevious()) {
                 return i.previous();
@@ -1155,22 +1204,27 @@ public class CopyOnWriteArrayList implements List, RandomAccess, Cloneable,
             }
         }
 
+        @Override
         public int nextIndex() {
             return i.nextIndex() - offset;
         }
 
+        @Override
         public int previousIndex() {
             return i.previousIndex() - offset;
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public void set(Object e) {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public void add(Object e) {
             throw new UnsupportedOperationException();
         }

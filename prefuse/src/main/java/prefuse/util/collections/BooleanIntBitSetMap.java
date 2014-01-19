@@ -10,26 +10,30 @@ import java.util.NoSuchElementException;
  * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class BooleanIntBitSetMap implements BooleanIntSortedMap {
     /** The m_true. */
-    private BitSet m_true = new BitSet();
+    private final BitSet m_true = new BitSet();
     /** The m_false. */
-    private BitSet m_false = new BitSet();
+    private final BitSet m_false = new BitSet();
 
     /** Instantiates a new boolean int bit set map. */
     public BooleanIntBitSetMap() {}
 
+    @Override
     public boolean firstKey() {
         return false;
     }
 
+    @Override
     public boolean lastKey() {
         return true;
     }
 
+    @Override
     public boolean containsKey(boolean key) {
         BitSet set = key ? m_true : m_false;
         return set.cardinality() > 0;
     }
 
+    @Override
     public IntIterator valueRangeIterator(boolean fromKey, boolean fromInc,
             boolean toKey, boolean toInc) {
         if (!fromInc && !toInc) {
@@ -45,10 +49,12 @@ public class BooleanIntBitSetMap implements BooleanIntSortedMap {
         }
     }
 
+    @Override
     public LiteralIterator keyIterator() {
         return new BitSetIterator(m_false, m_true);
     }
 
+    @Override
     public LiteralIterator keyRangeIterator(boolean fromKey, boolean fromInc,
             boolean toKey, boolean toInc) {
         if (!fromInc && !toInc) {
@@ -64,11 +70,13 @@ public class BooleanIntBitSetMap implements BooleanIntSortedMap {
         }
     }
 
+    @Override
     public int get(boolean key) {
         BitSet set = key ? m_true : m_false;
         return set.nextSetBit(0);
     }
 
+    @Override
     public int remove(boolean key) {
         BitSet set = key ? m_true : m_false;
         int idx = set.length() - 1;
@@ -76,6 +84,7 @@ public class BooleanIntBitSetMap implements BooleanIntSortedMap {
         return idx;
     }
 
+    @Override
     public int remove(boolean key, int value) {
         BitSet set = key ? m_true : m_false;
         if (set.get(value)) {
@@ -86,6 +95,7 @@ public class BooleanIntBitSetMap implements BooleanIntSortedMap {
         }
     }
 
+    @Override
     public int put(boolean key, int value) {
         BitSet set = key ? m_true : m_false;
         boolean ret = set.get(value);
@@ -93,6 +103,7 @@ public class BooleanIntBitSetMap implements BooleanIntSortedMap {
         return ret ? value : Integer.MIN_VALUE;
     }
 
+    @Override
     public int getMinimum() {
         if (m_false.cardinality() > 0) {
             return m_false.nextSetBit(0);
@@ -103,11 +114,13 @@ public class BooleanIntBitSetMap implements BooleanIntSortedMap {
         }
     }
 
+    @Override
     public int getMaximum() {
         int idx = m_true.length() - 1;
         return idx > 0 ? idx : m_false.length() - 1;
     }
 
+    @Override
     public int getMedian() {
         int fsize = m_false.cardinality();
         int tsize = m_true.cardinality();
@@ -125,6 +138,7 @@ public class BooleanIntBitSetMap implements BooleanIntSortedMap {
         return Integer.MIN_VALUE;
     }
 
+    @Override
     public int getUniqueCount() {
         int count = 0;
         if (m_false.cardinality() > 0) {
@@ -136,31 +150,38 @@ public class BooleanIntBitSetMap implements BooleanIntSortedMap {
         return count;
     }
 
+    @Override
     public boolean isAllowDuplicates() {
         return true;
     }
 
+    @Override
     public int size() {
         return m_true.cardinality() + m_false.cardinality();
     }
 
+    @Override
     public boolean isEmpty() {
         return m_true.isEmpty() && m_false.isEmpty();
     }
 
+    @Override
     public Comparator comparator() {
         return DefaultLiteralComparator.getInstance();
     }
 
+    @Override
     public void clear() {
         m_true.clear();
         m_false.clear();
     }
 
+    @Override
     public boolean containsValue(int value) {
         return m_false.get(value) || m_true.get(value);
     }
 
+    @Override
     public IntIterator valueIterator(boolean ascending) {
         if (!ascending) {
             return new BitSetIterator(m_true, m_false);
@@ -219,6 +240,7 @@ public class BooleanIntBitSetMap implements BooleanIntSortedMap {
             }
         }
 
+        @Override
         public int nextInt() {
             if (m_val < 0) {
                 throw new NoSuchElementException();
@@ -228,6 +250,7 @@ public class BooleanIntBitSetMap implements BooleanIntSortedMap {
             return retval;
         }
 
+        @Override
         public boolean nextBoolean() {
             if (m_cur == m_true) {
                 advance();
@@ -240,10 +263,12 @@ public class BooleanIntBitSetMap implements BooleanIntSortedMap {
             }
         }
 
+        @Override
         public boolean hasNext() {
             return m_val >= 0;
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }

@@ -236,6 +236,7 @@ public class AggregateTable extends VisualTable {
      *            the col
      * @param type
      *            the type */
+    @Override
     protected void fireTableEvent(int row0, int row1, int col, int type) {
         if (col == EventConstants.ALL_COLUMNS && type == EventConstants.DELETE) {
             for (int r = row0; r <= row1; ++r) {
@@ -250,7 +251,7 @@ public class AggregateTable extends VisualTable {
     /** Iterator instance that iterates over the items contained in an aggregate. */
     protected class AggregatedIterator implements Iterator {
         /** The m_rows. */
-        private IntIterator m_rows;
+        private final IntIterator m_rows;
         /** The m_next. */
         private Tuple m_next = null;
 
@@ -264,10 +265,12 @@ public class AggregateTable extends VisualTable {
             advance();
         }
 
+        @Override
         public boolean hasNext() {
             return m_next != null;
         }
 
+        @Override
         public Object next() {
             Tuple retval = m_next;
             advance();
@@ -289,6 +292,7 @@ public class AggregateTable extends VisualTable {
             m_next = null;
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }

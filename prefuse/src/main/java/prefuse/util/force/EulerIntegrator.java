@@ -2,29 +2,27 @@ package prefuse.util.force;
 
 import java.util.Iterator;
 
-
-/**
- * Updates velocity and position data using Euler's Method. This is the
- * simplest and fastest method, but is somewhat inaccurate and less smooth
- * than more costly approaches.
- *
+/** Updates velocity and position data using Euler's Method. This is the simplest
+ * and fastest method, but is somewhat inaccurate and less smooth than more
+ * costly approaches.
+ * 
  * @author <a href="http://jheer.org">jeffrey heer</a>
- * @see RungeKuttaIntegrator
- */
+ * @see RungeKuttaIntegrator */
 public class EulerIntegrator implements Integrator {
-    
-    /**
-     * Integrate.
-     *
-     * @param sim the sim
-     * @param timestep the timestep
-     * @see prefuse.util.force.Integrator#integrate(prefuse.util.force.ForceSimulator, long)
-     */
+    /** Integrate.
+     * 
+     * @param sim
+     *            the sim
+     * @param timestep
+     *            the timestep
+     * @see prefuse.util.force.Integrator#integrate(prefuse.util.force.ForceSimulator,
+     *      long) */
+    @Override
     public void integrate(ForceSimulator sim, long timestep) {
         float speedLimit = sim.getSpeedLimit();
         Iterator iter = sim.getItems();
-        while ( iter.hasNext() ) {
-            ForceItem item = (ForceItem)iter.next();
+        while (iter.hasNext()) {
+            ForceItem item = (ForceItem) iter.next();
             item.location[0] += timestep * item.velocity[0];
             item.location[1] += timestep * item.velocity[1];
             float coeff = timestep / item.mass;
@@ -32,12 +30,11 @@ public class EulerIntegrator implements Integrator {
             item.velocity[1] += coeff * item.force[1];
             float vx = item.velocity[0];
             float vy = item.velocity[1];
-            float v = (float)Math.sqrt(vx*vx+vy*vy);
-            if ( v > speedLimit ) {
+            float v = (float) Math.sqrt(vx * vx + vy * vy);
+            if (v > speedLimit) {
                 item.velocity[0] = speedLimit * vx / v;
                 item.velocity[1] = speedLimit * vy / v;
             }
         }
     }
-
 } // end of class EulerIntegrator

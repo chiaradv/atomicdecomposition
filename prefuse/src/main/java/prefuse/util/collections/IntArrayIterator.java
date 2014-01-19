@@ -12,11 +12,11 @@ import java.util.NoSuchElementException;
  * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class IntArrayIterator extends IntIterator {
     /** The m_array. */
-    private int[] m_array;
+    private final int[] m_array;
     /** The m_cur. */
     private int m_cur;
     /** The m_end. */
-    private int m_end;
+    private final int m_end;
 
     /** Instantiates a new int array iterator.
      * 
@@ -36,6 +36,7 @@ public class IntArrayIterator extends IntIterator {
      * 
      * @return the int
      * @see prefuse.util.collections.IntIterator#nextInt() */
+    @Override
     public int nextInt() {
         if (m_cur >= m_end) {
             throw new NoSuchElementException();
@@ -47,10 +48,12 @@ public class IntArrayIterator extends IntIterator {
      * 
      * @return true, if successful
      * @see java.util.Iterator#hasNext() */
+    @Override
     public boolean hasNext() {
         return m_cur < m_end;
     }
 
+    @Override
     public void remove() {
         throw new UnsupportedOperationException();
     }

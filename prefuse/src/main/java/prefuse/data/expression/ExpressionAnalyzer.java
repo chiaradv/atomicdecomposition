@@ -36,7 +36,7 @@ public class ExpressionAnalyzer {
      * an Expression. */
     private static class ColumnCollector implements ExpressionVisitor {
         /** The store. */
-        private boolean store;
+        private final boolean store;
         /** The m_cols. */
         private Set m_cols;
         /** The m_count. */
@@ -68,6 +68,7 @@ public class ExpressionAnalyzer {
             }
         }
 
+        @Override
         public void visitExpression(Expression expr) {
             if (expr instanceof ColumnExpression) {
                 ++m_count;
@@ -81,10 +82,12 @@ public class ExpressionAnalyzer {
             }
         }
 
+        @Override
         public void down() {
             // do nothing
         }
 
+        @Override
         public void up() {
             // do nothing
         }

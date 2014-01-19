@@ -9,7 +9,6 @@ import prefuse.visual.NodeItem;
 import prefuse.visual.VisualItem;
 import prefuse.visual.expression.StartVisiblePredicate;
 
-
 /** Layout Action that sets the positions for newly collapsed or newly expanded
  * nodes of a tree. This action updates positions such that nodes flow out from
  * their parents or collapse back into their parents upon animated transitions.
@@ -19,7 +18,7 @@ public class CollapsedSubtreeLayout extends Layout {
     /** The m_orientation. */
     private int m_orientation;
     /** The m_point. */
-    private Point2D m_point = new Point2D.Double();
+    private final Point2D m_point = new Point2D.Double();
 
     /** Create a new CollapsedSubtreeLayout. By default, nodes will collapse to
      * the center point of their parents.
@@ -87,6 +86,7 @@ public class CollapsedSubtreeLayout extends Layout {
      * @param frac
      *            the frac
      * @see prefuse.action.Action#run(double) */
+    @Override
     public void run(double frac) {
         // handle newly expanded subtrees - ensure they emerge from
         // a visible ancestor node

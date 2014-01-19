@@ -62,7 +62,7 @@ public class Trie {
     /** An iterator for traversing a subtree of the Trie. */
     public class TrieIterator implements Iterator {
         /** The queue. */
-        private LinkedList queue;
+        private final LinkedList queue;
 
         /** Instantiates a new trie iterator.
          * 
@@ -73,10 +73,12 @@ public class Trie {
             queue.add(node);
         }
 
+        @Override
         public boolean hasNext() {
             return !queue.isEmpty();
         }
 
+        @Override
         public Object next() {
             if (queue.isEmpty()) {
                 throw new NoSuchElementException();
@@ -102,13 +104,14 @@ public class Trie {
             }
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
     } // end of inner clas TrieIterator
 
     /** The root. */
-    private TrieBranch root = new TrieBranch();
+    private final TrieBranch root = new TrieBranch();
     /** The case sensitive. */
     private boolean caseSensitive = false;
 

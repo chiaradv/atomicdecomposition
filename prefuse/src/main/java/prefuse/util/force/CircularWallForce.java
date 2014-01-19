@@ -1,6 +1,5 @@
 package prefuse.util.force;
 
-
 /** Uses a gravitational force model to act as a circular "wall". Can be used to
  * construct circles which either attract or repel items.
  * 
@@ -17,7 +16,7 @@ public class CircularWallForce extends AbstractForce {
     /** The Constant GRAVITATIONAL_CONST. */
     public static final int GRAVITATIONAL_CONST = 0;
     /** The r. */
-    private float x, y, r;
+    private final float x, y, r;
 
     /** Create a new CircularWallForce.
      * 
@@ -54,6 +53,7 @@ public class CircularWallForce extends AbstractForce {
      * 
      * @return true, if is item force
      * @see prefuse.util.force.Force#isItemForce() */
+    @Override
     public boolean isItemForce() {
         return true;
     }
@@ -62,6 +62,7 @@ public class CircularWallForce extends AbstractForce {
      * 
      * @return the parameter names
      * @see prefuse.util.force.AbstractForce#getParameterNames() */
+    @Override
     protected String[] getParameterNames() {
         return pnames;
     }
@@ -71,6 +72,7 @@ public class CircularWallForce extends AbstractForce {
      * @param item
      *            the item
      * @see prefuse.util.force.Force#getForce(prefuse.util.force.ForceItem) */
+    @Override
     public void getForce(ForceItem item) {
         float[] n = item.location;
         float dx = x - n[0];

@@ -127,6 +127,7 @@ public abstract class EncoderAction extends ItemAction {
      * @param vis
      *            the new visualization
      * @see prefuse.action.Action#setVisualization(prefuse.Visualization) */
+    @Override
     public void setVisualization(Visualization vis) {
         super.setVisualization(vis);
         if (m_chain != null) {
@@ -140,6 +141,7 @@ public abstract class EncoderAction extends ItemAction {
      * @param frac
      *            the frac
      * @see prefuse.action.Action#run(double) */
+    @Override
     public void run(double frac) {
         setup();
         if (m_chain != null) {
@@ -169,6 +171,7 @@ public abstract class EncoderAction extends ItemAction {
     // ------------------------------------------------------------------------
     /** Abstract class for processing the Actions stored in the predicate chain. */
     private static abstract class ActionVisitor implements ExpressionVisitor {
+        @Override
         public void visitExpression(Expression expr) {
             if (expr instanceof ObjectLiteral) {
                 Object val = expr.get(null);
@@ -184,14 +187,17 @@ public abstract class EncoderAction extends ItemAction {
          *            the a */
         public abstract void visitAction(Action a);
 
+        @Override
         public void down() { /* do nothing */}
 
+        @Override
         public void up() { /* do nothing */}
     }
 
     /** Sets the visualization status for any Actions contained within the
      * predicate chain. */
     private class SetVisualizationVisitor extends ActionVisitor {
+        @Override
         public void visitAction(Action a) {
             a.setVisualization(m_vis);
         }
@@ -213,6 +219,7 @@ public abstract class EncoderAction extends ItemAction {
             return s_instance;
         }
 
+        @Override
         public void visitAction(Action a) {
             if (a instanceof EncoderAction) {
                 ((EncoderAction) a).setup();
@@ -236,6 +243,7 @@ public abstract class EncoderAction extends ItemAction {
             return s_instance;
         }
 
+        @Override
         public void visitAction(Action a) {
             if (a instanceof EncoderAction) {
                 ((EncoderAction) a).setup();

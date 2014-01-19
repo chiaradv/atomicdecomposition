@@ -2,7 +2,6 @@ package prefuse.util.force;
 
 import java.awt.geom.Line2D;
 
-
 /** Uses a gravitational force model to act as a "wall". Can be used to construct
  * line segments which either attract or repel items.
  * 
@@ -19,7 +18,7 @@ public class WallForce extends AbstractForce {
     /** The Constant GRAVITATIONAL_CONST. */
     public static final int GRAVITATIONAL_CONST = 0;
     /** The y2. */
-    private float x1, y1, x2, y2;
+    private final float x1, y1, x2, y2;
     /** The dy. */
     private float dx, dy;
 
@@ -72,6 +71,7 @@ public class WallForce extends AbstractForce {
      * 
      * @return true, if is item force
      * @see prefuse.util.force.Force#isItemForce() */
+    @Override
     public boolean isItemForce() {
         return true;
     }
@@ -80,6 +80,7 @@ public class WallForce extends AbstractForce {
      * 
      * @return the parameter names
      * @see prefuse.util.force.AbstractForce#getParameterNames() */
+    @Override
     protected String[] getParameterNames() {
         return pnames;
     }
@@ -89,6 +90,7 @@ public class WallForce extends AbstractForce {
      * @param item
      *            the item
      * @see prefuse.util.force.Force#getForce(prefuse.util.force.ForceItem) */
+    @Override
     public void getForce(ForceItem item) {
         float[] n = item.location;
         int ccw = Line2D.relativeCCW(x1, y1, x2, y2, n[0], n[1]);

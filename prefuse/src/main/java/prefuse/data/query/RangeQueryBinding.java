@@ -23,13 +23,13 @@ import prefuse.util.ui.ValuedRangeModel;
  * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class RangeQueryBinding extends DynamicQueryBinding {
     /** The m_type. */
-    private Class m_type;
+    private final Class m_type;
     /** The m_lstnr. */
-    private Listener m_lstnr;
+    private final Listener m_lstnr;
     /** The m_model. */
     private ValuedRangeModel m_model;
     /** The m_ordinal. */
-    private boolean m_ordinal;
+    private final boolean m_ordinal;
     /** The s_slider adj. */
     private static FocusListener s_sliderAdj;
 
@@ -134,6 +134,7 @@ public class RangeQueryBinding extends DynamicQueryBinding {
      * @return a {@link prefuse.util.ui.JRangeSlider} bound to this dynamic
      *         query.
      * @see prefuse.data.query.DynamicQueryBinding#createComponent() */
+    @Override
     public JComponent createComponent() {
         return createHorizontalRangeSlider();
     }
@@ -193,10 +194,12 @@ public class RangeQueryBinding extends DynamicQueryBinding {
     // ------------------------------------------------------------------------
     /** The Class SliderAdjuster. */
     private static class SliderAdjuster implements FocusListener {
+        @Override
         public void focusGained(FocusEvent e) {
             ((JSlider) e.getSource()).setExtent(0);
         }
 
+        @Override
         public void focusLost(FocusEvent e) {
             // do nothing
         }
@@ -204,6 +207,7 @@ public class RangeQueryBinding extends DynamicQueryBinding {
 
     /** The Class Listener. */
     private class Listener implements ChangeListener {
+        @Override
         public void stateChanged(ChangeEvent e) {
             ValuedRangeModel model = (ValuedRangeModel) e.getSource();
             Object lo = model.getLowValue();

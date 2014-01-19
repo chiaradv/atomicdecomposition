@@ -35,6 +35,7 @@ public class CompositeIntIterator extends IntIterator {
      * 
      * @return the int
      * @see prefuse.util.collections.IntIterator#nextInt() */
+    @Override
     public int nextInt() {
         if (hasNext()) {
             return m_iters[m_cur].nextInt();
@@ -47,6 +48,7 @@ public class CompositeIntIterator extends IntIterator {
      * 
      * @return true, if successful
      * @see java.util.Iterator#hasNext() */
+    @Override
     public boolean hasNext() {
         if (m_iters == null) {
             return false;
@@ -61,6 +63,7 @@ public class CompositeIntIterator extends IntIterator {
         }
     }
 
+    @Override
     public void remove() {
         throw new UnsupportedOperationException();
     }

@@ -33,17 +33,17 @@ import prefuse.data.expression.ExpressionAnalyzer;
  * @see prefuse.data.expression */
 public class ExpressionColumn extends AbstractColumn {
     /** The m_expr. */
-    private Expression m_expr;
+    private final Expression m_expr;
     /** The m_table. */
-    private Table m_table;
+    private final Table m_table;
     /** The m_columns. */
     private Set m_columns;
     /** The m_valid. */
-    private BitSet m_valid;
+    private final BitSet m_valid;
     /** The m_cache. */
-    private Column m_cache;
+    protected final Column m_cache;
     /** The m_lstnr. */
-    private Listener m_lstnr;
+    private final Listener m_lstnr;
 
     /** Create a new ExpressionColumn.
      * 
@@ -101,6 +101,7 @@ public class ExpressionColumn extends AbstractColumn {
      * 
      * @return the row count
      * @see prefuse.data.column.Column#getRowCount() */
+    @Override
     public int getRowCount() {
         return m_cache.getRowCount();
     }
@@ -110,6 +111,7 @@ public class ExpressionColumn extends AbstractColumn {
      * @param nrows
      *            the new maximum row
      * @see prefuse.data.column.Column#setMaximumRow(int) */
+    @Override
     public void setMaximumRow(int nrows) {
         m_cache.setMaximumRow(nrows);
     }
@@ -141,6 +143,7 @@ public class ExpressionColumn extends AbstractColumn {
      * 
      * @param row
      *            the row to revert */
+    @Override
     public void revertToDefault(int row) {
         // do nothing, as we don't have default values.
     }
@@ -151,6 +154,7 @@ public class ExpressionColumn extends AbstractColumn {
      *            the type
      * @return true, if successful
      * @see prefuse.data.column.AbstractColumn#canSet(java.lang.Class) */
+    @Override
     public boolean canSet(Class type) {
         return false;
     }
@@ -161,6 +165,7 @@ public class ExpressionColumn extends AbstractColumn {
      *            the row
      * @return the object
      * @see prefuse.data.column.Column#get(int) */
+    @Override
     public Object get(int row) {
         rangeCheck(row);
         if (isCacheValid(row)) {
@@ -184,6 +189,7 @@ public class ExpressionColumn extends AbstractColumn {
      * @throws DataTypeException
      *             the data type exception
      * @see prefuse.data.column.Column#set(java.lang.Object, int) */
+    @Override
     public void set(Object val, int row) throws DataTypeException {
         throw new UnsupportedOperationException();
     }
@@ -207,6 +213,7 @@ public class ExpressionColumn extends AbstractColumn {
      * @throws DataTypeException
      *             the data type exception
      * @see prefuse.data.column.Column#getBoolean(int) */
+    @Override
     public boolean getBoolean(int row) throws DataTypeException {
         if (!canGetBoolean()) {
             throw new DataTypeException(boolean.class);
@@ -247,6 +254,7 @@ public class ExpressionColumn extends AbstractColumn {
      * @throws DataTypeException
      *             the data type exception
      * @see prefuse.data.column.Column#getInt(int) */
+    @Override
     public int getInt(int row) throws DataTypeException {
         if (!canGetInt()) {
             throw new DataTypeException(int.class);
@@ -266,6 +274,7 @@ public class ExpressionColumn extends AbstractColumn {
      * @throws DataTypeException
      *             the data type exception
      * @see prefuse.data.column.Column#getDouble(int) */
+    @Override
     public double getDouble(int row) throws DataTypeException {
         if (!canGetDouble()) {
             throw new DataTypeException(double.class);
@@ -285,6 +294,7 @@ public class ExpressionColumn extends AbstractColumn {
      * @throws DataTypeException
      *             the data type exception
      * @see prefuse.data.column.Column#getFloat(int) */
+    @Override
     public float getFloat(int row) throws DataTypeException {
         if (!canGetFloat()) {
             throw new DataTypeException(float.class);
@@ -304,6 +314,7 @@ public class ExpressionColumn extends AbstractColumn {
      * @throws DataTypeException
      *             the data type exception
      * @see prefuse.data.column.Column#getLong(int) */
+    @Override
     public long getLong(int row) throws DataTypeException {
         if (!canGetLong()) {
             throw new DataTypeException(long.class);
@@ -358,34 +369,42 @@ public class ExpressionColumn extends AbstractColumn {
             }
         }
 
+        @Override
         public void columnChanged(Column src, int idx, boolean prev) {
             columnChanged(idx, idx);
         }
 
+        @Override
         public void columnChanged(Column src, int idx, double prev) {
             columnChanged(idx, idx);
         }
 
+        @Override
         public void columnChanged(Column src, int idx, float prev) {
             columnChanged(idx, idx);
         }
 
+        @Override
         public void columnChanged(Column src, int type, int start, int end) {
             columnChanged(start, end);
         }
 
+        @Override
         public void columnChanged(Column src, int idx, int prev) {
             columnChanged(idx, idx);
         }
 
+        @Override
         public void columnChanged(Column src, int idx, long prev) {
             columnChanged(idx, idx);
         }
 
+        @Override
         public void columnChanged(Column src, int idx, Object prev) {
             columnChanged(idx, idx);
         }
 
+        @Override
         public void expressionChanged(Expression expr) {
             // mark everything as changed
             columnChanged(0, m_cache.getRowCount() - 1);

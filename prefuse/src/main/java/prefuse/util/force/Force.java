@@ -1,6 +1,5 @@
 package prefuse.util.force;
 
-
 /** Interface for force functions in a force simulation.
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a> */

@@ -12,223 +12,238 @@ import prefuse.data.event.EventConstants;
 import prefuse.data.event.TableListener;
 import prefuse.visual.VisualItem;
 
-
-
-/**
- * Changes a node's location when dragged on screen. Other effects
- * include fixing a node's position when the mouse if over it, and
- * changing the mouse cursor to a hand when the mouse passes over an
- * item.
- *
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
+/** Changes a node's location when dragged on screen. Other effects include
+ * fixing a node's position when the mouse if over it, and changing the mouse
+ * cursor to a hand when the mouse passes over an item.
+ * 
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class DragControl extends ControlAdapter implements TableListener {
-
     /** The active item. */
     private VisualItem activeItem;
-    
     /** The action. */
     protected String action;
-    
     /** The down. */
     protected Point2D down = new Point2D.Double();
-    
     /** The temp. */
     protected Point2D temp = new Point2D.Double();
-    
     /** The reset item. */
     protected boolean dragged, wasFixed, resetItem;
-    
     /** The fix on mouse over. */
     private boolean fixOnMouseOver = true;
-    
     /** The repaint. */
     protected boolean repaint = true;
-    
-    /**
-     * Creates a new drag control that issues repaint requests as an item
-     * is dragged.
-     */
-    public DragControl() {
-    }
-    
-    /**
-     * Creates a new drag control that optionally issues repaint requests
-     * as an item is dragged.
-     * @param repaint indicates whether or not repaint requests are issued
-     *  as drag events occur. This can be set to false if other activities
-     *  (for example, a continuously running force simulation) are already
-     *  issuing repaint events.
-     */
+
+    /** Creates a new drag control that issues repaint requests as an item is
+     * dragged. */
+    public DragControl() {}
+
+    /** Creates a new drag control that optionally issues repaint requests as an
+     * item is dragged.
+     * 
+     * @param repaint
+     *            indicates whether or not repaint requests are issued as drag
+     *            events occur. This can be set to false if other activities
+     *            (for example, a continuously running force simulation) are
+     *            already issuing repaint events. */
     public DragControl(boolean repaint) {
         this.repaint = repaint;
     }
-    
-    /**
-     * Creates a new drag control that optionally issues repaint requests
-     * as an item is dragged.
-     * @param repaint indicates whether or not repaint requests are issued
-     *  as drag events occur. This can be set to false if other activities
-     *  (for example, a continuously running force simulation) are already
-     *  issuing repaint events.
-     * @param fixOnMouseOver indicates if object positions should become
-     * fixed (made stationary) when the mouse pointer is over an item.
-     */
+
+    /** Creates a new drag control that optionally issues repaint requests as an
+     * item is dragged.
+     * 
+     * @param repaint
+     *            indicates whether or not repaint requests are issued as drag
+     *            events occur. This can be set to false if other activities
+     *            (for example, a continuously running force simulation) are
+     *            already issuing repaint events.
+     * @param fixOnMouseOver
+     *            indicates if object positions should become fixed (made
+     *            stationary) when the mouse pointer is over an item. */
     public DragControl(boolean repaint, boolean fixOnMouseOver) {
         this.repaint = repaint;
         this.fixOnMouseOver = fixOnMouseOver;
     }
-    
-    /**
-     * Creates a new drag control that invokes an action upon drag events.
-     * @param action the action to run when drag events occur.
-     */
+
+    /** Creates a new drag control that invokes an action upon drag events.
+     * 
+     * @param action
+     *            the action to run when drag events occur. */
     public DragControl(String action) {
-        this.repaint = false;
+        repaint = false;
         this.action = action;
     }
-    
-    /**
-     * Creates a new drag control that invokes an action upon drag events.
-     * @param action the action to run when drag events occur
-     * @param fixOnMouseOver indicates if object positions should become
-     * fixed (made stationary) when the mouse pointer is over an item.
-     */
+
+    /** Creates a new drag control that invokes an action upon drag events.
+     * 
+     * @param action
+     *            the action to run when drag events occur
+     * @param fixOnMouseOver
+     *            indicates if object positions should become fixed (made
+     *            stationary) when the mouse pointer is over an item. */
     public DragControl(String action, boolean fixOnMouseOver) {
-        this.repaint = false;
+        repaint = false;
         this.fixOnMouseOver = fixOnMouseOver;
         this.action = action;
     }
-    
-    /**
-     * Determines whether or not an item should have it's position fixed
-     * when the mouse moves over it.
-     * @param s whether or not item position should become fixed upon
-     *  mouse over.
-     */
+
+    /** Determines whether or not an item should have it's position fixed when
+     * the mouse moves over it.
+     * 
+     * @param s
+     *            whether or not item position should become fixed upon mouse
+     *            over. */
     public void setFixPositionOnMouseOver(boolean s) {
         fixOnMouseOver = s;
     }
-    
-    /**
-     * Item entered.
-     *
-     * @param item the item
-     * @param e the e
-     * @see prefuse.controls.Control#itemEntered(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
-     */
+
+    /** Item entered.
+     * 
+     * @param item
+     *            the item
+     * @param e
+     *            the e
+     * @see prefuse.controls.Control#itemEntered(prefuse.visual.VisualItem,
+     *      java.awt.event.MouseEvent) */
+    @Override
     public void itemEntered(VisualItem item, MouseEvent e) {
-        Display d = (Display)e.getSource();
+        Display d = (Display) e.getSource();
         d.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         activeItem = item;
-        if ( fixOnMouseOver ) {
+        if (fixOnMouseOver) {
             wasFixed = item.isFixed();
             resetItem = true;
             item.setFixed(true);
             item.getTable().addTableListener(this);
         }
     }
-    
-    /**
-     * Item exited.
-     *
-     * @param item the item
-     * @param e the e
-     * @see prefuse.controls.Control#itemExited(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
-     */
+
+    /** Item exited.
+     * 
+     * @param item
+     *            the item
+     * @param e
+     *            the e
+     * @see prefuse.controls.Control#itemExited(prefuse.visual.VisualItem,
+     *      java.awt.event.MouseEvent) */
+    @Override
     public void itemExited(VisualItem item, MouseEvent e) {
-        if ( activeItem == item ) {
+        if (activeItem == item) {
             activeItem = null;
             item.getTable().removeTableListener(this);
-            if ( resetItem ) item.setFixed(wasFixed);
+            if (resetItem) {
+                item.setFixed(wasFixed);
+            }
         }
-        Display d = (Display)e.getSource();
+        Display d = (Display) e.getSource();
         d.setCursor(Cursor.getDefaultCursor());
     } //
-    
-    /**
-     * Item pressed.
-     *
-     * @param item the item
-     * @param e the e
-     * @see prefuse.controls.Control#itemPressed(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
-     */
+
+    /** Item pressed.
+     * 
+     * @param item
+     *            the item
+     * @param e
+     *            the e
+     * @see prefuse.controls.Control#itemPressed(prefuse.visual.VisualItem,
+     *      java.awt.event.MouseEvent) */
+    @Override
     public void itemPressed(VisualItem item, MouseEvent e) {
-        if (!SwingUtilities.isLeftMouseButton(e)) return;
-        if ( !fixOnMouseOver ) {
+        if (!SwingUtilities.isLeftMouseButton(e)) {
+            return;
+        }
+        if (!fixOnMouseOver) {
             wasFixed = item.isFixed();
             resetItem = true;
             item.setFixed(true);
             item.getTable().addTableListener(this);
         }
         dragged = false;
-        Display d = (Display)e.getComponent();
+        Display d = (Display) e.getComponent();
         d.getAbsoluteCoordinate(e.getPoint(), down);
     }
-    
-    /**
-     * Item released.
-     *
-     * @param item the item
-     * @param e the e
-     * @see prefuse.controls.Control#itemReleased(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
-     */
+
+    /** Item released.
+     * 
+     * @param item
+     *            the item
+     * @param e
+     *            the e
+     * @see prefuse.controls.Control#itemReleased(prefuse.visual.VisualItem,
+     *      java.awt.event.MouseEvent) */
+    @Override
     public void itemReleased(VisualItem item, MouseEvent e) {
-        if (!SwingUtilities.isLeftMouseButton(e)) return;
-        if ( dragged ) {
+        if (!SwingUtilities.isLeftMouseButton(e)) {
+            return;
+        }
+        if (dragged) {
             activeItem = null;
             item.getTable().removeTableListener(this);
-            if ( resetItem ) item.setFixed(wasFixed);
+            if (resetItem) {
+                item.setFixed(wasFixed);
+            }
             dragged = false;
-        }            
+        }
     }
-    
-    /**
-     * Item dragged.
-     *
-     * @param item the item
-     * @param e the e
-     * @see prefuse.controls.Control#itemDragged(prefuse.visual.VisualItem, java.awt.event.MouseEvent)
-     */
+
+    /** Item dragged.
+     * 
+     * @param item
+     *            the item
+     * @param e
+     *            the e
+     * @see prefuse.controls.Control#itemDragged(prefuse.visual.VisualItem,
+     *      java.awt.event.MouseEvent) */
+    @Override
     public void itemDragged(VisualItem item, MouseEvent e) {
-        if (!SwingUtilities.isLeftMouseButton(e)) return;
+        if (!SwingUtilities.isLeftMouseButton(e)) {
+            return;
+        }
         dragged = true;
-        Display d = (Display)e.getComponent();
+        Display d = (Display) e.getComponent();
         d.getAbsoluteCoordinate(e.getPoint(), temp);
-        double dx = temp.getX()-down.getX();
-        double dy = temp.getY()-down.getY();
+        double dx = temp.getX() - down.getX();
+        double dy = temp.getY() - down.getY();
         double x = item.getX();
         double y = item.getY();
-
-        item.setStartX(x);  item.setStartY(y);
-        item.setX(x+dx);    item.setY(y+dy);
-        item.setEndX(x+dx); item.setEndY(y+dy);
-        
-        if ( repaint )
+        item.setStartX(x);
+        item.setStartY(y);
+        item.setX(x + dx);
+        item.setY(y + dy);
+        item.setEndX(x + dx);
+        item.setEndY(y + dy);
+        if (repaint) {
             item.getVisualization().repaint();
-        
+        }
         down.setLocation(temp);
-        if ( action != null )
+        if (action != null) {
             d.getVisualization().run(action);
+        }
     }
 
-    /**
-     * Table changed.
-     *
-     * @param t the t
-     * @param start the start
-     * @param end the end
-     * @param col the col
-     * @param type the type
-     * @see prefuse.data.event.TableListener#tableChanged(prefuse.data.Table, int, int, int, int)
-     */
+    /** Table changed.
+     * 
+     * @param t
+     *            the t
+     * @param start
+     *            the start
+     * @param end
+     *            the end
+     * @param col
+     *            the col
+     * @param type
+     *            the type
+     * @see prefuse.data.event.TableListener#tableChanged(prefuse.data.Table,
+     *      int, int, int, int) */
+    @Override
     public void tableChanged(Table t, int start, int end, int col, int type) {
-        if ( activeItem == null || type != EventConstants.UPDATE 
-                || col != t.getColumnNumber(VisualItem.FIXED) )
+        if (activeItem == null || type != EventConstants.UPDATE
+                || col != t.getColumnNumber(VisualItem.FIXED)) {
             return;
+        }
         int row = activeItem.getRow();
-        if ( row >= start && row <= end )
+        if (row >= start && row <= end) {
             resetItem = false;
+        }
     }
-
 } // end of class DragControl

@@ -47,6 +47,7 @@ public abstract class AbstractTreeMap implements IntSortedMap {
 
     // ------------------------------------------------------------------------
     // Accessor Methods
+    @Override
     public boolean isAllowDuplicates() {
         return allowDuplicates;
     }
@@ -55,10 +56,12 @@ public abstract class AbstractTreeMap implements IntSortedMap {
      * 
      * @return the int
      * @see java.util.Map#size() */
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public boolean isEmpty() {
         return root == NIL;
     }
@@ -67,6 +70,7 @@ public abstract class AbstractTreeMap implements IntSortedMap {
      * 
      * @return the comparator
      * @see java.util.SortedMap#comparator() */
+    @Override
     public Comparator comparator() {
         return cmp;
     }
@@ -76,20 +80,24 @@ public abstract class AbstractTreeMap implements IntSortedMap {
     /** Clear.
      * 
      * @see java.util.Map#clear() */
+    @Override
     public void clear() {
         ++modCount;
         size = 0;
         root = NIL;
     }
 
+    @Override
     public int getMinimum() {
         return minimum(root).getValue();
     }
 
+    @Override
     public int getMaximum() {
         return maximum(root).getValue();
     }
 
+    @Override
     public int getMedian() {
         Entry e = minimum(root);
         for (int i = 0; i < size / 2; ++i, e = successor(e)) {
@@ -98,6 +106,7 @@ public abstract class AbstractTreeMap implements IntSortedMap {
         return e.getValue();
     }
 
+    @Override
     public int getUniqueCount() {
         return unique;
     }
@@ -108,6 +117,7 @@ public abstract class AbstractTreeMap implements IntSortedMap {
      *            the value
      * @return true, if successful
      * @see java.util.Map#containsValue(java.lang.Object) */
+    @Override
     public boolean containsValue(int value) {
         return root == NIL ? false : containsValue(root, value);
     }
@@ -129,6 +139,7 @@ public abstract class AbstractTreeMap implements IntSortedMap {
     }
 
     // -- Collection view methods ---------------------------------------------
+    @Override
     public IntIterator valueIterator(boolean ascend) {
         return new ValueIterator(new EntryIterator(!ascend));
     }
@@ -606,6 +617,7 @@ public abstract class AbstractTreeMap implements IntSortedMap {
             return k == null ? k == e.getKey() : k.equals(e.getKey());
         }
 
+        @Override
         public boolean equals(Object o) {
             if (!(o instanceof Entry)) {
                 return false;
@@ -614,12 +626,14 @@ public abstract class AbstractTreeMap implements IntSortedMap {
             return val == e.val && getKey() == e.getKey();
         }
 
+        @Override
         public int hashCode() {
             int khash = getKey().hashCode();
             int vhash = val;
             return khash ^ vhash;
         }
 
+        @Override
         public String toString() {
             return getKey() + "=" + val;
         }
@@ -670,6 +684,7 @@ public abstract class AbstractTreeMap implements IntSortedMap {
                     : compare(first, last) > 0;
         }
 
+        @Override
         public boolean hasNext() {
             return next != end;
         }
@@ -693,10 +708,12 @@ public abstract class AbstractTreeMap implements IntSortedMap {
             return lastReturned;
         }
 
+        @Override
         public Object next() {
             return nextEntry();
         }
 
+        @Override
         public void remove() {
             if (lastReturned == NIL) {
                 throw new IllegalStateException();
@@ -730,6 +747,7 @@ public abstract class AbstractTreeMap implements IntSortedMap {
             super(start, end);
         }
 
+        @Override
         public Object next() {
             return nextEntry().getKey();
         }
@@ -748,14 +766,17 @@ public abstract class AbstractTreeMap implements IntSortedMap {
             m_iter = iter;
         }
 
+        @Override
         public boolean hasNext() {
             return m_iter.hasNext();
         }
 
+        @Override
         public int nextInt() {
             return m_iter.nextEntry().val;
         }
 
+        @Override
         public void remove() {
             m_iter.remove();
         }

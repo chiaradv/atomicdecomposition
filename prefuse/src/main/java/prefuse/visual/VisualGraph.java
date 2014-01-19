@@ -6,7 +6,6 @@ import prefuse.data.Table;
 import prefuse.data.event.EventConstants;
 import prefuse.util.collections.IntIterator;
 
-
 /** A visual abstraction of a graph data structure. NodeItem and EdgeItem tuples
  * provide the visual representations for the nodes and edges of the graph.
  * VisualGraphs should not be created directly, they are created automatically
@@ -56,6 +55,7 @@ public class VisualGraph extends Graph implements VisualTupleSet {
      *            the type
      * @see prefuse.data.Graph#fireGraphEvent(prefuse.data.Table, int, int, int,
      *      int) */
+    @Override
     protected void fireGraphEvent(Table t, int first, int last, int col, int type) {
         // if a node is invalidated, invalidate the edges, too
         if (type == EventConstants.UPDATE && col == VisualItem.IDX_VALIDATED
@@ -104,6 +104,7 @@ public class VisualGraph extends Graph implements VisualTupleSet {
      * 
      * @return the visualization
      * @see prefuse.visual.VisualTupleSet#getVisualization() */
+    @Override
     public Visualization getVisualization() {
         return m_vis;
     }
@@ -119,6 +120,7 @@ public class VisualGraph extends Graph implements VisualTupleSet {
     /** Get the visualization data group name for this graph.
      * 
      * @return the data group name */
+    @Override
     public String getGroup() {
         return m_group;
     }

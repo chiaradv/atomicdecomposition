@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 
-
 /** <p>
  * Force function which computes an n-body force such as gravity, anti-gravity,
  * or the results of electric charges. This function implements the the
@@ -68,11 +67,12 @@ public class NBodyForce extends AbstractForce {
     /** The y max. */
     private float xMin, xMax, yMin, yMax;
     /** The factory. */
-    private QuadTreeNodeFactory factory = new QuadTreeNodeFactory();
+    private final QuadTreeNodeFactory factory = new QuadTreeNodeFactory();
     /** The root. */
     private QuadTreeNode root;
     /** The rand. */
-    private Random rand = new Random(12345678L); // deterministic randomness
+    private final Random rand = new Random(12345678L); // deterministic
+                                                       // randomness
 
     /** Create a new NBodyForce with default parameters. */
     public NBodyForce() {
@@ -105,6 +105,7 @@ public class NBodyForce extends AbstractForce {
      * 
      * @return true, if is item force
      * @see prefuse.util.force.Force#isItemForce() */
+    @Override
     public boolean isItemForce() {
         return true;
     }
@@ -113,6 +114,7 @@ public class NBodyForce extends AbstractForce {
      * 
      * @return the parameter names
      * @see prefuse.util.force.AbstractForce#getParameterNames() */
+    @Override
     protected String[] getParameterNames() {
         return pnames;
     }
@@ -159,6 +161,7 @@ public class NBodyForce extends AbstractForce {
      * 
      * @param fsim
      *            the enclosing ForceSimulator */
+    @Override
     public void init(ForceSimulator fsim) {
         clear(); // clear internal state
         // compute and squarify bounds of quadtree
@@ -333,6 +336,7 @@ public class NBodyForce extends AbstractForce {
      * 
      * @param item
      *            the ForceItem for which to compute the force */
+    @Override
     public void getForce(ForceItem item) {
         try {
             forceHelper(item, root, xMin, yMin, xMax, yMax);
@@ -430,9 +434,9 @@ public class NBodyForce extends AbstractForce {
      * of the quadtree. */
     public static final class QuadTreeNodeFactory {
         /** The max nodes. */
-        private int maxNodes = 50000;
+        private final int maxNodes = 50000;
         /** The nodes. */
-        private ArrayList nodes = new ArrayList();
+        private final ArrayList nodes = new ArrayList();
 
         /** Gets the quad tree node.
          * 

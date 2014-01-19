@@ -5,7 +5,6 @@ import java.io.OutputStream;
 
 import prefuse.data.Table;
 
-
 /** Interface for classes that write Table data to a particular file format.
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a> */

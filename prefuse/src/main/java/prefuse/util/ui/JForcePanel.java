@@ -21,9 +21,9 @@ import prefuse.util.force.ForceSimulator;
  * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class JForcePanel extends JPanel {
     /** The lstnr. */
-    private ForcePanelChangeListener lstnr = new ForcePanelChangeListener();
+    private final ForcePanelChangeListener lstnr = new ForcePanelChangeListener();
     /** The fsim. */
-    private ForceSimulator fsim;
+    private final ForceSimulator fsim;
 
     /** Create a new JForcePanel.
      * 
@@ -77,6 +77,7 @@ public class JForcePanel extends JPanel {
 
     /** Change listener that updates paramters in response to interaction. */
     private static class ForcePanelChangeListener implements ChangeListener {
+        @Override
         public void stateChanged(ChangeEvent e) {
             JValueSlider s = (JValueSlider) e.getSource();
             float val = s.getValue().floatValue();

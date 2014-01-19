@@ -92,6 +92,7 @@ public class ObjectColumn extends AbstractColumn {
      * 
      * @return the row count
      * @see prefuse.data.column.Column#getRowCount() */
+    @Override
     public int getRowCount() {
         return m_size;
     }
@@ -101,6 +102,7 @@ public class ObjectColumn extends AbstractColumn {
      * @param nrows
      *            the new maximum row
      * @see prefuse.data.column.Column#setMaximumRow(int) */
+    @Override
     public void setMaximumRow(int nrows) {
         if (nrows > m_values.length) {
             int capacity = Math.max(3 * m_values.length / 2 + 1, nrows);
@@ -124,6 +126,7 @@ public class ObjectColumn extends AbstractColumn {
 
     // ------------------------------------------------------------------------
     // Data Access Methods
+    @Override
     public void revertToDefault(int row) {
         try {
             // since Object's clone method is protected, we default to
@@ -141,6 +144,7 @@ public class ObjectColumn extends AbstractColumn {
      * @param row
      *            the row from which to retrieve the value
      * @return the data value */
+    @Override
     public Object get(int row) {
         if (row < 0 || row > m_size) {
             throw new IllegalArgumentException("Row index out of bounds: " + row);
@@ -154,6 +158,7 @@ public class ObjectColumn extends AbstractColumn {
      *            the value to set
      * @param row
      *            the row at which to set the value */
+    @Override
     public void set(Object val, int row) {
         if (m_readOnly) {
             throw new DataReadOnlyException();

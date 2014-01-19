@@ -7,7 +7,8 @@ package prefuse.util.collections;
 public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap {
     // dummy entry used as wrapper for queries
     /** The dummy. */
-    private LongEntry dummy = new LongEntry(Long.MIN_VALUE, Integer.MAX_VALUE, NIL, 0);
+    private final LongEntry dummy = new LongEntry(Long.MIN_VALUE, Integer.MAX_VALUE, NIL,
+            0);
 
     // ------------------------------------------------------------------------
     // Constructors
@@ -47,6 +48,7 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
     /** Clear.
      * 
      * @see java.util.Map#clear() */
+    @Override
     public void clear() {
         ++modCount;
         size = 0;
@@ -59,6 +61,7 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
      *            the key
      * @return true, if successful
      * @see java.util.Map#containsKey(java.lang.Object) */
+    @Override
     public boolean containsKey(long key) {
         return find(key, 0) != NIL;
     }
@@ -69,6 +72,7 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
      *            the key
      * @return the int
      * @see java.util.Map#get(java.lang.Object) */
+    @Override
     public int get(long key) {
         Entry ret = find(key, 0);
         return ret == NIL ? Integer.MIN_VALUE : ret.val;
@@ -82,6 +86,7 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
      *            the value
      * @return the int
      * @see java.util.Map#put(java.lang.Object, java.lang.Object) */
+    @Override
     public int put(long key, int value) {
         Entry t = root;
         lastOrder = 0;
@@ -124,6 +129,7 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
      *            the key
      * @return the int
      * @see java.util.Map#remove(java.lang.Object) */
+    @Override
     public int remove(long key) {
         // remove the last instance with the given key
         Entry x;
@@ -140,6 +146,7 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
         return val;
     }
 
+    @Override
     public int remove(long key, int val) {
         // remove the last instance with the given key
         Entry x = findCeiling(key, 0);
@@ -163,6 +170,7 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
      * 
      * @return the long
      * @see java.util.SortedMap#firstKey() */
+    @Override
     public long firstKey() {
         return minimum(root).getLongKey();
     }
@@ -171,15 +179,18 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
      * 
      * @return the long
      * @see java.util.SortedMap#lastKey() */
+    @Override
     public long lastKey() {
         return maximum(root).getLongKey();
     }
 
     // -- Collection view methods ---------------------------------------------
+    @Override
     public LiteralIterator keyIterator() {
         return new KeyIterator();
     }
 
+    @Override
     public LiteralIterator keyRangeIterator(long fromKey, boolean fromInc, long toKey,
             boolean toInc) {
         Entry start, end;
@@ -195,6 +206,7 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
         return new KeyIterator(start, end);
     }
 
+    @Override
     public IntIterator valueRangeIterator(long fromKey, boolean fromInc, long toKey,
             boolean toInc) {
         return new ValueIterator((EntryIterator) keyRangeIterator(fromKey, fromInc,
@@ -204,6 +216,7 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
     // ------------------------------------------------------------------------
     // Internal Binary Search Tree / Red-Black Tree methods
     // Adapted from Cormen, Leiserson, and Rivest's Introduction to Algorithms
+    @Override
     protected int compare(Entry e1, Entry e2) {
         int c = cmp.compare(e1.getLongKey(), e2.getLongKey());
         if (allowDuplicates && c == 0) {
@@ -290,18 +303,22 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
             this.key = key;
         }
 
+        @Override
         public long getLongKey() {
             return key;
         }
 
+        @Override
         public Object getKey() {
             return new Long(key);
         }
 
+        @Override
         public boolean keyEquals(Entry e) {
             return e instanceof LongEntry && key == ((LongEntry) e).key;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (!(o instanceof LongEntry)) {
                 return false;
@@ -310,16 +327,19 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
             return key == e.key && val == e.val;
         }
 
+        @Override
         public int hashCode() {
             int khash = (int) (key ^ key >>> 32);
             int vhash = val;
             return khash ^ vhash ^ order;
         }
 
+        @Override
         public String toString() {
             return key + "=" + val;
         }
 
+        @Override
         public void copyFields(Entry x) {
             super.copyFields(x);
             key = x.getLongKey();
@@ -345,10 +365,12 @@ public class LongIntTreeMap extends AbstractTreeMap implements LongIntSortedMap 
             super(start, end);
         }
 
+        @Override
         public boolean isLongSupported() {
             return true;
         }
 
+        @Override
         public long nextLong() {
             return nextEntry().getLongKey();
         }

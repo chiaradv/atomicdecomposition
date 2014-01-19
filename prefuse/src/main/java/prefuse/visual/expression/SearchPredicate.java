@@ -7,125 +7,115 @@ import prefuse.data.expression.Expression;
 import prefuse.data.search.SearchTupleSet;
 import prefuse.visual.VisualItem;
 
-
-/**
- * Expression that indicates if an item is currently a member of a data group of the type.
- *
- * {@link prefuse.data.search.SearchTupleSet}, but including a possible special case in
- * which all items should be pass through the predicate if no search query is specified.
- * The data group name is provided by a String-valued sub-expression.
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
+/** Expression that indicates if an item is currently a member of a data group of
+ * the type. {@link prefuse.data.search.SearchTupleSet}, but including a
+ * possible special case in which all items should be pass through the predicate
+ * if no search query is specified. The data group name is provided by a
+ * String-valued sub-expression.
+ * 
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class SearchPredicate extends InGroupPredicate {
-
     /** The m_inc empty. */
     private Expression m_incEmpty;
-    
     /** The param count. */
     private int paramCount = 0;
-    
-    /**
-     * Create a new SearchPredicate. By default, looks into the
+
+    /** Create a new SearchPredicate. By default, looks into the
      * {@link prefuse.Visualization#ALL_ITEMS} data group and assumes all items
-     * should pass the predicate if no search query has been specified.
-     */
+     * should pass the predicate if no search query has been specified. */
     public SearchPredicate() {
         this(Visualization.SEARCH_ITEMS, true);
         paramCount = 0;
     }
-    
-    /**
-     * Create a new SearchPredicate. By default, looks into the
-     *
-     * @param includeAllByDefault indicates if all items
-     * should pass the predicate if no search query has been specified.
-     * {@link prefuse.Visualization#ALL_ITEMS} data group.
-     */
+
+    /** Create a new SearchPredicate. By default, looks into the
+     * 
+     * @param includeAllByDefault
+     *            indicates if all items should pass the predicate if no search
+     *            query has been specified.
+     *            {@link prefuse.Visualization#ALL_ITEMS} data group. */
     public SearchPredicate(boolean includeAllByDefault) {
         this(Visualization.SEARCH_ITEMS, includeAllByDefault);
     }
-    
-    /**
-     * Create a new SearchPredicate.
-     *
-     * @param group the data group to look up, should resolve to a
-     * @param includeAllByDefault indicates if all items
-     * should pass the predicate if no search query has been specified.
-     * {@link prefuse.data.search.SearchTupleSet} instance.
-     */
+
+    /** Create a new SearchPredicate.
+     * 
+     * @param group
+     *            the data group to look up, should resolve to a
+     * @param includeAllByDefault
+     *            indicates if all items should pass the predicate if no search
+     *            query has been specified.
+     *            {@link prefuse.data.search.SearchTupleSet} instance. */
     public SearchPredicate(String group, boolean includeAllByDefault) {
         super(group);
         m_incEmpty = new BooleanLiteral(includeAllByDefault);
         paramCount = 2;
     }
-    
-    /**
-     * Gets the boolean.
-     *
-     * @param t the t
+
+    /** Gets the boolean.
+     * 
+     * @param t
+     *            the t
      * @return the boolean
-     * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple)
-     */
+     * @see prefuse.data.expression.Expression#getBoolean(prefuse.data.Tuple) */
+    @Override
     public boolean getBoolean(Tuple t) {
         String group = getGroup(t);
-        if ( group == null ) return false;
+        if (group == null) {
+            return false;
+        }
         boolean incEmpty = m_incEmpty.getBoolean(t);
-        
-        VisualItem item = (VisualItem)t;
+        VisualItem item = (VisualItem) t;
         Visualization vis = item.getVisualization();
-        SearchTupleSet search = (SearchTupleSet)vis.getGroup(group);
-        if ( search == null && incEmpty )
+        SearchTupleSet search = (SearchTupleSet) vis.getGroup(group);
+        if (search == null && incEmpty) {
             return true;
-        
+        }
         String query = search.getQuery();
-        return (incEmpty && (query==null || query.length()==0)) 
+        return incEmpty && (query == null || query.length() == 0)
                 || vis.isInGroup(item, group);
     }
 
-    /**
-     * Adds the parameter.
-     *
-     * @param e the e
-     * @see prefuse.data.expression.Function#addParameter(prefuse.data.expression.Expression)
-     */
+    /** Adds the parameter.
+     * 
+     * @param e
+     *            the e
+     * @see prefuse.data.expression.Function#addParameter(prefuse.data.expression.Expression) */
+    @Override
     public void addParameter(Expression e) {
-        if ( paramCount == 0 )
+        if (paramCount == 0) {
             super.addParameter(e);
-        else if ( paramCount == 1 )
+        } else if (paramCount == 1) {
             m_incEmpty = e;
-        else
-            throw new IllegalStateException(
-              "This function takes only 2 parameters.");
+        } else {
+            throw new IllegalStateException("This function takes only 2 parameters.");
+        }
     }
 
-    /**
-     * Gets the name.
-     *
+    /** Gets the name.
+     * 
      * @return the name
-     * @see prefuse.data.expression.Function#getName()
-     */
+     * @see prefuse.data.expression.Function#getName() */
+    @Override
     public String getName() {
         return "MATCH";
     }
 
-    /**
-     * Gets the parameter count.
-     *
+    /** Gets the parameter count.
+     * 
      * @return the parameter count
-     * @see prefuse.data.expression.Function#getParameterCount()
-     */
+     * @see prefuse.data.expression.Function#getParameterCount() */
+    @Override
     public int getParameterCount() {
         return 2;
     }
-    
-    /**
-     * To string.
-     *
+
+    /** To string.
+     * 
      * @return the string
-     * @see java.lang.Object#toString()
-     */
+     * @see java.lang.Object#toString() */
+    @Override
     public String toString() {
-        return getName()+"("+m_group+", "+m_incEmpty+")";
+        return getName() + "(" + m_group + ", " + m_incEmpty + ")";
     }
-    
 } // end of class SearchPredicate

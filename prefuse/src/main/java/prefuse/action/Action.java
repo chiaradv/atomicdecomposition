@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import prefuse.Visualization;
 import prefuse.activity.Activity;
 
-
 /** <p>
  * Actions are building blocks that perform any number of operations on a
  * Visualization, typically processing VisualItems to set various visual
@@ -116,6 +115,7 @@ public abstract class Action extends Activity {
      * @param elapsedTime
      *            the elapsed time
      * @see prefuse.activity.Activity#run(long) */
+    @Override
     protected void run(long elapsedTime) {
         Visualization vis = getVisualization();
         if (vis != null) {

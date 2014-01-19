@@ -65,6 +65,7 @@ public class BalloonTreeLayout extends TreeLayout {
      * @param frac
      *            the frac
      * @see prefuse.action.Action#run(double) */
+    @Override
     public void run(double frac) {
         Graph g = (Graph) m_vis.getGroup(m_group);
         initSchema(g.getNodes());

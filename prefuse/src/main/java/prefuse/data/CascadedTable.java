@@ -273,6 +273,7 @@ public class CascadedTable extends Table {
      * 
      * @return the column count
      * @see prefuse.data.Table#getColumnCount() */
+    @Override
     public int getColumnCount() {
         return m_columns.size() + m_pnames.size();
     }
@@ -321,6 +322,7 @@ public class CascadedTable extends Table {
      * 
      * @return the int
      * @see prefuse.data.Table#addRow() */
+    @Override
     public int addRow() {
         if (m_parent != null) {
             throw new IllegalStateException("Add row not supported for CascadedTable.");
@@ -334,6 +336,7 @@ public class CascadedTable extends Table {
      * @param nrows
      *            the nrows
      * @see prefuse.data.Table#addRows(int) */
+    @Override
     public void addRows(int nrows) {
         if (m_parent != null) {
             throw new IllegalStateException("Add rows not supported for CascadedTable.");
@@ -348,6 +351,7 @@ public class CascadedTable extends Table {
      *            the row
      * @return true, if successful
      * @see prefuse.data.Table#removeRow(int) */
+    @Override
     public boolean removeRow(int row) {
         if (m_parent != null) {
             throw new IllegalStateException("Remove row not supported for CascadedTable.");
@@ -391,6 +395,7 @@ public class CascadedTable extends Table {
      *            the col
      * @return the column name
      * @see prefuse.data.Table#getColumnName(int) */
+    @Override
     public String getColumnName(int col) {
         int local = m_names.size();
         if (col >= local) {
@@ -406,6 +411,7 @@ public class CascadedTable extends Table {
      *            the col
      * @return the column number
      * @see prefuse.data.Table#getColumnNumber(prefuse.data.column.Column) */
+    @Override
     public int getColumnNumber(Column col) {
         int idx = m_columns.indexOf(col);
         if (idx == -1 && m_parent != null) {
@@ -428,6 +434,7 @@ public class CascadedTable extends Table {
      *            the col
      * @return the column
      * @see prefuse.data.Table#getColumn(int) */
+    @Override
     public Column getColumn(int col) {
         m_lastCol = col;
         int local = m_names.size();
@@ -444,6 +451,7 @@ public class CascadedTable extends Table {
      *            the name
      * @return true, if successful
      * @see prefuse.data.Table#hasColumn(java.lang.String) */
+    @Override
     protected boolean hasColumn(String name) {
         int idx = getColumnNumber(name);
         return idx >= 0 && idx < getLocalColumnCount();
@@ -453,6 +461,7 @@ public class CascadedTable extends Table {
      * 
      * @return the column names
      * @see prefuse.data.Table#getColumnNames() */
+    @Override
     protected Iterator getColumnNames() {
         if (m_parent == null) {
             return m_names.iterator();
@@ -463,6 +472,7 @@ public class CascadedTable extends Table {
 
     /** Invalidates this table's cached schema. This method should be called
      * whenever columns are added or removed from this table. */
+    @Override
     protected void invalidateSchema() {
         super.invalidateSchema();
         filterColumns();
@@ -474,6 +484,7 @@ public class CascadedTable extends Table {
      * the column projection, or the row selection predicate. */
     private class Listener implements TableListener, ProjectionListener,
             ExpressionListener {
+        @Override
         public void tableChanged(Table t, int start, int end, int col, int type) {
             // must come from parent
             if (t != m_parent) {
@@ -546,12 +557,14 @@ public class CascadedTable extends Table {
             }
         }
 
+        @Override
         public void projectionChanged(ColumnProjection projection) {
             if (projection == m_colFilter) {
                 filterColumns();
             }
         }
 
+        @Override
         public void expressionChanged(Expression expr) {
             if (expr == m_rowFilter) {
                 filterRows();

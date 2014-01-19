@@ -11,7 +11,7 @@ import java.util.Iterator;
 public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSortedMap {
     // dummy entry used as wrapper for queries
     /** The dummy. */
-    private ObjectEntry dummy = new ObjectEntry(null, Integer.MIN_VALUE, NIL, 0);
+    private final ObjectEntry dummy = new ObjectEntry(null, Integer.MIN_VALUE, NIL, 0);
     /** The cmp. */
     private Comparator cmp = null;
 
@@ -53,6 +53,7 @@ public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSorted
      * 
      * @return the comparator
      * @see java.util.SortedMap#comparator() */
+    @Override
     public Comparator comparator() {
         return cmp;
     }
@@ -65,6 +66,7 @@ public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSorted
      *            the key
      * @return true, if successful
      * @see java.util.Map#containsKey(java.lang.Object) */
+    @Override
     public boolean containsKey(Object key) {
         return find(key, 0) != NIL;
     }
@@ -75,6 +77,7 @@ public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSorted
      *            the key
      * @return the int
      * @see java.util.Map#get(java.lang.Object) */
+    @Override
     public int get(Object key) {
         Entry ret = find(key, 0);
         return ret == NIL ? Integer.MIN_VALUE : ret.val;
@@ -88,6 +91,7 @@ public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSorted
      *            the value
      * @return the int
      * @see java.util.Map#put(java.lang.Object, java.lang.Object) */
+    @Override
     public int put(Object key, int value) {
         Entry t = root;
         lastOrder = 0;
@@ -130,6 +134,7 @@ public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSorted
      *            the key
      * @return the int
      * @see java.util.Map#remove(java.lang.Object) */
+    @Override
     public int remove(Object key) {
         // remove the last instance with the given key
         Entry x;
@@ -146,6 +151,7 @@ public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSorted
         return val;
     }
 
+    @Override
     public int remove(Object key, int val) {
         // remove the last instance with the given key
         Entry x = findCeiling(key, 0);
@@ -172,6 +178,7 @@ public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSorted
      * 
      * @return the object
      * @see java.util.SortedMap#firstKey() */
+    @Override
     public Object firstKey() {
         return minimum(root).getKey();
     }
@@ -180,15 +187,18 @@ public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSorted
      * 
      * @return the object
      * @see java.util.SortedMap#lastKey() */
+    @Override
     public Object lastKey() {
         return maximum(root).getKey();
     }
 
     // -- Collection view methods ---------------------------------------------
+    @Override
     public Iterator keyIterator() {
         return new KeyIterator();
     }
 
+    @Override
     public Iterator keyRangeIterator(Object fromKey, boolean fromInc, Object toKey,
             boolean toInc) {
         Entry start, end;
@@ -209,6 +219,7 @@ public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSorted
         return new KeyIterator(start, end);
     }
 
+    @Override
     public IntIterator valueRangeIterator(Object fromKey, boolean fromInc, Object toKey,
             boolean toInc) {
         return new ValueIterator((EntryIterator) keyRangeIterator(fromKey, fromInc,
@@ -218,6 +229,7 @@ public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSorted
     // ------------------------------------------------------------------------
     // Internal Binary Search Tree / Red-Black Tree methods
     // Adapted from Cormen, Leiserson, and Rivest's Introduction to Algorithms
+    @Override
     protected int compare(Entry e1, Entry e2) {
         Object k1 = e1.getKey(), k2 = e2.getKey();
         if (k1 == k2 && (k1 == MIN_KEY || k1 == MAX_KEY)) {
@@ -317,10 +329,12 @@ public class ObjectIntTreeMap extends AbstractTreeMap implements ObjectIntSorted
             this.key = key;
         }
 
+        @Override
         public Object getKey() {
             return key;
         }
 
+        @Override
         public void copyFields(Entry x) {
             super.copyFields(x);
             key = x.getKey();

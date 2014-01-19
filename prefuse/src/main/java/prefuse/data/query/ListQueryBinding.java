@@ -27,13 +27,13 @@ public class ListQueryBinding extends DynamicQueryBinding {
     /** String used to indicate inclusion of all data values. */
     private static final String ALL = "All";
     /** The m_type. */
-    private Class m_type;
+    private final Class m_type;
     /** The m_model. */
     private ListModel m_model;
     /** The m_lstnr. */
-    private Listener m_lstnr;
+    private final Listener m_lstnr;
     /** The m_include all. */
-    private boolean m_includeAll;
+    private final boolean m_includeAll;
 
     /** Create a new ListQueryBinding over the given set and data field.
      * 
@@ -107,6 +107,7 @@ public class ListQueryBinding extends DynamicQueryBinding {
      * @return a {@link prefuse.util.ui.JToggleGroup} of check boxes bound to
      *         this dynamic query.
      * @see prefuse.data.query.DynamicQueryBinding#createComponent() */
+    @Override
     public JComponent createComponent() {
         return createCheckboxGroup();
     }
@@ -166,6 +167,7 @@ public class ListQueryBinding extends DynamicQueryBinding {
 
     /** The Class Listener. */
     private class Listener implements ListSelectionListener {
+        @Override
         public void valueChanged(ListSelectionEvent e) {
             ListModel model = (ListModel) e.getSource();
             OrPredicate orP = (OrPredicate) m_query;

@@ -15,283 +15,264 @@ import prefuse.util.MathLib;
 import prefuse.util.ui.ValuedRangeModel;
 import prefuse.visual.VisualItem;
 
-
-/**
- * Layout Action that assigns positions along a single dimension (either x or
- * y) according to a specified data field. By default, the range of values
- * along the axis is automatically determined by the minimum and maximum
- * values of the data field. The range bounds can be manually set using the
+/** Layout Action that assigns positions along a single dimension (either x or y)
+ * according to a specified data field. By default, the range of values along
+ * the axis is automatically determined by the minimum and maximum values of the
+ * data field. The range bounds can be manually set using the
  * {@link #setRangeModel(ValuedRangeModel)} method. Also, the set of items
- * processed by this layout can be filtered by providing a filtering
- * predicate (@link #setFilter(Predicate)).
+ * processed by this layout can be filtered by providing a filtering predicate
+ * (@link #setFilter(Predicate)).
  * 
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class AxisLayout extends Layout {
-
     /** The m_field. */
     private String m_field;
-    
     /** The m_scale. */
     private int m_scale = Constants.LINEAR_SCALE;
-    
     /** The m_axis. */
     private int m_axis = Constants.X_AXIS;
-    
     /** The m_type. */
     private int m_type = Constants.UNKNOWN;
-    
     // visible region of the layout (in item coordinates)
     // if false, the table will be consulted
     /** The m_model set. */
     private boolean m_modelSet = false;
-    
     /** The m_model. */
     private ValuedRangeModel m_model = null;
-    
     /** The m_filter. */
     private Predicate m_filter = null;
-    
     // screen coordinate range
     /** The m_min. */
     private double m_min;
-    
     /** The m_range. */
     private double m_range;
-    
     // value range / distribution
     /** The m_dist. */
-    private double[] m_dist = new double[2];
-    
-    /**
-     * Create a new AxisLayout. Defaults to using the x-axis.
-     * @param group the data group to layout
-     * @param field the data field upon which to base the layout
-     */
+    private final double[] m_dist = new double[2];
+
+    /** Create a new AxisLayout. Defaults to using the x-axis.
+     * 
+     * @param group
+     *            the data group to layout
+     * @param field
+     *            the data field upon which to base the layout */
     public AxisLayout(String group, String field) {
         super(group);
         m_field = field;
     }
-    
-    /**
-     * Create a new AxisLayout.
-     * @param group the data group to layout
-     * @param field the data field upon which to base the layout
-     * @param axis the axis type, either {@link prefuse.Constants#X_AXIS}
-     * or {@link prefuse.Constants#Y_AXIS}.
-     */
+
+    /** Create a new AxisLayout.
+     * 
+     * @param group
+     *            the data group to layout
+     * @param field
+     *            the data field upon which to base the layout
+     * @param axis
+     *            the axis type, either {@link prefuse.Constants#X_AXIS} or
+     *            {@link prefuse.Constants#Y_AXIS}. */
     public AxisLayout(String group, String field, int axis) {
         this(group, field);
         setAxis(axis);
     }
-    
-    /**
-     * Create a new AxisLayout.
-     * @param group the data group to layout
-     * @param field the data field upon which to base the layout
-     * @param axis the axis type, either {@link prefuse.Constants#X_AXIS}
-     * or {@link prefuse.Constants#Y_AXIS}.
-     * @param filter an optional predicate filter for limiting which items
-     * to layout.
-     */
+
+    /** Create a new AxisLayout.
+     * 
+     * @param group
+     *            the data group to layout
+     * @param field
+     *            the data field upon which to base the layout
+     * @param axis
+     *            the axis type, either {@link prefuse.Constants#X_AXIS} or
+     *            {@link prefuse.Constants#Y_AXIS}.
+     * @param filter
+     *            an optional predicate filter for limiting which items to
+     *            layout. */
     public AxisLayout(String group, String field, int axis, Predicate filter) {
         this(group, field, axis);
         setFilter(filter);
     }
 
     // ------------------------------------------------------------------------
-    
-    /**
-     * Set the data field used by this axis layout action. The values of the
-     * data field will determine the position of items along the axis. Note
-     * that this method does not affect the other parameters of this action. In
-     * particular, clients that have provided a custom range model for
-     * setting the axis range may need to appropriately update the model
-     * setting for use with the new data field setting.
-     * @param field the name of the data field that determines the layout
-     */
+    /** Set the data field used by this axis layout action. The values of the
+     * data field will determine the position of items along the axis. Note that
+     * this method does not affect the other parameters of this action. In
+     * particular, clients that have provided a custom range model for setting
+     * the axis range may need to appropriately update the model setting for use
+     * with the new data field setting.
+     * 
+     * @param field
+     *            the name of the data field that determines the layout */
     public void setDataField(String field) {
         m_field = field;
-        if ( !m_modelSet )
+        if (!m_modelSet) {
             m_model = null;
+        }
     }
-    
-    /**
-     * Get the data field used by this axis layout action. The values of the
+
+    /** Get the data field used by this axis layout action. The values of the
      * data field determine the position of items along the axis.
-     * @return the name of the data field that determines the layout
-     */
+     * 
+     * @return the name of the data field that determines the layout */
     public String getDataField() {
         return m_field;
     }
-    
-    /**
-     * Set the range model determining the span of the axis. This model controls
+
+    /** Set the range model determining the span of the axis. This model controls
      * the minimum and maximum values of the layout, as provided by the
-     *
-     * @param model the range model for the axis.
-     * {@link prefuse.util.ui.ValuedRangeModel#getLowValue()} and
-     * {@link prefuse.util.ui.ValuedRangeModel#getHighValue()} methods.
-     */
+     * 
+     * @param model
+     *            the range model for the axis.
+     *            {@link prefuse.util.ui.ValuedRangeModel#getLowValue()} and
+     *            {@link prefuse.util.ui.ValuedRangeModel#getHighValue()}
+     *            methods. */
     public void setRangeModel(ValuedRangeModel model) {
         m_model = model;
-        m_modelSet = (model != null);
+        m_modelSet = model != null;
     }
-    
-    /**
-     * Get the range model determining the span of the axis. This model controls
+
+    /** Get the range model determining the span of the axis. This model controls
      * the minimum and maximum values of the layout, as provided by the
-     *
+     * 
      * @return the range model for the axis.
-     * {@link prefuse.util.ui.ValuedRangeModel#getLowValue()} and
-     * {@link prefuse.util.ui.ValuedRangeModel#getHighValue()} methods.
-     */
+     *         {@link prefuse.util.ui.ValuedRangeModel#getLowValue()} and
+     *         {@link prefuse.util.ui.ValuedRangeModel#getHighValue()} methods. */
     public ValuedRangeModel getRangeModel() {
         return m_model;
     }
-    
-    /**
-     * Set a predicate filter to limit which items are considered for layout.
-     * Only items for which the predicate returns a true value are included
-     * in the layout computation. 
-     * @param filter the predicate filter to use. If null, no filtering
-     * will be performed.
-     */
+
+    /** Set a predicate filter to limit which items are considered for layout.
+     * Only items for which the predicate returns a true value are included in
+     * the layout computation.
+     * 
+     * @param filter
+     *            the predicate filter to use. If null, no filtering will be
+     *            performed. */
     public void setFilter(Predicate filter) {
         m_filter = filter;
     }
-    
-    /**
-     * Get the predicate filter to limit which items are considered for layout.
-     * Only items for which the predicate returns a true value are included
-     * in the layout computation. 
+
+    /** Get the predicate filter to limit which items are considered for layout.
+     * Only items for which the predicate returns a true value are included in
+     * the layout computation.
+     * 
      * @return the predicate filter used by this layout. If null, no filtering
-     * is performed.
-     */
+     *         is performed. */
     public Predicate getFilter() {
         return m_filter;
     }
-    
+
     // ------------------------------------------------------------------------
-    
-    /**
-     * Returns the scale type used for the axis. This setting only applies
-     * for numerical data types (i.e., when axis values are from a
+    /** Returns the scale type used for the axis. This setting only applies for
+     * numerical data types (i.e., when axis values are from a
      * <code>NumberValuedRange</code>).
-     * @return the scale type. One of
-     * {@link prefuse.Constants#LINEAR_SCALE}, 
-     * {@link prefuse.Constants#SQRT_SCALE}, or
-     * {@link Constants#LOG_SCALE}.
-     */
+     * 
+     * @return the scale type. One of {@link prefuse.Constants#LINEAR_SCALE},
+     *         {@link prefuse.Constants#SQRT_SCALE}, or
+     *         {@link Constants#LOG_SCALE}. */
     public int getScale() {
         return m_scale;
     }
-    
-    /**
-     * Sets the scale type used for the axis. This setting only applies
-     * for numerical data types (i.e., when axis values are from a
+
+    /** Sets the scale type used for the axis. This setting only applies for
+     * numerical data types (i.e., when axis values are from a
      * <code>NumberValuedRange</code>).
-     * @param scale the scale type. One of
-     * {@link prefuse.Constants#LINEAR_SCALE}, 
-     * {@link prefuse.Constants#SQRT_SCALE}, or
-     * {@link Constants#LOG_SCALE}.
-     */
+     * 
+     * @param scale
+     *            the scale type. One of {@link prefuse.Constants#LINEAR_SCALE},
+     *            {@link prefuse.Constants#SQRT_SCALE}, or
+     *            {@link Constants#LOG_SCALE}. */
     public void setScale(int scale) {
-        if ( scale < 0 || scale >= Constants.SCALE_COUNT )
-            throw new IllegalArgumentException(
-                    "Unrecognized scale value: "+scale);
+        if (scale < 0 || scale >= Constants.SCALE_COUNT) {
+            throw new IllegalArgumentException("Unrecognized scale value: " + scale);
+        }
         m_scale = scale;
     }
-    
-    /**
-     * Return the axis type of this layout, either.
-     *
-     * @return the axis type of this layout.
-     * {@link prefuse.Constants#X_AXIS} or {@link prefuse.Constants#Y_AXIS}.
-     */
+
+    /** Return the axis type of this layout, either.
+     * 
+     * @return the axis type of this layout. {@link prefuse.Constants#X_AXIS} or
+     *         {@link prefuse.Constants#Y_AXIS}. */
     public int getAxis() {
         return m_axis;
     }
 
-    /**
-     * Set the axis type of this layout.
-     * @param axis the axis type to use for this layout, either
-     * {@link prefuse.Constants#X_AXIS} or {@link prefuse.Constants#Y_AXIS}.
-     */
+    /** Set the axis type of this layout.
+     * 
+     * @param axis
+     *            the axis type to use for this layout, either
+     *            {@link prefuse.Constants#X_AXIS} or
+     *            {@link prefuse.Constants#Y_AXIS}. */
     public void setAxis(int axis) {
-        if ( axis < 0 || axis >= Constants.AXIS_COUNT )
-            throw new IllegalArgumentException(
-                    "Unrecognized axis value: "+axis);
+        if (axis < 0 || axis >= Constants.AXIS_COUNT) {
+            throw new IllegalArgumentException("Unrecognized axis value: " + axis);
+        }
         m_axis = axis;
     }
-    
-    /**
-     * Return the data type used by this layout. This value is one of
-     *
+
+    /** Return the data type used by this layout. This value is one of
+     * 
      * @return the data type used by this layout
-     * {@link prefuse.Constants#NOMINAL}, {@link prefuse.Constants#ORDINAL},
-     * {@link prefuse.Constants#NUMERICAL}, or
-     * {@link prefuse.Constants#UNKNOWN}.
-     */
+     *         {@link prefuse.Constants#NOMINAL},
+     *         {@link prefuse.Constants#ORDINAL},
+     *         {@link prefuse.Constants#NUMERICAL}, or
+     *         {@link prefuse.Constants#UNKNOWN}. */
     public int getDataType() {
         return m_type;
     }
-    
-    /**
-     * Set the data type used by this layout.
-     * @param type the data type used by this layout, one of
-     * {@link prefuse.Constants#NOMINAL}, {@link prefuse.Constants#ORDINAL},
-     * {@link prefuse.Constants#NUMERICAL}, or
-     * {@link prefuse.Constants#UNKNOWN}.
-     */
+
+    /** Set the data type used by this layout.
+     * 
+     * @param type
+     *            the data type used by this layout, one of
+     *            {@link prefuse.Constants#NOMINAL},
+     *            {@link prefuse.Constants#ORDINAL},
+     *            {@link prefuse.Constants#NUMERICAL}, or
+     *            {@link prefuse.Constants#UNKNOWN}. */
     public void setDataType(int type) {
-        if ( type < 0 || type >= Constants.DATATYPE_COUNT )
-            throw new IllegalArgumentException(
-                    "Unrecognized data type value: "+type);
+        if (type < 0 || type >= Constants.DATATYPE_COUNT) {
+            throw new IllegalArgumentException("Unrecognized data type value: " + type);
+        }
         m_type = type;
     }
-    
+
     // ------------------------------------------------------------------------
-    
-    /**
-     * Run.
-     *
-     * @param frac the frac
-     * @see prefuse.action.Action#run(double)
-     */
+    /** Run.
+     * 
+     * @param frac
+     *            the frac
+     * @see prefuse.action.Action#run(double) */
+    @Override
     public void run(double frac) {
         TupleSet ts = m_vis.getGroup(m_group);
         setMinMax();
-        
-        switch ( getDataType(ts) ) {
-        case Constants.NUMERICAL:
-            numericalLayout(ts);
-            break;
-        default:
-            ordinalLayout(ts);
+        switch (getDataType(ts)) {
+            case Constants.NUMERICAL:
+                numericalLayout(ts);
+                break;
+            default:
+                ordinalLayout(ts);
         }
     }
-    
-    /**
-     * Retrieve the data type.
-     *
-     * @param ts the ts
-     * @return the data type
-     */
+
+    /** Retrieve the data type.
+     * 
+     * @param ts
+     *            the ts
+     * @return the data type */
     protected int getDataType(TupleSet ts) {
-        if ( m_type == Constants.UNKNOWN ) {
+        if (m_type == Constants.UNKNOWN) {
             boolean numbers = true;
-            if ( ts instanceof Table ) {
-                numbers = ((Table)ts).canGetDouble(m_field);
+            if (ts instanceof Table) {
+                numbers = ((Table) ts).canGetDouble(m_field);
             } else {
-                for ( Iterator it = ts.tuples(); it.hasNext(); ) {
-                    if ( !((Tuple)it.next()).canGetDouble(m_field) ) {
+                for (Iterator it = ts.tuples(); it.hasNext();) {
+                    if (!((Tuple) it.next()).canGetDouble(m_field)) {
                         numbers = false;
                         break;
                     }
                 }
             }
-            if ( numbers ) {
+            if (numbers) {
                 return Constants.NUMERICAL;
             } else {
                 return Constants.ORDINAL;
@@ -300,13 +281,11 @@ public class AxisLayout extends Layout {
             return m_type;
         }
     }
-    
-    /**
-     * Set the minimum and maximum pixel values.
-     */
+
+    /** Set the minimum and maximum pixel values. */
     private void setMinMax() {
         Rectangle2D b = getLayoutBounds();
-        if ( m_axis == Constants.X_AXIS ) {
+        if (m_axis == Constants.X_AXIS) {
             m_min = b.getMinX();
             m_range = b.getMaxX() - m_min;
         } else {
@@ -314,79 +293,71 @@ public class AxisLayout extends Layout {
             m_range = b.getMinY() - m_min;
         }
     }
-    
-    /**
-     * Set the layout position of an item.
-     *
-     * @param item the item
-     * @param frac the frac
-     */
+
+    /** Set the layout position of an item.
+     * 
+     * @param item
+     *            the item
+     * @param frac
+     *            the frac */
     protected void set(VisualItem item, double frac) {
-        double xOrY = m_min + frac*m_range;
-        if ( m_axis == Constants.X_AXIS ) {
+        double xOrY = m_min + frac * m_range;
+        if (m_axis == Constants.X_AXIS) {
             setX(item, null, xOrY);
         } else {
             setY(item, null, xOrY);
         }
     }
-    
-    /**
-     * Compute a quantitative axis layout.
-     *
-     * @param ts the ts
-     */
+
+    /** Compute a quantitative axis layout.
+     * 
+     * @param ts
+     *            the ts */
     protected void numericalLayout(TupleSet ts) {
-        if ( !m_modelSet ) {
+        if (!m_modelSet) {
             m_dist[0] = DataLib.min(ts, m_field).getDouble(m_field);
             m_dist[1] = DataLib.max(ts, m_field).getDouble(m_field);
-            
             double lo = m_dist[0], hi = m_dist[1];
-            if ( m_model == null ) {
+            if (m_model == null) {
                 m_model = new NumberRangeModel(lo, hi, lo, hi);
             } else {
-                ((NumberRangeModel)m_model).setValueRange(lo, hi, lo, hi);
+                ((NumberRangeModel) m_model).setValueRange(lo, hi, lo, hi);
             }
         } else {
-            m_dist[0] = ((Number)m_model.getLowValue()).doubleValue();
-            m_dist[1] = ((Number)m_model.getHighValue()).doubleValue();
+            m_dist[0] = ((Number) m_model.getLowValue()).doubleValue();
+            m_dist[1] = ((Number) m_model.getHighValue()).doubleValue();
         }
-        
         Iterator iter = m_vis.items(m_group, m_filter);
-        while ( iter.hasNext() ) {
-            VisualItem item = (VisualItem)iter.next();
+        while (iter.hasNext()) {
+            VisualItem item = (VisualItem) iter.next();
             double v = item.getDouble(m_field);
             double f = MathLib.interp(m_scale, v, m_dist);
             set(item, f);
         }
     }
-    
-    /**
-     * Compute an ordinal axis layout.
-     *
-     * @param ts the ts
-     */
+
+    /** Compute an ordinal axis layout.
+     * 
+     * @param ts
+     *            the ts */
     protected void ordinalLayout(TupleSet ts) {
-        if ( !m_modelSet) {
+        if (!m_modelSet) {
             Object[] array = DataLib.ordinalArray(ts, m_field);
-            
-            if ( m_model == null ) {
+            if (m_model == null) {
                 m_model = new ObjectRangeModel(array);
             } else {
-                ((ObjectRangeModel)m_model).setValueRange(array);
+                ((ObjectRangeModel) m_model).setValueRange(array);
             }
         }
-        
-        ObjectRangeModel model = (ObjectRangeModel)m_model;
+        ObjectRangeModel model = (ObjectRangeModel) m_model;
         int start = model.getValue();
         int end = start + model.getExtent();
-        double total = (double)(end-start);
-        
+        double total = end - start;
         Iterator iter = m_vis.items(m_group, m_filter);
-        while ( iter.hasNext() ) {
-            VisualItem item = (VisualItem)iter.next();
+        while (iter.hasNext()) {
+            VisualItem item = (VisualItem) iter.next();
             int order = model.getIndex(item.get(m_field)) - start;
-            set(item, (total > 0.0) ? order/total : 0.5);
+            set(item, total > 0.0 ? order / total : 0.5);
         }
     }
-    
 } // end of class AxisLayout

@@ -7,8 +7,8 @@ package prefuse.util.collections;
 public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSortedMap {
     // dummy entry used as wrapper for queries
     /** The dummy. */
-    private DoubleEntry dummy = new DoubleEntry(Double.MIN_VALUE, Integer.MAX_VALUE, NIL,
-            0);
+    private final DoubleEntry dummy = new DoubleEntry(Double.MIN_VALUE,
+            Integer.MAX_VALUE, NIL, 0);
 
     // ------------------------------------------------------------------------
     // Constructors
@@ -48,6 +48,7 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
     /** Clear.
      * 
      * @see java.util.Map#clear() */
+    @Override
     public void clear() {
         ++modCount;
         size = 0;
@@ -60,6 +61,7 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
      *            the key
      * @return true, if successful
      * @see java.util.Map#containsKey(java.lang.Object) */
+    @Override
     public boolean containsKey(double key) {
         return find(key, 0) != NIL;
     }
@@ -70,6 +72,7 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
      *            the key
      * @return the int
      * @see java.util.Map#get(java.lang.Object) */
+    @Override
     public int get(double key) {
         Entry ret = find(key, 0);
         return ret == NIL ? Integer.MIN_VALUE : ret.val;
@@ -83,6 +86,7 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
      *            the value
      * @return the int
      * @see java.util.Map#put(java.lang.Object, java.lang.Object) */
+    @Override
     public int put(double key, int value) {
         Entry t = root;
         lastOrder = 0;
@@ -125,6 +129,7 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
      *            the key
      * @return the int
      * @see java.util.Map#remove(java.lang.Object) */
+    @Override
     public int remove(double key) {
         // remove the last instance with the given key
         Entry x;
@@ -141,6 +146,7 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
         return val;
     }
 
+    @Override
     public int remove(double key, int val) {
         // remove the last instance with the given key
         Entry x = findCeiling(key, 0);
@@ -164,6 +170,7 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
      * 
      * @return the double
      * @see java.util.SortedMap#firstKey() */
+    @Override
     public double firstKey() {
         return minimum(root).getDoubleKey();
     }
@@ -172,15 +179,18 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
      * 
      * @return the double
      * @see java.util.SortedMap#lastKey() */
+    @Override
     public double lastKey() {
         return maximum(root).getDoubleKey();
     }
 
     // -- Collection view methods ---------------------------------------------
+    @Override
     public LiteralIterator keyIterator() {
         return new KeyIterator();
     }
 
+    @Override
     public LiteralIterator keyRangeIterator(double fromKey, boolean fromInc,
             double toKey, boolean toInc) {
         Entry start, end;
@@ -196,6 +206,7 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
         return new KeyIterator(start, end);
     }
 
+    @Override
     public IntIterator valueRangeIterator(double fromKey, boolean fromInc, double toKey,
             boolean toInc) {
         return new ValueIterator((EntryIterator) keyRangeIterator(fromKey, fromInc,
@@ -205,6 +216,7 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
     // ------------------------------------------------------------------------
     // Internal Binary Search Tree / Red-Black Tree methods
     // Adapted from Cormen, Leiserson, and Rivest's Introduction to Algorithms
+    @Override
     protected int compare(Entry e1, Entry e2) {
         int c = cmp.compare(e1.getDoubleKey(), e2.getDoubleKey());
         if (allowDuplicates) {
@@ -293,18 +305,22 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
             this.key = key;
         }
 
+        @Override
         public double getDoubleKey() {
             return key;
         }
 
+        @Override
         public Object getKey() {
             return new Double(key);
         }
 
+        @Override
         public boolean keyEquals(Entry e) {
             return e instanceof DoubleEntry && key == ((DoubleEntry) e).key;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (!(o instanceof DoubleEntry)) {
                 return false;
@@ -313,6 +329,7 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
             return key == e.key && val == e.val;
         }
 
+        @Override
         public int hashCode() {
             long k = Double.doubleToLongBits(key);
             int khash = (int) (k ^ k >>> 32);
@@ -320,10 +337,12 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
             return khash ^ vhash ^ order;
         }
 
+        @Override
         public String toString() {
             return key + "=" + val;
         }
 
+        @Override
         public void copyFields(Entry x) {
             super.copyFields(x);
             key = x.getDoubleKey();
@@ -349,10 +368,12 @@ public class DoubleIntTreeMap extends AbstractTreeMap implements DoubleIntSorted
             super(start, end);
         }
 
+        @Override
         public boolean isDoubleSupported() {
             return true;
         }
 
+        @Override
         public double nextDouble() {
             return nextEntry().getDoubleKey();
         }

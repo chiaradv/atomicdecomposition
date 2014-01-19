@@ -56,7 +56,7 @@ public class DataColorAction extends ColorAction {
     /** The m_olist. */
     private Object[] m_olist;
     /** The m_cmap. */
-    private ColorMap m_cmap = new ColorMap(null, 0, 1);
+    private final ColorMap m_cmap = new ColorMap(null, 0, 1);
     /** The m_palette. */
     private int[] m_palette;
 
@@ -209,6 +209,7 @@ public class DataColorAction extends ColorAction {
      * @param color
      *            the new default color
      * @see prefuse.action.assignment.ColorAction#setDefaultColor(int) */
+    @Override
     public void setDefaultColor(int color) {
         throw new UnsupportedOperationException();
     }
@@ -238,6 +239,7 @@ public class DataColorAction extends ColorAction {
     /** Set up the state of this encoding Action.
      * 
      * @see prefuse.action.EncoderAction#setup() */
+    @Override
     protected void setup() {
         int size = 64;
         int[] palette = m_palette;
@@ -272,6 +274,7 @@ public class DataColorAction extends ColorAction {
         }
     }
 
+    @Override
     protected void finish() {
         // reset scale in case it needed to be changed due to errors
         m_scale = m_tempScale;
@@ -324,6 +327,7 @@ public class DataColorAction extends ColorAction {
      *            the item
      * @return the color
      * @see prefuse.action.assignment.ColorAction#getColor(prefuse.visual.VisualItem) */
+    @Override
     public int getColor(VisualItem item) {
         // check for any cascaded rules first
         Object o = lookup(item);

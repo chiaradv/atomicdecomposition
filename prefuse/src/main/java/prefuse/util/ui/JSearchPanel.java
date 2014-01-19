@@ -38,15 +38,15 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
     /** The m_searcher. */
     private SearchTupleSet m_searcher;
     /** The m_query f. */
-    private JTextField m_queryF = new JTextField(15);
+    private final JTextField m_queryF = new JTextField(15);
     /** The m_result l. */
-    private JLabel m_resultL = new JLabel("          ");
+    private final JLabel m_resultL = new JLabel("          ");
     /** The m_search l. */
-    private JLabel m_searchL = new JLabel("search >> ");
+    private final JLabel m_searchL = new JLabel("search >> ");
     /** The m_sbox. */
-    private Box m_sbox = new Box(BoxLayout.X_AXIS);
+    private final Box m_sbox = new Box(BoxLayout.X_AXIS);
     /** The m_fields. */
-    private String[] m_fields;
+    private final String[] m_fields;
     /** The m_cancel color. */
     private Color m_cancelColor = ColorLib.getColor(255, 75, 75);
     /** The m_include hit count. */
@@ -250,6 +250,7 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
             }
             // add a listener to dynamically build search index
             source.addTupleSetListener(new TupleSetListener() {
+                @Override
                 public void tupleSetChanged(TupleSet tset, Tuple[] add, Tuple[] rem) {
                     if (add != null) {
                         for (int i = 0; i < add.length; ++i) {
@@ -312,6 +313,7 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
 
     // ------------------------------------------------------------------------
     /** Request the keyboard focus for this component. */
+    @Override
     public void requestFocus() {
         m_queryF.requestFocus();
     }
@@ -403,6 +405,7 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
      * @param bg
      *            the new background
      * @see java.awt.Component#setBackground(java.awt.Color) */
+    @Override
     public void setBackground(Color bg) {
         super.setBackground(bg);
         if (m_queryF != null) {
@@ -421,6 +424,7 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
      * @param fg
      *            the new foreground
      * @see java.awt.Component#setForeground(java.awt.Color) */
+    @Override
     public void setForeground(Color fg) {
         super.setForeground(fg);
         if (m_queryF != null) {
@@ -443,6 +447,7 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
      * @param opaque
      *            the new opaque
      * @see javax.swing.JComponent#setOpaque(boolean) */
+    @Override
     public void setOpaque(boolean opaque) {
         super.setOpaque(opaque);
         if (m_queryF != null) {
@@ -461,6 +466,7 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
      * @param f
      *            the new font
      * @see java.awt.Component#setFont(java.awt.Font) */
+    @Override
     public void setFont(Font f) {
         super.setFont(f);
         ;
@@ -488,6 +494,7 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
      * @param e
      *            the e
      * @see javax.swing.event.DocumentListener#changedUpdate(javax.swing.event.DocumentEvent) */
+    @Override
     public void changedUpdate(DocumentEvent e) {
         searchUpdate();
     }
@@ -497,6 +504,7 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
      * @param e
      *            the e
      * @see javax.swing.event.DocumentListener#insertUpdate(javax.swing.event.DocumentEvent) */
+    @Override
     public void insertUpdate(DocumentEvent e) {
         searchUpdate();
     }
@@ -506,6 +514,7 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
      * @param e
      *            the e
      * @see javax.swing.event.DocumentListener#removeUpdate(javax.swing.event.DocumentEvent) */
+    @Override
     public void removeUpdate(DocumentEvent e) {
         searchUpdate();
     }
@@ -515,6 +524,7 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
      * @param e
      *            the e
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent) */
+    @Override
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
         if (src == m_queryF) {
@@ -528,12 +538,12 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
         /** The hover. */
         private boolean hover = false;
         /** The outline. */
-        private int[] outline = new int[] { 0, 0, 2, 0, 4, 2, 5, 2, 7, 0, 9, 0, 9, 2, 7,
-                4, 7, 5, 9, 7, 9, 9, 7, 9, 5, 7, 4, 7, 2, 9, 0, 9, 0, 7, 2, 5, 2, 4, 0,
-                2, 0, 0 };
+        private final int[] outline = new int[] { 0, 0, 2, 0, 4, 2, 5, 2, 7, 0, 9, 0, 9,
+                2, 7, 4, 7, 5, 9, 7, 9, 9, 7, 9, 5, 7, 4, 7, 2, 9, 0, 9, 0, 7, 2, 5, 2,
+                4, 0, 2, 0, 0 };
         /** The fill. */
-        private int[] fill = new int[] { 1, 1, 8, 8, 1, 2, 7, 8, 2, 1, 8, 7, 7, 1, 1, 7,
-                8, 2, 2, 8, 1, 8, 8, 1 };
+        private final int[] fill = new int[] { 1, 1, 8, 8, 1, 2, 7, 8, 2, 1, 8, 7, 7, 1,
+                1, 7, 8, 2, 2, 8, 1, 8, 8, 1 };
 
         /** Instantiates a new cancel button. */
         public CancelButton() {
@@ -548,6 +558,7 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
             addMouseListener(this);
         }
 
+        @Override
         public void paintComponent(Graphics g) {
             if (hover) { // draw fill
                 g.setColor(m_cancelColor);
@@ -561,19 +572,24 @@ public class JSearchPanel extends JPanel implements DocumentListener, ActionList
             }
         }
 
+        @Override
         public void mouseClicked(MouseEvent arg0) {
             setQuery(null);
         }
 
+        @Override
         public void mousePressed(MouseEvent arg0) {}
 
+        @Override
         public void mouseReleased(MouseEvent arg0) {}
 
+        @Override
         public void mouseEntered(MouseEvent arg0) {
             hover = true;
             repaint();
         }
 
+        @Override
         public void mouseExited(MouseEvent arg0) {
             hover = false;
             repaint();

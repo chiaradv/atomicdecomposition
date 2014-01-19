@@ -35,6 +35,7 @@ public class GraphMLReader extends AbstractGraphReader implements GraphReader {
      * @throws DataIOException
      *             the data io exception
      * @see prefuse.data.io.GraphReader#readGraph(java.io.InputStream) */
+    @Override
     public Graph readGraph(InputStream is) throws DataIOException {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -160,6 +161,7 @@ public class GraphMLReader extends AbstractGraphReader implements GraphReader {
         /** The in schema. */
         private boolean inSchema;
 
+        @Override
         public void startDocument() {
             m_nodeMap.clear();
             inSchema = true;
@@ -169,6 +171,7 @@ public class GraphMLReader extends AbstractGraphReader implements GraphReader {
             m_esch.addColumn(TRGID, String.class);
         }
 
+        @Override
         public void endDocument() throws SAXException {
             // time to actually set up the edges
             IntIterator rows = m_edges.rows();
@@ -198,6 +201,7 @@ public class GraphMLReader extends AbstractGraphReader implements GraphReader {
             }
         }
 
+        @Override
         public void startElement(String namespaceURI, String localName, String qName,
                 Attributes atts) {
             // first clear the character buffer
@@ -248,6 +252,7 @@ public class GraphMLReader extends AbstractGraphReader implements GraphReader {
             }
         }
 
+        @Override
         public void endElement(String namespaceURI, String localName, String qName) {
             if (qName.equals(DEFAULT)) {
                 // value is in the buffer
@@ -272,6 +277,7 @@ public class GraphMLReader extends AbstractGraphReader implements GraphReader {
             }
         }
 
+        @Override
         public void characters(char[] ch, int start, int length) throws SAXException {
             m_sbuf.append(ch, start, length);
         }

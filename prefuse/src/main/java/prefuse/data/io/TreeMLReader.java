@@ -26,7 +26,7 @@ import prefuse.data.parser.ParserFactory;
  * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class TreeMLReader extends AbstractGraphReader {
     /** The m_pf. */
-    private ParserFactory m_pf = ParserFactory.getDefaultFactory();
+    private final ParserFactory m_pf = ParserFactory.getDefaultFactory();
 
     /** Read graph.
      * 
@@ -36,6 +36,7 @@ public class TreeMLReader extends AbstractGraphReader {
      * @throws DataIOException
      *             the data io exception
      * @see prefuse.data.io.GraphReader#readGraph(java.io.InputStream) */
+    @Override
     public Graph readGraph(InputStream is) throws DataIOException {
         try {
             TreeMLHandler handler = new TreeMLHandler();
@@ -102,6 +103,7 @@ public class TreeMLReader extends AbstractGraphReader {
         /** The m_in schema. */
         private boolean m_inSchema = true;
 
+        @Override
         public void startDocument() {
             m_tree = new Tree();
             m_nodes = m_tree.getNodeTable();
@@ -114,12 +116,14 @@ public class TreeMLReader extends AbstractGraphReader {
             }
         }
 
+        @Override
         public void endElement(String namespaceURI, String localName, String qName) {
             if (qName.equals(BRANCH) || qName.equals(LEAF)) {
                 m_activeNode = m_activeNode.getParent();
             }
         }
 
+        @Override
         public void startElement(String namespaceURI, String localName, String qName,
                 Attributes atts) {
             if (qName.equals(DECL)) {

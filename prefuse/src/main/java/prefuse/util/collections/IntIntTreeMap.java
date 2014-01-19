@@ -7,7 +7,8 @@ package prefuse.util.collections;
 public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
     // dummy entry used as wrapper for queries
     /** The dummy. */
-    private IntEntry dummy = new IntEntry(Integer.MIN_VALUE, Integer.MAX_VALUE, NIL, 0);
+    private final IntEntry dummy = new IntEntry(Integer.MIN_VALUE, Integer.MAX_VALUE,
+            NIL, 0);
 
     // ------------------------------------------------------------------------
     // Constructors
@@ -47,6 +48,7 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
     /** Clear.
      * 
      * @see java.util.Map#clear() */
+    @Override
     public void clear() {
         ++modCount;
         size = 0;
@@ -59,6 +61,7 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
      *            the key
      * @return true, if successful
      * @see java.util.Map#containsKey(java.lang.Object) */
+    @Override
     public boolean containsKey(int key) {
         return find(key, 0) != NIL;
     }
@@ -69,6 +72,7 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
      *            the key
      * @return the int
      * @see java.util.Map#get(java.lang.Object) */
+    @Override
     public int get(int key) {
         Entry ret = find(key, 0);
         return ret == NIL ? Integer.MIN_VALUE : ret.val;
@@ -82,6 +86,7 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
      *            the value
      * @return the int
      * @see java.util.Map#put(java.lang.Object, java.lang.Object) */
+    @Override
     public int put(int key, int value) {
         Entry t = root;
         lastOrder = 0;
@@ -124,6 +129,7 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
      *            the key
      * @return the int
      * @see java.util.Map#remove(java.lang.Object) */
+    @Override
     public int remove(int key) {
         // remove the last instance with the given key
         Entry x;
@@ -140,6 +146,7 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
         return val;
     }
 
+    @Override
     public int remove(int key, int val) {
         // remove the last instance with the given key
         Entry x = findCeiling(key, 0);
@@ -159,16 +166,19 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
         return val;
     }
 
+    @Override
     public int getLast(int key) {
         Entry ret = findPredecessor(key, Integer.MAX_VALUE);
         return ret == NIL || ((IntEntry) ret).key != key ? Integer.MIN_VALUE : ret.val;
     }
 
+    @Override
     public int getPreviousValue(int key, int value) {
         Entry cur = find(key, value);
         return predecessor(cur).val;
     }
 
+    @Override
     public int getNextValue(int key, int value) {
         Entry cur = find(key, value);
         return successor(cur).val;
@@ -178,6 +188,7 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
      * 
      * @return the int
      * @see java.util.SortedMap#firstKey() */
+    @Override
     public int firstKey() {
         return minimum(root).getIntKey();
     }
@@ -186,15 +197,18 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
      * 
      * @return the int
      * @see java.util.SortedMap#lastKey() */
+    @Override
     public int lastKey() {
         return maximum(root).getIntKey();
     }
 
     // -- Collection view methods ---------------------------------------------
+    @Override
     public LiteralIterator keyIterator() {
         return new KeyIterator();
     }
 
+    @Override
     public LiteralIterator keyRangeIterator(int fromKey, boolean fromInc, int toKey,
             boolean toInc) {
         Entry start, end;
@@ -210,6 +224,7 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
         return new KeyIterator(start, end);
     }
 
+    @Override
     public IntIterator valueRangeIterator(int fromKey, boolean fromInc, int toKey,
             boolean toInc) {
         return new ValueIterator((EntryIterator) keyRangeIterator(fromKey, fromInc,
@@ -219,6 +234,7 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
     // ------------------------------------------------------------------------
     // Internal Binary Search Tree / Red-Black Tree methods
     // Adapted from Cormen, Leiserson, and Rivest's Introduction to Algorithms
+    @Override
     protected int compare(Entry e1, Entry e2) {
         int c = cmp.compare(e1.getIntKey(), e2.getIntKey());
         if (allowDuplicates && c == 0) {
@@ -305,18 +321,22 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
             this.key = key;
         }
 
+        @Override
         public int getIntKey() {
             return key;
         }
 
+        @Override
         public Object getKey() {
             return new Integer(key);
         }
 
+        @Override
         public boolean keyEquals(Entry e) {
             return e instanceof IntEntry && key == ((IntEntry) e).key;
         }
 
+        @Override
         public boolean equals(Object o) {
             if (!(o instanceof IntEntry)) {
                 return false;
@@ -325,16 +345,19 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
             return key == e.key && val == e.val;
         }
 
+        @Override
         public int hashCode() {
             int khash = key;
             int vhash = val;
             return khash ^ vhash ^ order;
         }
 
+        @Override
         public String toString() {
             return key + "=" + val;
         }
 
+        @Override
         public void copyFields(Entry x) {
             super.copyFields(x);
             key = x.getIntKey();
@@ -360,10 +383,12 @@ public class IntIntTreeMap extends AbstractTreeMap implements IntIntSortedMap {
             super(start, end);
         }
 
+        @Override
         public boolean isIntSupported() {
             return true;
         }
 
+        @Override
         public int nextInt() {
             return nextEntry().getIntKey();
         }

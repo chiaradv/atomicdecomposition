@@ -159,6 +159,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
     /** Listener that fires a change event when it receives change event from the
      * slider list model. */
     protected class RangeSliderChangeListener implements ChangeListener {
+        @Override
         public void stateChanged(ChangeEvent e) {
             fireChangeEvent();
         }
@@ -335,6 +336,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * 
      * @return the preferred size
      * @see java.awt.Component#getPreferredSize() */
+    @Override
     public Dimension getPreferredSize() {
         if (orientation == VERTICAL) {
             return new Dimension(PREFERRED_BREADTH, PREFERRED_LENGTH);
@@ -363,6 +365,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * @param g
      *            the g
      * @see javax.swing.JComponent#paintComponent(java.awt.Graphics) */
+    @Override
     public void paintComponent(Graphics g) {
         Rectangle bounds = getBounds();
         int width = (int) bounds.getWidth() - 1;
@@ -690,6 +693,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * @param e
      *            the e
      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent) */
+    @Override
     public void mousePressed(MouseEvent e) {
         if (orientation == VERTICAL) {
             pick = pickHandle(e.getY());
@@ -710,6 +714,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * @param e
      *            the e
      * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent) */
+    @Override
     public void mouseDragged(MouseEvent e) {
         requestFocus();
         int value = orientation == VERTICAL ? e.getY() : e.getX();
@@ -766,6 +771,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * @param e
      *            the e
      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent) */
+    @Override
     public void mouseReleased(MouseEvent e) {
         pick = PICK_NONE;
         repaint();
@@ -776,6 +782,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * @param e
      *            the e
      * @see java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent) */
+    @Override
     public void mouseMoved(MouseEvent e) {
         if (orientation == VERTICAL) {
             switch (pickHandle(e.getY())) {
@@ -815,6 +822,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * @param e
      *            the e
      * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent) */
+    @Override
     public void mouseClicked(MouseEvent e) {}
 
     /** Mouse entered.
@@ -822,6 +830,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * @param e
      *            the e
      * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent) */
+    @Override
     public void mouseEntered(MouseEvent e) {}
 
     /** Mouse exited.
@@ -829,6 +838,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * @param e
      *            the e
      * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent) */
+    @Override
     public void mouseExited(MouseEvent e) {}
 
     /** Grow.
@@ -845,6 +855,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * @param e
      *            the e
      * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent) */
+    @Override
     public void keyPressed(KeyEvent e) {
         int kc = e.getKeyCode();
         boolean v = orientation == VERTICAL;
@@ -880,6 +891,7 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * @param e
      *            the e
      * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent) */
+    @Override
     public void keyReleased(KeyEvent e) {}
 
     /** Key typed.
@@ -887,5 +899,6 @@ public class JRangeSlider extends JComponent implements MouseListener,
      * @param e
      *            the e
      * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent) */
+    @Override
     public void keyTyped(KeyEvent e) {}
 } // end of class JRangeSlider

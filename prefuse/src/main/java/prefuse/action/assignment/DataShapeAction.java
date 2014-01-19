@@ -7,134 +7,122 @@ import prefuse.data.tuple.TupleSet;
 import prefuse.util.DataLib;
 import prefuse.visual.VisualItem;
 
-
-/**
+/** <p>
+ * Assignment Action that assigns shape values for a group of items based upon a
+ * data field. Shape values are simple integer codes that indicate to
+ * appropriate renderer instances what shape should be drawn. The default list
+ * of shape values is included in the {@link prefuse.Constants} class, all
+ * beginning with the prefix <code>SHAPE</code>. Of course, clients can always
+ * create their own shape codes that are handled by a custom Renderer.
+ * </p>
  * <p>
- * Assignment Action that assigns shape values for a group of items based upon
- * a data field. Shape values are simple integer codes that indicate to
- * appropriate renderer instances what shape should be drawn. The default
- * list of shape values is included in the {@link prefuse.Constants} class,
- * all beginning with the prefix <code>SHAPE</code>. Of course, clients can
- * always create their own shape codes that are handled by a custom Renderer. 
+ * The data field will be assumed to be nominal, and shapes will be assigned to
+ * unique values in the order they are encountered. Note that if the number of
+ * unique values is greater than {@link prefuse.Constants#SHAPE_COUNT} (when no
+ * palette is given) or the length of a specified palette, then duplicate shapes
+ * will start being assigned.
+ * </p>
+ * <p>
+ * This Action only sets the shape field of the VisualItem. For this value to
+ * have an effect, a renderer instance that takes this shape value into account
+ * must be used (e.g., {@link prefuse.render.ShapeRenderer}).
  * </p>
  * 
- * <p>The data field will be assumed to be nominal, and shapes will
- * be assigned to unique values in the order they are encountered. Note that
- * if the number of unique values is greater than
- * {@link prefuse.Constants#SHAPE_COUNT} (when no palette is given) or
- * the length of a specified palette, then duplicate shapes will start
- * being assigned.</p>
- * 
- * <p>This Action only sets the shape field of the VisualItem. For this value
- * to have an effect, a renderer instance that takes this shape value
- * into account must be used (e.g., {@link prefuse.render.ShapeRenderer}).
- * </p>
- * 
- * @author <a href="http://jheer.org">jeffrey heer</a>
- */
+ * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class DataShapeAction extends ShapeAction {
-    
     /** The Constant NO_SHAPE. */
     protected static final int NO_SHAPE = Integer.MIN_VALUE;
-    
     /** The m_data field. */
     protected String m_dataField;
-    
     /** The m_palette. */
-    protected int[]  m_palette;
-    
+    protected int[] m_palette;
     /** The m_ordinal map. */
-    protected Map    m_ordinalMap;
-    
-    
-    /**
-     * Create a new DataShapeAction.
-     * @param group the data group to process
-     * @param field the data field to base shape assignments on
-     */
+    protected Map m_ordinalMap;
+
+    /** Create a new DataShapeAction.
+     * 
+     * @param group
+     *            the data group to process
+     * @param field
+     *            the data field to base shape assignments on */
     public DataShapeAction(String group, String field) {
         super(group, NO_SHAPE);
         m_dataField = field;
     }
-    
-    /**
-     * Create a new DataShapeAction.
-     * @param group the data group to process
-     * @param field the data field to base shape assignments on
-     * @param palette a palette of shape values to use for the encoding.
-     * By default, shape values are assumed to be one of the integer SHAPE
-     * codes included in the {@link prefuse.Constants} class.
-     */
+
+    /** Create a new DataShapeAction.
+     * 
+     * @param group
+     *            the data group to process
+     * @param field
+     *            the data field to base shape assignments on
+     * @param palette
+     *            a palette of shape values to use for the encoding. By default,
+     *            shape values are assumed to be one of the integer SHAPE codes
+     *            included in the {@link prefuse.Constants} class. */
     public DataShapeAction(String group, String field, int[] palette) {
         super(group, NO_SHAPE);
         m_dataField = field;
         m_palette = palette;
     }
-    
+
     // ------------------------------------------------------------------------
-    
-    /**
-     * Returns the data field used to encode shape values.
-     * @return the data field that is mapped to shape values
-     */
+    /** Returns the data field used to encode shape values.
+     * 
+     * @return the data field that is mapped to shape values */
     public String getDataField() {
         return m_dataField;
     }
-    
-    /**
-     * Set the data field used to encode shape values.
-     * @param field the data field to map to shape values
-     */
+
+    /** Set the data field used to encode shape values.
+     * 
+     * @param field
+     *            the data field to map to shape values */
     public void setDataField(String field) {
         m_dataField = field;
     }
-    
-    /**
-     * This operation is not supported by the DataShapeAction type.
-     * Calling this method will result in a thrown exception.
-     *
-     * @param defaultShape the new default shape
-     * @see prefuse.action.assignment.ShapeAction#setDefaultShape(int)
-     */
+
+    /** This operation is not supported by the DataShapeAction type. Calling this
+     * method will result in a thrown exception.
+     * 
+     * @param defaultShape
+     *            the new default shape
+     * @see prefuse.action.assignment.ShapeAction#setDefaultShape(int) */
+    @Override
     public void setDefaultShape(int defaultShape) {
         throw new UnsupportedOperationException();
     }
-    
+
     // ------------------------------------------------------------------------
-    
-    /**
-     * Setup.
-     *
-     * @see prefuse.action.EncoderAction#setup()
-     */
+    /** Setup.
+     * 
+     * @see prefuse.action.EncoderAction#setup() */
+    @Override
     protected void setup() {
         TupleSet ts = m_vis.getGroup(m_group);
         m_ordinalMap = DataLib.ordinalMap(ts, m_dataField);
     }
-    
-    /**
-     * Gets the shape.
-     *
-     * @param item the item
+
+    /** Gets the shape.
+     * 
+     * @param item
+     *            the item
      * @return the shape
-     * @see prefuse.action.assignment.ShapeAction#getShape(prefuse.visual.VisualItem)
-     */
+     * @see prefuse.action.assignment.ShapeAction#getShape(prefuse.visual.VisualItem) */
+    @Override
     public int getShape(VisualItem item) {
         // check for any cascaded rules first
         int shape = super.getShape(item);
-        if ( shape != NO_SHAPE ) {
+        if (shape != NO_SHAPE) {
             return shape;
         }
-        
         // otherwise perform data-driven assignment
         Object v = item.get(m_dataField);
-        int idx = ((Integer)m_ordinalMap.get(v)).intValue();
-
-        if ( m_palette == null ) {
+        int idx = ((Integer) m_ordinalMap.get(v)).intValue();
+        if (m_palette == null) {
             return idx % Constants.SHAPE_COUNT;
         } else {
             return m_palette[idx % m_palette.length];
         }
     }
-    
 } // end of class DataShapeAction

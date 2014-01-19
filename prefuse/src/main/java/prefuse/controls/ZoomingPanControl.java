@@ -33,11 +33,11 @@ public class ZoomingPanControl extends ControlAdapter {
     /** The d. */
     private double d = 0;
     /** The s0. */
-    private double v0 = 75.0, d0 = 50, d1 = 400, s0 = .1;
+    private final double v0 = 75.0, d0 = 50, d1 = 400, s0 = .1;
     /** The update. */
-    private UpdateActivity update = new UpdateActivity();
+    private final UpdateActivity update = new UpdateActivity();
     /** The finish. */
-    private FinishActivity finish = new FinishActivity();
+    private final FinishActivity finish = new FinishActivity();
 
     /** Create a new ZoomingPanControl. */
     public ZoomingPanControl() {
@@ -59,6 +59,7 @@ public class ZoomingPanControl extends ControlAdapter {
      * @param e
      *            the e
      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent) */
+    @Override
     public void mousePressed(MouseEvent e) {
         if (SwingUtilities.isLeftMouseButton(e)) {
             Display display = (Display) e.getComponent();
@@ -72,6 +73,7 @@ public class ZoomingPanControl extends ControlAdapter {
      * @param e
      *            the e
      * @see java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent) */
+    @Override
     public void mouseDragged(MouseEvent e) {
         if (SwingUtilities.isLeftMouseButton(e)) {
             mouseCur = e.getPoint();
@@ -91,6 +93,7 @@ public class ZoomingPanControl extends ControlAdapter {
      * @param e
      *            the e
      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent) */
+    @Override
     public void mouseReleased(MouseEvent e) {
         if (SwingUtilities.isLeftMouseButton(e)) {
             update.cancel();
@@ -123,6 +126,7 @@ public class ZoomingPanControl extends ControlAdapter {
             this.display = display;
         }
 
+        @Override
         protected void run(long elapsedTime) {
             double sx = display.getTransform().getScaleX();
             double s, v;
@@ -172,6 +176,7 @@ public class ZoomingPanControl extends ControlAdapter {
             setDuration((long) (500 + 500 * Math.log(1 + z)));
         }
 
+        @Override
         protected void run(long elapsedTime) {
             double f = getPace(elapsedTime);
             double s = display.getTransform().getScaleX();
