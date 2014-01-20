@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.prefuse</groupId>
-    <artifactId>prefuse</artifactId>
-    <version>beta-20140119</version>
-    <packaging>jar</packaging>
+	<groupId>org.prefuse</groupId>
+	<artifactId>prefuse</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-    <name>prefuse</name>
-    <description>the prefuse visualization toolkit</description>
-    <url>http://prefuse.org</url>
+	<name>prefuse</name>
+	<description>the prefuse visualization toolkit</description>
+	<url>http://prefuse.org</url>
+		<parent>
+		<groupId>net.sourceforge.owlapi</groupId>
+		<artifactId>demost-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+	
 
-    <licenses>
-        <license>
-            <name>BSD License</name>
-            <url>http://prefuse.cvs.sourceforge.net/viewvc/prefuse/prefuse/license-prefuse.txt?revision=2.2</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <dependencies>
- <dependency>
-    <groupId>lucene</groupId>
-    <artifactId>lucene</artifactId>
-    <version>1.4.3</version>
-</dependency>            
-            
-</dependencies>
-    
+	<licenses>
+		<license>
+			<name>BSD License</name>
+			<url>http://prefuse.cvs.sourceforge.net/viewvc/prefuse/prefuse/license-prefuse.txt?revision=2.2</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 </project>
