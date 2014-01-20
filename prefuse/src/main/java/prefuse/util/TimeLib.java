@@ -234,7 +234,7 @@ public class TimeLib {
     /** Get the timestamp resulting from clearing (setting to zero) all time
      * values less than or equal to that of the given field. For example,
      * clearing to {@link Calendar#HOUR} will floor the time to nearest hour
-     * which occurred before or at the given time (e.g., 1:32 --> 1:30).
+     * which occurred before or at the given time (e.g., 1:32 to 1:30).
      * 
      * @param t
      *            the reference time
@@ -255,7 +255,7 @@ public class TimeLib {
     /** Clear the given calendar, setting to zero all time values less than or
      * equal to that of the given field. For example, clearing to
      * {@link Calendar#HOUR} will floor the time to nearest hour which occurred
-     * before or at the given time (e.g., 1:32 --> 1:30).
+     * before or at the given time (e.g., 1:32 to 1:30).
      * 
      * @param c
      *            the Calendar to clear

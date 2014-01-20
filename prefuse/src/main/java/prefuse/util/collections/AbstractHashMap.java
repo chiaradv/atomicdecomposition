@@ -22,13 +22,13 @@ public abstract class AbstractHashMap {
     /** The number of distinct associations in the map; its "size()". */
     protected int distinct;
     /** The table capacity c=table.length always satisfies the invariant
-     * <tt>c * minLoadFactor <= s <= c * maxLoadFactor</tt>, where s=size() is
-     * the number of associations currently contained. The term "c *
-     * minLoadFactor" is called the "lowWaterMark", "c * maxLoadFactor" is
-     * called the "highWaterMark". In other words, the table capacity (and
-     * proportionally the memory used by this class) oscillates within these
-     * constraints. The terms are precomputed and cached to avoid recalculating
-     * them each time put(..) or removeKey(...) is called. */
+     * <tt>c * minLoadFactor lesser or equal s lesser or equal c * maxLoadFactor</tt>
+     * , where s=size() is the number of associations currently contained. The
+     * term "c * minLoadFactor" is called the "lowWaterMark", "c *
+     * maxLoadFactor" is called the "highWaterMark". In other words, the table
+     * capacity (and proportionally the memory used by this class) oscillates
+     * within these constraints. The terms are precomputed and cached to avoid
+     * recalculating them each time put(..) or removeKey(...) is called. */
     protected int lowWaterMark;
     /** The high water mark. */
     protected int highWaterMark;
@@ -49,8 +49,8 @@ public abstract class AbstractHashMap {
 
     /** Chooses a new prime table capacity optimized for growing that
      * (approximately) satisfies the invariant
-     * <tt>c * minLoadFactor <= size <= c * maxLoadFactor</tt> and has at least
-     * one FREE slot for the given size.
+     * <tt>c * minLoadFactor lesser or equal size lesser or equal c * maxLoadFactor</tt>
+     * and has at least one FREE slot for the given size.
      * 
      * @param size
      *            the size
@@ -94,8 +94,8 @@ public abstract class AbstractHashMap {
 
     /** Chooses a new prime table capacity neither favoring shrinking nor
      * growing, that (approximately) satisfies the invariant
-     * <tt>c * minLoadFactor <= size <= c * maxLoadFactor</tt> and has at least
-     * one FREE slot for the given size.
+     * <tt>c * minLoadFactor lesser or equal size lesser or equal c * maxLoadFactor</tt>
+     * and has at least one FREE slot for the given size.
      * 
      * @param size
      *            the size
@@ -110,8 +110,8 @@ public abstract class AbstractHashMap {
 
     /** Chooses a new prime table capacity optimized for shrinking that
      * (approximately) satisfies the invariant
-     * <tt>c * minLoadFactor <= size <= c * maxLoadFactor</tt> and has at least
-     * one FREE slot for the given size.
+     * <tt>c * minLoadFactor lesser or equal size lesser or equal c * maxLoadFactor</tt>
+     * and has at least one FREE slot for the given size.
      * 
      * @param size
      *            the size

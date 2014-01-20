@@ -44,8 +44,7 @@ import java.util.RandomAccess;
  * <p>
  * All elements are permitted, including <tt>null</tt>.
  * <p>
- * This class is a member of the <a href="{@docRoot}
- * /../guide/collections/index.html"> Java Collections Framework</a>.
+ * This class is a member of the Java Collections Framework.
  * 
  * @since 1.5
  * @author Doug Lea */

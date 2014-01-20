@@ -12,7 +12,6 @@ import java.util.Random;
  * quad-tree with aggregated mass values to compute the n-body force in O(N log
  * N) time, where N is the number of ForceItems.
  * </p>
- * <p>
  * The algorithm used is that of J. Barnes and P. Hut, in their research paper
  * <i>A Hierarchical O(n log n) force calculation algorithm</i>, Nature, v.324,
  * December 1986. For more details on the algorithm, see one of the following
@@ -28,7 +27,6 @@ import java.util.Random;
  * href="http://www.ifa.hawaii.edu/~barnes/treecode/treeguide.html">Joshua
  * Barnes' recent implementation</a>
  * </ul>
- * </p>
  * 
  * @author <a href="http://jheer.org">jeffrey heer</a> */
 public class NBodyForce extends AbstractForce {

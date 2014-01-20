@@ -207,7 +207,7 @@ public class Sort {
      *            the sort specification String
      * @return a new Sort specification
      *         {@link prefuse.data.expression.parser.ExpressionParser expression
-     *         language statements}. For example, the following string</p>
+     *         language statements}. For example, the following string
      * 
      *         <pre>
      * &quot;Profit DESC, [Product Type]&quot;

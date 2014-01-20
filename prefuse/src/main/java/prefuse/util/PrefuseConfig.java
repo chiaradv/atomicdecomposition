@@ -18,7 +18,6 @@ import prefuse.util.io.IOLib;
  * file by putting the full path to the file into the "prefuse.config" System
  * property (for example by using a -D flag at the Java runtime command line).
  * </p>
- * <p>
  * Some of the supported configuration properties include:
  * <ul>
  * <li><code>activity.threadPriority</code> - the thread priority of the
@@ -37,7 +36,6 @@ import prefuse.util.io.IOLib;
  * prefuse log files. The default is "prefuse_log_%g.txt", where the %g
  * indicates a unique number for the log file.</li>
  * </ul>
- * </p>
  * <p>
  * Application creators are welcome to add their own custom properties to the
  * configuration files and use the PrefuseConfig instance to access those

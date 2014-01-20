@@ -14,8 +14,8 @@ import prefuse.data.Tuple;
  * one of the terms will be included in the results.
  * </p>
  * <p>
- * For more advanced search capabilities, see {@link KeywordSearchTupleSet} or
- * {@link RegexSearchTupleSet}.
+ * For more advanced search capabilities, see KeywordSearchTupleSet or
+ * RegexSearchTupleSet.
  * </p>
  * 
  * @version 1.0

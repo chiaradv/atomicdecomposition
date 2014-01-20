@@ -25,16 +25,17 @@ public class ItemSorter implements Comparator {
 
     /** <p>
      * Return an ordering score for an item. The default scoring imparts the
-     * following order: hover items > highlighted items > items in the
+     * following order: hover items greater highlighted items greater items in
+     * the
      * 
      * @param item
      *            the VisualItem to provide an ordering score
      * @return the ordering score {@link prefuse.Visualization#FOCUS_ITEMS} set
-     *         > {@link prefuse.Visualization#SEARCH_ITEMS} set > DecoratorItem
-     *         instances > normal VisualItem instances. A zero score is returned
-     *         for normal items, with scores starting at 1&lt;&lt;27 for other
-     *         items, leaving the number range beneath that value open for
-     *         additional nuanced scoring.
+     *         greater {@link prefuse.Visualization#SEARCH_ITEMS} set greater
+     *         DecoratorItem instances greater normal VisualItem instances. A
+     *         zero score is returned for normal items, with scores starting at
+     *         1&lt;&lt;27 for other items, leaving the number range beneath
+     *         that value open for additional nuanced scoring.
      *         </p>
      *         <p>
      *         Subclasses can override this method to provide custom sorting

@@ -11,7 +11,7 @@ package prefuse.util.collections;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/** Hash map holding (key,value) associations of type <tt>(int-->Object)</tt>;
+/** Hash map holding (key,value) associations of type <tt>(int to Object)</tt>;
  * Automatically grows and shrinks as needed; Implemented using open addressing
  * with double hashing. First see the <a href="package-summary.html">package
  * summary</a> and javadoc <a href="package-tree.html">tree view</a> to get the
@@ -160,10 +160,10 @@ public class IntObjectHashMap extends AbstractHashMap implements Cloneable {
      *            the key to be added to the receiver.
      * @return the index where the key would need to be inserted, if it is not
      *         already contained. Returns -index-1 if the key is already
-     *         contained at slot index. Therefore, if the returned index < 0,
+     *         contained at slot index. Therefore, if the returned index less 0,
      *         then it is already contained at slot -index-1. If the returned
-     *         index >= 0, then it is NOT already contained and should be
-     *         inserted at slot index. */
+     *         index greater or equal 0, then it is NOT already contained and
+     *         should be inserted at slot index. */
     protected int indexOfInsertion(int key) {
         final int tab[] = table;
         final byte stat[] = state;

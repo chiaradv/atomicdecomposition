@@ -346,8 +346,8 @@ public class EdgeRenderer extends AbstractShapeRenderer {
      * @param eitem
      *            the EdgeItem we are determining the control points for
      * @param cp
-     *            array of Point2D's (length >= 2) in which to return the
-     *            control points
+     *            array of Point2D's (length greater or equal 2) in which to
+     *            return the control points
      * @param x1
      *            the x co-ordinate of the first node this edge connects to
      * @param y1

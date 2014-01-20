@@ -166,7 +166,8 @@ public class JRangeSlider extends JComponent implements MouseListener,
     }
 
     /** Returns the current "low" value shown by the range slider's bar. The low
-     * value meets the constraint minimum <= lowValue <= highValue <= maximum.
+     * value meets the constraint minimum lesser or equal lowValue lesser or
+     * equal highValue lesser or equal maximum.
      * 
      * @return the low value */
     public int getLowValue() {
@@ -186,8 +187,8 @@ public class JRangeSlider extends JComponent implements MouseListener,
     }
 
     /** Returns the current "high" value shown by the range slider's bar. The
-     * high value meets the constraint minimum <= lowValue <= highValue <=
-     * maximum.
+     * high value meets the constraint minimum lesser or equal lowValue lesser
+     * or equal highValue lesser or equal maximum.
      * 
      * @return the high value */
     public int getHighValue() {

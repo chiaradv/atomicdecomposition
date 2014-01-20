@@ -62,8 +62,7 @@ public class ConnectionFactory {
      *            on the current classpath.
      * @param url
      *            the url for the database, of the form
-     *            "jdbc:<database_sub_protocol>://&lt;hostname&gt;/&lt;database_name&gt
-     *            ;
+     *            "jdbc:database_sub_protocol://hostname/database_name
      * @param user
      *            the database username
      * @param password
@@ -90,8 +89,7 @@ public class ConnectionFactory {
      *            on the current classpath.
      * @param url
      *            the url for the database, of the form
-     *            "jdbc:<database_sub_protocol>://&lt;hostname&gt;/&lt;database_name&gt
-     *            ;
+     *            "jdbc:database_sub_protocol://hostname/database_name
      * @param user
      *            the database username
      * @param password
