@@ -182,8 +182,8 @@ public class DeMoStGUI extends JFrame {
     /** The listener interface for receiving red events. The class that is
      * interested in processing a red event implements this interface, and the
      * object created with that class is registered with a component using the
-     * component's <code>addRedListener</code> method. When the red event
-     * occurs, that object's appropriate method is invoked. */
+     * component's {@code addRedListener} method. When the red event occurs, that
+     * object's appropriate method is invoked. */
     private final class RedListener implements ListDataListener, ListSelectionListener {
         @Override
         public void intervalRemoved(ListDataEvent e) {
@@ -234,9 +234,9 @@ public class DeMoStGUI extends JFrame {
     /** The listener interface for receiving ontologyChange events. The class
      * that is interested in processing a ontologyChange event implements this
      * interface, and the object created with that class is registered with a
-     * component using the component's <code>addOntologyChangeListener</code>
-     * method. When the ontologyChange event occurs, that object's appropriate
-     * method is invoked. */
+     * component using the component's {@code addOntologyChangeListener} method.
+     * When the ontologyChange event occurs, that object's appropriate method is
+     * invoked. */
     private final class OntologyChangeListener implements OWLOntologyChangeListener {
         @Override
         public void ontologiesChanged(List<? extends OWLOntologyChange> changes)
@@ -251,8 +251,8 @@ public class DeMoStGUI extends JFrame {
     /** The listener interface for receiving selection events. The class that is
      * interested in processing a selection event implements this interface, and
      * the object created with that class is registered with a component using
-     * the component's <code>addSelectionListener</code> method. When the
-     * selection event occurs, that object's appropriate method is invoked. */
+     * the component's {@code addSelectionListener} method. When the selection
+     * event occurs, that object's appropriate method is invoked. */
     private final class SelectionListener implements GraphSelectionModelListener {
         @Override
         public void selectionChanged(GraphSelectionEvent graphSelectionEvent) {
